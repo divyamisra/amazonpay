@@ -1,3 +1,3 @@
-# Donation Forms
+# AmazonPay files
 
-Migration of the remaining donation forms from AMHA to HEART.
+File for AmazonPay on YM and Heartwalk.
