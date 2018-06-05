@@ -160,9 +160,9 @@
 				  jQuery('.donation-loading').remove();
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
-				  var ty_url = "https://www2.heart.org/jump-hoops/amazon/thankyou.html";
+				  var ty_url = "https://www2.heart.org/amazonpay/jump-hoops/amazon/thankyou.html";
 				  if (jQuery('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/jump-hoops/amazon/thankyou.html";
+				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/jump-hoops/amazon/thankyou.html";
 				  }
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
