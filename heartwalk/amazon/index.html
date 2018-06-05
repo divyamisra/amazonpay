@@ -9,22 +9,19 @@
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../heartwalk/amazon/css/custom.css">
-<script type="text/javascript" src="../heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
-<script type="text/javascript" src="../heartwalk/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../heartwalk/amazon/js/additional-methods.min.js"></script>
+<link rel="stylesheet" href="../amazonpay/heartwalk/amazon/css/custom.css">
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
-    <!--
-    <div class="donate-image"> <img src="https://heartdev.convio.net/heartwalk/amazon/images/donationform-grfw.jpg" /> </div>
-    -->
     <div class="html-caption-container">
       <h1 id="formTitle">You've Got Heart!</h1>
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
-  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure2.convio.net/amha/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
+  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
     <div class="donation-form-container responsive">
       <input type="hidden" name="instance" value="[[S80:instance]]">
       <input type="hidden" name="recurring" value="false">
@@ -46,12 +43,12 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       [[?[[S334:PROXY_TYPE]]::20::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
-      <input type="hidden" name="from_url" value="http://heartdev.convio.net/site/TR?fr_id=[[S80:trID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
+      <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S334:instance]]x::https://secure3.convio.net/heartdev/::https://www2.heart.org]]/site/TR?fr_id=[[S80:trID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
       ::]]
       [[?[[S334:PROXY_TYPE]]::22::
       <input type="hidden" name="team_id" id="team_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="team_gift" value="true">
-      <input type="hidden" name="from_url" value="http://heartdev.convio.net/site/TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S334:PROXY_ID]]" id="from_url">
+      <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S334:instance]]x::https://secure3.convio.net/heartdev/::https://www2.heart.org]]/site/TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S334:PROXY_ID]]" id="from_url">
       ::]]
       <input type="hidden" name="confirmed" id="confirmed" value="true">
       <input type="hidden" name="gift_display_name" id="gift_display_name" value="Amazon">
@@ -344,10 +341,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </form>
 </div>
 
-<!-- <script type="text/javascript" src="https://heartdev.convio.net/heartwalk/amazon/js/analytics.js"></script> --> 
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../heartwalk/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../heartwalk/amazon/js/luminateExtend-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script> 
 <script type="text/javascript">
     jQuery('.toggleTribute').change(function() {
     if (jQuery(this).is(':checked')) {
@@ -421,4 +417,4 @@ window.onAmazonLoginReady = function() {
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../heartwalk/amazon/js/amazon-pay.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script> 
