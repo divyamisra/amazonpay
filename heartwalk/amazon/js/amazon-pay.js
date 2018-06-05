@@ -147,7 +147,7 @@ if (location.href.indexOf("donate_amazon") > 0) {
 	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
 	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
     var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-    if ($('input[name=instance]').val() == "heartdev") {
+    if (jQuery('input[name=instance]').val() == "heartdev") {
 	  	trinfo_url = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
     }
 	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
