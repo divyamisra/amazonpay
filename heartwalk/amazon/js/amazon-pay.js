@@ -155,7 +155,7 @@ if (location.href.indexOf("donate_amazon") > 0) {
 		if (data2.team_name != "" && dtype == "t") {
 			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
 		}
-		if (data2.part_name != " " && dtype == "e") {
+		if (data2.event_title != " " && dtype == "e") {
 			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
 		}
 		if (data2.part_name != " " && dtype == "p") {
