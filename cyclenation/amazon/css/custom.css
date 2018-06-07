@@ -541,4 +541,15 @@ text-decoration: underline;
 }
  @media only screen and (max-width: 320px) {
 	 
- }
+}
+/* override default styling for nav */
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  margin-left: 0;
+}
+.navbar-brand {
+  float: left;
+  font-size: 18px;
+  height: auto;
+  line-height: inherit;
+  padding: 15px;
+}
