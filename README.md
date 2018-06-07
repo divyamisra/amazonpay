@@ -1,3 +1,3 @@
 # AmazonPay files
 
-Files for AmazonPay on YM and Heartwalk.
+Files for AmazonPay on YM, Heartwalk and Cyclenation.
