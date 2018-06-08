@@ -1,13 +1,5 @@
 (function($) {
   /* define init variables for your organization */
-  luminateExtend({
-    apiKey: 'ahrt3', 
-    path: {
-      nonsecure: 'http://honor.americanheart.org/site/', 
-      secure: 'https://secure2.convio.net/amha/site/'
-    }
-  });
-  
   jQuery(function() {
     
     /* UI handlers for the donation form example */
@@ -205,9 +197,6 @@
 		});
 
 	}
-    
-    /* bind any forms with the "luminateApi" class */
-    luminateExtend.api.bind();
   });
 })(jQuery);
 
@@ -265,32 +254,6 @@ function getAmazonAddress() {
 	});
 })(jQuery);
 
-jQuery("#card-number").validateCreditCard(function(e) {
-	return jQuery("#card-number").removeClass(), null == e.card_type ? void jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}) : (jQuery("#card-number").addClass(e.card_type.name), "maestro" === e.card_type.name ? jQuery(".vertical.maestro").slideDown({
-		duration: 200
-	}).animate({
-		opacity: 1
-	}, {
-		queue: !1
-	}) : jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}), e.length_valid && e.luhn_valid ? jQuery("#card-number").addClass("valid") : jQuery("#card-number").removeClass("valid"))
-}, {
-	accept: ["visa", "mastercard", "amex", "discover"]
-});
-
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
   jQuery(this).blur(function(){
@@ -298,67 +261,15 @@ jQuery('[id^=donor_]').each(function(){
   });
 });
 
-// ADD QUERY STRING CODE
- 	//check for any passed parameters
-	if (jQuery.getQuerystring("s_src")) {
-		jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
-	}
-		
-	if (jQuery.getQuerystring("level_id")) {
-		jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-	}
+//autofill from querystring data
+jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
+jQuery('input[name="last_name"]').val(jQuery.getQuerystring("last"));
+jQuery('input[name="street1"]').val(jQuery.getQuerystring("street1"));	
+jQuery('input[name="dstreet2"]').val(jQuery.getQuerystring("street2"));	
+jQuery('input[name="city"]').val(jQuery.getQuerystring("city"));	
+jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
+jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
+jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
 
-	if (jQuery.getQuerystring("honor") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(1) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
-	if (jQuery.getQuerystring("memorial") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(2) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
-	if (jQuery.getQuerystring("msource")) {
-		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-	}
-		
-	if (jQuery.getQuerystring("amount")) {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-		jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-	}
-	
-	//autofill from querystring data
-	jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
-	jQuery('input[name="last_name"]').val(jQuery.getQuerystring("last"));
-	jQuery('input[name="street1"]').val(jQuery.getQuerystring("street1"));	
-	jQuery('input[name="dstreet2"]').val(jQuery.getQuerystring("street2"));	
-	jQuery('input[name="city"]').val(jQuery.getQuerystring("city"));	
-	jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
-	jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
-	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
-
-	jQuery('.group1').show();
-	jQuery('.group2').hide();
-	if(jQuery.getQuerystring("group") == "0") {
-		jQuery('.group1').hide();
-		jQuery('.group2').show();
-	}	      
 
 // END QUERY STRING CODE 
