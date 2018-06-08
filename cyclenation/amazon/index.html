@@ -20,7 +20,6 @@
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/cyclenation/amazon/css/custom.css">
-<script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/jquery.creditCardValidator.js"></script> 
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
@@ -43,7 +42,6 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="_session" value="">
       <input type="hidden" name="other_amount" value="100">
       <input type="hidden" name="gift_amount" value="100">
-      <input type="hidden" name="level_id" value="2447">
       <input type="hidden" name="payment_confirmation_id" value="">
       <input type="hidden" name="PaymentType" id="PaymentType" value="amazon">
       <input type="hidden" name="payment_type" id="payment_type" value="cash">
@@ -359,52 +357,15 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/luminateExtend.js"></script> 
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/luminateExtend-custom.js"></script> 
 <script type="text/javascript">
-    jQuery('.toggleTribute').change(function() {
-    if (jQuery(this).is(':checked')) {
-      jQuery('.tribute').slideDown();
-    } else {
-      jQuery('.tribute').slideUp();
-    }
-  });
-  
   //check for any passed parameters
-                                                     
   if (jQuery.getQuerystring("s_src")) {
     jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
   }
     
-  if (jQuery.getQuerystring("level_id")) {
-    jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-  }
-
-// ADD QUERY STRING CODE 
-  if (jQuery.getQuerystring("honor") == "true") {
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(1) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("memorial") == "true") { 
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(2) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
   if (jQuery.getQuerystring("msource")) {
     jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
   }
-// END QUERY STRING CODE 
-    
+
   if (jQuery.getQuerystring("amount")) {
     jQuery('label.active').removeClass("active");
     jQuery('label.level_other').addClass("active");
@@ -431,4 +392,4 @@ window.onAmazonLoginReady = function() {
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script> 
+<script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/amazon-pay.js"></script> 
