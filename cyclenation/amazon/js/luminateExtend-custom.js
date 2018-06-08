@@ -271,5 +271,23 @@ jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));
 jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
 jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
 
+//check for any passed parameters
+if (jQuery.getQuerystring("s_src")) {
+	jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
+}
+
+if (jQuery.getQuerystring("msource")) {
+	jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
+}
+
+if (jQuery.getQuerystring("amount")) {
+	jQuery('label.active').removeClass("active");
+	jQuery('label.level_other').addClass("active");
+	jQuery('.level-other-input').slideDown();
+	jQuery('#other-amount-entered').removeAttr('disabled');
+	jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+	jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
+	jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
+}
 
 // END QUERY STRING CODE 
