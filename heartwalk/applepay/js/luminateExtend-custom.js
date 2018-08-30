@@ -265,38 +265,48 @@ function getAmazonAddress() {
 	});
 })(jQuery);
 
-jQuery("#card-number").validateCreditCard(function(e) {
-	return jQuery("#card-number").removeClass(), null == e.card_type ? void jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}) : (jQuery("#card-number").addClass(e.card_type.name), "maestro" === e.card_type.name ? jQuery(".vertical.maestro").slideDown({
-		duration: 200
-	}).animate({
-		opacity: 1
-	}, {
-		queue: !1
-	}) : jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}), e.length_valid && e.luhn_valid ? jQuery("#card-number").addClass("valid") : jQuery("#card-number").removeClass("valid"))
-}, {
-	accept: ["visa", "mastercard", "amex", "discover"]
-});
-
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
   jQuery(this).blur(function(){
     jQuery("[id='"+jQuery(this).attr("id").replace("donor_","billing_")+"']").val(jQuery(this).val());
   });
 });
+
+if (location.href.indexOf("donate_applepay") > 0) {
+ 
+	var eid = jQuery('input[name=fr_id]').val();
+	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
+	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
+    	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+    	if (jQuery('input[name=instance]').val() == "heartdev") {
+		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	}
+	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+		//jQuery('.page-header h1').html(data2.event_title);
+		if (data2.team_name != "" && dtype == "t") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+		}
+		if (data2.event_title != " " && dtype == "e") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+		}
+		if (data2.part_name != " " && dtype == "p") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+		}
+
+		jQuery('input[name=form_id]').val(data2.don_form_id);
+		//jQuery.getJSON("https://secure3.convio.net/heartdev/site/CRDonationAPI?v=1.0&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&method=getDonationFormInfo&form_id="+data2.don_form_id+"&fr_id="+eid,function(data3){
+		//	jQuery.each(data3.getDonationFormInfoResponse.donationLevels,function(i, levels){
+		//		jQuery.each(levels,function(){
+		//			if (this.name == "Donor Entered Amount") {
+		//				jQuery('input[name=level_id]').val(this.level_id);
+		//			}
+		//		});
+		//	});
+		//});
+	});
+
+}
 
 // ADD QUERY STRING CODE
  	//check for any passed parameters
