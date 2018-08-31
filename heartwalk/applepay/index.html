@@ -154,39 +154,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   .payment-type label.active {background:#ccc;border-radius:10px;}
   .payment-type label img {padding: 5px;}
   </style>
-        
-        <!-- BEGIN AMAZON PAYMENTS ADDITION -->
-        <input type="hidden" name="AmazonBillingAgreementId" value="" />
-        <!-- Passed on to Amazon REST call: SetBillingAgreementDetails -->
-        <input type="hidden" name="AmazonOrderReferenceId" value="" />
-        <!-- Passed to Amazon after Amazon returns error. -->
-        <input type="hidden" name="AmazonAccessToken" value="" />
-        <!-- Can be saved on our back end for getting updated user information at a later time. -->
-        <input type="hidden" name="AmazonPaymentSelected" value="" />
-        <!-- END AMAZON PAYMENTS ADDITION -->
-        
-        <div id="AmazonPayment" style="background-color_: #F2F2F2; padding_: 10px; margin-right:22px;">
-          <div id="AmazonLogin">Please login to Amazon before continuing:</div>
-          
-          <!-- BUTTON WIDGET -->
-          <div id="AmazonPayButton"> </div>
-          
-          <!-- WALLET WIDGET -->
-          <div id="walletWidgetDiv"> </div>
-          
-          <!-- RECURRING PAYMENTS WIDGET -->
-          <div id="consentWidgetDiv"> </div>
-          
-          <!-- LOGOUT LINK -->
-          <div id="AmazonLogoutButton"> <a class="" href="#" onClick="javascript:amazon.Login.MODLogoutClickHandler()">Log out of Amazon Payments</a> </div>
-          <br />
-          <p class="amazon-payments">Amazon Payments is the secure payment for the American Heart Association. <a href="https://payments.amazon.com/help/Amazon-Simple-Pay/Creating-Managing-Your-Account/Verifying-Your-Account" 
-        target="_blank">Learn more</a> about Amazon Payments.
-            Amazon Payments protects your privacy and security.</p>
-        </div>
-        <!-- AmazonPayment -->
-        
-        <div class="panel panel-default contact-information" style="display:none">
+        <div class="panel panel-default contact-information">
           <div class="panel-heading">Tell us about yourself</div>
           <div class="panel-body">
             <div class="form-group required">
@@ -335,8 +303,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </script> 
             <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
           <button type="button" id="donate-submit" class="btn btn-primary text-center">
-          <div>All of my information is correct.</div>
-          Process my donation please </button>
+            <img src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png"/>
+	  </button>
         </div>
         <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
       </div>
