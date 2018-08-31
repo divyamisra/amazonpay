@@ -344,9 +344,12 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </form>
 </div>
 
+<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/luminate-braintree.js"></script> 
 <script type="text/javascript">
     jQuery('.toggleTribute').change(function() {
     if (jQuery(this).is(':checked')) {
@@ -405,19 +408,4 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   }
     
 </script> 
-<!-- ADD AMAZON CODE --> 
-<script>
-window.onAmazonLoginReady = function() {
-  amazon.Login.setClientId('amzn1.application-oa2-client.38bb1196ffea48f2b70647a398ce8a27'); // If you change Client ID, it should also be changed on submit form
-};
-</script> 
-[[?x[[S334:df_preview]]x::xtruex:: 
-<!-- sandbox JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script> 
-:: 
-<!-- production JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js"></script> 
-]] 
-<!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script> 
