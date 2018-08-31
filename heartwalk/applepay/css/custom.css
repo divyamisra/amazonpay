@@ -246,19 +246,18 @@ color:red;
   color:red;
 }
 .btn-primary {
-	background-color: #ed1c24 !important;
+	background-color: transparent !important;
 	border: none;
 	color: #fff;
 	font-size:24px;
 	font-weight:bold;
 	border-radius:0px;
-	padding:20px;
+	padding:0px;
 	margin:0 auto;
 	display:block;
 }
 .btn-primary:hover {
-	background-color: #ed1c24;	
-	text-decoration:underline;
+	background-color: transparent;	
 }
 .btn-primary > div {
 	font-size:0.8em;

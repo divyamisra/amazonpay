@@ -9,10 +9,9 @@
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/heartwalk/amazon/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
+<link rel="stylesheet" href="../amazonpay/heartwalk/applepay/css/custom.css">
+<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
@@ -21,21 +20,21 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
-  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
+  <form class="form-horizontal luminateApi donation-form" method="POST" action="" id="donateform">
     <div class="donation-form-container responsive">
       <input type="hidden" name="instance" value="[[S80:instance]]">
       <input type="hidden" name="recurring" value="false">
       <input type="hidden" name="method" value="donate">
       <input type="hidden" name="form_id" value="1710">
       <input type="hidden" name="validate" value="true">
-      <input type="hidden" name="source" value="AMAZON">
-      <input type="hidden" name="payment_source" value="AMAZON">
+      <input type="hidden" name="source" value="APPLEPAY">
+      <input type="hidden" name="payment_source" value="APPLEPAY">
       <input type="hidden" name="_session" value="">
       <input type="hidden" name="other_amount" value="100">
       <input type="hidden" name="gift_amount" value="100">
       <input type="hidden" name="level_id" value="2447">
       <input type="hidden" name="payment_confirmation_id" value="">
-      <input type="hidden" name="PaymentType" id="PaymentType" value="amazon">
+      <input type="hidden" name="PaymentType" id="PaymentType" value="applepay">
       <input type="hidden" name="payment_type" id="payment_type" value="cash">
       <input type="hidden" name="pm" value="amazon" id="pm_amazon">
       <input type="hidden" name="fr_id" id="fr_id" value="[[S334:FR_ID]]" />
@@ -155,39 +154,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   .payment-type label.active {background:#ccc;border-radius:10px;}
   .payment-type label img {padding: 5px;}
   </style>
-        
-        <!-- BEGIN AMAZON PAYMENTS ADDITION -->
-        <input type="hidden" name="AmazonBillingAgreementId" value="" />
-        <!-- Passed on to Amazon REST call: SetBillingAgreementDetails -->
-        <input type="hidden" name="AmazonOrderReferenceId" value="" />
-        <!-- Passed to Amazon after Amazon returns error. -->
-        <input type="hidden" name="AmazonAccessToken" value="" />
-        <!-- Can be saved on our back end for getting updated user information at a later time. -->
-        <input type="hidden" name="AmazonPaymentSelected" value="" />
-        <!-- END AMAZON PAYMENTS ADDITION -->
-        
-        <div id="AmazonPayment" style="background-color_: #F2F2F2; padding_: 10px; margin-right:22px;">
-          <div id="AmazonLogin">Please login to Amazon before continuing:</div>
-          
-          <!-- BUTTON WIDGET -->
-          <div id="AmazonPayButton"> </div>
-          
-          <!-- WALLET WIDGET -->
-          <div id="walletWidgetDiv"> </div>
-          
-          <!-- RECURRING PAYMENTS WIDGET -->
-          <div id="consentWidgetDiv"> </div>
-          
-          <!-- LOGOUT LINK -->
-          <div id="AmazonLogoutButton"> <a class="" href="#" onClick="javascript:amazon.Login.MODLogoutClickHandler()">Log out of Amazon Payments</a> </div>
-          <br />
-          <p class="amazon-payments">Amazon Payments is the secure payment for the American Heart Association. <a href="https://payments.amazon.com/help/Amazon-Simple-Pay/Creating-Managing-Your-Account/Verifying-Your-Account" 
-        target="_blank">Learn more</a> about Amazon Payments.
-            Amazon Payments protects your privacy and security.</p>
-        </div>
-        <!-- AmazonPayment -->
-        
-        <div class="panel panel-default contact-information" style="display:none">
+        <div class="panel panel-default contact-information">
           <div class="panel-heading">Tell us about yourself</div>
           <div class="panel-body">
             <div class="form-group required">
@@ -335,9 +302,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
     TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
   </script> 
             <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
-          <button type="button" id="donate-submit" class="btn btn-primary text-center">
-          <div>All of my information is correct.</div>
-          Process my donation please </button>
+          <button type="button" id="donate-submit" class="btn btn-primary text-center hidden">
+            <img src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png"/>
+	  </button>
         </div>
         <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
       </div>
@@ -345,80 +312,10 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </form>
 </div>
 
+<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script> 
-<script type="text/javascript">
-    jQuery('.toggleTribute').change(function() {
-    if (jQuery(this).is(':checked')) {
-      jQuery('.tribute').slideDown();
-    } else {
-      jQuery('.tribute').slideUp();
-    }
-  });
-  
-  //check for any passed parameters
-                                                     
-  if (jQuery.getQuerystring("s_src")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
-  }
-    
-  if (jQuery.getQuerystring("level_id")) {
-    jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-  }
-
-// ADD QUERY STRING CODE 
-  if (jQuery.getQuerystring("honor") == "true") {
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(1) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("memorial") == "true") { 
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(2) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("msource")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-  }
-// END QUERY STRING CODE 
-    
-  if (jQuery.getQuerystring("amount")) {
-    jQuery('label.active').removeClass("active");
-    jQuery('label.level_other').addClass("active");
-    jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-    jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-    jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-  }
-    
-</script> 
-<!-- ADD AMAZON CODE --> 
-<script>
-window.onAmazonLoginReady = function() {
-  amazon.Login.setClientId('amzn1.application-oa2-client.38bb1196ffea48f2b70647a398ce8a27'); // If you change Client ID, it should also be changed on submit form
-};
-</script> 
-[[?x[[S334:df_preview]]x::xtruex:: 
-<!-- sandbox JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script> 
-:: 
-<!-- production JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js"></script> 
-]] 
-<!-- END AMAZON PAYMENTS ADDITION --> 
-
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/donation-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/braintree-luminate.js"></script> 
