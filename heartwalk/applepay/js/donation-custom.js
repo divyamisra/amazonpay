@@ -2,7 +2,7 @@
 
         /* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
-		/*
+		
 		var eid = jQuery('input[name=fr_id]').val();
 		var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
 		var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
@@ -21,7 +21,7 @@
 			}
 			jQuery('input[name=form_id]').val(data2.don_form_id);
 		});
-                */
+                
             jQuery('.donate-select label').click(function() {
                 if (jQuery(this).next('div').is('.level-other-input')) {
                     jQuery('.level-other-input').slideDown();
