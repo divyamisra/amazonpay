@@ -1,5 +1,5 @@
 /*!
- * Save the Children
+ * American Heart Association
  * Project files are compiled with gulp. See source for modifications
  * 
  * @author Dean Huntley, DH Web Works, Inc.
