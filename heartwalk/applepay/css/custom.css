@@ -14,7 +14,11 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 .container.heart-page-container.heart-page-container--personal {
 	padding-top: 140px;	
 }
-
+@media (max-width: 991px) {
+	.container.heart-page-container.heart-page-container--personal {
+		padding-top: 0px;	
+	}
+}
 #login-form {
 	display:none;
 }
