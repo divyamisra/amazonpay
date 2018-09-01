@@ -1,5 +1,5 @@
 /*!
- * Save the Children
+ * American Heart Association
  * Project files are compiled with gulp. See source for modifications
  * 
  * @author Dean Huntley, DH Web Works, Inc.
@@ -338,7 +338,7 @@ var braintree_aha = {
 				}
 
 				// Fill address
-				braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
+				//braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
 				//fill in billing address details
 		
 				// Send payload.nonce to your server.
