@@ -105,8 +105,8 @@ function donateApplePay() {
 	var country = jQuery('select[name="donor.address.country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
 	var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
-	var cc = jQuery('input[name=card_number]').val();
-	var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
+	//var cc = jQuery('input[name=card_number]').val();
+	//var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
