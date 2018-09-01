@@ -80,56 +80,56 @@
 
 function donateApplePay() {
 	window.scrollTo(0, 0);
-	$('.donation-form').hide();
-	var params = $('.donation-form').serialize();
+	jQuery('.donation-form').hide();
+	var params = jQuery('.donation-form').serialize();
 	var status = "";
-	var amt = $('input[name=other_amount]').val();
-	var ref = $('input[name=processorAuthorizationCode]').val();
+	var amt = jQuery('input[name=other_amount]').val();
+	var ref = jQuery('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
-	$('input[name=check_number]').val(ref);
-	$('input[name=payment_confirmation_id]').val(ref);
+	jQuery('input[name=check_number]').val(ref);
+	jQuery('input[name=payment_confirmation_id]').val(ref);
 
 	//make offline donation in luminate to record transaction
-	if ($('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
 	//var amt = data.donationResponse.donation.amount.decimal;
-	var email = $('input[name="donor.email"]').val();
-	var first = $('input[name="donor.name.first"]').val();
-	var last = $('input[name="donor.name.last"]').val();
-	var full = $('input[name="donor.name.first"]').val() + ' ' + $('input[name="donor.name.last"]').val();
-	var street1 = $('input[name="donor.address.street1"]').val();
-	var street2 = $('input[name="donor.address.street2"]').val();
-	var city = $('input[name="donor.address.city"]').val();
-	var state = $('select[name="donor.address.state"]').val();
-	var zip = $('input[name="donor.address.zip"]').val();
-	var country = $('select[name="donor.address.country"]').val();
+	var email = jQuery('input[name="donor.email"]').val();
+	var first = jQuery('input[name="donor.name.first"]').val();
+	var last = jQuery('input[name="donor.name.last"]').val();
+	var full = jQuery('input[name="donor.name.first"]').val() + ' ' + jQuery('input[name="donor.name.last"]').val();
+	var street1 = jQuery('input[name="donor.address.street1"]').val();
+	var street2 = jQuery('input[name="donor.address.street2"]').val();
+	var city = jQuery('input[name="donor.address.city"]').val();
+	var state = jQuery('select[name="donor.address.state"]').val();
+	var zip = jQuery('input[name="donor.address.zip"]').val();
+	var country = jQuery('select[name="donor.address.country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
-	var cdate = $('select[name="card_exp_date_month"]').val() + "/" + $('select[name="card_exp_date_year"]').val();
-	var cc = $('input[name=card_number]').val();
-	var ctype = $('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
+	var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
+	var cc = jQuery('input[name=card_number]').val();
+	var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
-	$('.donation-loading').remove();
-	$('.donate-now, .header-donate').hide();
-	$('.thank-you').show();
+	jQuery('.donation-loading').remove();
+	jQuery('.donate-now, .header-donate').hide();
+	jQuery('.thank-you').show();
 	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/applepay/thankyou.html";
 	if (jQuery('input[name=instance]').val() == "heartdev") {
 		ty_url = "https://secure3.convio.net/heartdev/amazonpay/heartwalk/applepay/thankyou.html";
 	}
-	$.get(ty_url, function(datat) {
-		$('.thank-you').html($(datat).find('.thank-you').html());
-		$('p.first').html(first);
-		$('p.last').html(last);
-		$('p.street1').html(street1);
-		$('p.street2').html(street2);
-		$('p.city').html(city);
-		$('p.state').html(state);
-		$('p.zip').html(zip);
-		$('p.country').html(country);
-		$('p.email').html(email);
-		$('tr.cardGroup').hide();
-		$('tr.amazon').show();
-		$('p.amount').html("$" + amt);
-		$('p.confcode').html(ref);
+	jQuery.get(ty_url, function(datat) {
+		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
+		jQuery('p.first').html(first);
+		jQuery('p.last').html(last);
+		jQuery('p.street1').html(street1);
+		jQuery('p.street2').html(street2);
+		jQuery('p.city').html(city);
+		jQuery('p.state').html(state);
+		jQuery('p.zip').html(zip);
+		jQuery('p.country').html(country);
+		jQuery('p.email').html(email);
+		jQuery('tr.cardGroup').hide();
+		jQuery('tr.amazon').show();
+		jQuery('p.amount').html("$" + amt);
+		jQuery('p.confcode').html(ref);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
@@ -139,8 +139,8 @@ function donateApplePay() {
 		'id': ref,
 		'affiliation': 'AHA ApplePay Donation',
 		'revenue': amt,
-		'city': $('input[name="donor.address.city"]').val(),
-		'state': $('select[name="donor.address.state"]').val() // local currency code.
+		'city': jQuery('input[name="donor.address.city"]').val(),
+		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
 	});
 
 	ga('ecommerce:send');
@@ -149,9 +149,9 @@ function donateApplePay() {
 }
 
 function donateOffline() {
-	var params = $('.donation-form').serialize();
+	var params = jQuery('.donation-form').serialize();
 
-	$.ajax({
+	jQuery.ajax({
 		method: "POST",
 		async: false,
 		cache: false,
