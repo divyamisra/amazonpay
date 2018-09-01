@@ -338,7 +338,7 @@ var braintree_aha = {
 				}
 
 				// Fill address
-				braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
+				//braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
 				//fill in billing address details
 		
 				// Send payload.nonce to your server.
