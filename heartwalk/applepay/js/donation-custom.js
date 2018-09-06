@@ -93,18 +93,18 @@ function donateApplePay() {
 	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
 	//var amt = data.donationResponse.donation.amount.decimal;
-	var email = jQuery('input[name="donor.email"]').val();
-	var first = jQuery('input[name="donor.name.first"]').val();
-	var last = jQuery('input[name="donor.name.last"]').val();
-	var full = jQuery('input[name="donor.name.first"]').val() + ' ' + jQuery('input[name="donor.name.last"]').val();
-	var street1 = jQuery('input[name="donor.address.street1"]').val();
-	var street2 = jQuery('input[name="donor.address.street2"]').val();
-	var city = jQuery('input[name="donor.address.city"]').val();
-	var state = jQuery('select[name="donor.address.state"]').val();
-	var zip = jQuery('input[name="donor.address.zip"]').val();
-	var country = jQuery('select[name="donor.address.country"]').val();
+	var email = jQuery('input[name="email"]').val();
+	var first = jQuery('input[name="first_name"]').val();
+	var last = jQuery('input[name="last_name"]').val();
+	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	var street1 = jQuery('input[name="street1"]').val();
+	var street2 = jQuery('input[name="street2"]').val();
+	var city = jQuery('input[name="city"]').val();
+	var state = jQuery('select[name="state"]').val();
+	var zip = jQuery('input[name="zip"]').val();
+	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
-	var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
+	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
 	//var cc = jQuery('input[name=card_number]').val();
 	//var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
@@ -124,10 +124,10 @@ function donateApplePay() {
 		jQuery('p.city').html(city);
 		jQuery('p.state').html(state);
 		jQuery('p.zip').html(zip);
-		jQuery('p.country').html(country);
+		//jQuery('p.country').html(country);
 		jQuery('p.email').html(email);
-		jQuery('tr.cardGroup').hide();
-		jQuery('tr.amazon').show();
+		//jQuery('tr.cardGroup').hide();
+		//jQuery('tr.amazon').show();
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
 	});
