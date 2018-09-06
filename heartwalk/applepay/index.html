@@ -326,3 +326,14 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/donation-custom.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/braintree-luminate.js"></script> 
+<script>
+if (typeof window.ApplePaySession == "undefined") {
+	jQuery('.ym-page-content').addClass("hidden");
+	jQuery('.no-applepay').removeClass("hidden");
+} else {
+	if (!window.ApplePaySession.canMakePayments()) {
+		jQuery('.ym-page-content').addClass("hidden");
+		jQuery('.no-applepay').removeClass("hidden");
+	}
+}
+</script>	
