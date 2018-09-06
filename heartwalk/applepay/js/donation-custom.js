@@ -93,7 +93,7 @@ function donateApplePay() {
 	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
 	//var amt = data.donationResponse.donation.amount.decimal;
-	var return_url = jQuery('input[name="from_url"]').val();
+	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
@@ -118,6 +118,7 @@ function donateApplePay() {
 	}
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
+		jQuery('p.from_url').html(from_url);
 		jQuery('p.first').html(first);
 		jQuery('p.last').html(last);
 		jQuery('p.street1').html(street1);
