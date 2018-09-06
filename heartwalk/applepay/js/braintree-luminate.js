@@ -58,7 +58,7 @@ var session = "";
 var braintree_aha = { 
 	applePayPaymentType	: (jQuery.getQuerystring("btmethod") == "") ? true : false,
 	applePaySubmitButton: '#donate-submit',
-	venmoPaymentType	: (jQuery.getQuerystring("method") == "venmo") ? true : false,
+	venmoPaymentType	: (jQuery.getQuerystring("btmethod") == "venmo") ? true : false,
 	venmoSubmitButton	: '#venmo-button',
 	venmoSubmitBlock	: '#venmo-button-block',
 	donation_form		: jQuery('form'),
