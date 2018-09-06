@@ -419,7 +419,7 @@ list-style-image: url(/images/heart-bullet.png);
 }
 
 .thank-you .givingText {
-margin: 0 0 0 140px;
+margin: 0 0 0 20px;
 text-align:left !important;
 }
 
@@ -470,7 +470,7 @@ td.FormSectionHeader {
 	font-weight:bold;
 }
 .thank-you table {
-	width:500px;
+	/*width:500px;*/
 	margin: 0 auto;
 }
 .thank-you table td {
