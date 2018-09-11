@@ -211,7 +211,7 @@ var braintree_aha = {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jQuery('input[name=level_standardexpanded]:checked').val();
 
-		jQuery.post('/braintree/checkout.php', postParams)
+		jQuery.post('/braintree/checkout-tr.php', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = JSON.parse(data.toString());
 				var donresult = JSON.parse(data.toString());
@@ -396,7 +396,7 @@ var braintree_aha = {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
-		jQuery.getJSON('https://hearttools.heart.org/braintree/checkout.php?callback=?', postParams)
+		jQuery.getJSON('https://hearttools.heart.org/braintree/checkout-tr.php?callback=?', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse('['+data.result.toString()+']');
 				console.log(data.result);
