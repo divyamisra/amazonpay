@@ -135,7 +135,7 @@
 					jQuery('.donation-form').show();				
 				} else {
 					//save off amazon id into custom field
-					jQuery('input[name=payment_confirmation_id]').val(ref);
+					jQuery('input[name=payment_confirmation_id]').val('AMAZON:'+ref);
 					
 					//logout of amazon
 					amazon.Login.logout();
