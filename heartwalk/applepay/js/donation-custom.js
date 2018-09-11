@@ -84,7 +84,7 @@ function donateApplePay() {
 	var params = jQuery('.donation-form').serialize();
 	var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
-	var ref = jQuery('input[name=processorAuthorizationCode]').val();
+	var ref = 'APPLEPAY:'+jQuery('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jQuery('input[name=check_number]').val(ref);
 	jQuery('input[name=payment_confirmation_id]').val(ref);
