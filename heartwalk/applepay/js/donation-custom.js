@@ -1,6 +1,20 @@
     jQuery(document).ready(function() {
-
-        /* UI handlers for the donation form example */
+        var evid = jQuery.getQuerystring("FR_ID");
+	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
+		if(data.eventdata != null) {
+                   var regtst = /\w{3}-+/;
+	   	   var match = regtst.exec(data.eventdata.greetingurl);
+                   if (match != null) {
+   		      jQuery('input[name=affiliate]').val(data.eventdata.greetingurl,match[0].substr(0,3));
+                   } else {
+   		      jQuery('input[name=affiliate]').val('GEN');
+                   }
+                } else {
+		   jQuery('input[name=affiliate]').val('GEN');
+                }
+	});
+	    
+	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
             jQuery('.donate-select label').click(function() {
                 if (jQuery(this).next('div').is('.level-other-input')) {
