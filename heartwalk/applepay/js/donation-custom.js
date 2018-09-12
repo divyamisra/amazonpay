@@ -5,7 +5,7 @@
                    var regtst = /\w{3}-+/;
 	   	   var match = regtst.exec(data.eventdata.greetingurl);
                    if (match != null) {
-   		      jQuery('input[name=affiliate]').val(data.eventdata.greetingurl,match[0].substr(0,3));
+   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
                    } else {
    		      jQuery('input[name=affiliate]').val('GEN');
                    }
