@@ -136,6 +136,8 @@
 				} else {
 					//save off amazon id into custom field
 					jQuery('input[name=payment_confirmation_id]').val('AMAZON:'+ref);
+					jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
+
 					
 					//logout of amazon
 					amazon.Login.logout();
