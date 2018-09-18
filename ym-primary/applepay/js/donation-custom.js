@@ -127,9 +127,9 @@ function donateApplePay() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/applepay/thankyou.html";
+	var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
 	if (jQuery('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/heartwalk/applepay/thankyou.html";
+		ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
 	}
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
