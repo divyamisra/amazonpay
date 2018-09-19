@@ -64,8 +64,8 @@
                 var form = jQuery('form.donation-form');
                 jQuery(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jQuery(form).valid()) {
-                    if (jQuery('input[name=other_amount]').val() < 25) {
-                        alert("Please enter an amount $25 or greater");
+                    if (jQuery('input[name=other_amount]').val() < 10) {
+                        alert("Please enter an amount $10 or greater");
                         return false;
                     }
                     braintree_aha.submitApplePayDonation();
