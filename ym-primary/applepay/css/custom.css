@@ -1,3 +1,17 @@
+header nav {
+	display:none;
+}
+header .ym-header-post-text {
+	display:none;
+}
+.ym-header-logo--jump,
+.ym-header-logo--hoops,
+.ym-header-logo--shape-america {
+	display:none;
+}
+.ym-page-content h1 {
+	color: #BDDD98;
+}
 em {
 	font-size:12px;
 }
@@ -9,15 +23,15 @@ img {
 div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
-    width: 84px;
+    /*width: 84px;*/
+	height:auto;
 }
 .container.heart-page-container.heart-page-container--personal {
-	padding-top: 140px;	
+	padding: 0px;	
 }
-@media (max-width: 991px) {
-	.container.heart-page-container.heart-page-container--personal {
-		padding-top: 0px;	
-	}
+div.donation-form-container .section-header-container {
+  margin: 0;
+  padding: 30px 0 0;
 }
 #login-form {
 	display:none;
@@ -111,9 +125,7 @@ div.icon {
 .donation-detail {
 margin-top: 20px;
 }
-form#donateform .contact-information input[type="text"] {
-  width: 100% !important;
-}
+
 div.card-select label {
   background: none repeat scroll 0 0 #515151;
   border-radius: 8px;
@@ -129,7 +141,42 @@ div.card-select label {
 	background: #ED1C24;
 	cursor:pointer;
 }
-div.donate-select label {
+
+.form-group.gift-select {
+  background: #ebe9f3 none repeat scroll 0 0;
+  max-width: 650px;
+  padding: 20px 0;
+}
+div.gift-select label {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #cd1d67;
+  color: #cd1d67;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px !important;
+  font-weight: bold;
+  min-width: 110px;
+  position: relative;
+  margin: 10px 2% 10px 0;
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+}
+div.gift-select input {
+	display:none;
+}
+.gift-select label:hover, .gift-select label.active {
+	background: #cd1d67;
+	cursor:pointer;
+	color:#fff;
+}
+.form-group.donate-select {
+  background: #ebe9f3 none repeat scroll 0 0;
+  max-width: 650px;
+  padding: 20px 0;
+}
+div.donate-select labelx {
   background: none repeat scroll 0 0 #515151;
   border-radius: 8px;
   color: #fff;
@@ -141,20 +188,34 @@ div.donate-select label {
   position: relative;
   margin: 10px 2% 10px 0;
   text-align:center;
-  white-space:inherit;
 }
-
+div.donate-select label {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #cd1d67;
+  color: #cd1d67;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px !important;
+  font-weight: bold;
+  min-width: 110px;
+  float: left;
+  position: relative;
+  margin: 10px 2% 10px 0;
+  border-radius:10px;
+}
 .donation-level-amount-container, .level_other {
 padding: 10px; 	
 }
 
 .donate-select label:hover, .donate-select label.active {
-	background: #ED1C24;
+	background: #cd1d67;
 	cursor:pointer;
+	color:#fff;
 }
 .level-other-input {
   display: none;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 .level-other-input .input-group-addon {
   display: inline-block;
@@ -171,8 +232,14 @@ padding: 10px;
 	width:70%;
 }
 input#other-amount-entered {
-	top:2px;
-	position:relative;
+  color: #000;
+  font-size: 20px;
+  height: auto;
+  line-height: 24px;
+  padding: 9px;
+  position: relative;
+  top: 5px;
+  width:100px;
 }
 
 .recurring {
@@ -250,18 +317,19 @@ color:red;
   color:red;
 }
 .btn-primary {
-	background-color: transparent !important;
+	background-color: #ed1c24 !important;
 	border: none;
 	color: #fff;
 	font-size:24px;
 	font-weight:bold;
 	border-radius:0px;
-	padding:0px;
+	padding:20px;
 	margin:0 auto;
 	display:block;
 }
 .btn-primary:hover {
-	background-color: transparent;	
+	background-color: #ed1c24;	
+	text-decoration:underline;
 }
 .btn-primary > div {
 	font-size:0.8em;
@@ -419,7 +487,7 @@ list-style-image: url(/images/heart-bullet.png);
 }
 
 .thank-you .givingText {
-margin: 0 0 0 20px;
+margin: 0 0 0 140px;
 text-align:left !important;
 }
 
@@ -470,7 +538,7 @@ td.FormSectionHeader {
 	font-weight:bold;
 }
 .thank-you table {
-	/*width:500px;*/
+	width:500px;
 	margin: 0 auto;
 }
 .thank-you table td {
