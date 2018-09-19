@@ -13,6 +13,19 @@
 		   jQuery('input[name=affiliate]').val('GEN');
                 }
 	});
+	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
+		if(data.eventdata != null) {
+                   var regtst = /\w{3}-+/;
+	   	   var match = regtst.exec(data.eventdata.greetingurl);
+                   if (match != null) {
+   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
+                   } else {
+   		      jQuery('input[name=affiliate]').val('GEN');
+                   }
+                } else {
+		   jQuery('input[name=affiliate]').val('GEN');
+                }
+	});
 	    
 	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
