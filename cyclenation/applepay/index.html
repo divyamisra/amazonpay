@@ -6,7 +6,7 @@
 <!-->
 <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!--<![endif]-->
-<script>var jQuery = $.noConflict();</script> 
+<script>var jqcn = $.noConflict();</script> 
 
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
@@ -20,7 +20,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   </div>
 </div>
 <script>
-jQuery('main > .container').before(jQuery('.ym-page-header'));
+jqcn('main > .container').before(jqcn('.ym-page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/cyclenation/applepay/css/custom.css">
 <script type="text/javascript" src="../amazonpay/cyclenation/applepay/js/jquery.validate.min.JS"></script> 
@@ -170,9 +170,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
         </div>
       </div>
       <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
+		jqcn('.donate-select label').click(function(){
+			v('.donate-select .active').removeClass("active");
+			jqcn(this).addClass("active");
 		});
 	  </script>
       <div class="panel panel-default payment-type active">
@@ -348,12 +348,12 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="../amazonpay/cyclenation/applepay/js/donation-custom.js"></script> 
 <script>
 if (typeof window.ApplePaySession == "undefined") {
-	jQuery('.ym-page-content').addClass("hidden");
-	jQuery('.no-applepay').removeClass("hidden");
+	jqcn('.ym-page-content').addClass("hidden");
+	jqcn('.no-applepay').removeClass("hidden");
 } else {
 	if (!window.ApplePaySession.canMakePayments()) {
-		jQuery('.ym-page-content').addClass("hidden");
-		jQuery('.no-applepay').removeClass("hidden");
+		jqcn('.ym-page-content').addClass("hidden");
+		jqcn('.no-applepay').removeClass("hidden");
 	}
 }
 </script>	
