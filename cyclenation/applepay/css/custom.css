@@ -246,7 +246,7 @@ color:red;
   color:red;
 }
 .btn-primary {
-	background-color: #ed1c24 !important;
+	background-color: none !important;
 	border: none;
 	color: #fff;
 	font-size:24px;
@@ -257,7 +257,7 @@ color:red;
 	display:block;
 }
 .btn-primary:hover {
-	background-color: #ed1c24;	
+	background-color: none;	
 	text-decoration:underline;
 }
 .btn-primary > div {
