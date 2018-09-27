@@ -127,7 +127,7 @@
 					jqcn('.donation-form').show();				
 				} else {
 					//save off amazon id into custom field
-					jqcn('input[name=payment_confirmation_id]').val(ref);
+					jqcn('input[name=payment_confirmation_id]').val('AMAZON:'+ref);
 					
 					//logout of amazon
 					amazon.Login.logout();
