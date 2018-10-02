@@ -51,21 +51,21 @@
             jqcn.validator.addMethod(
                 "validDonation",
                 function(value, element) {
-                    if (value == 0 || (value >= 10 && value <= 500)) {
+                    if (value == 0 || (value >= 25 && value <= 500)) {
                         return true;
                     } else {
                         return false;
                     }
                 },
-                "Please enter an amount between $10 and $500"
+                "Please enter an amount between $25 and $500"
             );
 
             jqcn('#donate-submit').click(function() {
                 var form = jqcn('form.donation-form');
                 jqcn(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jqcn(form).valid()) {
-                    if (jqcn('input[name=other_amount]').val() < 10) {
-                        alert("Please enter an amount $10 or greater");
+                    if (jqcn('input[name=other_amount]').val() < 25) {
+                        alert("Please enter an amount $25 or greater");
                         return false;
                     }
                     braintree_aha.submitApplePayDonation();
