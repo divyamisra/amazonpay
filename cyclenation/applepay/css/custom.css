@@ -246,7 +246,7 @@ color:red;
   color:red;
 }
 .btn-primary {
-	background-color: none !important;
+	background-color: transparent !important;
 	border: none;
 	color: #fff;
 	font-size:24px;
@@ -257,7 +257,7 @@ color:red;
 	display:block;
 }
 .btn-primary:hover {
-	background-color: none;	
+	background-color: transparent;	
 	text-decoration:underline;
 }
 .btn-primary > div {
