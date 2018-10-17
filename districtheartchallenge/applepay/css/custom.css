@@ -23,7 +23,7 @@ img {
 div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
-    width: 100%;
+    width: 100% !important;
     height:auto;
 }
 .container.heart-page-container.heart-page-container--personal {
