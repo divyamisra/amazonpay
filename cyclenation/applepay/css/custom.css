@@ -407,8 +407,9 @@ list-style-image: url(/images/heart-bullet.png);
 }
 
 .thank-you .givingText {
-margin: 0 0 0 140px;
-text-align:left !important;
+	max-width: 760px;
+	text-align: left !important;
+	margin: 0 auto 40px;
 }
 
 .fa-flag,
