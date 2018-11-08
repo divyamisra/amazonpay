@@ -155,14 +155,14 @@ var braintree_aha = {
 			}
 			
 			jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
-
-			jQuery('.venmo-fields').show();
+			jQuery('.ym-page-content').addClass("hidden");
+			jQuery('.no-applepay').removeClass("hidden");
 			
-			jQuery(braintree_aha.venmoSubmitButton).click(function(){
-				if (jQuery(braintree_aha.donation_form).valid()) {
-					braintree_aha.submitVenmoDonation();
-				}
-			});
+			//jQuery(braintree_aha.venmoSubmitButton).click(function(){
+			//	if (jQuery(braintree_aha.donation_form).valid()) {
+			//		braintree_aha.submitVenmoDonation();
+			//	}
+			//});
 
 			// Check if tokenization results already exist. This occurs when your
 			// checkout page is relaunched in a new tab. This step can be omitted
