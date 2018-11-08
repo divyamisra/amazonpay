@@ -69,7 +69,7 @@ var braintree_aha = {
 		
 		//if apple pay is available then start BT process
 		var tokenURL = "https://hearttools.heart.org/braintree/gettoken.php";
-		if ($('input[name=instance]').val() == "heartdev") {
+		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/gettoken-test.php";
 		}
 		jQuery.getJSON(tokenURL + "?callback=?",function(data){
@@ -190,7 +190,7 @@ var braintree_aha = {
 				console.log('Got a payment method nonce:', payload.nonce);
 				// Display the Venmo username in your checkout UI.
 				console.log('Venmo user:', payload.details.username);
-				$('#venmo_user').val(payload.details.username);
+				jQuery('#venmo_user').val(payload.details.username);
 
 				//jQuery(braintree_aha.venmoSubmitButton).hide().after("<div id='venmo-button' style='background-image:none;color:#fff;'>Processing. Please Wait...</div>");
 	
@@ -216,7 +216,7 @@ var braintree_aha = {
 		postParams += "&amount="+jQuery('input[name=level_standardexpanded]:checked').val();
 
 		var tokenURL = "https://hearttools.heart.org/braintree/checkout.php";
-		if ($('input[name=instance]').val() == "heartdev") {
+		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/checkout-test.php";
 		}
 		jQuery.getJSON(tokenURL + '?callback=?', postParams)
