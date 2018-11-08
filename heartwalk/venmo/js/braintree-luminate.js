@@ -154,9 +154,8 @@ var braintree_aha = {
 			  return;
 			}
 			
-			jQuery(braintree_aha.venmoSubmitButton).prop('disabled', false);  //set disabled status based on available fla
-			jQuery(braintree_aha.venmoSubmitBlock).removeClass("hidden");
-			
+			jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
+
 			jQuery('.venmo-fields').show();
 			
 			jQuery(braintree_aha.venmoSubmitButton).click(function(){
