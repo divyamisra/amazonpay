@@ -199,7 +199,7 @@ var braintree_aha = {
 
 				// Success Venmo
 				braintree_aha.postDonationFormVenmo(
-					donateVenmo,,
+					donateVenmo,
 					function (textStatus) {
 						if (textStatus != "") {
 							braintree_aha.showGlobalError(textStatus);
