@@ -95,7 +95,7 @@
     });
 })(jQuery);
 function submitToVenmo() {
-	$('#venmoModal').modal('hide');
+	jQuery('#venmoModal').modal('hide');
 	braintree_aha.submitVenmoDonation();
 }
 
