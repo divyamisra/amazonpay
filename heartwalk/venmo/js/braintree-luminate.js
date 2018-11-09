@@ -151,12 +151,14 @@ var braintree_aha = {
 			// Verify browser support before proceeding.
 			if (!venmoInstance.isBrowserSupported()) {
 			  console.log('Browser does not support Venmo');
+  			  jQuery('.ym-page-content').addClass("hidden");
+			  jQuery('.no-applepay').removeClass("hidden");
 			  return;
 			}
 			
 			jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
-			jQuery('.ym-page-content').addClass("hidden");
-			jQuery('.no-applepay').removeClass("hidden");
+			jQuery('.ym-page-content').removeClass("hidden");
+			jQuery('.no-applepay').addClass("hidden");
 			
 			//jQuery(braintree_aha.venmoSubmitButton).click(function(){
 			//	if (jQuery(braintree_aha.donation_form).valid()) {
