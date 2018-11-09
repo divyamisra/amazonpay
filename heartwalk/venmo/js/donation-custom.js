@@ -69,7 +69,7 @@
                         return false;
                     }
                     var venmoData = "Donate to the American Heart Association";
-					venmoData += "<div style='font-size:40px'>$" + $('input[name=other_amount]').val() + "</div>";
+					venmoData += "<div style='font-size:40px'>$" + jQuery('input[name=other_amount]').val() + "</div>";
 					jQuery('#venmoModal .modal-body').html(venmoData);
 					jQuery('#venmoModal').modal(); 
                 } else {
