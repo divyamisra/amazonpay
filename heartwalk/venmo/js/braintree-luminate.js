@@ -215,7 +215,7 @@ var braintree_aha = {
 			
 	postDonationFormVenmo: function(callback_success, callback_fail) {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
-		postParams += "&amount="+jQuery('input[name=level_standardexpanded]:checked').val();
+		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 
 		var tokenURL = "https://hearttools.heart.org/braintree/checkout-tr.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
