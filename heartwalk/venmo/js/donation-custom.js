@@ -137,7 +137,7 @@ function donateVenmo() {
 	jQuery('.thank-you').show();
 	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/venmo/thankyou.html";
 	if (jQuery('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/heartwalk/venmo/thankyou.html";
+		ty_url = "https://dev2.heart.org/amazonpay/heartwalk/venmo/thankyou.html";
 	}
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
@@ -163,7 +163,7 @@ function donateVenmo() {
 
 	ga('ecommerce:addTransaction', {
 		'id': ref,
-		'affiliation': 'AHA ApplePay Donation',
+		'affiliation': 'AHA Venmo Donation',
 		'revenue': amt,
 		'city': jQuery('input[name="donor.address.city"]').val(),
 		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
