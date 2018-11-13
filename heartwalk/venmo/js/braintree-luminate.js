@@ -225,9 +225,9 @@ var braintree_aha = {
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse(data.toString());
 				//var donresult = JSON.parse(data.toString());
-				console.log(braintree_aha.donation_result);
+				console.log(data.result);
 				//
-				if (donresult.error == "") {
+				if (data.error == "") {
 					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					callback_success();
 				} else {
