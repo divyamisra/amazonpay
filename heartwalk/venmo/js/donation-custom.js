@@ -135,10 +135,7 @@ function donateVenmo() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/venmo/thankyou.html";
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://dev2.heart.org/amazonpay/heartwalk/venmo/thankyou.html";
-	}
+	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html(from_url);
