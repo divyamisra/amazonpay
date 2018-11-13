@@ -224,8 +224,8 @@ var braintree_aha = {
 		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse(data.toString());
-				var donresult = JSON.parse(data.toString());
-				console.log(donresult);
+				//var donresult = JSON.parse(data.toString());
+				console.log(braintree_aha.donation_result);
 				//
 				if (donresult.error == "") {
 					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
