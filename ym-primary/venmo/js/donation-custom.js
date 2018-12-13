@@ -51,21 +51,21 @@
             jQuery.validator.addMethod(
                 "validDonation",
                 function(value, element) {
-                    if (value == 0 || (value >= 25 && value <= 500)) {
+                    if (value == 0 || (value >= 10 && value <= 500)) {
                         return true;
                     } else {
                         return false;
                     }
                 },
-                "Please enter an amount between $25 and $500"
+                "Please enter an amount between $10 and $500"
             );
 
             jQuery('#donate-submit').click(function() {
                 var form = jQuery('form.donation-form');
                 jQuery(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jQuery(form).valid()) {
-                    if (jQuery('input[name=other_amount]').val() < 25) {
-                        alert("Please enter an amount $25 or greater");
+                    if (jQuery('input[name=other_amount]').val() < 10) {
+                        alert("Please enter an amount $10 or greater");
                         return false;
                     }
                     var venmoData = "Donate to the American Heart Association";
