@@ -94,11 +94,14 @@
         }
     });
 })(jQuery);
+
 function submitToVenmo() {
-	jQuery('#venmoModal').modal('hide');
+	window.scrollTo(0, 300);
+	$('#venmoModal').modal('hide');
+	$('.donation-form').hide();
+	$('.processing').show();
 	braintree_aha.submitVenmoDonation();
 }
-
 function donateVenmo() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
