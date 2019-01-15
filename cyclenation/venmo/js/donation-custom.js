@@ -65,15 +65,18 @@
                 var form = jqcn('form.donation-form');
                 jqcn(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jqcn(form).valid()) {
-                    if (jqcn('input[name=other_amount]').val() < 25) {
+                    if (jqcn('input[name=other_amount]').val() < 25 ) {
                         alert("Please enter an amount $25 or greater");
                         return false;
                     }
-                    submitToVenmo();
+                    var venmoData = "Donate to the American Heart Association";
+					venmoData += "<div style='font-size:40px'>$" + jqcn('input[name=other_amount]').val() + "</div>";
+					jqcn('#venmoModal .modal-body').html(venmoData);
+					jqcn('#venmoModal').modal(); 
                 } else {
                     return false;
                 }
-            });
+           });
         }
 
     });
