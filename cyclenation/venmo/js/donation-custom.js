@@ -69,7 +69,7 @@
                         alert("Please enter an amount $25 or greater");
                         return false;
                     }
-                    braintree_aha.submitApplePayDonation();
+                    braintree_aha.submitToVenmo();
                 } else {
                     return false;
                 }
