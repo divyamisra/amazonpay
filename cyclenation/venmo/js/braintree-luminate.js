@@ -7,7 +7,7 @@
  */
 //function to read and parse querystring
 (function ($) {
-	jQuery.extend({
+	jqcn.extend({
 		getQuerystring: function(name){
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -20,10 +20,10 @@
 		}
 	});
 	
-    jQuery.fn.serializeFormJSON = function () {
+    jqcn.fn.serializeFormJSON = function () {
         var o = {};
         var a = this.serializeArray();
-        jQuery.each(a, function () {
+        jqcn.each(a, function () {
             if (o[this.name]) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -35,7 +35,7 @@
         });
         return o;
     };
-}(jQuery));
+}(jqcn));
 
 //if (window.location.protocol !== 'https:') {
 //   location.href = location.href.replace(/^http:/, 'https:');
