@@ -83,9 +83,9 @@
 
 function submitToVenmo() {
 	window.scrollTo(0, 300);
-	$('#venmoModal').modal('hide');
-	$('.donation-form').hide();
-	$('.processing').show();
+	jqcn('#venmoModal').modal('hide');
+	jqcn('.donation-form').hide();
+	jqcn('.processing').show();
 	braintree_aha.submitVenmoDonation();
 }
 
