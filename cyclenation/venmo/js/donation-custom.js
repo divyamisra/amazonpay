@@ -82,7 +82,10 @@
     });
 
 function submitToVenmo() {
-	jqcn('#venmoModal').modal('hide');
+	window.scrollTo(0, 300);
+	$('#venmoModal').modal('hide');
+	$('.donation-form').hide();
+	$('.processing').show();
 	braintree_aha.submitVenmoDonation();
 }
 
