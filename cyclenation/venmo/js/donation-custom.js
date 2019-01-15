@@ -82,7 +82,7 @@
     });
 
 function submitToVenmo() {
-	window.scrollTo(0, 300);
+	window.scrollTo(0, 100);
 	jqcn('#venmoModal').modal('hide');
 	jqcn('.donation-form').hide();
 	jqcn('.processing').show();
