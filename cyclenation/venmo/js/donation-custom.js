@@ -145,20 +145,6 @@ function donateVenmo() {
 		jqcn('p.venmouser').html(venmouser);
 	});
 
-	/* ECOMMERCE TRACKING CODE */
-	ga('require', 'ecommerce');
-
-	ga('ecommerce:addTransaction', {
-		'id': ref,
-		'affiliation': 'AHA Venmo Donation',
-		'revenue': amt,
-		'city': jqcn('input[name="donor.address.city"]').val(),
-		'state': jqcn('select[name="donor.address.state"]').val() // local currency code.
-	});
-
-	ga('ecommerce:send');
-
-	ga('send', 'pageview', '/donateok.asp');
 }
 
 
