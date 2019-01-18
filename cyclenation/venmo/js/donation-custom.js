@@ -131,7 +131,7 @@ function donateVenmo() {
 	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
-		jqcn('p.from_url').html(from_url);
+		jqcn('p.from_url').html("<a href='"+from_url+"'>"+from_url+"</a>");
 		jqcn('p.first').html(first);
 		jqcn('p.last').html(last);
 		jqcn('p.street1').html(street1);
