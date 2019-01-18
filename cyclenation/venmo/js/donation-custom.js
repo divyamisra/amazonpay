@@ -94,6 +94,7 @@ function submitToVenmo() {
 function donateVenmo() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
+	jqcn('.processing').hide();
 	var params = jqcn('.donation-form').serialize();
 	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
