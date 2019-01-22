@@ -1,4 +1,6 @@
     jQuery(document).ready(function() {
+	jQuery('#from_url_js').val(document.referrer);
+	    
         var evid = jQuery.getQuerystring("FR_ID");
 	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
 		if(data.eventdata != null) {

@@ -10,6 +10,8 @@
   
   jQuery(function() {
     
+    jQuery('#from_url_js').val(document.referrer);
+	  
     /* UI handlers for the donation form example */
     if(jQuery('.donation-form').length > 0) {
       jQuery('.donate-select label').click(function() {

@@ -1,7 +1,8 @@
 (function($) {
   /* define init variables for your organization */
   jqcn(function() {
-    
+    jqcn('#from_url_js').val(document.referrer);
+	  
     /* UI handlers for the donation form example */
     if(jqcn('.donation-form').length > 0) {
       jqcn('.donate-select label').click(function() {

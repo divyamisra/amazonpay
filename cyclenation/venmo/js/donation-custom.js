@@ -1,8 +1,9 @@
+
     jqcn(document).ready(function() {
-        jqcn('#from_url_js').val(document.referrer);
+	jqcn('#from_url_js').val(document.referrer);
 	    
         var evid = jQuery.getCustomQuerystring(location.href,"FR_ID");
-	jqcn.getJSON('https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137',function(data){
+	jqcn.getJSON('CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137',function(data){
 		if(data.getTeamraisersResponse != null) {
                    var regtst = /\w{3}-+/;
 	   	   var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
@@ -66,26 +67,38 @@
                 var form = jqcn('form.donation-form');
                 jqcn(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jqcn(form).valid()) {
-                    if (jqcn('input[name=other_amount]').val() < 25) {
+                    if (jqcn('input[name=other_amount]').val() < 25 ) {
                         alert("Please enter an amount $25 or greater");
                         return false;
                     }
-                    braintree_aha.submitApplePayDonation();
+                    var venmoData = "Donate to the American Heart Association";
+					venmoData += "<div style='font-size:40px'>$" + jqcn('input[name=other_amount]').val() + "</div>";
+					jqcn('#venmoModal .modal-body').html(venmoData);
+					jqcn('#venmoModal').modal(); 
                 } else {
                     return false;
                 }
-            });
+           });
         }
 
     });
 
-function donateApplePay() {
+function submitToVenmo() {
+	window.scrollTo(0, 100);
+	jqcn('#venmoModal').modal('hide');
+	jqcn('.donation-form').hide();
+	jqcn('.processing').show();
+	braintree_aha.submitVenmoDonation();
+}
+
+function donateVenmo() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
+	jqcn('.processing').hide();
 	var params = jqcn('.donation-form').serialize();
 	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
-	var ref = 'APPLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
+	var ref = 'VENMO:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jqcn('input[name=check_number]').val(ref);
 	jqcn('input[name=payment_confirmation_id]').val(ref);
@@ -105,22 +118,20 @@ function donateApplePay() {
 	var city = jqcn('input[name="city"]').val();
 	var state = jqcn('select[name="state"]').val();
 	var zip = jqcn('input[name="zip"]').val();
-	//var country = jqcn('select[name="country"]').val();
+	var venmouser = jqcn('input[name="venmo_user"]').val();
+	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jqcn('select[name="card_exp_date_month"]').val() + "/" + jqcn('select[name="card_exp_date_year"]').val();
-	//var cc = jqcn('input[name=card_number]').val();
-	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
+	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
+	//var cc = jQuery('input[name=card_number]').val();
+	//var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
-	if (jqcn('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
-	}
+	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
-		jqcn('p.from_url').html(from_url);
+		jqcn('p.from_url').html("<a href='"+from_url+"'>"+from_url+"</a>");
 		jqcn('p.first').html(first);
 		jqcn('p.last').html(last);
 		jqcn('p.street1').html(street1);
@@ -128,29 +139,17 @@ function donateApplePay() {
 		jqcn('p.city').html(city);
 		jqcn('p.state').html(state);
 		jqcn('p.zip').html(zip);
-		//jqcn('p.country').html(country);
+		//jQuery('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jqcn('tr.cardGroup').hide();
-		//jqcn('tr.amazon').show();
+		//jQuery('tr.cardGroup').hide();
+		//jQuery('tr.amazon').show();
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
+		jqcn('p.venmouser').html(venmouser);
 	});
 
-	/* ECOMMERCE TRACKING CODE */
-	ga('require', 'ecommerce');
-
-	ga('ecommerce:addTransaction', {
-		'id': ref,
-		'affiliation': 'AHA ApplePay Donation',
-		'revenue': amt,
-		'city': jqcn('input[name="donor.address.city"]').val(),
-		'state': jqcn('select[name="donor.address.state"]').val() // local currency code.
-	});
-
-	ga('ecommerce:send');
-
-	ga('send', 'pageview', '/donateok.asp');
 }
+
 
 function donateOffline() {
 	var params = jqcn('.donation-form').serialize();
@@ -175,7 +174,7 @@ jqcn('[id^=donor_]').each(function() {
     });
 });
 
-if (location.href.indexOf("donate_applepay") > 0) {
+if (location.href.indexOf("donate_venmo") > 0) {
  
 	var eid = jqcn('input[name=fr_id]').val();
 	var dtype = (jqcn('input[name=proxy_type_value]').val() == 20) ? "p" : ((jqcn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
