@@ -11,6 +11,7 @@
   jQuery(function() {
     
     jQuery('#from_url_js').val(document.referrer);
+    jQuery('#from_browser').val(window.navigator.userAgent);
 	  
     /* UI handlers for the donation form example */
     if(jQuery('.donation-form').length > 0) {
