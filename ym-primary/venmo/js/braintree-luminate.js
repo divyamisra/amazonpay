@@ -177,7 +177,7 @@ var braintree_aha = {
 
 	submitVenmoDonation: function() {
 		venmoInstance.tokenize(function (status, payload) {
-			if (payload == undefined) {d
+			if (payload == undefined) {
 				if (status.code === 'VENMO_CANCELED') {
 					alert('App is not available or user aborted payment flow');
 				} else if (status.code === 'VENMO_APP_CANCELED') {
