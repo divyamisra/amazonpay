@@ -185,6 +185,7 @@ var braintree_aha = {
 				} else {
   				  alert('An error occurred:', err.message);
   				}
+				jQuery('.donation-form').show();
 			} else {
 				console.log(payload);
 				// Send the payment method nonce to your server, e.g. by injecting
