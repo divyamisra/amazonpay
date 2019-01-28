@@ -19,6 +19,14 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 		padding-top: 0px;	
 	}
 }
+
+/* processing div */
+.processing {
+	display: none;
+	padding: 20px 20px 40px;
+	font-size: 18px;
+	background: #fff;
+}
 #login-form {
 	display:none;
 }
