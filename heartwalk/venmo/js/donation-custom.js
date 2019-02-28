@@ -97,13 +97,17 @@
     });
 })(jQuery);
 function submitToVenmo() {
+	window.scrollTo(0, 300);
 	jQuery('#venmoModal').modal('hide');
+	jQuery('.donation-form').hide();
+	jQuery('.processing').show();
 	braintree_aha.submitVenmoDonation();
 }
 
 function donateVenmo() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
+	jQuery('.processing').hide();
 	var params = jQuery('.donation-form').serialize();
 	var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
@@ -140,7 +144,7 @@ function donateVenmo() {
 	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
-		jQuery('p.from_url').html(from_url);
+		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
 		jQuery('p.first').html(first);
 		jQuery('p.last').html(last);
 		jQuery('p.street1').html(street1);
