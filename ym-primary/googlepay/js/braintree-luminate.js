@@ -141,7 +141,7 @@ var braintree_aha = {
 			phoneNumberRequired: true
 		};
 		
-		var googleEnv = ($('input[name=instance]').val() == 'heartdev') ? 'TEST' : 'PRODUCTION';
+		var googleEnv = (jQuery('input[name=instance]').val() == 'heartdev') ? 'TEST' : 'PRODUCTION';
 		var paymentsClient = new google.payments.api.PaymentsClient({
 		  environment:  googleEnv // 'TEST' Or 'PRODUCTION'
 		});
@@ -153,7 +153,7 @@ var braintree_aha = {
 				}
 
 				// Send payload.nonce to your server.
-				$("input#payment_method_nonce").val(result.nonce);
+				jQuery("input#payment_method_nonce").val(result.nonce);
 
 				// Success GooglePay
 				braintree_aha.postDonationFormGooglePay(
@@ -171,11 +171,11 @@ var braintree_aha = {
 		});
 	},
 	postDonationFormGooglePay: function(callback_success, callback_fail) {
-		var postParams = $(braintree_aha.donation_form).serialize();
-		postParams += "&amount="+$('input[name=other_amount]').val();
+		var postParams = jQuery(braintree_aha.donation_form).serialize();
+		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
 		var tokenURL = "https://hearttools.heart.org/braintree/checkout.php";
-		if ($('input[name=instance]').val() == "heartdev") {
+		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/checkout-test.php";
 		}
 		$.getJSON(tokenURL + '?callback=?', postParams)
@@ -184,7 +184,7 @@ var braintree_aha = {
 				console.log(data.result);
 				//
 				if (data.error == "") {
-					$('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
+					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					callback_success();
 				} else {
 					callback_fail(data.error);
