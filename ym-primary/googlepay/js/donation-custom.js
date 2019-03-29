@@ -121,7 +121,6 @@ function donateGooglePay() {
 	var city = jQuery('input[name="city"]').val();
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
-	var venmouser = jQuery('input[name="venmo_user"]').val();
 	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
 	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
@@ -131,7 +130,7 @@ function donateGooglePay() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/ym-primary/googlepay/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
@@ -148,7 +147,6 @@ function donateGooglePay() {
 		//jQuery('tr.amazon').show();
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
-		jQuery('p.venmouser').html(venmouser);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
@@ -156,7 +154,7 @@ function donateGooglePay() {
 
 	ga('ecommerce:addTransaction', {
 		'id': ref,
-		'affiliation': 'AHA Venmo Donation',
+		'affiliation': 'AHA Google Pay Donation',
 		'revenue': amt,
 		'city': jQuery('input[name="donor.address.city"]').val(),
 		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
