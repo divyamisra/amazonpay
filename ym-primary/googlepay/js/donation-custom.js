@@ -189,7 +189,7 @@ jQuery('[id^=donor_]').each(function() {
 });
  
 var eid = jQuery('input[name=fr_id]').val();
-var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
 var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
 var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
 	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
