@@ -105,7 +105,7 @@ var braintree_aha = {
 		braintree.googlePayment.create({
    			client: clientInstance, // From braintree.client.create, see below for full example
 			googlePayVersion: 2,
-			googleMerchantId: ''
+			googleMerchantId: '14659556990032307902'
 			//googleMerchantId: '14659556990032307902' // Optional in sandbox; if set in sandbox, this value must be a valid production Google Merchant ID
 		  }, function (err, googlePaymentInstance) {
 		  	// Set up Google Pay button
