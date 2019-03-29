@@ -12,9 +12,9 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/ym-primary/venmo/css/custom.css">
-<script type="text/javascript" src="../amazonpay/ym-primary/venmo/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/venmo/js/additional-methods.min.js"></script>
+<link rel="stylesheet" href="../amazonpay/ym-primary/googlepay/css/custom.css">
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/additional-methods.min.js"></script>
 <section class='col-xs-12 col-sm-12 no-venmo ym-page-content hidden' aria-label="mainContent">
   <h2>Venmo is not available or setup on your device.</h2>
   [[?x20x2x::x[[S334:PROXY_TYPE]]x::
@@ -24,25 +24,6 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]">here</a> to return to the team's page.</p>
   ::]]
 </section>
-
-
-<div class="modal fade" id="venmoModal" tabindex="-1" role="dialog" aria-labelledby="venmoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"><img src="../donation-forms/donatenow/images/venmo-button.png"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="bottom: initial;right: 16px;padding: 5px;border-radius: 5px;">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" style="text-align:center;font-size:22px;"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn-modal" onclick="submitToVenmo();">Continue to Venmo</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="ym-page-content">
   <div class="thank-you"></div>
@@ -65,15 +46,14 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="finish_success_redirect" id="finish_success_redirect" value="https://www2.heart.org/site/SPageNavigator/ym-primary_venmo_thank_you.html"/>
       <input type="hidden" name="form_id" value="1710">
       <input type="hidden" name="validate" value="true">
-      <input type="hidden" name="source" value="VENMO">
-      <input type="hidden" name="payment_source" value="VENMO">
+      <input type="hidden" name="source" value="GOOGLE PAY">
+      <input type="hidden" name="payment_source" value="GOOGLEPAY">
       <input type="hidden" name="_session" value="">
       <input type="hidden" name="other_amount" value="75">
       <input type="hidden" name="gift_amount" value="75">
       <input type="hidden" name="level_id" value="2447">
       <input type="hidden" name="payment_confirmation_id" value="">
-      <input type="hidden" name="PaymentType" id="PaymentType" value="venmo">
-      <input type="hidden" name="venmo_user" id="venmo_user" value="">
+      <input type="hidden" name="PaymentType" id="PaymentType" value="googlepay">
       <input type="hidden" name="payment_type" id="payment_type" value="cash">
       <input type="hidden" name="pm" value="amazon" id="pm_amazon">
       <input type="hidden" name="fr_id" id="fr_id" value="[[S334:FR_ID]]" />
@@ -94,7 +74,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]" id="from_url">
       ::]]
       <input type="hidden" name="confirmed" id="confirmed" value="true">
-      <input type="hidden" name="gift_display_name" id="gift_display_name" value="Venmo">
+      <input type="hidden" name="gift_display_name" id="gift_display_name" value="Google Pay">
       [[?x[[S334:df_preview]]x::xtruex::
       <input type="hidden" name="sandbox" id="sandbox" value="true">
       <input type="hidden" name="df_preview" value="true" />
@@ -343,7 +323,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </script> 
             <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
           <button type="button" id="donate-submit" class="btn btn-primary text-center hidden">
-            <img src="/donation-forms/donatenow/images/venmo-button.png"/>
+            <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
 	  </button>
         </div>
         <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
@@ -352,10 +332,10 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </form>
 </div>
 
-<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.2/js/data-collector.min.js"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/venmo/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/venmo/js/donation-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/braintree-luminate.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/donation-custom.js"></script> 
