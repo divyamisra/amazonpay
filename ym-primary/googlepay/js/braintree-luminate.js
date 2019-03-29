@@ -178,7 +178,7 @@ var braintree_aha = {
 		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/checkout-test.php";
 		}
-		$.getJSON(tokenURL + '?callback=?', postParams)
+		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse('['+data.result.toString()+']');
 				console.log(data.result);
