@@ -156,7 +156,7 @@ var braintree_aha = {
 			  return;
 			}
 			
-			jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
+			//jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
 			jQuery('.ym-page-content').removeClass("hidden");
 			jQuery('.no-venmo').addClass("hidden");
 			
