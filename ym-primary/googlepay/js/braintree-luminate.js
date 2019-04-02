@@ -174,9 +174,9 @@ var braintree_aha = {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
-		var tokenURL = "https://hearttools.heart.org/braintree/checkout.php";
+		var tokenURL = "https://hearttools.heart.org/braintree/checkout-tr.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://hearttools.heart.org/braintree/checkout-test.php";
+			tokenURL = "https://hearttools.heart.org/braintree/checkout-tr-test.php";
 		}
 		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
