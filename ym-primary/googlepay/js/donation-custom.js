@@ -5,7 +5,7 @@
 	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
 	if (jQuery('input[name=instance]').val() == "heartdev") {
 		apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
-	}
+        }
 	jQuery.getJSON(apiURL,function(data){
 		if(data.getTeamraisersResponse != null) {
                    var regtst = /\w{3}-+/;
@@ -74,10 +74,7 @@
                         alert("Please enter an amount $10 or greater");
                         return false;
                     }
-                    var venmoData = "Donate to the American Heart Association";
-					venmoData += "<div style='font-size:40px'>$" + jQuery('input[name=other_amount]').val() + "</div>";
-					jQuery('#venmoModal .modal-body').html(venmoData);
-					jQuery('#venmoModal').modal(); 
+					braintree_aha.submitGooglePayDonation();
                 } else {
                     return false;
                 }
@@ -101,21 +98,14 @@
     });
 })(jQuery);
 
-function submitToVenmo() {
-	window.scrollTo(0, 300);
-	jQuery('#venmoModal').modal('hide');
-	jQuery('.donation-form').hide();
-	jQuery('.processing').show();
-	braintree_aha.submitVenmoDonation();
-}
-function donateVenmo() {
+function donateGooglePay() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').hide();
 	var params = jQuery('.donation-form').serialize();
 	var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
-	var ref = 'VENMO:'+jQuery('input[name=processorAuthorizationCode]').val();
+	var ref = 'GOOGLEPAY:'+jQuery('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jQuery('input[name=check_number]').val(ref);
 	jQuery('input[name=payment_confirmation_id]').val(ref);
@@ -135,7 +125,6 @@ function donateVenmo() {
 	var city = jQuery('input[name="city"]').val();
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
-	var venmouser = jQuery('input[name="venmo_user"]').val();
 	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
 	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
@@ -145,7 +134,7 @@ function donateVenmo() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/ym-primary/googlepay/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
@@ -162,7 +151,6 @@ function donateVenmo() {
 		//jQuery('tr.amazon').show();
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
-		jQuery('p.venmouser').html(venmouser);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
@@ -170,7 +158,7 @@ function donateVenmo() {
 
 	ga('ecommerce:addTransaction', {
 		'id': ref,
-		'affiliation': 'AHA Venmo Donation',
+		'affiliation': 'AHA Google Pay Donation',
 		'revenue': amt,
 		'city': jQuery('input[name="donor.address.city"]').val(),
 		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
@@ -203,29 +191,26 @@ jQuery('[id^=donor_]').each(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
-if (location.href.indexOf("donate_venmo") > 0) {
  
-	var eid = jQuery('input[name=fr_id]').val();
-	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-    	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-    	if (jQuery('input[name=instance]').val() == "heartdev") {
-		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	}
-	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-		//jQuery('.page-header h1').html(data2.event_title);
-		if (data2.team_name != "" && dtype == "t") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-		}
-		if (data2.event_title != " " && dtype == "e") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-		}
-		if (data2.part_name != " " && dtype == "p") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-		}
-
-		jQuery('input[name=form_id]').val(data2.don_form_id);
-	});
-
+var eid = jQuery('input[name=fr_id]').val();
+var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
+var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
+	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	if (jQuery('input[name=instance]').val() == "heartdev") {
+	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
 }
+jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+	//jQuery('.page-header h1').html(data2.event_title);
+	if (data2.team_name != "" && dtype == "t") {
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+	}
+	if (data2.event_title != " " && dtype == "e") {
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+	}
+	if (data2.part_name != " " && dtype == "p") {
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+	}
+
+	jQuery('input[name=form_id]').val(data2.don_form_id);
+});
