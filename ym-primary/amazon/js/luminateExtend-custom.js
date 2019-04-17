@@ -113,22 +113,26 @@
 			dataType: "json",
 			url:"https://hearttools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
 			success: function(data){
-				if (jQuery('input[name=recurring]').val() == "true") {
-					status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
-					amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
-					ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
-					
-					if (status != "Closed") {
-						amazonErr = true;
+				if (!(Error in data)) {
+   					if (jQuery('input[name=recurring]').val() == "true") {
+						status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
+						amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
+						ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
+
+						if (status != "Closed") {
+							amazonErr = true;
+						}
+					} else {
+						status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
+						amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
+						ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
+
+						if (status != "Closed") {
+							amazonErr = true;
+						}
 					}
 				} else {
-					status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
-					amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
-					ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
-					
-					if (status != "Closed") {
-						amazonErr = true;
-					}
+					amazonErr = true;
 				}
 
 				if (amazonErr) {
