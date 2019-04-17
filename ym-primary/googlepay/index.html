@@ -15,7 +15,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <link rel="stylesheet" href="../amazonpay/ym-primary/googlepay/css/custom.css">
 <script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/additional-methods.min.js"></script>
-<section class='col-xs-12 col-sm-12 no-venmo ym-page-content hidden' aria-label="mainContent">
+<section class='col-xs-12 col-sm-12 no-googlepay ym-page-content hidden' aria-label="mainContent">
   <h2>Google Pay is not available or setup on your device.</h2>
   [[?x20x2x::x[[S334:PROXY_TYPE]]x::
   <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]">here</a> to return to the participant's page.</p>
@@ -43,7 +43,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="device_data" id="device_data" value=""/>
       <input type="hidden" name="payment_method_nonce" id="payment_method_nonce" value=""/>
       <input type="hidden" name="processorAuthorizationCode" id="processorAuthorizationCode" value=""/>
-      <input type="hidden" name="finish_success_redirect" id="finish_success_redirect" value="https://www2.heart.org/site/SPageNavigator/ym-primary_venmo_thank_you.html"/>
+      <input type="hidden" name="finish_success_redirect" id="finish_success_redirect" value="https://www2.heart.org/site/SPageNavigator/ym_khc_googlepay_thank_you.html"/>
       <input type="hidden" name="form_id" value="1710">
       <input type="hidden" name="validate" value="true">
       <input type="hidden" name="source" value="GOOGLE PAY">
