@@ -26,6 +26,10 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
     /*width: 84px;*/
 	height:auto;
 }
+#donation-errors {
+	color:#ff0000;
+}
+
 .container.heart-page-container.heart-page-container--personal {
 	padding: 0px;	
 }
