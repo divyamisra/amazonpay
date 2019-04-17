@@ -136,7 +136,7 @@
 				}
 
 				if (amazonErr) {
-					jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State.toString() + ' - ' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.ReasonCode.toString() + '</div>');
+					jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.Error.Code.toString() + ' - ' + data.data.Error.Message.toString() + '</div>');
 					jQuery('.donation-loading').remove();
 					jQuery('.donation-form').show();				
 				} else {
