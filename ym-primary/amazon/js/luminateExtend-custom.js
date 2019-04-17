@@ -113,8 +113,7 @@
 			dataType: "json",
 			url:"https://hearttools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
 			success: function(data){
-				console.log(typeof data['Error'], typeof data['Error2'])
-				if (!(Error in data)) {
+				if (typeof data.data.Error == "undefined") {
    					if (jQuery('input[name=recurring]').val() == "true") {
 						status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
 						amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
