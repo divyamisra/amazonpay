@@ -311,50 +311,17 @@ jQuery('[id^=donor_]').each(function(){
 		jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
 	}
 
-	if (jQuery.getQuerystring("honor") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(1) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
-	if (jQuery.getQuerystring("memorial") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(2) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
 	if (jQuery.getQuerystring("msource")) {
 		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
 	}
-		
-	/*if (jQuery.getQuerystring("amount")) {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-		jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-	}*/
 
 	// Get amount passed from query string
 	var amount = jQuery.getQuerystring("amount");
 	if (amount.length > 0) {
-		var match = jQuery('label[data-amount=' + jQuery.getQuerystring("amount") + ']');
+		var match = jQuery('label[data-amount=' + amount + ']');
 		if(match.length>=1){
 			jQuery(match).click();
 		} else {
-			console.log(jQuery.getQuerystring("amount"));
 			jQuery('label.active').removeClass("active");
 			jQuery('label.level_other').addClass("active");
 			jQuery('.level-other-input').slideDown();
@@ -373,12 +340,5 @@ jQuery('[id^=donor_]').each(function(){
 	jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
 	jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
 	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
-
-	jQuery('.group1').show();
-	jQuery('.group2').hide();
-	if(jQuery.getQuerystring("group") == "0") {
-		jQuery('.group1').hide();
-		jQuery('.group2').show();
-	}	      
 
 // END QUERY STRING CODE 
