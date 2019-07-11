@@ -348,13 +348,13 @@ jQuery('[id^=donor_]').each(function(){
 	}*/
 
 	// Get amount passed from query string
-	var amount = $.getQuerystring("amount");
+	var amount = jQuery.getQuerystring("amount");
 	if (amount.length > 0) {
-		var match = $('label[data-amount=' + $.getQuerystring("amount") + ']');
+		var match = jQuery('label[data-amount=' + jQuery.getQuerystring("amount") + ']');
 		if(match.length>=1){
-			$(match).click();
+			jQuery(match).click();
 		} else {
-			console.log($.getQuerystring("amount"));
+			console.log(jQuery.getQuerystring("amount"));
 			jQuery('label.active').removeClass("active");
 			jQuery('label.level_other').addClass("active");
 			jQuery('.level-other-input').slideDown();
