@@ -337,7 +337,7 @@ jQuery('[id^=donor_]').each(function(){
 		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
 	}
 		
-	if (jQuery.getQuerystring("amount")) {
+	/*if (jQuery.getQuerystring("amount")) {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
 		jQuery('.level-other-input').slideDown();
@@ -345,6 +345,23 @@ jQuery('[id^=donor_]').each(function(){
         jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 		jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
 		jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
+	}*/
+
+	// Get amount passed from query string
+	var amount = $.getQuerystring("amount");
+	if (amount.length > 0) {
+		var match = $('label[data-amount=' + $.getQuerystring("amount") + ']');
+		if(match.length>=1){
+			$(match).click();
+		} else {
+			console.log($.getQuerystring("amount"));
+			jQuery('label.active').removeClass("active");
+			jQuery('label.level_other').addClass("active");
+			jQuery('.level-other-input').slideDown();
+        		jQuery('#other-amount-entered').removeAttr('disabled');
+        		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+			jQuery('input[name=other_amount], input[name=gift_amount]').val(amount);
+		}
 	}
 	
 	//autofill from querystring data
