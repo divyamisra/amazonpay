@@ -14,7 +14,7 @@
     /* UI handlers for the donation form example */
     if(jQuery('.donation-form').length > 0) {
       jQuery('.donate-select label').click(function() {
-        if(jQuery(this).next('div').is('.level-other-input')) {
+        if(jQuery(this).text().trim() == "Other") {
 			jQuery('.level-other-input').slideDown();
           jQuery('#other-amount-entered').removeAttr('disabled');
           jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
