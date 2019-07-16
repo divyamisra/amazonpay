@@ -1,4 +1,19 @@
-    jQuery(document).ready(function() {
+(function($) {
+    jQuery.extend({
+        getQuerystring: function(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(location.href);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    });
+})(jQuery);
+
+jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 	    
         var evid = jQuery.getQuerystring("FR_ID");
@@ -79,20 +94,6 @@
 
     });
 
-(function($) {
-    jQuery.extend({
-        getQuerystring: function(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(location.href);
-            if (results == null)
-                return "";
-            else
-                return decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-    });
-})(jQuery);
 
 function donateApplePay() {
 	window.scrollTo(0, 0);
@@ -189,3 +190,19 @@ jQuery('[id^=donor_]').each(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
+
+// Get amount passed from query string
+var amount = jQuery.getQuerystring("amount");
+if (amount.length > 0) {
+	var match = jQuery('label[data-amount=' + amount + ']');
+	if(match.length>=1){
+		jQuery(match).click();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+	}
+}

@@ -83,64 +83,45 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime">
               <div class="text-center">
-                <label class="radio-level" for="amount1" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
-                <div class="donation-level-amount-container">$35</div>
+                <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
+                <div class="donation-level-amount-container">$30</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount2" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
-                <div class="donation-level-amount-container">$50</div>
+                <label class="radio-level" for="amount2" data-amount="60" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(60)">
+                <div class="donation-level-amount-container">$60</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level active" for="amount3" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
-                <div class="donation-level-amount-container">$100</div>
+                <label class="radio-level active" for="amount3" data-amount="110" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(110)">
+                <div class="donation-level-amount-container">$110</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount4" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(200)">
-                <div class="donation-level-amount-container">$200</div>
+                <label class="radio-level" for="amount4" data-amount="220" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(220)">
+                <div class="donation-level-amount-container">$220</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(500)">
-                <div class="donation-level-amount-container">$500</div>
+                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
+                <div class="donation-level-amount-container">$525</div>
                 </label>
+              </div>
+              <div class="text-center">
+                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
+                <div class="donation-level-amount-container">$1,000</div>
+                </label>
+              </div>
+              <div class="text-center">
+                  <label for="level-other" class="level_other">Other </label>
+                  <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                  </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-12 recurring">
-              <div class="text-center">
-                <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(10)">
-                	<div class="donation-level-amount-container">$10</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount6" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(25)">
-                	<div class="donation-level-amount-container">$25</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount7" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
-                	<div class="donation-level-amount-container">$35</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount8" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
-	                <div class="donation-level-amount-container">$50</div>
-	            </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount9" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
-	                <div class="donation-level-amount-container">$100</div>
-	            </label>
-              </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 text-left">
-              <label for="level-other" class="level_other">Other </label>
-              <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
-              </div>
-            </div>
+            <!-- <div class="col-xs-12 col-sm-6 text-left">
+              
+            </div> -->
           </div>
         </div>
       </div>
@@ -349,64 +330,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script> 
-<script type="text/javascript">
-    jQuery('.toggleTribute').change(function() {
-    if (jQuery(this).is(':checked')) {
-      jQuery('.tribute').slideDown();
-    } else {
-      jQuery('.tribute').slideUp();
-    }
-  });
-  
-  //check for any passed parameters
-                                                     
-  if (jQuery.getQuerystring("s_src")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
-  }
-    
-  if (jQuery.getQuerystring("level_id")) {
-    jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-  }
 
-// ADD QUERY STRING CODE 
-  if (jQuery.getQuerystring("honor") == "true") {
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(1) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("memorial") == "true") { 
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(2) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("msource")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-  }
-// END QUERY STRING CODE 
-    
-  if (jQuery.getQuerystring("amount")) {
-    jQuery('label.active').removeClass("active");
-    jQuery('label.level_other').addClass("active");
-    jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-    jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-    jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-  }
-    
-</script> 
 <!-- ADD AMAZON CODE --> 
 <script>
 window.onAmazonLoginReady = function() {

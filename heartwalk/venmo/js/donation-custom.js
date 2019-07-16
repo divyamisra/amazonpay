@@ -199,3 +199,19 @@ jQuery('[id^=donor_]').each(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
+
+// Get amount passed from query string
+var amount = jQuery.getQuerystring("amount");
+if (amount.length > 0) {
+	var match = jQuery('label[data-amount=' + amount + ']');
+	if(match.length>=1){
+		jQuery(match).click();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+	}
+}
