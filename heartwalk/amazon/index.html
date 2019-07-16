@@ -112,40 +112,16 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <div class="donation-level-amount-container">$1,000</div>
                 </label>
               </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 recurring">
               <div class="text-center">
-                <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(10)">
-                	<div class="donation-level-amount-container">$10</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radi  o-level" for="amount6" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(25)">
-                	<div class="donation-level-amount-container">$25</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount7" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
-                	<div class="donation-level-amount-container">$35</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount8" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
-	                <div class="donation-level-amount-container">$50</div>
-	            </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount9" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
-	                <div class="donation-level-amount-container">$100</div>
-	            </label>
+                  <label for="level-other" class="level_other">Other </label>
+                  <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                  </div>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 text-left">
-              <label for="level-other" class="level_other">Other </label>
-              <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
-              </div>
-            </div>
+            <!-- <div class="col-xs-12 col-sm-6 text-left">
+              
+            </div> -->
           </div>
         </div>
       </div>
