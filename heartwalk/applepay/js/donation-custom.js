@@ -1,4 +1,19 @@
-    jQuery(document).ready(function() {
+(function($) {
+    jQuery.extend({
+        getQuerystring: function(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(location.href);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    });
+})(jQuery);
+
+jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 	    
         var evid = jQuery.getQuerystring("FR_ID");
@@ -79,20 +94,6 @@
 
     });
 
-(function($) {
-    jQuery.extend({
-        getQuerystring: function(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(location.href);
-            if (results == null)
-                return "";
-            else
-                return decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-    });
-})(jQuery);
 
 function donateApplePay() {
 	window.scrollTo(0, 0);
