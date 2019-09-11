@@ -7,7 +7,7 @@
  */
 //function to read and parse querystring
 (function ($) {
-	jqcn.extend({
+	jQuery.extend({
 		getQuerystring: function(name){
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -20,10 +20,10 @@
 		}
 	});
 	
-    jqcn.fn.serializeFormJSON = function () {
+    jQuery.fn.serializeFormJSON = function () {
         var o = {};
         var a = this.serializeArray();
-        jqcn.each(a, function () {
+        jQuery.each(a, function () {
             if (o[this.name]) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -35,7 +35,7 @@
         });
         return o;
     };
-}(jqcn));
+}(jQuery));
 
 //if (window.location.protocol !== 'https:') {
 //   location.href = location.href.replace(/^http:/, 'https:');
@@ -56,20 +56,19 @@ var venmoInstance;
 var session = "";
 
 var braintree_aha = { 
-	applePayPaymentType	: (jqcn.getQuerystring("btmethod") == "") ? true : false,
-	applePaySubmitButton: '#donate-submit',
-	venmoPaymentType	: (jqcn.getQuerystring("btmethod") == "venmo") ? true : false,
-	venmoSubmitButton	: '#venmo-button',
-	venmoSubmitBlock	: '#venmo-button-block',
-	donation_form		: jqcn('form'),
+	googlePaySubmitButton: '#donate-submit',
+	donation_form		: jQuery('form'),
 	donation_result		: "",
-	payment_method		: (jqcn.getQuerystring("btmethod") == "") ? "applepay" : "venmo",
 	
 	initializeBraintree: function() {
 		
 		//if apple pay is available then start BT process
-		jqcn.getJSON("https://hearttools.heart.org/braintree/gettoken.php?callback=?",function(data){
-			console.log(data);
+		var tokenURL = "https://hearttools.heart.org/braintree/gettoken.php";
+		if (jQuery('input[name=instance]').val() == "heartdev") {
+			tokenURL = "https://hearttools.heart.org/braintree/gettoken-test.php";
+		}
+		jQuery.getJSON(tokenURL + "?callback=?",function(data){
+		    console.log(data);
 			braintree_client_token = data.token;
 
 			braintree.client.create({
@@ -90,112 +89,75 @@ var braintree_aha = {
 						return;
 					}
 
-					jqcn('input[name=device_data]').val(dataCollectorInstance.deviceData);
+					jQuery('input[name=device_data]').val(dataCollectorInstance.deviceData);
 				});
 				
-				if (braintree_aha.applePayPaymentType) {
-					//Initialize Apple Pay
-					braintree_aha.InitializeApplePay(clientInstance);
-				}
-
-				if (braintree_aha.venmoPaymentType) {
-					//Initialize Venmo
-					braintree_aha.InitializeVenmo(clientInstance);
-				}
+				//Initialize Google Pay
+				braintree_aha.InitializeGooglePay(clientInstance);
 
 			});
 		});
 	},
 	//----------------
-	// Initialize Venmo using BrainTree
+	// Initialize GooglePay using Braintree
 	//----------------
-	InitializeVenmo: function(clientInstance) {
-
-		braintree.dataCollector.create({
-			client: clientInstance,
-			paypal: true
-		}, function (dataCollectorErr, dataCollectorInstance) {
-			if (dataCollectorErr) {
-				// Handle error in creation of data collector.
-				return;
-			}
-				
-			// At this point, you should access the deviceData value and provide it
-			// to your server, e.g. by injecting it into your form as a hidden input.
-			console.log('Got device data:', dataCollectorInstance.deviceData);
-		});
-
-		braintree.venmo.create({
-			client: clientInstance,
-			// Add allowNewBrowserTab: false if your checkout page does not support
-			// relaunching in a new tab when returning from the Venmo app. This can
-			// be omitted otherwise.
-			allowNewBrowserTab: false
-		}, function (venmoErr, _venmoInstance) {
-			if (venmoErr) {
-				console.error('Error creating venmoInstance:', venmoErr);
-				return;
-			}
-
-			venmoInstance = _venmoInstance;
-
-			if (venmoErr) {
-			  console.error('Error creating Venmo:', venmoErr);
-			  return;
-			}
-		
-			// Verify browser support before proceeding.
-			if (!venmoInstance.isBrowserSupported()) {
-			  console.log('Browser does not support Venmo');
-			  return;
-			}
-			
-			jqcn(braintree_aha.venmoSubmitButton).prop('disabled', false);  //set disabled status based on available fla
-			jqcn(braintree_aha.venmoSubmitBlock).removeClass("hidden");
-			
-			jqcn('.venmo-fields').show();
-			
-			jqcn(braintree_aha.venmoSubmitButton).click(function(){
-				if (jqcn(braintree_aha.donation_form).valid()) {
-					braintree_aha.submitVenmoDonation();
-				}
-			});
-
-			// Check if tokenization results already exist. This occurs when your
-			// checkout page is relaunched in a new tab. This step can be omitted
-			// if allowNewBrowserTab is false.
-			if (venmoInstance.hasTokenizationResult()) {
-				braintree_aha.submitVenmoDonation();
-			}
-		});
-	},
-
-	submitVenmoDonation: function() {
-		venmoInstance.tokenize(function (status, payload) {
-			if (payload == undefined) {d
-				if (status.code === 'VENMO_CANCELED') {
-					alert('App is not available or user aborted payment flow');
-				} else if (status.code === 'VENMO_APP_CANCELED') {
-					alert('User canceled payment flow');
-				} else {
-  				  alert('An error occurred:', err.message);
-  				}
+	InitializeGooglePay: function(clientInstance) {
+		braintree.googlePayment.create({
+   			client: clientInstance, // From braintree.client.create, see below for full example
+			googlePayVersion: 2,
+			googleMerchantId: '14659556990032307902'
+			//googleMerchantId: '14659556990032307902' // Optional in sandbox; if set in sandbox, this value must be a valid production Google Merchant ID
+		  }, function (err, googlePaymentInstance) {
+		  	// Set up Google Pay button
+			if (googlePaymentInstance != undefined) {
+				jQuery('.ym-page-content').removeClass("hidden");
+				jQuery('.no-venmo').addClass("hidden");
+				braintree_aha.googlePaymentInstance = googlePaymentInstance;
 			} else {
-				console.log(payload);
-				// Send the payment method nonce to your server, e.g. by injecting
-				// it into your form as a hidden input.
-				console.log('Got a payment method nonce:', payload.nonce);
-				// Display the Venmo username in your checkout UI.
-				console.log('Venmo user:', payload.details.username);
+				jQuery('.ym-page-content').addClass("hidden");
+				jQuery('.no-venmo').removeClass("hidden");
+				console.log(err, googlePaymentInstance);
+			}
+		  }
+		);
+	},
+	submitGooglePayDonation: function() {
+		var paymentDataRequest = braintree_aha.googlePaymentInstance.createPaymentDataRequest({
+			transactionInfo: {
+				currencyCode: 'USD',
+				totalPriceStatus: 'FINAL',
+				totalPrice: jQuery('input[name=other_amount]').val() // Your amount
+			}
+		});
 
-				jqcn(braintree_aha.venmoSubmitButton).hide().after("<div id='venmo-button' style='background-image:none;color:#fff;'>Processing. Please Wait...</div>");
-	
+		// We recommend collecting billing address information, at minimum
+		// billing postal code, and passing that billing postal code with all
+		// Google Pay card transactions as a best practice.
+		// See all available options at https://developers.google.com/pay/api/web/reference/object
+		var cardPaymentMethod = paymentDataRequest.allowedPaymentMethods[0];
+		cardPaymentMethod.parameters.billingAddressRequired = true;
+		cardPaymentMethod.parameters.billingAddressParameters = {
+			format: 'FULL',
+			phoneNumberRequired: true
+		};
+		
+		var googleEnv = (jQuery('input[name=instance]').val() == 'heartdev') ? 'TEST' : 'PRODUCTION';
+		var paymentsClient = new google.payments.api.PaymentsClient({
+		  environment:  googleEnv // 'TEST' Or 'PRODUCTION'
+		});
+		
+		paymentsClient.loadPaymentData(paymentDataRequest).then(function(paymentData) {
+			braintree_aha.googlePaymentInstance.parseResponse(paymentData, function (err, result) {
+				if (err) {
+				// Handle parsing error
+				}
+
 				// Send payload.nonce to your server.
-				jqcn("input#payment_method_nonce").val(payload.nonce);
+				jQuery("input#payment_method_nonce").val(result.nonce);
 
-				// Success Venmo
-				braintree_aha.postDonationFormVenmo(
-					braintree_aha.successSubmitDonation,
+				// Success GooglePay
+				braintree_aha.postDonationFormGooglePay(
+					donateGooglePay,
 					function (textStatus) {
 						if (textStatus != "") {
 							braintree_aha.showGlobalError(textStatus);
@@ -203,211 +165,28 @@ var braintree_aha = {
 						}
 					}
 				);
-			}
+			});
+		}).catch(function (err) {
+			// Handle errors
 		});
 	},
-			
-	postDonationFormVenmo: function(callback_success, callback_fail) {
-		var postParams = jqcn(braintree_aha.donation_form).serialize();
-		postParams += "&amount="+jqcn('input[name=level_standardexpanded]:checked').val();
-
-		jqcn.post('/braintree/checkout-tr.php', postParams)
-			.done(function(data) {
-				braintree_aha.donation_result = JSON.parse(data.toString());
-				var donresult = JSON.parse(data.toString());
-				console.log(donresult);
-				//
-				if (donresult.error == "") {
-					callback_success();
-				} else {
-					callback_fail(data.error);
-				}
-			})
-			.error(function() {
-				//
-				callback_fail();
-			}
-		);
-	},
-	
-	//==================================================================
-	//----------------
-	// Initialize Apple Pay using BrainTree
-	//----------------
-	InitializeApplePay: function(clientInstance) {
-		if (window.ApplePaySession) {
-			var available = window.ApplePaySession.canMakePayments();
-			jqcn(braintree_aha.applePaySubmitButton).removeClass("hidden");
-			
-			if (available) {
-				//jqcn(braintree_aha.applePaySubmitButton).click(function(){
-				//	braintree_aha.submitApplePayDonation();
-				//});
-			
-				braintree.applePay.create({
-					client: clientInstance
-				}, function (applePayErr, _applePayInstance) {
-					if (applePayErr) {
-						console.error('Error creating applePayInstance:', applePayErr);
-						return;
-					}
-	
-					applePayInstance = _applePayInstance;
-	
-					var promise = ApplePaySession.canMakePaymentsWithActiveCard(_applePayInstance.merchantIdentifier);
-					promise.then(function (canMakePaymentsWithActiveCard) {
-						if (canMakePaymentsWithActiveCard) {
-							// Set up Apple Pay buttons
-							// !!!!!!!!!!!!!!!!!!!!!!!!!
-						}
-					});
-				});
-			}
-		}
-	},
-
-	submitApplePayDonation: function() {
-		
-		// processApplePayBraintreePayment() defined in Block_PaymentMethods.ascx
-		this.processApplePayBraintreePayment(
-			function () {
-				// Success Apple Pay
-				braintree_aha.postDonationFormApplePay(
-					donateApplePay,
-					function (textStatus) {
-						if (textStatus != "") {
-							braintree_aha.showGlobalError(textStatus);
-						}
-					}
-				);
-			},
-			function (message) {
-				// Failed Apple Pay
-				braintree_aha.showGlobalError(message);
-			});
-	},
-
-	processApplePayBraintreePayment: function(callback_success, callback_fail) {
-		if(typeof applePayInstance === 'undefined') {
-			return false;
-		}
-		
-		var paymentRequest = applePayInstance.createPaymentRequest({
-			countryCode: 'US',
-			currencyCode: 'USD',
-			supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
-			merchantCapabilities: ['supports3DS'],
-			requiredBillingContactFields: ["postalAddress", "name"],
-			requiredShippingContactFields: ["name", "email"],
-			total: {
-				label: 'heart.org',
-				amount: jqcn('input[name=other_amount]').val()
-			}
-		});
-
-		session = new ApplePaySession(1, paymentRequest);
-
-		session.onvalidatemerchant = function (event) {
-			applePayInstance.performValidation({
-				validationURL: event.validationURL,
-				displayName: 'AHA Donations'
-			}, function (validationErr, merchantSession) {
-				console.log("Merchant validated");
-
-				if (validationErr) {
-					// You should show an error to the user, e.g. 'Apple Pay failed to load.'
-					console.error('Error validating merchant:', validationErr);
-					session.abort();
-
-					callback_fail('Apple Pay failed to load (error validating merchant).');
-					return;
-				}
-
-				session.completeMerchantValidation(merchantSession);
-			});
-		};
-
-		session.onpaymentauthorized = function (event) {
-			applePayInstance.tokenize({
-				token: event.payment.token
-			}, function (tokenizeErr, payload) {
-				if (tokenizeErr) {
-					session.completePayment(ApplePaySession.STATUS_FAILURE);
-					callback_fail('Apple Pay failed to load (error tokenizing apple pay).');
-					return;
-				}
-
-				// Fill address
-				//braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
-				//fill in billing address details
-		
-				// Send payload.nonce to your server.
-				jqcn("input#payment_method_nonce").val(payload.nonce);
-
-				// SUCCESS
-				callback_success();
-			});
-		};
-
-		session.oncancel = function (event) {
-			callback_fail("Your payment method cannot be processed at this time. Please try again later or choose a different payment option.");
-		};
-
-		session.begin();
-	},
-
-	DonationFillApplePayBillingAddress: function(billingContact, shippingContact) {
-		if (shippingContact.givenName != "" && shippingContact.familyName != "") {
-			jqcn("#FirstName").val(shippingContact.givenName);
-			jqcn("#LastName").val(shippingContact.familyName);
-		}
-		else {
-			jqcn("#FirstName").val(billingContact.givenName);
-			jqcn("#LastName").val(billingContact.familyName);
-		}
-
-		jqcn("#EmailAddress").val(shippingContact.emailAddress);
-		jqcn("#Phone").val("");
-
-		var countryCode = billingContact.countryCode.toUpperCase();
-		if (countryCode == "") countryCode = billingContact.country.toUpperCase();
-		if (countryCode == "USA") countryCode = "US";
-		if (countryCode == "UNITED STATES") countryCode = "US";
-		jqcn("#CountryId").val(countryCode).trigger("change");;
-
-		jqcn("#Address1").val(billingContact.addressLines[0]);
-
-		if (billingContact.addressLines.length > 1 && billingContact.locality == "")
-			jqcn("#City").val(billingContact.addressLines[1]);
-
-		if (billingContact.locality != "")
-			jqcn("#City").val(billingContact.locality);
-
-		jqcn("#StateId").val(billingContact.administrativeArea.toUpperCase());
-		jqcn("#Province").val(billingContact.administrativeArea.toUpperCase());
-		jqcn("#PostalCode").val(billingContact.postalCode);
-
-		var zip = billingContact.postalCode;
-		if (zip.length > 5) zip = zip.substr(0, 5);
-		jqcn("#ZipCode").val(zip);
-	},
-
-	postDonationFormApplePay: function(callback_success, callback_fail) {
-		var postParams = jqcn(braintree_aha.donation_form).serialize();
-		postParams += "&amount="+jqcn('input[name=other_amount]').val();
+	postDonationFormGooglePay: function(callback_success, callback_fail) {
+		var postParams = jQuery(braintree_aha.donation_form).serialize();
+		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
-		jqcn.getJSON('https://hearttools.heart.org/braintree/checkout-tr.php?callback=?', postParams)
+		var tokenURL = "https://hearttools.heart.org/braintree/checkout-tr.php";
+		if (jQuery('input[name=instance]').val() == "heartdev") {
+			tokenURL = "https://hearttools.heart.org/braintree/checkout-tr-test.php";
+		}
+		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse('['+data.result.toString()+']');
 				console.log(data.result);
 				//
 				if (data.error == "") {
-					//jqcn('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
-					jqcn('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
-					session.completePayment(ApplePaySession.STATUS_SUCCESS);
+					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					callback_success();
 				} else {
-					session.completePayment(ApplePaySession.STATUS_FAILURE);
 					callback_fail(data.error);
 				}
 			})
@@ -420,7 +199,7 @@ var braintree_aha = {
 	
 	successSubmitDonation: function() {
 		//braintree_aha.donation_result
-		location.href = jqcn('input[name=finish_success_redirect]').val();
+		location.href = jQuery('input[name=finish_success_redirect]').val();
 	},
 	
 	showGlobalError: function(message) {
