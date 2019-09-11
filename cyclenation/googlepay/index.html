@@ -1,13 +1,3 @@
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="../aha-luminate/dist/heart-walk/css/main.1528304549228.min.css"> -->
-<!--[if lt IE 9]>
-  <script src="../ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<![endif]--><!--[if (gte IE 9) | (!IE)]>
-<!-->
-<script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<!--<![endif]-->
-<script>var jqcn = $.noConflict();</script> 
-
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
@@ -20,22 +10,14 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   </div>
 </div>
 <script>
-jqcn('main > .container').before(jqcn('.ym-page-header'));
+jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/cyclenation/googlepay/css/custom.css">
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/additional-methods.min.js"></script>
-<section class='col-xs-12 col-sm-12 no-googlepay ym-page-content hidden' aria-label="mainContent">
-  <h2>Google Pay is not available or setup on your device.</h2>
-  [[?[[S334:PROXY_TYPE]]::20::
-  <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]">here</a> to return to the participant's page.</p>
-  ::]]
-  [[?[[S334:PROXY_TYPE]]::22::
-  <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]">here</a> to return to the team's page.</p>
-  ::]]
-</section>
+<link rel="stylesheet" href="../amazonpay/ym-primary/googlepay/css/custom.css">
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
   <div class="thank-you"></div>
+  <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
     <div class="html-caption-container">
       <h1 id="formTitle">You've Got Heart!</h1>
@@ -51,14 +33,14 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
       <input type="hidden" name="device_data" id="device_data" value=""/>
       <input type="hidden" name="payment_method_nonce" id="payment_method_nonce" value=""/>
       <input type="hidden" name="processorAuthorizationCode" id="processorAuthorizationCode" value=""/>
-      <input type="hidden" name="finish_success_redirect" id="finish_success_redirect" value="https://www2.heart.org/site/SPageNavigator/reus_ym_khc_googlepay_thank_you.html"/>
+      <input type="hidden" name="finish_success_redirect" id="finish_success_redirect" value="https://www2.heart.org/site/SPageNavigator/ym_khc_googlepay_thank_you.html"/>
       <input type="hidden" name="form_id" value="1710">
       <input type="hidden" name="validate" value="true">
-      <input type="hidden" name="source" value="">
-      <input type="hidden" name="payment_source" value="googlepay">
+      <input type="hidden" name="source" value="GOOGLE PAY">
+      <input type="hidden" name="payment_source" value="GOOGLEPAY">
       <input type="hidden" name="_session" value="">
-      <input type="hidden" name="other_amount" value="100">
-      <input type="hidden" name="gift_amount" value="100">
+      <input type="hidden" name="other_amount" value="75">
+      <input type="hidden" name="gift_amount" value="75">
       <input type="hidden" name="level_id" value="2447">
       <input type="hidden" name="payment_confirmation_id" value="">
       <input type="hidden" name="PaymentType" id="PaymentType" value="googlepay">
@@ -68,21 +50,21 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
       <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       <input type="hidden" name="from_url_js" id="from_url_js" value="" />
-      [[?[[S334:PROXY_TYPE]]::20::
+      [[?x20x2x::x[[S334:PROXY_TYPE]]x::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
       ::]]
-      [[?[[S334:PROXY_TYPE]]::21::
+      [[?x21x::x[[S334:PROXY_TYPE]]x::
       <input type="hidden" name="ev_id" id="ev_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=pfind" id="from_url">
       ::]]
-      [[?[[S334:PROXY_TYPE]]::22::
+      [[?x22x::x[[S334:PROXY_TYPE]]x::
       <input type="hidden" name="team_id" id="team_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="team_gift" value="true">
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]" id="from_url">
       ::]]
       <input type="hidden" name="confirmed" id="confirmed" value="true">
-      <input type="hidden" name="gift_display_name" id="gift_display_name" value="googlepay">
+      <input type="hidden" name="gift_display_name" id="gift_display_name" value="Google Pay">
       [[?x[[S334:df_preview]]x::xtruex::
       <input type="hidden" name="sandbox" id="sandbox" value="true">
       <input type="hidden" name="df_preview" value="true" />
@@ -109,57 +91,57 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime">
               <div class="text-center">
-                <label class="radio-level" for="amount1" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
-                <div class="donation-level-amount-container">$35</div>
+                <label class="radio-level" for="amount1" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(40)">
+                <div class="donation-level-amount-container">$40</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount2" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
-                <div class="donation-level-amount-container">$50</div>
+                <label class="radio-level active" for="amount2" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
+                <div class="donation-level-amount-container">$75</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level active" for="amount3" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
+                <label class="radio-level" for="amount3" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
                 <div class="donation-level-amount-container">$100</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount4" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(200)">
-                <div class="donation-level-amount-container">$200</div>
+                <label class="radio-level" for="amount4" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+                <div class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(500)">
                 <div class="donation-level-amount-container">$500</div>
                 </label>
-              </div>
+              </div> -->
             </div>
             <div class="col-xs-12 col-sm-12 recurring">
               <div class="text-center">
-                <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(10)">
-                	<div class="donation-level-amount-container">$10</div>
+                <label class="radio-level" for="amount5" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(40)">
+                	<div class="donation-level-amount-container">$40</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount6" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(25)">
-                	<div class="donation-level-amount-container">$25</div>
+                <label class="radio-level" for="amount6" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
+                	<div class="donation-level-amount-container">$75</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount7" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
-                	<div class="donation-level-amount-container">$35</div>
+                <label class="radio-level" for="amount7" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
+                	<div class="donation-level-amount-container">$100</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount8" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
-	                <div class="donation-level-amount-container">$50</div>
+                <label class="radio-level" for="amount8" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+	                <div class="donation-level-amount-container">$150</div>
 	            </label>
               </div>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <label class="radio-level" for="amount9" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
 	                <div class="donation-level-amount-container">$100</div>
 	            </label>
-              </div>
+              </div> -->
             </div>
             <div class="col-xs-12 col-sm-6 text-left">
               <label for="level-other" class="level_other">Other </label>
@@ -171,9 +153,9 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
         </div>
       </div>
       <script type="text/javascript">
-		jqcn('.donate-select label').click(function(){
-			jqcn('.donate-select .active').removeClass("active");
-			jqcn(this).addClass("active");
+		jQuery('.donate-select label').click(function(){
+			jQuery('.donate-select .active').removeClass("active");
+			jQuery(this).addClass("active");
 		});
 	  </script>
       <div class="panel panel-default payment-type active">
@@ -341,10 +323,10 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
   </form>
 </div>
 
-<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.41.0/js/data-collector.min.js"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/donation-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/braintree-luminate.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/donation-custom.js"></script> 
