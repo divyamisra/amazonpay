@@ -194,7 +194,7 @@ if (location.href.indexOf("donate_applepay") > 0) {
 			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
 		}
 		if (data2.part_name != " " && dtype == "p") {
-			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
 		}
 
 		jqcn('input[name=form_id]').val(data2.don_form_id);
