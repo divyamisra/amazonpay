@@ -1,0 +1,456 @@
+em {
+	font-size:12px;
+}
+img {
+	max-width:100%;
+	width:auto;
+	height:auto;
+}
+div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
+    border: 1px solid #acacac !important;
+    border-radius: 0 !important;
+    width: 84px;
+}
+.container.heart-page-container.heart-page-container--personal {
+	padding-top: 140px;	
+}
+
+#login-form {
+	display:none;
+}
+#other-amount-input-group {
+	margin-top: 0.5em;
+}
+
+#headerWrapper {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border-bottom: medium none;
+}
+.navbar-default {
+	background-color: #ffffff;
+	border-color: #e7e7e7;
+}
+.page-header {
+	margin-top: 0px;
+	border:none;
+}
+.page-header h1 {
+	color: #ed1c24;
+	font-size:40px;
+}
+.panel {
+	border:none;
+	background:none;
+	box-shadow:none;
+}
+.panel-heading:before {
+	content:"\25B6";
+	color:#ED1C24;
+	padding-right:10px;
+}
+.panel-default > .panel-heading {
+	font-size:24px;
+	color:#656565;
+	background:none;
+	border: none;
+}
+.donate-image {
+	float:right;
+	width:35%;
+	margin-left:20px;
+}
+.donation-form {
+	overflow:hidden;
+}
+.leftRegion, .width960 {
+	width:auto;
+}
+.rightRegion {
+	display:none;
+}
+.col-sm-2 {
+	min-width: 110px;
+}
+.donate-how .col-sm-3 {
+	width: 28%;
+}
+div.icon:hover, div.icon.active {
+	background: #ED1C24;
+	cursor:pointer;
+}
+.icon-selection {
+	color:#353535;
+	font-size:14px;
+	text-transform:uppercase;
+}
+.donate-how input, .donate-select input[type=radio], .tribute-select input {
+	display:none;
+}
+div.icon {
+	background: #000000;
+	padding:20px;
+	display:inline-block;
+	border-radius:50px;
+	min-height:100px;
+}
+
+.donation-detail {
+  margin-top: 20px;
+}
+form#donateform .contact-information input[type="text"] {
+  width: 100% !important;
+}
+div.card-select label {
+  background: none repeat scroll 0 0 #515151;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 24px !important;
+  font-weight: normal;
+  width: 125px;
+  float: left;
+  position: relative;
+  margin: 10px 2% 10px 0;
+}
+.card-select label:hover, .card-select label.active {
+	background: #ED1C24;
+	cursor:pointer;
+}
+div.donate-select label {
+  background: none repeat scroll 0 0 #515151;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 24px !important;
+  font-weight: normal;
+  height: 60px;
+  width: 125px;
+  float: left;
+  position: relative;
+  margin: 10px 2% 10px 0;
+  text-align:center;
+  white-space:inherit;
+}
+
+.donation-level-amount-container, .level_other {
+    padding: 10px; 	
+}
+
+.donate-select label:hover, .donate-select label.active {
+	background: #ED1C24;
+	cursor:pointer;
+}
+.level-other-input {
+  display: none;
+  margin-top: 15px;
+}
+.level-other-input .input-group-addon {
+  display: inline-block;
+  height: 45px;
+  margin-right: -6px;
+  padding: 14px 12px;
+  position: relative;
+  top: 1px;
+  width: 31px;
+  z-index: 13;
+}
+.level-other-input .form-control {
+	display:inline-block;
+	width:70%;
+}
+input#other-amount-entered {
+	top:2px;
+	position:relative;
+}
+
+.recurring {
+    display:none;
+}
+
+input.error,
+select.error {
+    border-color: #ff0000 !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+label.error {
+	font-weight:normal;
+	color:#ff0000;
+	white-space:nowrap;
+}
+div.donate-select label.error {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  color: #ff0000;
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  white-space: normal;
+  width: 100%;
+}
+/*
+div.tribute-select label {
+	background: none repeat scroll 0 0 #484848;
+	border-radius: 8px;
+	color: #fff;
+	display: inline-block;
+	font-size: 25px;
+	font-weight: normal;
+	min-height: 60px;
+	padding: 15px 20px;
+	min-width: 100px;
+}
+.tribute-select label:hover, .tribute-select label.active {
+	background: #ED1C24;
+	cursor:pointer;
+}
+*/
+/*
+.contact-information .form-group {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 90%;
+  padding:3px 0;
+}
+
+.contact-information .form-control {
+	border:none;
+	background:none;
+	box-shadow:none;
+}
+*/
+.star {
+    color:red;	
+}
+
+.control-label {
+	text-align: left !important;
+	font-size:14px;
+	text-transform:uppercase;
+}
+.form-group.required .control-label:after, .checkbox.required label:after {
+  content:" *";
+  color:red;
+}
+.btn-primary {
+	background-color: #ed1c24 !important;
+	border: none;
+	color: #fff;
+	font-size:24px;
+	font-weight:bold;
+	border-radius:0px;
+	padding:20px;
+	margin:0 auto;
+	display:block;
+}
+.btn-primary:hover {
+	background-color: #ed1c24;	
+	text-decoration:underline;
+}
+.btn-primary > div {
+	font-size:0.8em;
+	font-weight:normal;
+}
+
+ul.footer-menu {
+	list-style:none;
+	margin:30px 0 10px;
+	padding:0;
+}
+
+ul.footer-menu li {
+	display:inline-block;
+	margin-right: 10px;
+}
+
+ul.footer-menu li a {
+	color:#ed1c24;
+}
+
+.livechat {
+ 
+  position: absolute;
+  right: 15px;
+  top: 15%;
+}
+
+#otherGiving ul {
+    list-style-type: none;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#otherGiving li {
+display: inline;
+padding: 30px;
+text-decoration: underline;
+}
+
+.vertical {
+  overflow: hidden;
+}
+.vertical li {
+  float: left;
+  width: 140px;
+}
+.vertical li .or {
+    color: #aaa;
+    float: left;
+    font-size: 12px;
+    margin-left: -8px;
+    margin-top: 32px;
+}
+.vertical li:last-child {
+    float: right;
+    text-align: right;
+}
+.vertical li:last-child input {
+    float: right;
+}
+.vertical input {
+    width: 68px;
+}
+
+.thank-you {
+	text-align:center;
+}
+
+.thank-you .givingText {
+    margin: 0 0 0 140px;
+    text-align:left !important;
+}
+
+.fa-flag,
+.fa-usd {
+    color: #fff;
+    font-size: 60px;
+    text-align: right;
+    width: 100px;
+}
+
+.simple-social-icons ul.aligncenter {
+    text-align: center;
+}
+.simple-social-icons ul {
+    margin: 0;
+    padding: 0;
+}
+.widget-area .simple-social-icons ul li a, 
+.widget-area .simple-social-icons ul li a:hover {
+    border: 1px solid #ccc !important;
+}
+.simple-social-icons ul.aligncenter li {
+    display: inline-block;
+    float: none;
+}
+.simple-social-icons ul li a, .simple-social-icons ul li a:hover {
+  background-color: #ed1c24 !important;
+  border-radius: 38px;
+  color: #ffffff !important;
+  font-size: 34px;
+  padding: 20px;
+}
+.simple-social-icons ul li a {
+    border: medium none !important;
+    box-sizing: content-box;
+    display: inline-block;
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-weight: normal !important;
+    line-height: 1em;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: none !important;
+    width: 1em;
+}
+td.FormSectionHeader {
+	font-weight:bold;
+}
+.thank-you table {
+	width:500px;
+	margin: 0 auto;
+}
+.thank-you table td {
+	text-align:left;
+}
+
+.privacyText {
+    font-size: 0.7em;
+    font-weight: bold;
+    padding-top: 5px;
+    text-align: center;
+}
+
+
+/* amazon pay */
+#walletWidgetDiv {
+	display: none;
+	width: 400px; 
+	height: 228px;
+}
+#consentWidgetDiv {
+	display: none;
+	width: 400px;
+	height: 140px;
+}
+#AmazonLogoutButton {
+	display: none;
+}
+#AmazonLogoutButton a {
+  font-size: 12px;
+}
+#AmazonPayment #walletWidgetDiv, 
+#AmazonPayment #consentWidgetDiv {
+	margin-bottom: 10px;
+}
+
+.amazon-payments {
+    font-size: 0.8em;	
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-toggle {
+      display:none;
+  }
+  .container > .navbar-header {
+    margin-left:0px;
+  }
+  .date-form-group select {
+    margin-bottom: 0.75em;
+  }
+  .btn-primary {
+    font-size:18px;
+  }
+  .donate-how .col-xs-10 {
+    width: 83.3333%;
+  }
+  .donate-select .text-left {
+    text-align:center;
+  }
+  span.livechat-text {
+    display:none;
+  }
+
+  #otherGiving li {
+      display: block;
+      padding: 0px;
+      text-decoration: underline;
+  }	
+}
+@media only screen and (max-width: 320px) {
+	 
+}
+/* override default styling for nav */
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  margin-left: 0;
+}
+.navbar-brand {
+  float: left;
+  font-size: 18px;
+  height: auto;
+  line-height: inherit;
+  padding: 15px;
+}
