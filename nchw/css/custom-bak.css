@@ -22,6 +22,16 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 	margin-top: 0.5em;
 }
 
+.tribute {
+	display:none;
+}
+.tribute-print,
+.tribute-ecard {
+	display:none;
+}
+.billing-information {
+	display:none;
+}
 #headerWrapper {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 	border-bottom: medium none;
@@ -289,6 +299,80 @@ padding: 30px;
 text-decoration: underline;
 }
 
+form .credit-card-group input {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    box-sizing: content-box;
+    color: #333;
+    display: block;
+    font-size: 18px;
+    height: 32px;
+    padding: 0 5px;
+    width: 275px;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+}
+form .credit-card-group input::-webkit-input-placeholder {
+  color: #ddd;
+}
+form .credit-card-group input:-moz-placeholder {
+  color: #ddd;
+  opacity: 1;
+}
+form .credit-card-group input::-moz-placeholder {
+  color: #ddd;
+  opacity: 1;
+}
+form .credit-card-group input:-ms-input-placeholder {
+  color: #ddd;
+}
+form .credit-card-group input:focus {
+  outline: 1px solid #3388dd;
+}
+form .credit-card-group input#card-number {
+  background-image: url(../images/images.png), url(../images/images.png);
+  background-position: 2px -105px, 240px -50px;
+  background-size: 120px 361px, 120px 361px;
+  background-repeat: no-repeat;
+  padding-left: 54px;
+  width: 225px;
+}
+form .credit-card-group input#card-number.visa {
+  background-position: 2px -143px, 240px -50px;
+}
+form .credit-card-group input#card-number.amex {
+  background-position: 2px -329px, 240px -50px;
+}
+form .credit-card-group input#card-number.visa_electron {
+  background-position: 2px -180px, 240px -50px;
+}
+form .credit-card-group input#card-number.mastercard {
+  background-position: 2px -217px, 240px -50px;
+}
+form .credit-card-group input#card-number.maestro {
+  background-position: 2px -255px, 240px -50px;
+}
+form .credit-card-group input#card-number.discover {
+  background-position: 2px -292px, 240px -50px;
+}
+form .credit-card-group input#card-number.valid.amex {
+  background-position: 2px -329px, 240px -75px;
+}
+form .credit-card-group input#card-number.valid.visa {
+  background-position: 2px -143px, 240px -75px;
+}
+form .credit-card-group input#card-number.valid.visa_electron {
+  background-position: 2px -180px, 240px -75px;
+}
+form .credit-card-group input#card-number.valid.mastercard {
+  background-position: 2px -217px, 240px -75px;
+}
+form .credit-card-group input#card-number.valid.maestro {
+  background-position: 2px -255px, 240px -75px;
+}
+form .credit-card-group input#card-number.valid.discover {
+  background-position: 2px -292px, 240px -75px;
+}
 .vertical {
   overflow: hidden;
 }
@@ -316,6 +400,10 @@ text-decoration: underline;
 
 .thank-you {
 	text-align:center;
+}
+
+.donate-thankyou {
+    list-style-image: url(/images/heart-bullet.png);
 }
 
 .thank-you .givingText {
@@ -411,46 +499,34 @@ td.FormSectionHeader {
     font-size: 0.8em;	
 }
 
-@media (min-width: 992px) {
-  .container {
-      width:896px
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-      width:896px
-  }
-}
-
 @media only screen and (max-width: 767px) {
-  .navbar-toggle {
-      display:none;
-  }
-  .container > .navbar-header {
-    margin-left:0px;
-  }
-  .date-form-group select {
-    margin-bottom: 0.75em;
-  }
-  .btn-primary {
-    font-size:18px;
-  }
-  .donate-how .col-xs-10 {
-    width: 83.3333%;
-  }
-  .donate-select .text-left {
-    text-align:center;
-  }
-  span.livechat-text {
-    display:none;
-  }
-
-  #otherGiving li {
-      display: block;
-      padding: 0px;
-      text-decoration: underline;
-  }	
+    .navbar-toggle {
+        display:none;
+    }
+	.container > .navbar-header {
+		margin-left:0px;
+	}
+	.date-form-group select {
+		margin-bottom: 0.75em;
+	}
+	.btn-primary {
+		font-size:18px;
+	}
+	.donate-how .col-xs-10 {
+		width: 83.3333%;
+	}
+	.donate-select .text-left {
+		text-align:center;
+	}
+	span.livechat-text {
+		display:none;
+	}
+	
+    #otherGiving li {
+        display: block;
+        padding: 0px;
+        text-decoration: underline;
+    }	
 }
 @media only screen and (max-width: 320px) {
 	 
