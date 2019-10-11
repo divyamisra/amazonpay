@@ -344,8 +344,9 @@ text-decoration: underline;
     text-align:left !important;
 }
 .thank-you .givingText-venmo {
-    margin: 0 auto 2em;
-    text-align:left !important;
+  max-width: 760px;
+  margin: 0 auto 2em;
+  text-align:left !important;
 }
 
 .fa-flag,
