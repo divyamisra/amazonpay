@@ -54,13 +54,13 @@ jqcn(document).ready(function () {
 		jqcn.validator.addMethod(
 			"validDonation",
 			function (value, element) {
-				if (value == 0 || (value >= 25 && value <= 500)) {
+				if (value == 0 || (value >= 25 && value <= 5000)) {
 					return true;
 				} else {
 					return false;
 				}
 			},
-			"Please enter an amount between $25 and $500"
+			"Please enter an amount between $25 and $5,000"
 		);
 
 		jqcn.validator.addMethod("tos", function(value, element){
