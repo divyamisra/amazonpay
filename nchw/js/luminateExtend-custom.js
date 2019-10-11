@@ -159,7 +159,8 @@
 				  jqcn('.thank-you').show();
 				  var ty_url = "https://www2.heart.org/amazonpay/nchw/amazon/thankyou.html";
 				  if (jqcn('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/nchw/amazon/thankyou.html";
+				  	// ty_url = "https://secure3.convio.net/heartdev/amazonpay/nchw/amazon/thankyou.html";
+				  	ty_url = "/amazonpay/nchw/amazon/thankyou.html";
 				  }
 				  jqcn.get(ty_url,function(datat){ 
 					  jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());

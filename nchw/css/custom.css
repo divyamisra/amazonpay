@@ -320,7 +320,7 @@ text-decoration: underline;
 } */
 
 .thank-you .givingText {
-    margin: 0 0 0 140px;
+    /* margin: 0 0 0 140px; */
     text-align:left !important;
 }
 
@@ -372,7 +372,7 @@ td.FormSectionHeader {
 }
 .thank-you table {
 	width:500px;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 }
 .thank-you table td {
 	text-align:left;

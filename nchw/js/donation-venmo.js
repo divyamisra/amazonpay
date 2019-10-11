@@ -63,6 +63,10 @@ jqcn(document).ready(function () {
 			"Please enter an amount between $25 and $500"
 		);
 
+		jqcn.validator.addMethod("tos", function(value, element){
+			return ($(element).is(":checked") || value == 'yes');
+		}, "Please accept the privacy policy.");
+
 		jqcn('#donate-submit').click(function () {
 			var form = jqcn('form.donation-form');
 			jqcn(form).validate().settings.ignore = ":disabled,:hidden";
@@ -128,7 +132,7 @@ function donateVenmo() {
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/nchw/venmo/thankyou.html";
 	jqcn.get(ty_url, function (datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html("<a href='" + from_url + "'>click here</a>");
