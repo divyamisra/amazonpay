@@ -210,23 +210,6 @@ div.donate-select label.error {
   width: 100%;
 }
 /*
-div.tribute-select label {
-	background: none repeat scroll 0 0 #484848;
-	border-radius: 8px;
-	color: #fff;
-	display: inline-block;
-	font-size: 25px;
-	font-weight: normal;
-	min-height: 60px;
-	padding: 15px 20px;
-	min-width: 100px;
-}
-.tribute-select label:hover, .tribute-select label.active {
-	background: #ED1C24;
-	cursor:pointer;
-}
-*/
-/*
 .contact-information .form-group {
   background: none repeat scroll 0 0 #fff;
   border: 1px solid #ccc;
@@ -273,6 +256,24 @@ div.tribute-select label {
 .btn-primary > div {
 	font-size:0.8em;
 	font-weight:normal;
+}
+
+.btn-primary-venmo {
+  background-color: transparent !important;
+  padding: 0;
+}
+.btn-primary-venmo:hover {
+  background-color: transparent !important;
+  text-decoration: none;
+}
+
+footer {
+	background: #242424;
+	color: #b4b4b4;
+	font-size: 12px;
+	text-align:center;
+	padding:25px;
+	margin-top:30px;
 }
 
 ul.footer-menu {
@@ -342,6 +343,10 @@ text-decoration: underline;
     /* margin: 0 0 0 140px; */
     text-align:left !important;
 }
+.thank-you .givingText-venmo {
+    margin: 0 auto 2em;
+    text-align:left !important;
+}
 
 .fa-flag,
 .fa-usd {
@@ -396,6 +401,12 @@ td.FormSectionHeader {
 .thank-you table td {
 	text-align:left;
 }
+
+.thank-you .venmo table {
+	margin: 0 auto;
+}
+
+
 
 .privacyText {
     padding-top: 5px;
