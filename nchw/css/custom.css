@@ -378,11 +378,14 @@ td.FormSectionHeader {
 }
 
 .privacyText {
-    /* font-size: 0.7em; */
-    /* font-weight: bold; */
     padding-top: 5px;
-    /* text-align: center; */
-    margin-left: 0 !important;
+    margin-left: 20px !important;
+}
+.tos-error {
+  color:#d40000;
+  font-size: 1.3em;
+  font-weight: bold;
+  clear:both;
 }
 
 

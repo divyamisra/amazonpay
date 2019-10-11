@@ -172,7 +172,7 @@
                 <div class="level-other-input"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered"
                     name="other_amount_entered" disabled
-                    onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                    onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value), jQuery('.btn-amt').text(this.value)">
                 </div>
               </div>
             </div>
@@ -368,7 +368,7 @@
                 <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
                 <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
                 <div class="error input-group checkBox col-xs-12 col-sm-12">
-                  <label id="tos-error" for="tos" class="error" style="color:#d40000; font-size: 1.3em; font-weight: bold; clear:both; display: none;">Please accept the privacy policy</label>
+                  <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
                 </div>
               </div>
             </div>
