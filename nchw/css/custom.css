@@ -347,6 +347,7 @@ text-decoration: underline;
   max-width: 760px;
   margin: 0 auto 2em;
   text-align:left !important;
+  margin: 0 auto 40px;
 }
 
 .fa-flag,
