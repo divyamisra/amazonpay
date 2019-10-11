@@ -15,6 +15,25 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 	padding-top: 140px;	
 }
 
+/* Venmo edits */
+div.responsive input.venmo-text {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+	.container.heart-page-container.heart-page-container--personal {
+		padding-top: 0px;
+	}
+}
+/* processing div */
+.processing {
+	display: none;
+	padding: 20px 20px 40px;
+	font-size: 18px;
+	background: #fff;
+}
+
 #login-form {
 	display:none;
 }
@@ -35,7 +54,7 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 	border:none;
 }
 .page-header h1 {
-	color: #ed1c24;
+	/* color: #ab0300; #ed1c24; */
 	font-size:40px;
 }
 .panel {
