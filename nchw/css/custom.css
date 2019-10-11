@@ -135,7 +135,7 @@ div.donate-select label {
 }
 
 .donate-select label:hover, .donate-select label.active {
-	background: #ED1C24;
+	background: #ab0300; /*#ED1C24;*/
 	cursor:pointer;
 }
 .level-other-input {
@@ -236,7 +236,8 @@ div.tribute-select label {
   color:red;
 }
 .btn-primary {
-	background-color: #ed1c24 !important;
+	background-color: #ab0300 !important;
+	/* background-color: #ed1c24 !important; */
 	border: none;
 	color: #fff;
 	font-size:24px;
@@ -247,7 +248,7 @@ div.tribute-select label {
 	display:block;
 }
 .btn-primary:hover {
-	background-color: #ed1c24;	
+	background-color: #ab0300;
 	text-decoration:underline;
 }
 .btn-primary > div {
