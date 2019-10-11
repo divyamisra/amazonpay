@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../amazonpay/nchw/js/additional-methods.min.js"></script>
 
 
-<div class="page-header accent-color">
+<!-- <div class="page-header accent-color">
   <div class="container">
     <div class="col-sm-12">
       <h1>Donate</h1>
@@ -21,7 +21,7 @@
         can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
   </div>
-</div>
+</div> -->
 <!-- <script>
   jQuery('main > .container').before(jQuery('.page-header'));
 </script> -->
@@ -106,31 +106,31 @@
               <div class="col-xs-12 col-sm-12 onetime">
                 <div class="text-center">
                   <label class="radio-level" for="amount5"
-                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(500)">
+                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(500), jQuery('.btn-amt').text(500)">
                     <div class="donation-level-amount-container">$500</div>
                   </label>
                 </div>
                 <div class="text-center">
                   <label class="radio-level" for="amount4"
-                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(200)">
+                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(200), jQuery('.btn-amt').text(200)">
                     <div class="donation-level-amount-container">$200</div>
                   </label>
                 </div>
                 <div class="text-center">
                   <label class="radio-level active" for="amount3"
-                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
+                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100), jQuery('.btn-amt').text(100)">
                     <div class="donation-level-amount-container">$100</div>
                   </label>
                 </div>
                 <div class="text-center">
                   <label class="radio-level" for="amount2"
-                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50)">
+                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(50), jQuery('.btn-amt').text(50)">
                     <div class="donation-level-amount-container">$50</div>
                   </label>
                 </div>
                 <div class="text-center">
                   <label class="radio-level" for="amount1"
-                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35)">
+                    onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(35), jQuery('.btn-amt').text(35)">
                     <div class="donation-level-amount-container">$35</div>
                   </label>
                 </div>
@@ -364,6 +364,13 @@
                   <input type="email" class="form-control required" name="email" id="donor_email">
                 </div>
               </div>
+              <div class="form-group checkbox required privacyText">
+                <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+                <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
+                <div class="error input-group checkBox col-xs-12 col-sm-12">
+                  <label id="tos-error" for="tos" class="error" style="color:#d40000; font-size: 1.3em; font-weight: bold; clear:both; display: none;">Please accept the privacy policy</label>
+                </div>
+              </div>
             </div>
           </div>
           <input type="hidden" class="form-control" name="billing_first_name" id="billing_first_name">
@@ -382,12 +389,13 @@
   </script> 
             <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
             <button type="button" id="donate-submit" class="btn btn-primary text-center">
-              <div>All of my information is correct.</div>
-              Process my donation please
+              <!-- <div>All of my information is correct.</div>
+              Process my donation please -->
+              Donate $<span class="btn-amt">100</span>
             </button>
           </div>
-          <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy"
-              target="_blank">AHA privacy policy</a></div>
+          <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy"
+              target="_blank">AHA privacy policy</a></div> -->
         </div>
       </div>
     </form>
