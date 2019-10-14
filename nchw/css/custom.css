@@ -404,6 +404,9 @@ td.FormSectionHeader {
 	text-align:left;
 }
 
+.thank-you .venmo {
+  margin: .5em auto;
+}
 .thank-you .venmo table {
 	margin: 0 auto;
 }
@@ -411,8 +414,8 @@ td.FormSectionHeader {
 
 
 .privacyText {
-    padding-top: 5px;
-    margin-left: 20px !important;
+  padding-top: 5px;
+  margin-left: 20px !important;
 }
 .tos-error {
   color:#d40000;
