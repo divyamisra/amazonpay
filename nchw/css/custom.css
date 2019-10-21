@@ -405,9 +405,11 @@ td.FormSectionHeader {
 }
 
 .thank-you .venmo {
-  margin: .5em auto;
+  margin-left: .5em;
+  margin-right: .5em;
 }
-.thank-you .venmo table {
+.thank-you table.venmo-table {
+  width:100%;
 	margin: 0 auto;
 }
 

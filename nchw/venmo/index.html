@@ -55,7 +55,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
 </div>
 
 <div class="page-content responsive">
-  <div class="thank-you"></div>
+  <div class="thank-you venmo"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
     <div class="html-caption-container">
@@ -193,17 +193,17 @@ jQuery('main > .container').before(jQuery('.page-header'));
         </div>
       </div>
       <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
+        jQuery('.donate-select label').click(function(){
+        jQuery('.donate-select .active').removeClass("active");
+        jQuery(this).addClass("active");
+      });
+	    </script>
       <div class="panel panel-default payment-type active">
         <style>
-  .payment-type label img {cursor:pointer;} 
-  .payment-type label.active {background:#ccc;border-radius:10px;}
-  .payment-type label img {padding: 5px;}
-  </style>
+        .payment-type label img {cursor:pointer;} 
+        .payment-type label.active {background:#ccc;border-radius:10px;}
+        .payment-type label img {padding: 5px;}
+        </style>
         <div class="panel panel-default contact-information">
           <div class="panel-heading">Tell us about yourself</div>
           <div class="panel-body">
