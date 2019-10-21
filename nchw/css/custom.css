@@ -258,11 +258,11 @@ div.donate-select label.error {
 	font-weight:normal;
 }
 
-.btn-primary-venmo {
+.btn-primary-venmo, .btn-primary-applepay {
   background-color: transparent !important;
   padding: 0;
 }
-.btn-primary-venmo:hover {
+.btn-primary-venmo:hover, .btn-primary-applepay:hover {
   background-color: transparent !important;
   text-decoration: none;
 }
@@ -410,7 +410,7 @@ td.FormSectionHeader {
 }
 .thank-you table.venmo-table {
   width:100%;
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 
