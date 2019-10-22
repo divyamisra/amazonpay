@@ -258,11 +258,11 @@ div.donate-select label.error {
 	font-weight:normal;
 }
 
-.btn-primary-venmo, .btn-primary-applepay {
+.btn-primary-venmo, .btn-primary-applepay, .btn-primary-googlepay {
   background-color: transparent !important;
   padding: 0;
 }
-.btn-primary-venmo:hover, .btn-primary-applepay:hover {
+.btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
   text-decoration: none;
 }
