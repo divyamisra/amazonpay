@@ -343,11 +343,12 @@ text-decoration: underline;
     /* margin: 0 0 0 140px; */
     text-align:left !important;
 }
-.thank-you .givingText-venmo {
+.thank-you .givingText-venmo,
+.thank-you .givingText-googlepay {
   max-width: 760px;
   margin: 0 auto 2em;
   text-align:left !important;
-  margin: 0 auto 40px;
+  /* margin: 0 auto 40px; */
 }
 
 .fa-flag,
