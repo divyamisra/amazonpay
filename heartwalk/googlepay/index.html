@@ -12,7 +12,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/heartwalk/googlepay/css/custom.css">
+<link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
@@ -96,21 +96,21 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount2" data-amount="60" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(60)">
-                <div class="donation-level-amount-container">$60</div>
+                <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
+                <div class="donation-level-amount-container">$75</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level active" for="amount3" data-amount="110" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(110)">
-                <div class="donation-level-amount-container">$110</div>
+                <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+                <div class="donation-level-amount-container">$150</div>
                 </label>
               </div>
               <div class="text-center">
-                <label class="radio-level" for="amount4" data-amount="220" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(220)">
-                <div class="donation-level-amount-container">$220</div>
+                <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
+                <div class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
                 <div class="donation-level-amount-container">$525</div>
                 </label>
@@ -119,7 +119,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
                 <div class="donation-level-amount-container">$1,000</div>
                 </label>
-              </div>
+              </div> -->
               <div class="text-center">
                 <label for="level-other" class="level_other">Other </label>
                 <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
@@ -273,6 +273,13 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <input type="email" class="form-control required" name="email" id="donor_email">
               </div>
             </div>
+            <div class="form-group checkbox required privacyText">
+              <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+              <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
+              <div class="error input-group checkBox col-xs-12 col-sm-12">
+                <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+              </div>
+            </div>
           </div>
         </div>
         <input type="hidden" class="form-control" name="billing_first_name" id="billing_first_name">
@@ -291,11 +298,11 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </script> 
             <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
 	  <div>Click Google Pay button to Donate</div>
-          <button type="button" id="donate-submit" class="btn btn-primary text-center">
+          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center">
             <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
 	  </button>
         </div>
-        <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
+        <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div> -->
       </div>
     </div>
   </form>
