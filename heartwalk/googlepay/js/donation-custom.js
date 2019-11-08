@@ -134,7 +134,7 @@ function donateGooglePay() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "/amazonpay/ym-primary/googlepay/thankyou.html";
+	var ty_url = "/amazonpay/heartwalk/googlepay/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");

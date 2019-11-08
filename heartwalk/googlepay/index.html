@@ -1,7 +1,7 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<div class="ym-page-header ym-accent-color">
+<div class="page-header accent-color">
   <div class="container">
     <div class="col-sm-12">
       <h1>Donate</h1>
@@ -10,12 +10,12 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   </div>
 </div>
 <script>
-jQuery('main > .container').before(jQuery('.ym-page-header'));
+jQuery('main > .container').before(jQuery('.page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/additional-methods.min.js"></script>
-<div class="ym-page-content">
+<div class="page-content">
   <div class="thank-you"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
@@ -39,6 +39,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="source" value="GOOGLE PAY">
       <input type="hidden" name="payment_source" value="GOOGLEPAY">
       <input type="hidden" name="_session" value="">
+      <input type="hidden" name="additional_amount" value="0">
       <input type="hidden" name="other_amount" value="75">
       <input type="hidden" name="gift_amount" value="75">
       <input type="hidden" name="level_id" value="2447">
@@ -274,6 +275,11 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
               </div>
             </div>
             <div class="form-group checkbox required privacyText">
+              <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
+              <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
+              
+            </div>
+            <div class="form-group checkbox required privacyText">
               <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
               <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
               <div class="error input-group checkBox col-xs-12 col-sm-12">
@@ -292,15 +298,10 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       </div>
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
-	  <div>Click Google Pay button to Donate</div>
+	        <div>Click Google Pay button to Donate</div>
           <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center">
             <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
-	  </button>
+	        </button>
         </div>
         <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div> -->
       </div>
@@ -315,3 +316,4 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script> 
+
