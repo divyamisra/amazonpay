@@ -126,7 +126,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
                 <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
                 </div>
-	      </div>
+	            </div>
             </div>
           </div>
         </div>
@@ -274,11 +274,19 @@ jQuery('main > .container').before(jQuery('.page-header'));
                 <input type="email" class="form-control required" name="email" id="donor_email">
               </div>
             </div>
-            <div class="form-group checkbox required privacyText">
+            <div class="form-group checkbox">
               <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
               <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
-              
             </div>
+
+            <div style="font-size: 1.5em;font-weight: bold;">
+              Amount: $<span class="fee-amt" style="">102.94</span>
+           </div>
+           <a href="javascript:void(0)" class="donate_popover" data-placement="top" data-trigger="focus" role="button"
+               data-toggle="popover" title=""
+               data-content="By adding this additional amount to your donation you are contributing added funds to offset our 2.6% credit card processing fee and the $.26 transactional fee. By covering these fees, your entire donation is going towards fighting heart disease. All gifts are fully tax deductible to the extent allowed by law."
+               tabindex="99" data-original-title="Why Donate">What does this additional donation amount do?</a>
+
             <div class="form-group checkbox required privacyText">
               <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
               <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
@@ -317,3 +325,57 @@ jQuery('main > .container').before(jQuery('.page-header'));
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script> 
 
+<script type="text/javascript">
+/*
+Calculate fee amount
+store in additional amount field
+Add fee to gift - store in "other_amount"
+Display total before submit button
+Update amounts and display when the gift amount changes
+Submit the 3 amounts (Gift, Fee, Gift+Fee) to hearttools api
+
+gift_amount - original gift
+other_amount - total gift + fee
+additional_amount - fee
+*/
+
+
+function calculateFee() {
+  // get amount from hidden field 
+  // var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
+  var amt = parseInt(jQuery('input[name=gift_amount]').val());
+  // formula amt * 2.9% + .29
+  var fee = (amt * .029) + .29;
+
+  // jQuery('input[name=additional_amount]').val(fee);
+  return fee;
+}
+
+function updateAmount() {
+  var amt = parseInt(jQuery('input[name=gift_amount]').val());
+  var fee = parseInt(jQuery('input[name=additional_amount]').val());
+  
+  return amt + fee;
+}
+
+function formatCurrency(amt) {
+    return amt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+function setDisplayAmount() {
+  jQuery('#confirmationAmt').text(formatCurrency(jQuery('input[name=other_amount]').val()));
+}
+
+jQuery('#cover_fee').on('click', function(){
+  if(jQuery('#cover_fee').prop('checked')){
+    // run additional calculation
+    jQuery('input[name=additional_amount]').val(calculateFee());
+  } else {
+    jQuery('input[name=additional_amount]').val(0);
+  } 
+
+  jQuery('input[name=other_amount]').val(updateAmount());
+  setDisplayAmount();
+});
+
+</script>
