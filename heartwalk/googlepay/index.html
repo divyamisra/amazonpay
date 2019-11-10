@@ -15,14 +15,13 @@ jQuery('main > .container').before(jQuery('.page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/additional-methods.min.js"></script>
 <div class="page-content">
   <div class="thank-you"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
     <div class="html-caption-container">
-      <h1 id="formTitle">You've Got Heart!</h1>
+      <h2 id="formTitle">You've Got Heart!</h2>
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
@@ -282,11 +281,11 @@ jQuery('main > .container').before(jQuery('.page-header'));
             </div>
 
             <div style="font-size: 1.5em;font-weight: bold;">
-              Amount: $<span class="fee-amt" style="">102.94</span>
+              Amount: $<span id="confirmationAmt">75</span>
            </div>
            <a href="javascript:void(0)" class="donate_popover" data-placement="top" data-trigger="focus" role="button"
                data-toggle="popover" title=""
-               data-content="By adding this additional amount to your donation you are contributing added funds to offset our 2.6% credit card processing fee and the $.26 transactional fee. By covering these fees, your entire donation is going towards fighting heart disease. All gifts are fully tax deductible to the extent allowed by law."
+               data-content="By adding this additional amount to your donation you are contributing added funds to offset our 2.9% credit card processing fee and the $.29 transactional fee. By covering these fees, your entire donation is going towards fighting heart disease. All gifts are fully tax deductible to the extent allowed by law."
                tabindex="99" data-original-title="Why Donate">What does this additional donation amount do?</a>
 
             <div class="form-group checkbox required privacyText">
@@ -309,7 +308,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
 	        <div>Click Google Pay button to Donate</div>
-          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center">
+          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center" style="border: 0 none !important;">
             <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
 	        </button>
         </div>
@@ -350,7 +349,6 @@ function calculateFee() {
   // formula amt * 2.9% + .29
   var fee = ((amt * .029) + .29).toFixed(2);
 
-  // jQuery('input[name=additional_amount]').val(fee);
   return fee;
 }
 
@@ -362,7 +360,7 @@ function setGiftAmount() {
 }
 
 function formatCurrency(amt) {
-    return amt.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  return amt.replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function setDisplayAmount() {
