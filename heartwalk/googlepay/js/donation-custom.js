@@ -64,9 +64,13 @@
                     }
                 },
                 "Please enter an amount between $25 and $500"
-            );
+			);
+			
+			jqcn.validator.addMethod("tos", function(value, element){
+				return ($(element).is(":checked") || value == 'yes');
+			}, "Please accept the privacy policy.");
 
-            jQuery('#donate-submit').click(function() {
+			jQuery('#donate-submit').click(function() {
                 var form = jQuery('form.donation-form');
                 jQuery(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jQuery(form).valid()) {

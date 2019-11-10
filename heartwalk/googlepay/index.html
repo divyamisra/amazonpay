@@ -9,6 +9,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
 jQuery('main > .container').before(jQuery('.page-header'));
 </script>
@@ -318,7 +319,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
   </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
 <script src="https://pay.google.com/gp/p/js/pay.js"></script>
 <script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
 <script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
@@ -347,17 +348,17 @@ function calculateFee() {
   // var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
   var amt = parseInt(jQuery('input[name=gift_amount]').val());
   // formula amt * 2.9% + .29
-  var fee = (amt * .029) + .29;
+  var fee = ((amt * .029) + .29).toFixed(2);
 
   // jQuery('input[name=additional_amount]').val(fee);
   return fee;
 }
 
-function updateAmount() {
+function setGiftAmount() {
   var amt = parseInt(jQuery('input[name=gift_amount]').val());
   var fee = parseInt(jQuery('input[name=additional_amount]').val());
   
-  return amt + fee;
+  jQuery('input[name=other_amount]').val(amt + fee);
 }
 
 function formatCurrency(amt) {
@@ -368,16 +369,23 @@ function setDisplayAmount() {
   jQuery('#confirmationAmt').text(formatCurrency(jQuery('input[name=other_amount]').val()));
 }
 
-jQuery('#cover_fee').on('click', function(){
+function coverFee() {
+  // run additional calculation
   if(jQuery('#cover_fee').prop('checked')){
-    // run additional calculation
     jQuery('input[name=additional_amount]').val(calculateFee());
   } else {
     jQuery('input[name=additional_amount]').val(0);
   } 
 
-  jQuery('input[name=other_amount]').val(updateAmount());
+  setGiftAmount();
   setDisplayAmount();
+}
+
+jQuery('#other-amount-entered').on('blur', function(){
+  coverFee();
+})
+jQuery('#cover_fee', '.radio-level').on('click', function(){
+  coverFee();
 });
 
 </script>
