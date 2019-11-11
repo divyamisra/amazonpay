@@ -311,13 +311,10 @@ jQuery('main > .container').before(jQuery('.page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
+      
       <div class="form-group checkbox">
         <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
         <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
-      </div>
-
-      <div style="font-size: 1.5em;font-weight: bold;">
-        Amount: $<span id="confirmationAmt">75</span>
       </div>
 
       <div class="form-group checkbox required privacyText">
@@ -326,15 +323,14 @@ jQuery('main > .container').before(jQuery('.page-header'));
         <div class="error input-group checkBox col-xs-12 col-sm-12">
           <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
         </div>
-        </div>
+      </div>
+
+      <div style="font-size: 1.5em;font-weight: bold;">
+        Amount: $<span id="confirmationAmt">75</span>
+      </div>
 
       <div class="panel panel-default process-button">
         <div class="panel-body">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
           <button type="button" id="donate-submit" class="btn btn-primary text-center">
           <div>All of my information is correct.</div>
           Process my donation please </button>
