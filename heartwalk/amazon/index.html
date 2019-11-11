@@ -6,10 +6,12 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>$.noConflict()</script>
 <script>
 jQuery('main > .container').before(jQuery('.page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/heartwalk/amazon/css/custom.css">
+<link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
@@ -311,7 +313,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
-      
+
       <div class="form-group checkbox">
         <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
         <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
