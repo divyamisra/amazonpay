@@ -88,6 +88,10 @@ div.responsive input.venmo-text {
 	background:none;
 	border: none;
 }
+.panel-default .payment-type {
+  clear: both;
+  margin-top:6em;
+}
 .donate-image {
 	float:right;
 	width:35%;
@@ -129,7 +133,8 @@ div.icon {
 }
 
 .donation-detail {
-margin-top: 20px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 form#donateform .contact-information input[type="text"] {
   width: 100% !important;
