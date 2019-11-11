@@ -167,7 +167,7 @@ form#donateform .contact-information input[type="text"] {
 } */
 div.donate-select label {
   background: none repeat scroll 0 0 #ffffff;
-  /* border-radius: 8px; */
+  border-radius: 60px 60px 60px 60px !important;
   color: #000000;
   border:2px solid #000;
   font-size: 24px !important;
