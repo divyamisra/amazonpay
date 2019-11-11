@@ -81,7 +81,7 @@ jQuery(document).ready(function() {
                 "Please enter an amount between $25 and $500"
 			);
 			
-			jqcn.validator.addMethod("tos", function(value, element){
+			jQuery.validator.addMethod("tos", function(value, element){
 				return ($(element).is(":checked") || value == 'yes');
 			}, "Please accept the privacy policy.");
 
