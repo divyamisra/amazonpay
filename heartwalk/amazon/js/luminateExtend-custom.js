@@ -362,7 +362,7 @@ additional_amount - fee
 function calculateFee() {
 	// get amount from hidden field 
 	// var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
-	var amt = parseInt(jQuery('input[name=gift_amount]').val());
+	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
 	// formula amt * 2.9% + .29
 	var fee = ((amt * .029) + .29).toFixed(2);
   
@@ -370,10 +370,10 @@ function calculateFee() {
   }
   
   function setGiftAmount() {
-	var amt = parseInt(jQuery('input[name=gift_amount]').val());
-	var fee = parseInt(jQuery('input[name=additional_amount]').val());
+	var amt = jQuery('input[name=gift_amount]').val();
+	var fee = jQuery('input[name=additional_amount]').val();
 	
-	jQuery('input[name=other_amount]').val(amt + fee);
+	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
   }
   
   function formatCurrency(amt) {
@@ -381,7 +381,7 @@ function calculateFee() {
   }
   
   function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(formatCurrency(jQuery('input[name=other_amount]').val()));
+	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
   }
   
   function coverFee() {
@@ -400,7 +400,7 @@ function calculateFee() {
 	coverFee();
 	console.log('blur fired');
   })
-  jQuery('#cover_fee', '.radio-level').on('click', function(){
+  jQuery('#cover_fee, .radio-level').on('click', function(){
 	coverFee();
 	console.log('click fired');
   });
