@@ -97,7 +97,8 @@ div.responsive input.venmo-text {
 }
 .panel-default .payment-type {
   clear: both;
-  margin-top:6em;
+  margin-top:1em;
+  min-height: 100px;
 }
 .donate-image {
 	float:right;
@@ -129,7 +130,7 @@ div.icon:hover, div.icon.active {
 	text-transform:uppercase;
 }
 .donate-how input, .donate-select input[type=radio], .tribute-select input {
-	display:none;
+	/* display:none; */
 }
 div.icon {
 	background: #000000;
@@ -165,9 +166,10 @@ form#donateform .contact-information input[type="text"] {
 	cursor:pointer;
 } */
 div.donate-select label {
-  background: none repeat scroll 0 0 #515151;
-  border-radius: 8px;
-  color: #fff;
+  background: none repeat scroll 0 0 #ffffff;
+  /* border-radius: 8px; */
+  color: #000000;
+  border:2px solid #000;
   font-size: 24px !important;
   font-weight: normal;
   height: 60px;
@@ -187,7 +189,8 @@ div.donate-select label {
 }
 
 .donate-select label:hover, .donate-select label.active {
-	background: #ED1C24;
+  background: #000;
+  color: #fff;
 	cursor:pointer;
 }
 .level-other-input {
@@ -287,19 +290,26 @@ color:red;
   content:" *";
   color:red;
 }
+.btn {
+  border-radius: 60px 60px 60px 60px;
+  background-clip: padding-box;
+  color: #fff;
+  border: none;
+  font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+}
 .btn-primary {
-	background-color: #ed1c24 !important;
+	background-color: #c10e21 !important;
 	border: none;
 	color: #fff;
 	font-size:24px;
 	font-weight:bold;
-	border-radius:0px;
+	/* border-radius:0px; */
 	padding:20px;
 	margin:0 auto;
 	display:block;
 }
 .btn-primary:hover {
-	background-color: #ed1c24;	
+	background-color: #900;	
 	text-decoration:underline;
 }
 .btn-primary > div {
