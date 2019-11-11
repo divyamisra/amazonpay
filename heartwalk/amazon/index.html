@@ -1,4 +1,4 @@
-<div class="ym-page-header ym-accent-color">
+<div class="page-header accent-color">
   <div class="container">
     <div class="col-sm-12">
       <h1>Donate</h1>
@@ -7,13 +7,13 @@
   </div>
 </div>
 <script>
-jQuery('main > .container').before(jQuery('.ym-page-header'));
+jQuery('main > .container').before(jQuery('.page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/amazon/css/custom.css">
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
-<div class="ym-page-content">
+<div class="page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
     <div class="html-caption-container">
@@ -31,6 +31,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="source" value="AMAZON">
       <input type="hidden" name="payment_source" value="AMAZON">
       <input type="hidden" name="_session" value="">
+      <input type="hidden" name="additional_amount" value="0">
       <input type="hidden" name="other_amount" value="100">
       <input type="hidden" name="gift_amount" value="100">
       <input type="hidden" name="level_id" value="2447">
@@ -310,6 +311,23 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
+      <div class="form-group checkbox">
+        <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
+        <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
+      </div>
+
+      <div style="font-size: 1.5em;font-weight: bold;">
+        Amount: $<span id="confirmationAmt">75</span>
+      </div>
+
+      <div class="form-group checkbox required privacyText">
+        <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+        <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></label>
+        <div class="error input-group checkBox col-xs-12 col-sm-12">
+          <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+        </div>
+        </div>
+
       <div class="panel panel-default process-button">
         <div class="panel-body">
           <!-- <div style="float:right"> 
@@ -321,7 +339,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
           <div>All of my information is correct.</div>
           Process my donation please </button>
         </div>
-        <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
+        <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div> -->
       </div>
     </div>
   </form>
