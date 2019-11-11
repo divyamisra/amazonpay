@@ -206,3 +206,64 @@ if (amount.length > 0) {
 		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
 	}
 }
+
+
+/*
+Calculate fee amount
+store in additional amount field
+Add fee to gift - store in "other_amount"
+Display total before submit button
+Update amounts and display when the gift amount changes
+Submit the 3 amounts (Gift, Fee, Gift+Fee) to hearttools api
+
+gift_amount - original gift
+other_amount - total gift + fee
+additional_amount - fee
+*/
+
+
+function calculateFee() {
+	// get amount from hidden field 
+	// var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
+	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
+	// formula amt * 2.9% + .29
+	var fee = ((amt * .029) + .29).toFixed(2);
+  
+	return fee;
+  }
+  
+  function setGiftAmount() {
+	var amt = jQuery('input[name=gift_amount]').val();
+	var fee = jQuery('input[name=additional_amount]').val();
+	
+	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
+  }
+  
+  function formatCurrency(amt) {
+	return amt.replace(/\d(?=(\d{3})+\.)/g, '$&,');
+  }
+  
+  function setDisplayAmount() {
+	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
+  }
+  
+  function coverFee() {
+	// run additional calculation
+	if(jQuery('#cover_fee').prop('checked')){
+	  jQuery('input[name=additional_amount]').val(calculateFee());
+	} else {
+	  jQuery('input[name=additional_amount]').val(0);
+	} 
+  
+	setGiftAmount();
+	setDisplayAmount();
+  }
+  
+  jQuery('#other-amount-entered').on('blur', function(){
+	coverFee();
+	console.log('blur fired');
+  })
+  jQuery('#cover_fee, .radio-level').on('click', function(){
+	coverFee();
+	console.log('click fired');
+  });
