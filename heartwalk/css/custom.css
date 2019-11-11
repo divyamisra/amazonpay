@@ -91,6 +91,10 @@ div.responsive input.venmo-text {
 	background:none;
 	border: none;
 }
+.panel-default {
+  clear:both;
+  min-height: 100px;
+}
 .panel-default .payment-type {
   clear: both;
   margin-top:6em;
@@ -176,7 +180,10 @@ div.donate-select label {
 }
 
 .donation-level-amount-container, .level_other {
-padding: 10px; 	
+  padding: 10px; 	
+}
+.level_other {
+  margin-bottom: 1em;
 }
 
 .donate-select label:hover, .donate-select label.active {
