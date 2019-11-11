@@ -13,7 +13,7 @@
     });
 })(jQuery);
 
-jQuery(document).ready(function() {
+// jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 	    
         var evid = jQuery.getQuerystring("FR_ID");
@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
             });
         }
 
-    });
+    // });
 
 
 function donateApplePay() {
