@@ -50,7 +50,7 @@
 		
       });
 
-		jQuery('.donation-form').validate();				   
+		jQuery('.donation-form').validate();
 		
 		jQuery.validator.addMethod(
 			"validDonation", 
@@ -63,7 +63,7 @@
 			},
 			"Please enter an amount between $25 and $500"
 		);
-		
+
 		jQuery.validator.addMethod("tos", function(value, element){
 			return ($(element).is(":checked") || value == 'yes');
 		}, "Please accept the privacy policy.");
