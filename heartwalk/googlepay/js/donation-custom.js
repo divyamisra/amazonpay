@@ -1,5 +1,20 @@
-    jQuery(document).ready(function() {
-        jQuery('#from_url_js').val(document.referrer);
+(function($) {
+    jQuery.extend({
+        getQuerystring: function(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(location.href);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    });
+})(jQuery);
+
+jQuery(document).ready(function() {
+	jQuery('#from_url_js').val(document.referrer);
 
 	var evid = jQuery.getQuerystring("FR_ID");
 	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
@@ -84,23 +99,9 @@
                 }
             });
         }
+});
 
-    });
 
-(function($) {
-    jQuery.extend({
-        getQuerystring: function(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(location.href);
-            if (results == null)
-                return "";
-            else
-                return decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-    });
-})(jQuery);
 
 function donateGooglePay() {
 	window.scrollTo(0, 0);
