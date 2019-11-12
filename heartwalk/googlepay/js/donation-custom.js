@@ -112,6 +112,8 @@ function donateGooglePay() {
 	var amt = jqcn('input[name=other_amount]').val();
 	var feeamt = jqcn('input[name=additional_amount]').val();
 	var originalamt = jqcn('input[name=gift_amount]').val();
+	// reset field to post correct value back to LO
+	jqcn('input[name=gift_amount]').val(amt);
 	var ref = 'GOOGLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jqcn('input[name=check_number]').val(ref);
