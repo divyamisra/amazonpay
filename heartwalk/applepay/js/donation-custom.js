@@ -129,7 +129,7 @@ function donateApplePay() {
 	//var ref = data.donationResponse.donation.confirmation_code;
 
 	jqcn('.donation-loading').remove();
-	jqcn('.donate-now, .header-donate, .page-header').hide();
+	jqcn('.donate-now, .header-donate, .accent-color').hide();
 	jqcn('.thank-you').show();
 	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/applepay/thankyou.html";
 	if (jqcn('input[name=instance]').val() == "heartdev") {
