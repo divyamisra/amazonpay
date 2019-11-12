@@ -473,13 +473,10 @@ form .credit-card-group input#card-number.valid.discover {
 	text-align:center;
 }
 
-/* .thank-you {
-	text-align:center;
-} */
-
 .thank-you .givingText {
   /* margin: 0 0 0 140px; */
   text-align:left !important;
+  margin: 0 auto;
 }
 .thank-you .givingText-venmo,
 .thank-you .givingText-googlepay {
@@ -493,10 +490,6 @@ text-align:left !important;
 list-style-image: url(/images/heart-bullet.png);
 } */
 
-.thank-you .givingText {
-margin: 0 0 0 140px;
-text-align:left !important;
-}
 
 .fa-flag,
 .fa-usd {
@@ -545,7 +538,7 @@ td.FormSectionHeader {
 	font-weight:bold;
 }
 .thank-you table {
-	width:500px;
+	max-width:500px;
 	margin: 0 auto;
 }
 .thank-you table td {
