@@ -110,6 +110,8 @@ function donateGooglePay() {
 	var params = jqcn('.donation-form').serialize();
 	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
+	var feeamt = jqcn('input[name=additional_amount]').val();
+	var originalamt = jqcn('input[name=gift_amount]').val();
 	var ref = 'GOOGLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jqcn('input[name=check_number]').val(ref);
@@ -137,13 +139,13 @@ function donateGooglePay() {
 	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
-	jqcn('.donate-now, .header-donate').hide();
+	jqcn('.donate-now, .header-donate, .page-header').hide();
 	jqcn('.thank-you').show();
 	var ty_url = "/amazonpay/heartwalk/googlepay/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
-		jqcn('p.first').html(first);
+		jqcn('p.first, span.first').html(first);
 		jqcn('p.last').html(last);
 		jqcn('p.street1').html(street1);
 		jqcn('p.street2').html(street2);
@@ -154,6 +156,8 @@ function donateGooglePay() {
 		jqcn('p.email').html(email);
 		//jqcn('tr.cardGroup').hide();
 		//jqcn('tr.amazon').show();
+		jqcn('p.fee-amount').html("$" + feeamt);
+		jqcn('p.original-amount').html("$" + originalamt);
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
 	});
