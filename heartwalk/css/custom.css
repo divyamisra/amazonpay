@@ -578,6 +578,10 @@ td.FormSectionHeader {
 padding-bottom: 15px;	
 } */
 
+[type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after, [type="radio"]:not(:checked) + label:after, [type="radio"]:checked + label:after {
+  font-size:1.1rem !important;
+}
+
 /* amazon pay */
 #walletWidgetDiv {
 	display: none;
