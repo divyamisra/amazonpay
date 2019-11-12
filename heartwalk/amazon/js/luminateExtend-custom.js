@@ -173,11 +173,11 @@
 				  jqcn('.thank-you').show();
 				  var ty_url = "https://www2.heart.org/amazonpay/heartwalk/amazon/thankyou.html";
 				  if (jqcn('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/heartwalk/amazon/thankyou.html";
+				  	ty_url = "/amazonpay/heartwalk/amazon/thankyou.html";
 				  }
 				  jqcn.get(ty_url,function(datat){ 
 					  jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
-					  jqcn('p.first').html(first);
+					  jqcn('p.first, span.first').html(first);
 					  jqcn('p.last').html(last);
 					  jqcn('p.street1').html(street1);
 					  jqcn('p.street2').html(street2);
