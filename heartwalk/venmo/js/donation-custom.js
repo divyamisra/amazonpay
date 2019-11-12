@@ -201,29 +201,30 @@ jqcn('[id^=donor_]').each(function() {
     });
 });
 
+if (location.href.indexOf("donate_venmo") > 0) {
+	var eid = jqcn('input[name=fr_id]').val();
+	var dtype = (jqcn('input[name=proxy_type_value]').val() == 20 || jqcn('input[name=proxy_type_value]').val() == 2) ? "p" : ((jqcn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+	var pid = (dtype == "p") ? jqcn('input[name=cons_id]').val() : "";
+	var tid = (dtype == "t") ? jqcn('input[name=team_id]').val() : "";
+		var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+		if (jqcn('input[name=instance]').val() == "heartdev") {
+		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	}
+	jqcn.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+		//jqcn('.page-header h1').html(data2.event_title);
+		if (data2.team_name != "" && dtype == "t") {
+			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+		}
+		if (data2.event_title != " " && dtype == "e") {
+			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+		}
+		if (data2.part_name != " " && dtype == "p") {
+			jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+		}
 
-var eid = jqcn('input[name=fr_id]').val();
-var dtype = (jqcn('input[name=proxy_type_value]').val() == 20 || jqcn('input[name=proxy_type_value]').val() == 2) ? "p" : ((jqcn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-var pid = (dtype == "p") ? jqcn('input[name=cons_id]').val() : "";
-var tid = (dtype == "t") ? jqcn('input[name=team_id]').val() : "";
-	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	if (jqcn('input[name=instance]').val() == "heartdev") {
-	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+		jqcn('input[name=form_id]').val(data2.don_form_id);
+	});
 }
-jqcn.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-	//jqcn('.page-header h1').html(data2.event_title);
-	if (data2.team_name != "" && dtype == "t") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-	}
-	if (data2.event_title != " " && dtype == "e") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-	}
-	if (data2.part_name != " " && dtype == "p") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-	}
-
-	jqcn('input[name=form_id]').val(data2.don_form_id);
-});
 
 // Get amount passed from query string
 var amount = jqcn.getQuerystring("amount");
