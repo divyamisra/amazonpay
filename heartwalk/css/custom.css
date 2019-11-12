@@ -233,14 +233,15 @@ input[type='number'] {
 
 label.error {
 	font-weight:normal;
-	color:#ff0000;
+	color:#c10e21;
 	white-space:nowrap;
 }
 div.donate-select label.error {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  color: #ff0000;
+  border: 0 none;
+  color: #c10e21;
   display: block;
-  font-size: 14px;
+  font-size: 1rem !important;
   font-weight: normal;
   white-space: normal;
   width: 100%;
