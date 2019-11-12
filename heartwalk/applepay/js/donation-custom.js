@@ -127,9 +127,6 @@ function donateApplePay() {
 	var zip = jqcn('input[name="zip"]').val();
 	//var country = jqcn('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jqcn('select[name="card_exp_date_month"]').val() + "/" + jqcn('select[name="card_exp_date_year"]').val();
-	//var cc = jqcn('input[name=card_number]').val();
-	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
@@ -150,8 +147,6 @@ function donateApplePay() {
 		jqcn('p.zip').html(zip);
 		//jqcn('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jqcn('tr.cardGroup').hide();
-		//jqcn('tr.amazon').show();
 		jqcn('p.fee-amount').html("$" + feeamt);
 		jqcn('p.original-amount').html("$" + originalamt);
 		jqcn('p.amount').html("$" + amt);
@@ -195,6 +190,29 @@ jqcn('[id^=donor_]').each(function() {
     jqcn(this).blur(function() {
         jqcn("[id='" + jqcn(this).attr("id").replace("donor_", "billing_") + "']").val(jqcn(this).val());
     });
+});
+
+var eid = jqcn('input[name=fr_id]').val();
+var dtype = (jqcn('input[name=proxy_type_value]').val() == 20 || jqcn('input[name=proxy_type_value]').val() == 2) ? "p" : ((jqcn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+var pid = (dtype == "p") ? jqcn('input[name=cons_id]').val() : "";
+var tid = (dtype == "t") ? jqcn('input[name=team_id]').val() : "";
+	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	if (jqcn('input[name=instance]').val() == "heartdev") {
+	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+}
+jqcn.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+	//jqcn('.page-header h1').html(data2.event_title);
+	if (data2.team_name != "" && dtype == "t") {
+		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+	}
+	if (data2.event_title != " " && dtype == "e") {
+		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+	}
+	if (data2.part_name != " " && dtype == "p") {
+		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+	}
+
+	jqcn('input[name=form_id]').val(data2.don_form_id);
 });
 
 // Get amount passed from query string
