@@ -68,13 +68,13 @@ jqcn(document).ready(function() {
             jqcn.validator.addMethod(
                 "validDonation",
                 function(value, element) {
-                    if (value == 0 || (value >= 25 && value <= 500)) {
+                    if (value == 0 || (value >= 25)) {
                         return true;
                     } else {
                         return false;
                     }
                 },
-                "Please enter an amount between $25 and $500"
+                "Please enter an amount greater than $25"
             );
 
             jqcn('#donate-submit').click(function() {
@@ -133,7 +133,7 @@ function donateApplePay() {
 	jqcn('.thank-you').show();
 	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/applepay/thankyou.html";
 	if (jqcn('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/heartwalk/applepay/thankyou.html";
+		ty_url = "/amazonpay/heartwalk/applepay/thankyou.html";
 	}
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
