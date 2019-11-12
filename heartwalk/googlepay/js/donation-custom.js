@@ -226,6 +226,7 @@ if (amount.length > 0) {
 	var match = jqcn('label[data-amount=' + amount + ']');
 	if(match.length>=1){
 		jqcn(match).click();
+		coverFee();
 	} else {
 		jqcn('label.active').removeClass("active");
 		jqcn('label.level_other').addClass("active");
@@ -233,6 +234,7 @@ if (amount.length > 0) {
 		jqcn('#other-amount-entered').removeAttr('disabled');
 		jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
 		jqcn('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		coverFee();
 	}
 }
 
