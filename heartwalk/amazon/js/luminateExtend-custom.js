@@ -102,6 +102,10 @@
 		jqcn('.donation-form').before('<div class="well donation-loading">' + 
 						 'Thank You!  We are now processing your donation using Amazon ...' + 
 					   '</div>');
+		var feeamt = jqcn('input[name=additional_amount]').val();
+		var originalamt = jqcn('input[name=gift_amount]').val();
+		// reset field to post correct value back to LO
+		jqcn('input[name=gift_amount]').val(amt);
 		var params = jqcn('.donation-form').serialize();
 		var amazonErr = false;
 		var status = "";
@@ -183,6 +187,8 @@
 					  jqcn('p.email').html(email);
 					  jqcn('tr.card').hide();
 					  jqcn('tr.amazon').show();
+					  jqcn('p.fee-amount').html("$" + feeamt);
+					  jqcn('p.original-amount').html("$" + originalamt);
 					  jqcn('p.amount').html("$"+amt);
 					  jqcn('p.confcode').html(ref);
 					  jqcn('p.from_url').html("<a href='"+from_url+"'>Return</a>");
@@ -325,6 +331,7 @@ jqcn('[id^=donor_]').each(function(){
 		var match = jqcn('label[data-amount=' + amount + ']');
 		if(match.length>=1){
 			jqcn(match).click();
+			coverFee();
 		} else {
 			jqcn('label.active').removeClass("active");
 			jqcn('label.level_other').addClass("active");
@@ -332,6 +339,7 @@ jqcn('[id^=donor_]').each(function(){
 			jqcn('#other-amount-entered').removeAttr('disabled');
 			jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
 			jqcn('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+			coverFee();
 		}
 	}
 	
