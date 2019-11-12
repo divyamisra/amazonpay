@@ -106,7 +106,7 @@ jqcn(document).ready(function() {
 function donateGooglePay() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
-	jqcn('.processing').hide();
+	jqcn('.processing').show();
 	var params = jqcn('.donation-form').serialize();
 	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
@@ -134,14 +134,8 @@ function donateGooglePay() {
 	var city = jqcn('input[name="city"]').val();
 	var state = jqcn('select[name="state"]').val();
 	var zip = jqcn('input[name="zip"]').val();
-	//var country = jqcn('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jqcn('select[name="card_exp_date_month"]').val() + "/" + jqcn('select[name="card_exp_date_year"]').val();
-	//var cc = jqcn('input[name=card_number]').val();
-	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
-	jqcn('.donation-loading').remove();
-	jqcn('.donate-now, .header-donate, .page-header').hide();
+	jqcn('.processing, .donate-now, .header-donate, .page-header').hide();
 	jqcn('.thank-you').show();
 	var ty_url = "/amazonpay/heartwalk/googlepay/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
@@ -156,8 +150,6 @@ function donateGooglePay() {
 		jqcn('p.zip').html(zip);
 		//jqcn('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jqcn('tr.cardGroup').hide();
-		//jqcn('tr.amazon').show();
 		jqcn('p.fee-amount').html("$" + feeamt);
 		jqcn('p.original-amount').html("$" + originalamt);
 		jqcn('p.amount').html("$" + amt);
