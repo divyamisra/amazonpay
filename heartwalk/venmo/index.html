@@ -10,14 +10,30 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   </div>
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>var jqcn = $.noConflict();</script>
-<script>
-jQuery('main > .container').before(jQuery('.page-header'));
+<!-- <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    // var jqcn = $.noConflict();
+    jQuery('main > .container').before(jQuery('.page-header'));
+    
+    var script_validate = document.createElement("script");  // create a script DOM node
+    var script_addl = document.createElement("script");  // create a script DOM node
+    var script_btree = document.createElement("script");  // create a script DOM node
+    var script_custm = document.createElement("script");  // create a script DOM node
+    script_validate.src = "../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS";  // set its src to the provided URL
+    script_addl.src = "../amazonpay/heartwalk/venmo/js/additional-methods.min.js";
+    script_btree.src = "../amazonpay/heartwalk/venmo/js/braintree-luminate.js";
+    script_custm.src = "../amazonpay/heartwalk/venmo/js/donation-custom.js";
+
+    document.body.appendChild(script_validate); 
+    document.body.appendChild(script_addl); 
+    document.body.appendChild(script_btree); 
+    document.body.appendChild(script_custm); 
+  });
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/additional-methods.min.js"></script>
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/additional-methods.min.js"></script> -->
 <section class='col-xs-12 col-sm-12 no-venmo page-content hidden' aria-label="mainContent">
   <h2>Venmo is not available or setup on your device.</h2>
   [[?[[S334:PROXY_TYPE]]::20::
@@ -165,11 +181,13 @@ jQuery('main > .container').before(jQuery('.page-header'));
         </div>
       </div>
       <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
+      document.addEventListener("DOMContentLoaded", function(event) { 
+        jQuery('.donate-select label').click(function(){
+          jQuery('.donate-select .active').removeClass("active");
+          jQuery(this).addClass("active");
+        });
+      });
+	    </script>
       <div class="panel panel-default payment-type active">
         <style>
   .payment-type label img {cursor:pointer;} 
@@ -353,5 +371,5 @@ jQuery('main > .container').before(jQuery('.page-header'));
 <script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
 <script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
 <!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>  -->
-<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/donation-custom.js"></script> 
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/braintree-luminate.js"></script>  -->
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/donation-custom.js"></script>  -->
