@@ -111,7 +111,6 @@ function submitToVenmo() {
 function donateVenmo() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
-	jQuery('.processing').hide();
 	var params = jQuery('.donation-form').serialize();
 	var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
@@ -144,6 +143,7 @@ function donateVenmo() {
 	//var ref = data.donationResponse.donation.confirmation_code;
 
 	jQuery('.donation-loading').remove();
+	jQuery('.processing').hide();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
 	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
@@ -252,7 +252,6 @@ if (amount.length > 0) {
 // Calculate fee amount
 function calculateFee() {
 	// get amount from hidden field 
-	// var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
 	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
 	// formula amt * 2.9% + .29
 	var fee = ((amt * .029) + .29).toFixed(2);
