@@ -10,17 +10,15 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   </div>
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(event) { 
-    // var jqcn = $.noConflict();
     jQuery('main > .container').before(jQuery('.page-header'));
     
-    var script_validate = document.createElement("script");  // create a script DOM node
-    var script_addl = document.createElement("script");  // create a script DOM node
-    var script_btree = document.createElement("script");  // create a script DOM node
-    var script_custm = document.createElement("script");  // create a script DOM node
-    script_validate.src = "../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS";  // set its src to the provided URL
+    var script_validate = document.createElement("script");
+    var script_addl = document.createElement("script");
+    var script_btree = document.createElement("script");
+    var script_custm = document.createElement("script");
+    script_validate.src = "../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS";
     script_addl.src = "../amazonpay/heartwalk/venmo/js/additional-methods.min.js";
     script_btree.src = "../amazonpay/heartwalk/venmo/js/braintree-luminate.js";
     script_custm.src = "../amazonpay/heartwalk/venmo/js/donation-custom.js";
@@ -32,8 +30,6 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   });
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/additional-methods.min.js"></script> -->
 <section class='col-xs-12 col-sm-12 no-venmo page-content hidden' aria-label="mainContent">
   <h2>Venmo is not available or setup on your device.</h2>
   [[?[[S334:PROXY_TYPE]]::20::
@@ -355,12 +351,11 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       </div>
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
-	  <div>Click Venmo button to Donate</div>
+	      <div>Click Venmo button to Donate</div>
           <button type="button" id="donate-submit" class="btn btn-primary btn-primary-venmo text-center" style="border:0 none !important;">
             <img src="/donation-forms/donatenow/images/venmo-button.png"/>
-	  </button>
+	        </button>
         </div>
-        <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div> -->
       </div>
     </div>
   </form>

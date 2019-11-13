@@ -1,5 +1,3 @@
-console.log('loaded1');
-
 (function($) {
     jQuery.extend({
         getQuerystring: function(name) {
@@ -16,10 +14,9 @@ console.log('loaded1');
 })(jQuery);
 
 jQuery(document).ready(function() {
-	console.log('loaded');
 	jQuery('#from_url_js').val(document.referrer);
 	    
-        var evid = jQuery.getQuerystring("FR_ID");
+    var evid = jQuery.getQuerystring("FR_ID");
 	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
 		if(data.eventdata != null) {
                    var regtst = /\w{3}-+/;
@@ -97,8 +94,7 @@ jQuery(document).ready(function() {
                 }
             });
         }
-
-    });
+});
 
 function submitToVenmo() {
 	window.scrollTo(0, 300);
@@ -143,8 +139,7 @@ function donateVenmo() {
 	//var ref = data.donationResponse.donation.confirmation_code;
 
 	jQuery('.donation-loading').remove();
-	jQuery('.processing').hide();
-	jQuery('.donate-now, .header-donate').hide();
+	jQuery('.donate-now, .header-donate, .processing').hide();
 	jQuery('.thank-you').show();
 	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
