@@ -1,9 +1,17 @@
 body {
-  background: #ffffff;
+  background: #eee;
 }
 /* header {
   margin-top: -12px;
 } */
+main {
+  background-image: url(/images/content/pagebuilder/hw_hero_desktop.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #eee;
+  padding: 48px 76px 67px;
+}
+
 em {
 	font-size:12px;
 }
