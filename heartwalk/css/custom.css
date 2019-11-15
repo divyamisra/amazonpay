@@ -1,9 +1,9 @@
-body, header, main {
+body {
   background: #ffffff;
 }
-header {
+/* header {
   margin-top: -12px;
-}
+} */
 em {
 	font-size:12px;
 }
