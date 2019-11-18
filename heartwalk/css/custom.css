@@ -79,9 +79,10 @@ div.responsive input.venmo-text {
 	border:none;
 }
 .page-header h1 {
-	/* color: #ed1c24; */
-	color: #060606;
-	font-size:40px;
+	color: #212529;
+  font-size:30px;
+  margin-bottom: 30px;
+  font-weight: 600;
 }
 .panel {
 	border:none;
@@ -255,23 +256,6 @@ div.donate-select label.error {
   width: 100%;
 }
 /*
-div.tribute-select label {
-	background: none repeat scroll 0 0 #484848;
-	border-radius: 8px;
-	color: #fff;
-	display: inline-block;
-	font-size: 25px;
-	font-weight: normal;
-	min-height: 60px;
-	padding: 15px 20px;
-	min-width: 100px;
-}
-.tribute-select label:hover, .tribute-select label.active {
-	background: #ED1C24;
-	cursor:pointer;
-}
-*/
-/*
 .contact-information .form-group {
   background: none repeat scroll 0 0 #fff;
   border: 1px solid #ccc;
@@ -378,80 +362,6 @@ ul.footer-menu li a {
   text-decoration: underline;
 } */
 
-/* form .credit-card-group input {
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    box-sizing: content-box;
-    color: #333;
-    display: block;
-    font-size: 18px;
-    height: 32px;
-    padding: 0 5px;
-    width: 275px;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-}
-form .credit-card-group input::-webkit-input-placeholder {
-  color: #ddd;
-}
-form .credit-card-group input:-moz-placeholder {
-  color: #ddd;
-  opacity: 1;
-}
-form .credit-card-group input::-moz-placeholder {
-  color: #ddd;
-  opacity: 1;
-}
-form .credit-card-group input:-ms-input-placeholder {
-  color: #ddd;
-}
-form .credit-card-group input:focus {
-  outline: 1px solid #3388dd;
-}
-form .credit-card-group input#card-number {
-  background-image: url(../images/images.png), url(../images/images.png);
-  background-position: 2px -105px, 240px -50px;
-  background-size: 120px 361px, 120px 361px;
-  background-repeat: no-repeat;
-  padding-left: 54px;
-  width: 225px;
-}
-form .credit-card-group input#card-number.visa {
-  background-position: 2px -143px, 240px -50px;
-}
-form .credit-card-group input#card-number.amex {
-  background-position: 2px -329px, 240px -50px;
-}
-form .credit-card-group input#card-number.visa_electron {
-  background-position: 2px -180px, 240px -50px;
-}
-form .credit-card-group input#card-number.mastercard {
-  background-position: 2px -217px, 240px -50px;
-}
-form .credit-card-group input#card-number.maestro {
-  background-position: 2px -255px, 240px -50px;
-}
-form .credit-card-group input#card-number.discover {
-  background-position: 2px -292px, 240px -50px;
-}
-form .credit-card-group input#card-number.valid.amex {
-  background-position: 2px -329px, 240px -75px;
-}
-form .credit-card-group input#card-number.valid.visa {
-  background-position: 2px -143px, 240px -75px;
-}
-form .credit-card-group input#card-number.valid.visa_electron {
-  background-position: 2px -180px, 240px -75px;
-}
-form .credit-card-group input#card-number.valid.mastercard {
-  background-position: 2px -217px, 240px -75px;
-}
-form .credit-card-group input#card-number.valid.maestro {
-  background-position: 2px -255px, 240px -75px;
-}
-form .credit-card-group input#card-number.valid.discover {
-  background-position: 2px -292px, 240px -75px;
-} */
 .vertical {
   overflow: hidden;
 }
@@ -480,18 +390,15 @@ form .credit-card-group input#card-number.valid.discover {
 .thank-you {
 	text-align:center;
 }
-
 .thank-you .givingText {
-  /* margin: 0 0 0 140px; */
   text-align:left !important;
   margin: 0 auto;
 }
 .thank-you .givingText-venmo,
 .thank-you .givingText-googlepay {
-max-width: 760px;
-margin: 0 auto 2em;
-text-align:left !important;
-/* margin: 0 auto 40px; */
+  max-width: 760px;
+  margin: 0 auto 2em;
+  text-align:left !important;
 }
 
 /* .donate-thankyou {

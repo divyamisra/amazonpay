@@ -1,11 +1,3 @@
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1>Donate</h1>
-      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
-    </div>
-  </div>
-</div> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>var jqcn = $.noConflict();</script>
@@ -18,9 +10,9 @@
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
 <div class="page-content">
   <div class="thank-you"></div>
-  <div class="donate-now donation-form-content" style=""> 
+  <div class="donate-now donation-form-content page-header"> 
     <div class="html-caption-container">
-      <h1>Donate</h1>
+      <h1 calss="formTitle">Donate</h1>
       <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
     <p class="impactStatement" style="display: block;"></p>
@@ -76,11 +68,11 @@
           <div class="form-group gift-select hidden">
         	<div class='col-md-12 col-sm-12'>
         		<div class='radio-group col-md-6 text-center'>
-        			<input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
+        			<input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" role="radiogroup" aria-label="One-Time Gift" />
         			<label class='radio-label active' for='occurrence1'>One-Time Gift</label>
         		</div>
         		<div class='radio-group col-md-6 text-left'>
-        			<input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
+        			<input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" role="radiogroup" aria-label="Monthly Gift" />
         			<label class="radio-label" for='occurrence2'>Monthly Gift</label>
         		</div>
         	</div> <!-- end occurrence options -->
@@ -332,11 +324,10 @@
 
       <div class="panel panel-default process-button">
         <div class="panel-body">
-          <button type="button" id="donate-submit" class="btn btn-primary text-center">
+          <button type="submit" id="donate-submit" class="btn btn-primary text-center">
           <div>All of my information is correct.</div>
           Process my donation please </button>
         </div>
-        <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div> -->
       </div>
     </div>
   </form>
