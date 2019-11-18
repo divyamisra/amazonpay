@@ -81,36 +81,32 @@
             <div class="col-xs-12 col-sm-12 onetime">
               <div class="text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
-                <div id="amount1" class="donation-level-amount-container">$30</div>
+                  <input type="radio" name="radioAmt" id="30" class="radio-amt">
+                  <div id="amount1" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
               <div class="text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                <div id="amount2" class="donation-level-amount-container">$75</div>
+                    <input type="radio" name="radioAmt" id="75" class="radio-amt">
+                    <div id="amount2" class="donation-level-amount-container">$75</div>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+                    <input type="radio" name="radioAmt" id="150" class="radio-amt">
+                      <div id="amount3" class="donation-level-amount-container">$150</div>
+                    </label>
+                </div>
+                  <div class="text-center">
+                    <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
+                    <input type="radio" name="radioAmt" id="250" class="radio-amt">
+                  <div id="amount4" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <div class="text-center">
-                <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                <div id="amount3" class="donation-level-amount-container">$150</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
-                <div id="amount4" class="donation-level-amount-container">$250</div>
-                </label>
-              </div>
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
-                <div class="donation-level-amount-container">$525</div>
-                </label>
-              </div> -->
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
-                <div class="donation-level-amount-container">$1,000</div>
-                </label>
-              </div> -->
-              <div class="text-center">
-                  <label for="other-amount-entered" class="level_other">Other </label>
+              <div class="text-center" id="other-amount-input-group">
+                  <label for="other-amount-entered" class="level_other">Other 
+                    <input type="radio" name="radioAmt" id="250" class="radio-amt">
+                  </label>
                   <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                     <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
                   </div>

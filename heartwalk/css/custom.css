@@ -1,9 +1,7 @@
 body {
   background: #eee;
+  color: #212529;
 }
-/* header {
-  margin-top: -12px;
-} */
 main {
   background-image: url(/images/content/pagebuilder/hw_hero_desktop.jpg);
   background-size: 100%;
@@ -58,9 +56,6 @@ div.responsive input.venmo-text {
 
 #login-form {
 	display:none;
-}
-#other-amount-input-group {
-	margin-top: 0.5em;
 }
 
 /* .tribute {
@@ -145,8 +140,12 @@ div.icon:hover, div.icon.active {
 	font-size:14px;
 	text-transform:uppercase;
 }
-.donate-how input, .donate-select input[type=radio], .tribute-select input {
-	/* display:none; */
+/* .donate-how input, .donate-select input[type=radio], .tribute-select input {
+	display:none;
+} */
+.radio-amt {
+  top: 20px;
+  left: 10px !important;
 }
 div.icon {
 	background: #000000;
@@ -166,21 +165,7 @@ form#donateform .contact-information input[type="text"] {
 .contact-information {
   clear:both;
 }
-/* div.card-select label {
-  background: none repeat scroll 0 0 #515151;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 24px !important;
-  font-weight: normal;
-  width: 125px;
-  float: left;
-  position: relative;
-  margin: 10px 2% 10px 0;
-}
-.card-select label:hover, .card-select label.active {
-	background: #ED1C24;
-	cursor:pointer;
-} */
+
 div.donate-select label {
   background: none repeat scroll 0 0 #ffffff;
   border-radius: 60px 60px 60px 60px !important;
@@ -201,7 +186,7 @@ div.donate-select label {
   padding: 10px; 	
 }
 .level_other {
-  margin-bottom: 1em;
+  margin-bottom: 1em !important;
 }
 
 .donate-select label:hover, .donate-select label.active {
@@ -228,8 +213,12 @@ div.donate-select label {
 	width:70%;
 }
 input#other-amount-entered {
-	top:2px;
-	position:relative;
+  position:relative;
+  width:100px;
+  margin-bottom: 2em;
+}
+#other-amount-input-group {
+  clear:both;
 }
 
 .recurring {
@@ -523,6 +512,13 @@ padding-bottom: 15px;
   font-size: 0.8em;	
 }
 @media only screen and (max-width: 767px) {
+  body { 
+    background: #ffffff !important; 
+  }
+  main {
+    background: 0 0;
+    padding: 0 5px;
+  }
 	.navbar-toggle {
 		display:none;
 	}
@@ -543,7 +539,16 @@ padding-bottom: 15px;
 	}
 	span.livechat-text {
 		display:none;
-	}
+  }
+  .level-other-input {
+    margin-top: 8px;
+  }
+  .level_other {
+    margin-bottom: 1em !important;
+  }
+  .level_other.active {
+    margin-bottom: 0;
+  }
 	
   /* #otherGiving li {
     display: block;
