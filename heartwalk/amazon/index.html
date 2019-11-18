@@ -1,11 +1,11 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-12">
       <h1>Donate</h1>
       <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
   </div>
-</div>
+</div> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>var jqcn = $.noConflict();</script>
@@ -18,12 +18,13 @@
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
 <div class="page-content">
   <div class="thank-you"></div>
-  <!-- <div class="donate-now donation-form-content" style="background:none;"> 
+  <div class="donate-now donation-form-content" style=""> 
     <div class="html-caption-container">
-      <h1 id="formTitle">You've Got Heart!</h1>
+      <h1>Donate</h1>
+      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
     <p class="impactStatement" style="display: block;"></p>
-  </div> -->
+  </div>
   <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
     <div class="donation-form-container responsive">
       <input type="hidden" name="instance" value="[[S80:instance]]">
