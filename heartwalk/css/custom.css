@@ -32,6 +32,9 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
   background-color: #fff;
   padding: 40px 20px;
 }
+.row {
+  padding: 0 25px;
+}
 
 /* Venmo edits */
 div.responsive input.venmo-text {
@@ -275,7 +278,7 @@ div.donate-select label.error {
 }
 */
 .star {
-color:red;	
+color: #c10e21;	
 }
 
 .control-label {
@@ -285,7 +288,7 @@ color:red;
 }
 .form-group.required .control-label:after, .checkbox.required label:after {
   content:" *";
-  color:red;
+  color: #c10e21;
 }
 .btn {
   border-radius: 60px 60px 60px 60px;
