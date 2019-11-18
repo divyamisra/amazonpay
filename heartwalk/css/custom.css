@@ -28,6 +28,10 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 .container.heart-page-container.heart-page-container--personal {
 	padding-top: 140px;	
 }
+.container {
+  background-color: #fff;
+  padding: 40px 20px;
+}
 
 /* Venmo edits */
 div.responsive input.venmo-text {
