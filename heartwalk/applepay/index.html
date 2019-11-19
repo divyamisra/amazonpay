@@ -136,7 +136,8 @@ jQuery('main > .container').before(jQuery('.page-header'));
             <div class="col-xs-12 col-sm-6 text-left">
               <label for="other-amount-entered" class="level_other">Other </label>
               <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)"  aria-labelledby="other-amount-entered" />
+                <div class="other-amt-note"><em>$25 minimum donation</em></div>
               </div>
             </div>
           </div>
@@ -299,7 +300,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
               </div>
             </div>
         
-            <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
+            <div class="confirmation-amount">
               Amount: $<span id="confirmationAmt">75</span>
             </div>
 
@@ -316,7 +317,7 @@ jQuery('main > .container').before(jQuery('.page-header'));
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
 	  <div>Click ApplePay button to Donate</div>
-          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-applepay text-center hidden" style="border: 0 none !important;">
+          <button type="submit" id="donate-submit" class="btn btn-primary btn-primary-applepay text-center hidden" style="border: 0 none !important;">
             <img src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Apple Pay Button" />
 	  </button>
         </div>

@@ -1,33 +1,5 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
-<!-- <script>var jqcn = $.noConflict();</script> -->
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    // jQuery('main > .container').before(jQuery('.page-header'));
-    
-    var script_ccvalid = document.createElement("script");
-    var script_validate = document.createElement("script");
-    var script_addl = document.createElement("script");
-    var script_loext = document.createElement("script");
-    var script_custm = document.createElement("script");
-    var script_amz = document.createElement("script");
-    script_ccvalid.scr = '../amazonpay/heartwalk/js/jquery.creditCardValidator.js';
-    script_validate.src = "../amazonpay/heartwalk/js/jquery.validate.min.JS";
-    script_addl.src = "../amazonpay/heartwalk/js/additional-methods.min.js";
-    script_loext.src = "../amazonpay/heartwalk/js/luminateExtend.js";
-    script_custm.src = "../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js";
-    script_amz.src = '../amazonpay/heartwalk/amazon/js/amazon-pay.js';
-
-    document.body.appendChild(script_ccvalid).appendChild(script_validate); 
-    document.body.appendChild(script_addl); 
-    document.body.appendChild(script_loext); 
-    document.body.appendChild(script_custm).appendChild(script_amz); 
-  });
-</script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script> -->
 <div class="page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content page-header"> 
@@ -128,7 +100,8 @@
                     <input type="radio" name="radioAmt" id="other-radio" class="radio-amt">
                   </label>
                   <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                    <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
+                    <div class="other-amt-note"><em>$25 minimum donation</em></div>
                   </div>
               </div>
             </div>
@@ -329,7 +302,7 @@
           </div>
         </div>
 
-        <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
+        <div class="confirmation-amount">
           Amount: $<span id="confirmationAmt">75</span>
         </div>
       </div>
@@ -345,10 +318,6 @@
   </form>
 </div>
 
-<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>  -->
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script>  -->
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script>  -->
-
 <!-- ADD AMAZON CODE --> 
 <script>
 window.onAmazonLoginReady = function() {
@@ -363,5 +332,3 @@ window.onAmazonLoginReady = function() {
 <script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js"></script> 
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
-
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script>  -->

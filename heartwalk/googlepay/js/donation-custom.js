@@ -1,5 +1,5 @@
 (function($) {
-    jqcn.extend({
+    jQuery.extend({
         getQuerystring: function(name) {
             name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
             var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -11,65 +11,71 @@
                 return decodeURIComponent(results[1].replace(/\+/g, " "));
         }
     });
-})(jqcn);
+})(jQuery);
 
-jqcn(document).ready(function() {
-	jqcn('#from_url_js').val(document.referrer);
+jQuery(document).ready(function() {
+	jQuery('#from_url_js').val(document.referrer);
 
-	var evid = jqcn.getQuerystring("FR_ID");
+	var evid = jQuery.getQuerystring("FR_ID");
 	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
-	if (jqcn('input[name=instance]').val() == "heartdev") {
+	if (jQuery('input[name=instance]').val() == "heartdev") {
 		apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
         }
-	jqcn.getJSON(apiURL,function(data){
+	jQuery.getJSON(apiURL,function(data){
 		if(data.getTeamraisersResponse != null) {
                    var regtst = /\w{3}-+/;
 	   	   var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
                    if (match != null) {
-   		      jqcn('input[name=affiliate]').val(match[0].substr(0,3));
+   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
                    } else {
-   		      jqcn('input[name=affiliate]').val('GEN');
+   		      jQuery('input[name=affiliate]').val('GEN');
                    }
                 } else {
-		   jqcn('input[name=affiliate]').val('GEN');
+		   jQuery('input[name=affiliate]').val('GEN');
                 }
-        });
+		});
+		
+	// UI for amount selection
+	jQuery('.donation-amount-container').click(function(){
+		jQuery('.donate-select .active').removeClass("active");
+		jQuery(this).children('label').addClass("active");
+	});
 	    
 	/* UI handlers for the donation form example */
-        if (jqcn('.donation-form').length > 0) {
-            jqcn('.donate-select label').click(function() {
-                if (jqcn(this).next('div').is('.level-other-input')) {
-                    jqcn('.level-other-input').slideDown();
-                    jqcn('#other-amount-entered').removeAttr('disabled');
-                    jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
-                    jqcn('#other-amount-entered').focus();
+        if (jQuery('.donation-form').length > 0) {
+            jQuery('.donate-select label').click(function() {
+                if (jQuery(this).next('div').is('.level-other-input')) {
+                    jQuery('.level-other-input').slideDown();
+                    jQuery('#other-amount-entered').removeAttr('disabled');
+                    jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+                    jQuery('#other-amount-entered').focus();
                 } else {
-                    jqcn('.level-other-input').slideUp();
-                    jqcn('#other-amount-entered').attr('disabled', 'disabled');
-                    jqcn('#other-amount-entered').removeAttr('name');
+                    jQuery('.level-other-input').slideUp();
+                    jQuery('#other-amount-entered').attr('disabled', 'disabled');
+                    jQuery('#other-amount-entered').removeAttr('name');
                 }
             });
 
-            jqcn('.donation-form').submit(function() {
+            jQuery('.donation-form').submit(function() {
                 //move contact info details to billing info if any fields are blank
-                jqcn('[id^=billing\\_]').each(function() {
-                    if (jqcn(this).val() == "") {
-                        jqcn(this).val(jqcn("[id='" + jqcn(this).attr("id").replace("billing_", "donor_") + "']").val());
+                jQuery('[id^=billing\\_]').each(function() {
+                    if (jQuery(this).val() == "") {
+                        jQuery(this).val(jQuery("[id='" + jQuery(this).attr("id").replace("billing_", "donor_") + "']").val());
                     }
                 });
 
-                jqcn('input[name=compliance]').val("true");
+                jQuery('input[name=compliance]').val("true");
 
                 window.scrollTo(0, 0);
-                jqcn(this).hide();
-                jqcn(this).before('<div class="well donation-loading">' +
+                jQuery(this).hide();
+                jQuery(this).before('<div class="well donation-loading">' +
                     'Thank You!  We are now processing your gift ...' +
                     '</div>');
             });
 
-            jqcn('.donation-form').validate();
+            jQuery('.donation-form').validate();
 
-            jqcn.validator.addMethod(
+            jQuery.validator.addMethod(
                 "validDonation",
                 function(value, element) {
                     if (value == 0 || (value >= 25 && value <= 500)) {
@@ -81,15 +87,15 @@ jqcn(document).ready(function() {
                 "Please enter an amount between $25 and $500"
 			);
 			
-			jqcn.validator.addMethod("tos", function(value, element){
+			jQuery.validator.addMethod("tos", function(value, element){
 				return ($(element).is(":checked") || value == 'yes');
 			}, "Please accept the privacy policy.");
 
-			jqcn('#donate-submit').click(function() {
-                var form = jqcn('form.donation-form');
-                jqcn(form).validate().settings.ignore = ":disabled,:hidden";
-                if (jqcn(form).valid()) {
-                    if (jqcn('input[name=other_amount]').val() < 25) {
+			jQuery('#donate-submit').click(function() {
+                var form = jQuery('form.donation-form');
+                jQuery(form).validate().settings.ignore = ":disabled,:hidden";
+                if (jQuery(form).valid()) {
+                    if (jQuery('input[name=other_amount]').val() < 25) {
                         alert("Please enter an amount $25 or greater");
                         return false;
                     }
@@ -105,55 +111,55 @@ jqcn(document).ready(function() {
 
 function donateGooglePay() {
 	window.scrollTo(0, 0);
-	jqcn('.donation-form').hide();
-	jqcn('.processing').show();
-	var params = jqcn('.donation-form').serialize();
+	jQuery('.donation-form').hide();
+	jQuery('.processing').show();
+	var params = jQuery('.donation-form').serialize();
 	var status = "";
-	var amt = jqcn('input[name=other_amount]').val();
-	var feeamt = jqcn('input[name=additional_amount]').val();
-	var originalamt = jqcn('input[name=gift_amount]').val();
+	var amt = jQuery('input[name=other_amount]').val();
+	var feeamt = jQuery('input[name=additional_amount]').val();
+	var originalamt = jQuery('input[name=gift_amount]').val();
 	// reset field to post correct value back to LO
-	jqcn('input[name=gift_amount]').val(amt);
-	var ref = 'GOOGLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
+	jQuery('input[name=gift_amount]').val(amt);
+	var ref = 'GOOGLEPAY:'+jQuery('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
-	jqcn('input[name=check_number]').val(ref);
-	jqcn('input[name=payment_confirmation_id]').val(ref);
-	jqcn('input[name=gift_display_name]').val(jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val());
+	jQuery('input[name=check_number]').val(ref);
+	jQuery('input[name=payment_confirmation_id]').val(ref);
+	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
 	//var amt = data.donationResponse.donation.amount.decimal;
-	var from_url = jqcn('input[name="from_url"]').val();
-	var email = jqcn('input[name="email"]').val();
-	var first = jqcn('input[name="first_name"]').val();
-	var last = jqcn('input[name="last_name"]').val();
-	var full = jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val();
-	var street1 = jqcn('input[name="street1"]').val();
-	var street2 = jqcn('input[name="street2"]').val();
-	var city = jqcn('input[name="city"]').val();
-	var state = jqcn('select[name="state"]').val();
-	var zip = jqcn('input[name="zip"]').val();
+	var from_url = jQuery('input[name="from_url"]').val();
+	var email = jQuery('input[name="email"]').val();
+	var first = jQuery('input[name="first_name"]').val();
+	var last = jQuery('input[name="last_name"]').val();
+	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	var street1 = jQuery('input[name="street1"]').val();
+	var street2 = jQuery('input[name="street2"]').val();
+	var city = jQuery('input[name="city"]').val();
+	var state = jQuery('select[name="state"]').val();
+	var zip = jQuery('input[name="zip"]').val();
 
-	jqcn('.processing, .donate-now, .header-donate, .page-header').hide();
-	jqcn('.thank-you').show();
+	jQuery('.processing, .donate-now, .header-donate, .page-header').hide();
+	jQuery('.thank-you').show();
 	var ty_url = "/amazonpay/heartwalk/googlepay/thankyou.html";
-	jqcn.get(ty_url, function(datat) {
-		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
-		jqcn('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
-		jqcn('p.first, span.first').html(first);
-		jqcn('p.last').html(last);
-		jqcn('p.street1').html(street1);
-		jqcn('p.street2').html(street2);
-		jqcn('p.city').html(city);
-		jqcn('p.state').html(state);
-		jqcn('p.zip').html(zip);
-		//jqcn('p.country').html(country);
-		jqcn('p.email').html(email);
-		jqcn('p.fee-amount').html("$" + feeamt);
-		jqcn('p.original-amount').html("$" + originalamt);
-		jqcn('p.amount').html("$" + amt);
-		jqcn('p.confcode').html(ref);
+	jQuery.get(ty_url, function(datat) {
+		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
+		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
+		jQuery('p.first, span.first').html(first);
+		jQuery('p.last').html(last);
+		jQuery('p.street1').html(street1);
+		jQuery('p.street2').html(street2);
+		jQuery('p.city').html(city);
+		jQuery('p.state').html(state);
+		jQuery('p.zip').html(zip);
+		//jQuery('p.country').html(country);
+		jQuery('p.email').html(email);
+		jQuery('p.fee-amount').html("$" + feeamt);
+		jQuery('p.original-amount').html("$" + originalamt);
+		jQuery('p.amount').html("$" + amt);
+		jQuery('p.confcode').html(ref);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
@@ -163,8 +169,8 @@ function donateGooglePay() {
 		'id': ref,
 		'affiliation': 'AHA Google Pay Donation',
 		'revenue': amt,
-		'city': jqcn('input[name="donor.address.city"]').val(),
-		'state': jqcn('select[name="donor.address.state"]').val() // local currency code.
+		'city': jQuery('input[name="donor.address.city"]').val(),
+		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
 	});
 
 	ga('ecommerce:send');
@@ -173,9 +179,9 @@ function donateGooglePay() {
 }
 
 function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
+	var params = jQuery('.donation-form').serialize();
 
-	jqcn.ajax({
+	jQuery.ajax({
 		method: "POST",
 		async: false,
 		cache: false,
@@ -189,49 +195,53 @@ function donateOffline() {
 }
 
 //copy donor fields to billing
-jqcn('[id^=donor_]').each(function() {
-    jqcn(this).blur(function() {
-        jqcn("[id='" + jqcn(this).attr("id").replace("donor_", "billing_") + "']").val(jqcn(this).val());
+jQuery('[id^=donor_]').each(function() {
+    jQuery(this).blur(function() {
+        jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
  
-var eid = jqcn('input[name=fr_id]').val();
-var dtype = (jqcn('input[name=proxy_type_value]').val() == 20 || jqcn('input[name=proxy_type_value]').val() == 2) ? "p" : ((jqcn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-var pid = (dtype == "p") ? jqcn('input[name=cons_id]').val() : "";
-var tid = (dtype == "t") ? jqcn('input[name=team_id]').val() : "";
+var eid = jQuery('input[name=fr_id]').val();
+var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
+var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
 	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	if (jqcn('input[name=instance]').val() == "heartdev") {
+	if (jQuery('input[name=instance]').val() == "heartdev") {
 	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
 }
-jqcn.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-	//jqcn('.page-header h1').html(data2.event_title);
+jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+	//jQuery('.page-header h1').html(data2.event_title);
 	if (data2.team_name != "" && dtype == "t") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+		jQuery('.page-header h1').text('Donate to '+data2.team_name);
 	}
 	if (data2.event_title != " " && dtype == "e") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+		jQuery('.page-header h1').text('Donate to '+data2.event_title);
 	}
 	if (data2.part_name != " " && dtype == "p") {
-		jqcn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jqcn('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+		jQuery('.page-header h1').text('Donate to '+data2.part_name);
 	}
 
-	jqcn('input[name=form_id]').val(data2.don_form_id);
+	jQuery('input[name=form_id]').val(data2.don_form_id);
 });
 
 // Get amount passed from query string
-var amount = jqcn.getQuerystring("amount");
+var amount = jQuery.getQuerystring("amount");
 if (amount.length > 0) {
-	var match = jqcn('label[data-amount=' + amount + ']');
+	var match = jQuery('label[data-amount=' + amount + ']');
 	if(match.length>=1){
-		jqcn(match).click();
+		jQuery(match).click();
 		coverFee();
 	} else {
-		jqcn('label.active').removeClass("active");
-		jqcn('label.level_other').addClass("active");
-		jqcn('.level-other-input').slideDown();
-		jqcn('#other-amount-entered').removeAttr('disabled');
-		jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
-		jqcn('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop('checked', true);
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
 		coverFee();
 	}
 }
@@ -239,7 +249,7 @@ if (amount.length > 0) {
 // Calculate fee amount
 function calculateFee() {
 	// get amount from hidden field 
-	var amt = parseFloat(jqcn('input[name=gift_amount]').val());
+	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
 	// formula amt * 2.9% + .29
 	var fee = ((amt * .029) + .29).toFixed(2);
   
@@ -247,31 +257,31 @@ function calculateFee() {
 }
 
 function setGiftAmount() {
-	var amt = jqcn('input[name=gift_amount]').val();
-	var fee = jqcn('input[name=additional_amount]').val();
+	var amt = jQuery('input[name=gift_amount]').val();
+	var fee = jQuery('input[name=additional_amount]').val();
 	
-	jqcn('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
+	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
 }
 
 function setDisplayAmount() {
-	jqcn('#confirmationAmt').text(jqcn('input[name=other_amount]').val());
+	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
 }
 
 function coverFee() {
 	// run additional calculation
-	if(jqcn('#cover_fee').prop('checked')){
-	  jqcn('input[name=additional_amount]').val(calculateFee());
+	if(jQuery('#cover_fee').prop('checked')){
+	  jQuery('input[name=additional_amount]').val(calculateFee());
 	} else {
-	  jqcn('input[name=additional_amount]').val(0);
+	  jQuery('input[name=additional_amount]').val(0);
 	} 
   
 	setGiftAmount();
 	setDisplayAmount();
 }
   
-jqcn('#other-amount-entered').on('blur', function(){
+jQuery('#other-amount-entered').on('blur', function(){
 	coverFee();
 })
-jqcn('#cover_fee, .radio-level').on('click', function(){
+jQuery('#cover_fee, .radio-level').on('click', function(){
 	coverFee();
 });

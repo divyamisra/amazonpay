@@ -1,23 +1,8 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<!-- <div class="page-header accent-color">
-  <div class="container">
-    <div class="col-sm-12">
-      <h1>Donate</h1>
-      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
-    </div>
-  </div>
-</div> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>var jqcn = $.noConflict();</script>
-<script>
-// jQuery('main > .container').before(jQuery('.page-header'));
-</script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/js/additional-methods.min.js"></script>
 <div class="page-content">
   <div class="thank-you"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
@@ -82,50 +67,42 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group gift-select hidden">
-        	<div class='col-md-12 col-sm-12'>
-        		<div class='radio-group col-md-6 text-center'>
-        			<input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
-        			<label class='radio-label active' for='occurrence1'>One-Time Gift</label>
-        		</div>
-        		<div class='radio-group col-md-6 text-left'>
-        			<input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
-        			<label class="radio-label" for='occurrence2'>Monthly Gift</label>
-        		</div>
-        	</div> <!-- end occurrence options -->
+            <fieldset><legend>Gift Frequency</legend>
+            <div class='col-md-12 col-sm-12'>
+              <div class='radio-group col-md-6 text-center'>
+                <input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
+                <label class='radio-label active' for='occurrence1'>One-Time Gift</label>
+              </div>
+              <div class='radio-group col-md-6 text-left'>
+                <input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
+                <label class="radio-label" for='occurrence2'>Monthly Gift</label>
+              </div>
+            </div> <!-- end occurrence options -->
+          </fieldset>
           </div>
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
                 <div id="amount1" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
                 <div id="amount2" class="donation-level-amount-container">$75</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
                 <div id="amount3" class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
                 <div id="amount4" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
-                <div class="donation-level-amount-container">$525</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
-                <div class="donation-level-amount-container">$1,000</div>
-                </label>
-              </div> -->
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label for="other-amount-entered" class="level_other">Other </label>
                 <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
@@ -135,12 +112,6 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
       <div class="panel panel-default payment-type active">
         <style>
   .payment-type label img {cursor:pointer;} 
@@ -291,7 +262,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
               </div>
             </div>
 
-            <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
+            <div class="confirmation-amount">
               Amount: $<span id="confirmationAmt">75</span>
             </div>
           </div>
@@ -307,7 +278,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
 	        <div>Click Google Pay button to Donate</div>
-          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center" style="border: 0 none !important;">
+          <button type="submit" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center" style="border: 0 none !important;">
             <img src="/donation-forms/donatenow/images/googlepay-button.png" alt="Google Pay Button"/>
 	        </button>
         </div>
@@ -315,12 +286,3 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
     </div>
   </form>
 </div>
-
-
-<script src="https://pay.google.com/gp/p/js/pay.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/data-collector.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script> 

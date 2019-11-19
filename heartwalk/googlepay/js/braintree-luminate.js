@@ -7,7 +7,7 @@
  */
 //function to read and parse querystring
 (function ($) {
-	jqcn.extend({
+	jQuery.extend({
 		getQuerystring: function(name){
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -20,10 +20,10 @@
 		}
 	});
 	
-    jqcn.fn.serializeFormJSON = function () {
+    jQuery.fn.serializeFormJSON = function () {
         var o = {};
         var a = this.serializeArray();
-        jqcn.each(a, function () {
+        jQuery.each(a, function () {
             if (o[this.name]) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -35,7 +35,7 @@
         });
         return o;
     };
-}(jqcn));
+}(jQuery));
 
 //if (window.location.protocol !== 'https:') {
 //   location.href = location.href.replace(/^http:/, 'https:');
@@ -57,17 +57,17 @@ var session = "";
 
 var braintree_aha = { 
 	googlePaySubmitButton: '#donate-submit',
-	donation_form		: jqcn('form'),
+	donation_form		: jQuery('form'),
 	donation_result		: "",
 	
 	initializeBraintree: function() {
 		
 		//if apple pay is available then start BT process
 		var tokenURL = "https://hearttools.heart.org/braintree/gettoken.php";
-		if (jqcn('input[name=instance]').val() == "heartdev") {
+		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/gettoken-test.php";
 		}
-		jqcn.getJSON(tokenURL + "?callback=?",function(data){
+		jQuery.getJSON(tokenURL + "?callback=?",function(data){
 		    console.log(data);
 			braintree_client_token = data.token;
 
@@ -89,7 +89,7 @@ var braintree_aha = {
 						return;
 					}
 
-					jqcn('input[name=device_data]').val(dataCollectorInstance.deviceData);
+					jQuery('input[name=device_data]').val(dataCollectorInstance.deviceData);
 				});
 				
 				//Initialize Google Pay
@@ -110,12 +110,12 @@ var braintree_aha = {
 		  }, function (err, googlePaymentInstance) {
 		  	// Set up Google Pay button
 			if (googlePaymentInstance != undefined) {
-				jqcn('.page-content').removeClass("hidden");
-				jqcn('.no-venmo').addClass("hidden");
+				jQuery('.page-content').removeClass("hidden");
+				jQuery('.no-venmo').addClass("hidden");
 				braintree_aha.googlePaymentInstance = googlePaymentInstance;
 			} else {
-				jqcn('.page-content').addClass("hidden");
-				jqcn('.no-venmo').removeClass("hidden");
+				jQuery('.page-content').addClass("hidden");
+				jQuery('.no-venmo').removeClass("hidden");
 				console.log(err, googlePaymentInstance);
 			}
 		  }
@@ -126,7 +126,7 @@ var braintree_aha = {
 			transactionInfo: {
 				currencyCode: 'USD',
 				totalPriceStatus: 'FINAL',
-				totalPrice: jqcn('input[name=other_amount]').val() // Your amount
+				totalPrice: jQuery('input[name=other_amount]').val() // Your amount
 			}
 		});
 
@@ -141,7 +141,7 @@ var braintree_aha = {
 			phoneNumberRequired: true
 		};
 		
-		var googleEnv = (jqcn('input[name=instance]').val() == 'heartdev') ? 'TEST' : 'PRODUCTION';
+		var googleEnv = (jQuery('input[name=instance]').val() == 'heartdev') ? 'TEST' : 'PRODUCTION';
 		var paymentsClient = new google.payments.api.PaymentsClient({
 		  environment:  googleEnv // 'TEST' Or 'PRODUCTION'
 		});
@@ -153,7 +153,7 @@ var braintree_aha = {
 				}
 
 				// Send payload.nonce to your server.
-				jqcn("input#payment_method_nonce").val(result.nonce);
+				jQuery("input#payment_method_nonce").val(result.nonce);
 
 				// Success GooglePay
 				braintree_aha.postDonationFormGooglePay(
@@ -171,20 +171,20 @@ var braintree_aha = {
 		});
 	},
 	postDonationFormGooglePay: function(callback_success, callback_fail) {
-		var postParams = jqcn(braintree_aha.donation_form).serialize();
-		postParams += "&amount="+jqcn('input[name=other_amount]').val();
+		var postParams = jQuery(braintree_aha.donation_form).serialize();
+		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
 		var tokenURL = "https://hearttools.heart.org/braintree/checkout-tr.php";
-		if (jqcn('input[name=instance]').val() == "heartdev") {
+		if (jQuery('input[name=instance]').val() == "heartdev") {
 			tokenURL = "https://hearttools.heart.org/braintree/checkout-tr-test.php";
 		}
-		jqcn.getJSON(tokenURL + '?callback=?', postParams)
+		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = data; //JSON.parse('['+data.result.toString()+']');
 				console.log(data.result);
 				//
 				if (data.error == "") {
-					jqcn('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
+					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					callback_success();
 				} else {
 					callback_fail(data.error);
@@ -199,7 +199,7 @@ var braintree_aha = {
 	
 	successSubmitDonation: function() {
 		//braintree_aha.donation_result
-		location.href = jqcn('input[name=finish_success_redirect]').val();
+		location.href = jQuery('input[name=finish_success_redirect]').val();
 	},
 	
 	showGlobalError: function(message) {

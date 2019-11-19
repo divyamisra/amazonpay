@@ -214,11 +214,15 @@ div.donate-select label {
 }
 input#other-amount-entered {
   position:relative;
-  width:100px;
-  margin-bottom: 2em;
+  width:155px;
+  /* margin-bottom: 2em; */
 }
 #other-amount-input-group {
   clear:both;
+}
+.other-amt-note {
+  font-size: .8em; 
+  margin: 0 5px 20px;
 }
 
 .recurring {
@@ -250,6 +254,7 @@ div.donate-select label.error {
   font-weight: normal;
   white-space: normal;
   width: 100%;
+  height: auto;
 }
 /*
 .contact-information .form-group {
@@ -314,6 +319,11 @@ color: #c10e21;
 .btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
   text-decoration: none;
+}
+.confirmation-amount {
+  font-size: 1.5em; 
+  font-weight: bold; 
+  margin-bottom: 1em;
 }
 
 footer {
@@ -547,7 +557,7 @@ padding-bottom: 15px;
     margin-bottom: 1em !important;
   }
   .level_other.active {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 	
   /* #otherGiving li {
@@ -558,4 +568,10 @@ padding-bottom: 15px;
 }
 @media only screen and (max-width: 320px) {
   
+}
+
+@media only screen and (max-width: 425px) {
+  input#other-amount-entered {
+    width:100px;
+  }
 }
