@@ -1,13 +1,33 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>var jqcn = $.noConflict();</script>
-<script>
-  //jQuery('main > .container').before(jQuery('.page-header'));
+<!-- <script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+<!-- <script>var jqcn = $.noConflict();</script> -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    // jQuery('main > .container').before(jQuery('.page-header'));
+    
+    var script_ccvalid = document.createElement("script");
+    var script_validate = document.createElement("script");
+    var script_addl = document.createElement("script");
+    var script_loext = document.createElement("script");
+    var script_custm = document.createElement("script");
+    var script_amz = document.createElement("script");
+    script_ccvalid.scr = '../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js';
+    script_validate.src = "../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS";
+    script_addl.src = "../amazonpay/heartwalk/amazon/js/additional-methods.min.js";
+    script_loext.src = "../amazonpay/heartwalk/amazon/js/luminateExtend.js";
+    script_custm.src = "../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js";
+    script_amz.src = '../amazonpay/heartwalk/amazon/js/amazon-pay.js';
+
+    document.body.appendChild(script_ccvalid).appendChild(script_validate); 
+    document.body.appendChild(script_addl); 
+    document.body.appendChild(script_loext); 
+    document.body.appendChild(script_custm).appendChild(script_amz); 
+  });
 </script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.creditCardValidator.js"></script> 
 <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/additional-methods.min.js"></script> -->
 <div class="page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content page-header"> 
@@ -79,33 +99,33 @@
           </div>
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
-                  <input type="radio" name="radioAmt" id="30" class="radio-amt">
-                  <div id="amount1" class="donation-level-amount-container">$30</div>
+                  <input type="radio" name="radioAmt" id="amount1" class="radio-amt">
+                  <div id="amount1-txt" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                    <input type="radio" name="radioAmt" id="75" class="radio-amt">
-                    <div id="amount2" class="donation-level-amount-container">$75</div>
+                    <input type="radio" name="radioAmt" id="amount2" class="radio-amt">
+                    <div id="amount2-txt" class="donation-level-amount-container">$75</div>
                   </label>
                 </div>
-                <div class="text-center">
+                <div class="donation-amount-container text-center">
                   <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                    <input type="radio" name="radioAmt" id="150" class="radio-amt">
-                      <div id="amount3" class="donation-level-amount-container">$150</div>
+                    <input type="radio" name="radioAmt" id="amount3" class="radio-amt">
+                      <div id="amount3-txt" class="donation-level-amount-container">$150</div>
                     </label>
                 </div>
-                  <div class="text-center">
+                  <div class="donation-amount-container text-center">
                     <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
-                    <input type="radio" name="radioAmt" id="250" class="radio-amt">
-                  <div id="amount4" class="donation-level-amount-container">$250</div>
+                    <input type="radio" name="radioAmt" id="amount4" class="radio-amt">
+                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <div class="text-center" id="other-amount-input-group">
-                  <label for="other-amount-entered" class="level_other">Other 
-                    <input type="radio" name="radioAmt" id="250" class="radio-amt">
+              <div class="donation-amount-container text-center" id="other-amount-input-group">
+                  <label for="other-radio" class="level_other">Other 
+                    <input type="radio" name="radioAmt" id="other-radio" class="radio-amt">
                   </label>
                   <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                     <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
@@ -115,12 +135,6 @@
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
       <div class="panel panel-default payment-type active">
         <style>
         .payment-type label img {cursor:pointer;} 
@@ -301,21 +315,23 @@
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
 
-      <div class="form-group checkbox">
-        <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
-        <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
-      </div>
-
-      <div class="form-group checkbox required">
-        <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
-        <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
-        <div class="error input-group checkBox col-xs-12 col-sm-12">
-          <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+      <div class="panel panel-default">
+        <div class="form-group checkbox">
+          <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
+          <label for="cover_fee">I'd like to go one step further in my support and cover all transaction fees!</label>
         </div>
-      </div>
 
-      <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
-        Amount: $<span id="confirmationAmt">75</span>
+        <div class="form-group checkbox required">
+          <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+          <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
+          <div class="error input-group checkBox col-xs-12 col-sm-12">
+            <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+          </div>
+        </div>
+
+        <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
+          Amount: $<span id="confirmationAmt">75</span>
+        </div>
       </div>
 
       <div class="panel panel-default process-button">
@@ -329,9 +345,9 @@
   </form>
 </div>
 
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script> 
+<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>  -->
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend.js"></script>  -->
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script>  -->
 
 <!-- ADD AMAZON CODE --> 
 <script>
@@ -348,4 +364,4 @@ window.onAmazonLoginReady = function() {
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script> 
+<!-- <script type="text/javascript" src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script>  -->
