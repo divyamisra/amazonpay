@@ -63,7 +63,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
       <input type="hidden" value="" id="tribute_typeg" name="tribute.type">
-      <h2 class="section-header-container"> Select an amount: </h2>
+      <h2 class="section-header-container" id="amt-header"> Select an amount: </h2>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group gift-select hidden">
@@ -81,31 +81,38 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
           </fieldset>
           </div>
           <div class="form-group donate-select">
-            <div class="col-xs-12 col-sm-12 onetime">
+            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup" aria-labelledby="amt-header">
               <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
-                <div id="amount1" class="donation-level-amount-container">$30</div>
+                  <input type="radio" name="radioAmt" id="amount1" class="radio-amt">
+                  <div id="amount1-txt" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
               <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                <div id="amount2" class="donation-level-amount-container">$75</div>
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt">
+                  <div id="amount2-txt" class="donation-level-amount-container">$75</div>
                 </label>
               </div>
               <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                <div id="amount3" class="donation-level-amount-container">$150</div>
+                  <input type="radio" name="radioAmt" id="amount3" class="radio-amt">
+                  <div id="amount3-txt" class="donation-level-amount-container">$150</div>
                 </label>
               </div>
               <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
-                <div id="amount4" class="donation-level-amount-container">$250</div>
+                  <input type="radio" name="radioAmt" id="amount4" class="radio-amt">
+                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
               <div class="donation-amount-container text-center">
-                <label for="other-amount-entered" class="level_other">Other </label>
+                <label for="other-amount-entered" class="level_other">Other 
+                  <input type="radio" name="radioAmt" id="other-radio" class="radio-amt">
+                </label>
                 <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                  <div class="other-amt-note"><em>$25 minimum donation</em></div>
                 </div>
 	            </div>
             </div>
