@@ -1,25 +1,25 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<div class="page-header accent-color">
+<!-- <div class="page-header accent-color">
   <div class="container header-donate">
     <div class="col-sm-12">
       <h1>Donate</h1>
       <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
   </div>
-</div>
+</div> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(event) { 
-    jQuery('main > .container').before(jQuery('.page-header'));
+    // jQuery('main > .container').before(jQuery('.page-header'));
     
     var script_validate = document.createElement("script");
     var script_addl = document.createElement("script");
     var script_btree = document.createElement("script");
     var script_custm = document.createElement("script");
-    script_validate.src = "../amazonpay/heartwalk/venmo/js/jquery.validate.min.JS";
-    script_addl.src = "../amazonpay/heartwalk/venmo/js/additional-methods.min.js";
+    script_validate.src = "../amazonpay/heartwalk/js/jquery.validate.min.JS";
+    script_addl.src = "../amazonpay/heartwalk/js/additional-methods.min.js";
     script_btree.src = "../amazonpay/heartwalk/venmo/js/braintree-luminate.js";
     script_custm.src = "../amazonpay/heartwalk/venmo/js/donation-custom.js";
 
@@ -62,9 +62,10 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 <div class="page-content">
   <div class="thank-you"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
-  <div class="donate-now donation-form-content" style="background:none;"> 
+  <div class="donate-now donation-form-content page-header"> 
     <div class="html-caption-container">
-      <h1 id="formTitle">You've Got Heart!</h1>
+      <h1>Donate</h1>
+      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
