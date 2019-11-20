@@ -237,7 +237,10 @@ select.error {
 }
 
 input[type='number'] {
-    -moz-appearance:textfield;
+  -moz-appearance:textfield;
+}
+#donor_state {
+  width: 100%;
 }
 
 label.error {
