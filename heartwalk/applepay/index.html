@@ -1,23 +1,8 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<div class="page-header accent-color">
-  <div class="container header-donate">
-    <div class="col-sm-12">
-      <h1>Donate</h1>
-      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
-    </div>
-  </div>
-</div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>var jqcn = $.noConflict();</script>
-<script>
-jQuery('main > .container').before(jQuery('.page-header'));
-</script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/js/additional-methods.min.js"></script>
 <section class='col-xs-12 col-sm-12 no-applepay page-content hidden' aria-label="mainContent">
   <h2>ApplePay is not available or setup on your device.</h2>
   [[?[[S334:PROXY_TYPE]]::20::
@@ -29,9 +14,10 @@ jQuery('main > .container').before(jQuery('.page-header'));
 </section>
 <div class="page-content">
   <div class="thank-you"></div>
-  <div class="donate-now donation-form-content" style="background:none;"> 
+  <div class="donate-now donation-form-content page-header"> 
     <div class="html-caption-container">
-      <h1 id="formTitle">You've Got Heart!</h1>
+      <h1>Donate</h1>
+      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
@@ -102,38 +88,28 @@ jQuery('main > .container').before(jQuery('.page-header'));
           </div>
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
                 <div id="amount1" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
                 <div id="amount2" class="donation-level-amount-container">$75</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
                 <div id="amount3" class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
                 <div id="amount4" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
-                <div class="donation-level-amount-container">$525</div>
-                </label>
-              </div> -->
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
-                <div class="donation-level-amount-container">$1,000</div>
-                </label>
-              </div> -->
             </div>
-            <div class="col-xs-12 col-sm-6 text-left">
+            <div class="donation-amount-container col-xs-12 col-sm-6 text-left">
               <label for="other-amount-entered" class="level_other">Other </label>
               <div class="level-other-input"> <span class="input-group-addon">$</span>
                 <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)"  aria-labelledby="other-amount-entered" />
@@ -326,21 +302,16 @@ jQuery('main > .container').before(jQuery('.page-header'));
   </form>
 </div>
 
-<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/donation-custom.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/applepay/js/braintree-luminate.js"></script> 
 <script>
-if (typeof window.ApplePaySession == "undefined") {
-	jQuery('.page-content').addClass("hidden");
-	jQuery('.no-applepay').removeClass("hidden");
-} else {
-	if (!window.ApplePaySession.canMakePayments()) {
-		jQuery('.page-content').addClass("hidden");
-		jQuery('.no-applepay').removeClass("hidden");
-	}
-}
+document.addEventListener("DOMContentLoaded", function(event) { 
+  if (typeof window.ApplePaySession == "undefined") {
+    jQuery('.page-content').addClass("hidden");
+    jQuery('.no-applepay').removeClass("hidden");
+  } else {
+    if (!window.ApplePaySession.canMakePayments()) {
+      jQuery('.page-content').addClass("hidden");
+      jQuery('.no-applepay').removeClass("hidden");
+    }
+  }
+});
 </script>	
