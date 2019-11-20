@@ -326,11 +326,13 @@ color: #c10e21;
   margin-bottom: 1em;
 }
 
-footer .container {
+footer .container, .bg-white .container {
   background: inherit;
   padding: 0;
 }
-
+.info-boxes {
+  display: none;
+}
 /* footer {
 	background: #242424;
 	color: #b4b4b4;

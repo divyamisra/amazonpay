@@ -55,13 +55,13 @@
 		jQuery.validator.addMethod(
 			"validDonation", 
 			function(value, element) {
-				if (value == 0 || (value >= 25 && value <= 500)) {
+				if (value == 0 || (value >= 25)) {
 					return true;
 				} else {
 					return false;
 				}
 			},
-			"Please enter an amount between $25 and $500"
+			"Please enter an amount greater than $25"
 		);
 
 		jQuery.validator.addMethod("tos", function(value, element){
@@ -303,7 +303,12 @@ jQuery('[id^=donor_]').each(function(){
 	// UI for amount selection
 	jQuery('.donation-amount-container').click(function(){
 		jQuery('.donate-select .active').removeClass("active");
+		jQuery('input[name=radioAmt]').attr({'aria-checked': false});
 		jQuery(this).children('label').addClass("active");
+		jQuery(this).children('label').children('input').attr({'aria-checked': true});
+		if(jQuery(this).attr('id') == 'other-amount-input-group') {
+			jQuery('#other-radio').attr({'aria-checked': true});
+		}
 	});
 
 	// Get amount passed from query string
@@ -317,7 +322,7 @@ jQuery('[id^=donor_]').each(function(){
 			jQuery('label.active').removeClass("active");
 			jQuery('label.level_other').addClass("active");
 			jQuery('.level-other-input').slideDown();
-			jQuery('#other-radio').prop('checked', true);
+			jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
 			jQuery('#other-amount-entered').removeAttr('disabled');
 			jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 			jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
