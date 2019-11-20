@@ -584,4 +584,8 @@ padding-bottom: 15px;
   input#other-amount-entered {
     width:100px;
   }
+  div.checkbox:nth-child(2) > label:nth-child(2),
+  .tos-label {
+    width: 90%;
+  }
 }
