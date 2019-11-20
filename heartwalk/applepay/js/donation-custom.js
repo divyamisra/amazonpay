@@ -218,6 +218,17 @@ jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&
 	jQuery('input[name=form_id]').val(data2.don_form_id);
 });
 
+// UI for amount selection
+jQuery('.donation-amount-container').click(function(){
+	jQuery('.donate-select .active').removeClass("active");
+	jQuery('input[name=radioAmt]').attr({'aria-checked': false});
+	jQuery(this).children('label').addClass("active");
+	jQuery(this).children('label').children('input').attr({'aria-checked': true});
+	if(jQuery(this).attr('id') == 'other-amount-input-group') {
+		jQuery('#other-radio').attr({'aria-checked': true});
+	}
+});
+
 // Get amount passed from query string
 var amount = jQuery.getQuerystring("amount");
 if (amount.length > 0) {
@@ -229,6 +240,7 @@ if (amount.length > 0) {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
 		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
 		jQuery('#other-amount-entered').removeAttr('disabled');
 		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
@@ -236,27 +248,21 @@ if (amount.length > 0) {
 	}
 }
 
-
-//Calculate fee amount
+// Calculate fee amount
 function calculateFee() {
 	// get amount from hidden field 
-	// var amt = parseInt(jQuery('input[name=gift_amount]').val().replace('$',''));
 	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
 	// formula amt * 2.9% + .29
 	var fee = ((amt * .029) + .29).toFixed(2);
   
 	return fee;
 }
-  
+
 function setGiftAmount() {
 	var amt = jQuery('input[name=gift_amount]').val();
 	var fee = jQuery('input[name=additional_amount]').val();
 	
 	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-  
-function formatCurrency(amt) {
-	return amt.replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function setDisplayAmount() {
@@ -266,15 +272,15 @@ function setDisplayAmount() {
 function coverFee() {
 	// run additional calculation
 	if(jQuery('#cover_fee').prop('checked')){
-		jQuery('input[name=additional_amount]').val(calculateFee());
+	  jQuery('input[name=additional_amount]').val(calculateFee());
 	} else {
-		jQuery('input[name=additional_amount]').val(0);
+	  jQuery('input[name=additional_amount]').val(0);
 	} 
-
+  
 	setGiftAmount();
 	setDisplayAmount();
 }
-
+  
 jQuery('#other-amount-entered').on('blur', function(){
 	coverFee();
 })
