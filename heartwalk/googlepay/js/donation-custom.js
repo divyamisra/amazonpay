@@ -35,12 +35,6 @@ jQuery(document).ready(function() {
                 }
 		});
 		
-	// UI for amount selection
-	jQuery('.donation-amount-container').click(function(){
-		jQuery('.donate-select .active').removeClass("active");
-		jQuery(this).children('label').addClass("active");
-	});
-	    
 	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
             jQuery('.donate-select label').click(function() {
@@ -227,6 +221,17 @@ jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&
 	jQuery('input[name=form_id]').val(data2.don_form_id);
 });
 
+// UI for amount selection
+jQuery('.donation-amount-container').click(function(){
+	jQuery('.donate-select .active').removeClass("active");
+	jQuery('input[name=radioAmt]').attr({'aria-checked': false});
+	jQuery(this).children('label').addClass("active");
+	jQuery(this).children('label').children('input').attr({'aria-checked': true});
+	if(jQuery(this).attr('id') == 'other-amount-input-group') {
+		jQuery('#other-radio').attr({'aria-checked': true});
+	}
+});
+
 // Get amount passed from query string
 var amount = jQuery.getQuerystring("amount");
 if (amount.length > 0) {
@@ -238,7 +243,7 @@ if (amount.length > 0) {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
 		jQuery('.level-other-input').slideDown();
-		jQuery('#other-radio').prop('checked', true);
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
 		jQuery('#other-amount-entered').removeAttr('disabled');
 		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
