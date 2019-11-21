@@ -228,7 +228,7 @@ jQuery('.donation-amount-container').click(function(){
 	jQuery(this).children('label').addClass("active");
 	jQuery(this).children('label').children('input').attr({'aria-checked': true});
 	if(jQuery(this).attr('id') == 'other-amount-input-group') {
-		jQuery('#other-radio').attr({'aria-checked': true});
+		jQuery('#other-radio').attr({'aria-checked': true}).prop('checked', true);
 	}
 });
 
