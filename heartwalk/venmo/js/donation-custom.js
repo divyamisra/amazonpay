@@ -225,6 +225,17 @@ if (location.href.indexOf("donate_venmo") > 0) {
 	});
 }
 
+// UI for amount selection
+jQuery('.donation-amount-container').click(function(){
+	jQuery('.donate-select .active').removeClass("active");
+	jQuery('input[name=radioAmt]').attr({'aria-checked': false});
+	jQuery(this).children('label').addClass("active");
+	jQuery(this).children('label').children('input').attr({'aria-checked': true});
+	if(jQuery(this).attr('id') == 'other-amount-input-group') {
+		jQuery('#other-radio').attr({'aria-checked': true});
+	}
+});
+
 // Get amount passed from query string
 var amount = jQuery.getQuerystring("amount");
 if (amount.length > 0) {
@@ -236,13 +247,13 @@ if (amount.length > 0) {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
 		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
 		jQuery('#other-amount-entered').removeAttr('disabled');
 		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
 		coverFee();
 	}
 }
-
 
 // Calculate fee amount
 function calculateFee() {
@@ -264,7 +275,7 @@ function setGiftAmount() {
 function setDisplayAmount() {
 	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
 }
-  
+
 function coverFee() {
 	// run additional calculation
 	if(jQuery('#cover_fee').prop('checked')){
@@ -280,6 +291,6 @@ function coverFee() {
 jQuery('#other-amount-entered').on('blur', function(){
 	coverFee();
 })
-  jQuery('#cover_fee, .radio-level').on('click', function(){
+jQuery('#cover_fee, .radio-level').on('click', function(){
 	coverFee();
 });

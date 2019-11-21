@@ -1,34 +1,7 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<!-- <div class="page-header accent-color">
-  <div class="container header-donate">
-    <div class="col-sm-12">
-      <h1>Donate</h1>
-      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
-    </div>
-  </div>
-</div> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function(event) { 
-    // jQuery('main > .container').before(jQuery('.page-header'));
-    
-    var script_validate = document.createElement("script");
-    var script_addl = document.createElement("script");
-    var script_btree = document.createElement("script");
-    var script_custm = document.createElement("script");
-    script_validate.src = "../amazonpay/heartwalk/js/jquery.validate.min.JS";
-    script_addl.src = "../amazonpay/heartwalk/js/additional-methods.min.js";
-    script_btree.src = "../amazonpay/heartwalk/venmo/js/braintree-luminate.js";
-    script_custm.src = "../amazonpay/heartwalk/venmo/js/donation-custom.js";
-
-    document.body.appendChild(script_validate); 
-    document.body.appendChild(script_addl); 
-    document.body.appendChild(script_btree); 
-    document.body.appendChild(script_custm); 
-  });
-</script>
 <link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
 <section class='col-xs-12 col-sm-12 no-venmo page-content hidden' aria-label="mainContent">
   <h2>Venmo is not available or setup on your device.</h2>
@@ -45,7 +18,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><img src="../donation-forms/donatenow/images/venmo-button.png"></h5>
+        <div class="modal-title"><img src="../donation-forms/donatenow/images/venmo-button.png" alt="Venmo Button"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="bottom: initial;right: 16px;padding: 5px;border-radius: 5px;">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -124,67 +97,58 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group gift-select hidden">
-        	<div class='col-md-12 col-sm-12'>
-        		<div class='radio-group col-md-6 text-center'>
-        			<input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
-        			<label class='radio-label active' for='occurrence1'>One-Time Gift</label>
-        		</div>
-        		<div class='radio-group col-md-6 text-left'>
-        			<input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
-        			<label class="radio-label" for='occurrence2'>Monthly Gift</label>
-        		</div>
-        	</div> <!-- end occurrence options -->
+            <fieldset><legend>Gift Frequency</legend>
+            <div class='col-md-12 col-sm-12'>
+              <div class='radio-group col-md-6 text-center'>
+                <input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
+                <label class='radio-label active' for='occurrence1'>One-Time Gift</label>
+              </div>
+              <div class='radio-group col-md-6 text-left'>
+                <input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
+                <label class="radio-label" for='occurrence2'>Monthly Gift</label>
+              </div>
+            </div> <!-- end occurrence options -->
+            </fieldset>
           </div>
           <div class="form-group donate-select">
-            <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup" aria-labelledby="amt-header">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
-                <div id="amount1" class="donation-level-amount-container">$30</div>
+                  <input type="radio" name="radioAmt" id="amount1" class="radio-amt" aria-checked="false">
+                  <div id="amount1-txt" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                <div id="amount2" class="donation-level-amount-container">$75</div>
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="false">
+                  <div id="amount2-txt" class="donation-level-amount-container">$75</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                <div id="amount3" class="donation-level-amount-container">$150</div>
+                  <input type="radio" name="radioAmt" id="amount3" class="radio-amt" aria-checked="true">
+                  <div id="amount3-txt" class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
-                <div id="amount4" class="donation-level-amount-container">$250</div>
+                  <input type="radio" name="radioAmt" id="amount4" class="radio-amt" aria-checked="false">
+                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
-                <div class="donation-level-amount-container">$525</div>
+              <div class="donation-amount-container text-center" id="other-amount-input-group">
+                <label for="other-amount-entered" class="level_other">Other 
+                  <input type="radio" name="radioAmt" id="other-radio" class="radio-amt" aria-checked="false">
                 </label>
-              </div> -->
-              <!-- <div class="text-center">
-                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
-                <div class="donation-level-amount-container">$1,000</div>
-                </label>
-              </div> -->
-            </div>
-            <div class="col-xs-12 col-sm-6 text-left">
-              <label for="other-amount-entered" class="level_other">Other </label>
-              <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
+                  <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                  <div class="other-amt-note"><em>$25 minimum donation</em></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function(event) { 
-        jQuery('.donate-select label').click(function(){
-          jQuery('.donate-select .active').removeClass("active");
-          jQuery(this).addClass("active");
-        });
-      });
-	    </script>
       <div class="panel panel-default payment-type active">
         <style>
   .payment-type label img {cursor:pointer;} 
@@ -330,13 +294,13 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   
             <div class="form-group checkbox required">
               <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
-              <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
+              <label for="tos" class="tos-label">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
               <div class="error input-group checkBox col-xs-12 col-sm-12">
                 <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
               </div>
             </div>
         
-            <div style="font-size: 1.5em;font-weight: bold; margin-top:1em;">
+            <div class="confirmation-amount">
               Amount: $<span id="confirmationAmt">75</span>
             </div>
 
@@ -361,11 +325,3 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
     </div>
   </form>
 </div>
-
-<script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
-<!-- <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>  -->
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/braintree-luminate.js"></script>  -->
-<!-- <script type="text/javascript" src="../amazonpay/heartwalk/venmo/js/donation-custom.js"></script>  -->
