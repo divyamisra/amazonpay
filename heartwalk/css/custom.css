@@ -39,6 +39,9 @@ div.responsive input.venmo-text {
   width: 100%;
   height: auto;
 }
+#venmoModalLabel {
+  display: none;
+}
 
 @media (max-width: 991px) {
 	.container.heart-page-container.heart-page-container--personal {

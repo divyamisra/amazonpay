@@ -18,7 +18,8 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title"><img src="../donation-forms/donatenow/images/venmo-button.png" alt="Venmo Button"></div>
+        <div id="venmoModalLabel">Venmo Payment Verification</div>
+        <div class="modal-title"><img src="../donation-forms/donatenow/images/venmo-button.png" alt="Venmo Payment"></div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="bottom: initial;right: 16px;padding: 5px;border-radius: 5px;">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -93,7 +94,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
       <input type="hidden" value="" id="tribute_typeg" name="tribute.type">
-      <h2 class="section-header-container"> Select an amount: </h2>
+      <h2 class="section-header-container" id="amt-header"> Select an amount: </h2>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group gift-select hidden">
