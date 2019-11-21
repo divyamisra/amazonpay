@@ -318,9 +318,10 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
 	      <div>Click Venmo button to Donate</div>
-          <button type="submit" id="donate-submit" class="btn btn-primary btn-primary-venmo text-center" style="border:0 none !important;">
+          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-venmo text-center" style="border:0 none !important;">
             <img src="/donation-forms/donatenow/images/venmo-button.png" alt="Venmo Button" />
-	        </button>
+          </button>
+          <input type="submit" value="submit" style="display: none;" onclick="return false;">
         </div>
       </div>
     </div>
