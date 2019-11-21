@@ -72,13 +72,13 @@ jQuery(document).ready(function() {
             jQuery.validator.addMethod(
                 "validDonation",
                 function(value, element) {
-                    if (value == 0 || (value >= 25 && value <= 500)) {
+                    if (value == 0 || (value >= 25)) {
                         return true;
                     } else {
                         return false;
                     }
                 },
-                "Please enter an amount between $25 and $500"
+                "Online donations have a $25 minimum."
 			);
 			
 			jQuery.validator.addMethod("tos", function(value, element){
@@ -90,7 +90,7 @@ jQuery(document).ready(function() {
                 jQuery(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jQuery(form).valid()) {
                     if (jQuery('input[name=other_amount]').val() < 25) {
-                        alert("Please enter an amount $25 or greater");
+                        alert("Online donations have a $25 minimum.");
                         return false;
                     }
 					braintree_aha.submitGooglePayDonation();

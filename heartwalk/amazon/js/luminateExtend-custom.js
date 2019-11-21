@@ -61,7 +61,7 @@
 					return false;
 				}
 			},
-			"Please enter an amount greater than $25"
+			"Online donations have a $25 minimum."
 		);
 
 		jQuery.validator.addMethod("tos", function(value, element){
@@ -73,7 +73,7 @@
 		jQuery(form).validate().settings.ignore = ":disabled,:hidden";
 		if (jQuery(form).valid()) {
 			if (jQuery('input[name=other_amount]').val() < 25) {
-				alert("Please enter an amount $25 or greater");
+				alert("Online donations have a $25 minimum.");
 				return false;
 			}
 			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {

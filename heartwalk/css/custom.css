@@ -184,7 +184,9 @@ div.donate-select label {
   text-align:center;
   white-space:inherit;
 }
-
+div.donate-select label:focus-within {
+	border: 2px solid #c10e21;
+}
 .donation-level-amount-container, .level_other {
   padding: 10px; 	
 }

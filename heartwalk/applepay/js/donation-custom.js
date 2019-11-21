@@ -73,8 +73,8 @@ jQuery(document).ready(function() {
                     } else {
                         return false;
                     }
-                },
-                "Please enter an amount greater than $25"
+				}, 
+				"Online donations have a $25 minimum."
             );
 
             jQuery('#donate-submit').click(function() {
@@ -82,7 +82,7 @@ jQuery(document).ready(function() {
                 jQuery(form).validate().settings.ignore = ":disabled,:hidden";
                 if (jQuery(form).valid()) {
                     if (jQuery('input[name=other_amount]').val() < 25) {
-                        alert("Please enter an amount $25 or greater");
+                        alert("Online donations have a $25 minimum.");
                         return false;
                     }
                     braintree_aha.submitApplePayDonation();
