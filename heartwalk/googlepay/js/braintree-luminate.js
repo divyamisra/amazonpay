@@ -110,11 +110,11 @@ var braintree_aha = {
 		  }, function (err, googlePaymentInstance) {
 		  	// Set up Google Pay button
 			if (googlePaymentInstance != undefined) {
-				jQuery('.ym-page-content').removeClass("hidden");
+				jQuery('.page-content').removeClass("hidden");
 				jQuery('.no-venmo').addClass("hidden");
 				braintree_aha.googlePaymentInstance = googlePaymentInstance;
 			} else {
-				jQuery('.ym-page-content').addClass("hidden");
+				jQuery('.page-content').addClass("hidden");
 				jQuery('.no-venmo').removeClass("hidden");
 				console.log(err, googlePaymentInstance);
 			}

@@ -83,7 +83,7 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
 
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
-    <div  class="livechat"> <span class="livechat-text">Need any help? <strong>Talk to a live agent now</strong></span> <a href="#" onclick="return popitup();"><img src="images/livechat.jpg" /></a> </div>
+    <!-- <div  class="livechat"> <span class="livechat-text">Need any help? <strong>Talk to a live agent now</strong></span> <a href="#" onclick="return popitup();"><img src="images/livechat.jpg" /></a> </div> -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
       <script type="text/javascript">
@@ -117,16 +117,36 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
 </nav>
 <div class="container" style="text-align:center">
   <div class="thank-you">
-    <div class="thank-you-image"> <img src="https://www2.heart.org/amazonpay/heartwalk/amazon/images/AHA-donation-thankyou-image-sml.jpg" /> </div>
+    
+  <style>
+    .thankYouShare .step-button {
+       font-size:18px !important;
+       font-family: LubDubBold, Helvetica, Arial !important;
+    }
+    .fa-icon::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    .fa-facebook-square::before {
+        font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f082";
+    }
+    
+    .fa-twitter-square::before {
+        font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f081";
+    }
+    </style>
     <div class="page-header">
-      <h1>Thank you. You are wonderful.</h1>
+      <h1>Thank you for your donation, <span class="first"></span>!</h1>
     </div>
     <div class="givingText" style="display: block;">
-      <p>People facing heart disease need you. And now you're there. <strong>Today, you are why</strong>.</p>
-      <p>You are why the next baby will live to see her first birthday. You are why a dad will be able to walk his daughter down the aisle. You are why a mom will be there to celebrate her son's graduation. You are why grandparents will celebrate their anniversaries for years to come.</p>
-      <p>Because there are so many stories of heartbreak and hope, there are so many reasons why. Thank you for acting on yours today.</p>
+      <p>Your donation is making an extraordinary impact by funding research initiatives, vital education, quality healthcare, and a voice in government. You can read more about our research, programs and advocacy efforts online at <a href="//www.heart.org">www.heart.org</a></p>
+      <p>Life is why the American Heart Association exists. For the littlest baby and the oldest grandparent, you can change and even save their life. On behalf of the American Heart Association and everyone affected by heart disease and stroke, thank you for your support!</p>
     </div>
-    <table width="90%" border="0">
+    <table width="100%" border="0">
       <tbody>
         <tr>
           <td class="FormSectionHeader">Transaction Summary</td>
@@ -177,7 +197,11 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
                 </tr>
                 <tr>
                   <td valign="top"><p class="FormLabelText">Amount:</p></td>
-                  <td><p class="amount"></p></td>
+                  <td><p class="original-amount"></p></td>
+                </tr>
+                <tr>
+                  <td valign="top"><p class="FormLabelText">Optional Processing Fee:</p></td>
+                  <td><p class="fee-amount"></p></td>
                 </tr>
                 <tr>
                   <td valign="top"><p class="FormLabelText"> Total Gift Amount: </p></td>
@@ -202,10 +226,10 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
     </table>
     </p>
     <!-- <div class="confirmationText"></div> -->
-    <p>&nbsp;</p>
+    <!-- <p>&nbsp;</p>
     <hr style="border:1px solid #ccc !important"/>
-    <p>&nbsp;</p>
-    <div class="shareText">
+    <p>&nbsp;</p> -->
+    <!-- <div class="shareText">
       <div class="page-header">
         <h1>Share this smile with the world</h1>
         <p>&nbsp;</p>
@@ -220,7 +244,7 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
           </section>
         </aside>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 <footer>

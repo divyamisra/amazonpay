@@ -1,26 +1,15 @@
 <script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
-<div class="ym-page-header ym-accent-color">
-  <div class="container">
-    <div class="col-sm-12">
-      <h1>Donate</h1>
-      <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
-    </div>
-  </div>
-</div>
-<script>
-jQuery('main > .container').before(jQuery('.ym-page-header'));
-</script>
-<link rel="stylesheet" href="../amazonpay/heartwalk/googlepay/css/custom.css">
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/additional-methods.min.js"></script>
-<div class="ym-page-content">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../amazonpay/heartwalk/css/custom.css">
+<div class="page-content">
   <div class="thank-you"></div>
-  <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
-  <div class="donate-now donation-form-content" style="background:none;"> 
+  <div class="processing">Processing Donation... <img src="/amazonpay/heartwalk/images/ajax-loader.gif" alt="Processing Donation"></div>
+  <div class="donate-now donation-form-content page-header"> 
     <div class="html-caption-container">
-      <h1 id="formTitle">You've Got Heart!</h1>
+        <h1>Donate</h1>
+        <p class="text-large">Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.</p>
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
@@ -39,6 +28,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="source" value="GOOGLE PAY">
       <input type="hidden" name="payment_source" value="GOOGLEPAY">
       <input type="hidden" name="_session" value="">
+      <input type="hidden" name="additional_amount" value="0">
       <input type="hidden" name="other_amount" value="75">
       <input type="hidden" name="gift_amount" value="75">
       <input type="hidden" name="level_id" value="2447">
@@ -73,69 +63,62 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
       <input type="hidden" value="" id="tribute_typeg" name="tribute.type">
-      <h2 class="section-header-container"> Select an amount: </h2>
+      <h2 class="section-header-container" id="amt-header"> Select an amount: </h2>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group gift-select hidden">
-        	<div class='col-md-12 col-sm-12'>
-        		<div class='radio-group col-md-6 text-center'>
-        			<input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
-        			<label class='radio-label active' for='occurrence1'>One-Time Gift</label>
-        		</div>
-        		<div class='radio-group col-md-6 text-left'>
-        			<input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
-        			<label class="radio-label" for='occurrence2'>Monthly Gift</label>
-        		</div>
-        	</div> <!-- end occurrence options -->
+            <fieldset><legend>Gift Frequency</legend>
+            <div class='col-md-12 col-sm-12'>
+              <div class='radio-group col-md-6 text-center'>
+                <input type='radio' name='occurrence' id='occurrence1' value='One-Time Gift' checked data-level=4184 data-frequency="onetime" />
+                <label class='radio-label active' for='occurrence1'>One-Time Gift</label>
+              </div>
+              <div class='radio-group col-md-6 text-left'>
+                <input type='radio' name='occurrence' id='occurrence2' value='Monthly Gift' data-level=4241 data-frequency="recurring" />
+                <label class="radio-label" for='occurrence2'>Monthly Gift</label>
+              </div>
+            </div> <!-- end occurrence options -->
+          </fieldset>
           </div>
           <div class="form-group donate-select">
-            <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup" aria-labelledby="amt-header">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
-                <div class="donation-level-amount-container">$30</div>
+                  <input type="radio" name="radioAmt" id="amount1" class="radio-amt" aria-checked="false">
+                  <div id="amount1-txt" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount2" data-amount="60" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(60)">
-                <div class="donation-level-amount-container">$60</div>
+              <div class="donation-amount-container text-center">
+                <label class="radio-level" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="false">
+                  <div id="amount2-txt" class="donation-level-amount-container">$75</div>
                 </label>
               </div>
-              <div class="text-center">
-                <label class="radio-level active" for="amount3" data-amount="110" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(110)">
-                <div class="donation-level-amount-container">$110</div>
+              <div class="donation-amount-container text-center">
+                <label class="radio-level active" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+                  <input type="radio" name="radioAmt" id="amount3" class="radio-amt" aria-checked="true">
+                  <div id="amount3-txt" class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount4" data-amount="220" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(220)">
-                <div class="donation-level-amount-container">$220</div>
+              <div class="donation-amount-container text-center">
+                <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
+                  <input type="radio" name="radioAmt" id="amount4" class="radio-amt" aria-checked="false">
+                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
                 </label>
               </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount5" data-amount="525" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(525)">
-                <div class="donation-level-amount-container">$525</div>
+              <div class="donation-amount-container text-center" id="other-amount-input-group">
+                <label for="other-amount-entered" class="level_other">Other 
+                  <input type="radio" name="radioAmt" id="other-radio" class="radio-amt" aria-checked="false">
                 </label>
-              </div>
-              <div class="text-center">
-                <label class="radio-level" for="amount6" data-amount="1000" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(1000)">
-                <div class="donation-level-amount-container">$1,000</div>
-                </label>
-              </div>
-              <div class="text-center">
-                <label for="level-other" class="level_other">Other </label>
                 <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                  <div class="other-amt-note"><em>$25 minimum donation</em></div>
                 </div>
-	      </div>
+	            </div>
             </div>
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
       <div class="panel panel-default payment-type active">
         <style>
   .payment-type label img {cursor:pointer;} 
@@ -273,6 +256,22 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <input type="email" class="form-control required" name="email" id="donor_email">
               </div>
             </div>
+            <div class="form-group checkbox">
+              <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
+              <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
+            </div>
+
+            <div class="form-group checkbox required">
+              <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+              <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
+              <div class="error input-group checkBox col-xs-12 col-sm-12">
+                <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+              </div>
+            </div>
+
+            <div class="confirmation-amount">
+              Amount: $<span id="confirmationAmt">75</span>
+            </div>
           </div>
         </div>
         <input type="hidden" class="form-control" name="billing_first_name" id="billing_first_name">
@@ -285,26 +284,13 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       </div>
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
-	  <div>Click Google Pay button to Donate</div>
-          <button type="button" id="donate-submit" class="btn btn-primary text-center">
-            <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
-	  </button>
+	        <div>Click Google Pay button to Donate</div>
+          <button type="button" id="donate-submit" class="btn btn-primary btn-primary-googlepay text-center" style="border: 0 none !important;">
+            <img src="/amazonpay/heartwalk/images/googlepay-button.png" alt="Google Pay Button"/>
+          </button>
+          <input type="submit" value="submit" style="display: none;" onclick="return false;">
         </div>
-        <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
       </div>
     </div>
   </form>
 </div>
-
-<script src="https://pay.google.com/gp/p/js/pay.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
-<script src="https://js.braintreegateway.com/web/3.41.0/js/data-collector.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script> 
