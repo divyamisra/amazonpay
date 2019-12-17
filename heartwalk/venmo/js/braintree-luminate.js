@@ -97,10 +97,10 @@ var braintree_aha = {
 					jQuery('input[name=device_data]').val(dataCollectorInstance.deviceData);
 				});
 				
-				if (braintree_aha.applePayPaymentType) {
-					//Initialize Apple Pay
-					braintree_aha.InitializeApplePay(clientInstance);
-				}
+				// if (braintree_aha.applePayPaymentType) {
+				// 	//Initialize Apple Pay
+				// 	braintree_aha.InitializeApplePay(clientInstance);
+				// }
 
 				if (braintree_aha.venmoPaymentType) {
 					//Initialize Venmo
