@@ -120,7 +120,6 @@ var braintree_aha = {
 			paypal: true
 		}, function (dataCollectorErr, dataCollectorInstance) {
 			if (dataCollectorErr) {
-				console.log(dataCollectorErr);
 				// Handle error in creation of data collector.
 				return;
 			}
