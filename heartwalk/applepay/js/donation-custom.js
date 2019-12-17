@@ -283,7 +283,7 @@ function coverFee() {
   
 jQuery('#other-amount-entered').on('blur', function(){
 	coverFee();
-})
+});
 jQuery('#cover_fee, .radio-level').on('click', function(){
 	coverFee();
 });
