@@ -102,6 +102,7 @@
 		jQuery('.donation-form').before('<div class="well donation-loading">' + 
 						 'Thank You!  We are now processing your donation using Amazon ...' + 
 					   '</div>');
+                var amt = jQuery('input[name=other_amount]').val();
 		var feeamt = jQuery('input[name=additional_amount]').val();
 		var originalamt = jQuery('input[name=gift_amount]').val();
 		// reset field to post correct value back to LO
