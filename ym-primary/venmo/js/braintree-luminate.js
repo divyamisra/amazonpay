@@ -137,14 +137,14 @@ var braintree_aha = {
 			allowNewBrowserTab: false
 		}, function (venmoErr, _venmoInstance) {
 			if (venmoErr) {
-				console.error('Error creating venmoInstance:', venmoErr);
+				console.log('Error creating venmoInstance:', venmoErr);
 				return;
 			}
 
 			venmoInstance = _venmoInstance;
 
 			if (venmoErr) {
-			  console.error('Error creating Venmo:', venmoErr);
+			  console.log('Error creating Venmo:', venmoErr);
 			  return;
 			}
 		
