@@ -137,27 +137,27 @@ var braintree_aha = {
 			allowNewBrowserTab: false
 		}, function (venmoErr, _venmoInstance) {
 			if (venmoErr) {
-				console.error('Error creating venmoInstance:', venmoErr);
+				console.log('Error creating venmoInstance:', venmoErr);
 				return;
 			}
 
 			venmoInstance = _venmoInstance;
 
 			if (venmoErr) {
-			  console.error('Error creating Venmo:', venmoErr);
+			  console.log('Error creating Venmo:', venmoErr);
 			  return;
 			}
 		
 			// Verify browser support before proceeding.
 			if (!venmoInstance.isBrowserSupported()) {
 			  console.log('Browser does not support Venmo');
-  			  jQuery('.ym-page-content').addClass("hidden");
+  			  jQuery('.ym-page-container').addClass("hidden");
 			  jQuery('.no-venmo').removeClass("hidden");
 			  return;
 			}
 			
 			jQuery(braintree_aha.venmoSubmitButton).removeClass("hidden");
-			jQuery('.ym-page-content').removeClass("hidden");
+			jQuery('.ym-page-container').removeClass("hidden");
 			jQuery('.no-venmo').addClass("hidden");
 			
 			//jQuery(braintree_aha.venmoSubmitButton).click(function(){
