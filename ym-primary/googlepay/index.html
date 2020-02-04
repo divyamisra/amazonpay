@@ -15,7 +15,17 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <link rel="stylesheet" href="../amazonpay/ym-primary/googlepay/css/custom.css">
 <script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/ym-primary/googlepay/js/additional-methods.min.js"></script>
-<div class="ym-page-content">
+<section class='no-googlepay ym-page-content hidden' aria-label="mainContent">
+  <h2>Google Pay is not available or setup on your device.</h2>
+  [[?x20x2x::x[[S334:PROXY_TYPE]]x::
+  <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]">here</a> to return to the participant's page.</p>
+  ::]]
+  [[?x22x::x[[S334:PROXY_TYPE]]x::
+  <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]">here</a> to return to the team's page.</p>
+  ::]]
+</section>
+
+<div class="ym-page-container">
   <div class="thank-you"></div>
   <div class="processing">Processing Donation... <img src="../donation-forms/donatenow/images/ajax-loader.gif" alt="Processing Donation"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
