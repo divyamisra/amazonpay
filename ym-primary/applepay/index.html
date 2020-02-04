@@ -24,7 +24,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   <p>Click <a href="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]">here</a> to return to the team's page.</p>
   ::]]
 </section>
-<div class="ym-page-content">
+<div class="ym-page-container">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
     <div class="html-caption-container">
@@ -340,11 +340,11 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="../amazonpay/ym-primary/applepay/js/braintree-luminate.js"></script> 
 <script>
 if (typeof window.ApplePaySession == "undefined") {
-	jQuery('.ym-page-content').addClass("hidden");
+	jQuery('.ym-page-container').addClass("hidden");
 	jQuery('.no-applepay').removeClass("hidden");
 } else {
 	if (!window.ApplePaySession.canMakePayments()) {
-		jQuery('.ym-page-content').addClass("hidden");
+		jQuery('.ym-page-container').addClass("hidden");
 		jQuery('.no-applepay').removeClass("hidden");
 	}
 }
