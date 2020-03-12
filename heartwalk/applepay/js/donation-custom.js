@@ -127,6 +127,7 @@ function donateApplePay() {
 	var zip = jQuery('input[name="zip"]').val();
 	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
+	var form=$('input[name=form_id]').val();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate, .accent-color').hide();
@@ -167,6 +168,8 @@ function donateApplePay() {
 	ga('ecommerce:send');
 
 	ga('send', 'pageview', '/donateok.asp');
+
+	pushDonationSuccessToDataLayer(form, ref, amt);
 }
 
 function donateOffline() {
