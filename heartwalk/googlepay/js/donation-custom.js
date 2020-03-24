@@ -134,6 +134,7 @@ function donateGooglePay() {
 	var city = jQuery('input[name="city"]').val();
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
+	var form=$('input[name=form_id]').val();
 
 	jQuery('.processing, .donate-now, .header-donate, .page-header').hide();
 	jQuery('.thank-you').show();
@@ -170,6 +171,8 @@ function donateGooglePay() {
 	ga('ecommerce:send');
 
 	ga('send', 'pageview', '/donateok.asp');
+
+	pushDonationSuccessToDataLayer(form, ref, amt);
 }
 
 function donateOffline() {
