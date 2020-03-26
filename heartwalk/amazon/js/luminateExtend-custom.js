@@ -392,5 +392,5 @@ jQuery('#cover_fee, .radio-level').on('click', function(){
 	a.type = 'text/javascript';
 	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(a.s);
+	s.parentNode.insertBefore(a, s);
 })();
