@@ -211,7 +211,7 @@ var braintree_aha = {
 		var postParams = jqcn(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jqcn('input[name=level_standardexpanded]:checked').val();
 
-		jqcn.post('/braintree/checkout-tr.php', postParams)
+		jqcn.post('/braintree_new/checkout-tr.php', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = JSON.parse(data.toString());
 				var donresult = JSON.parse(data.toString());
