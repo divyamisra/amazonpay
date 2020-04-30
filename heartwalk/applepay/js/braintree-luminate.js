@@ -211,7 +211,7 @@ var braintree_aha = {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jQuery('input[name=level_standardexpanded]:checked').val();
 
-		jQuery.post('/braintree/checkout-tr.php', postParams)
+		jQuery.post('/braintree_new/checkout-tr.php', postParams)
 			.done(function(data) {
 				braintree_aha.donation_result = JSON.parse(data.toString());
 				var donresult = JSON.parse(data.toString());
