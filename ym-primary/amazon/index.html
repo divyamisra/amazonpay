@@ -9,10 +9,9 @@
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/ym-primary/amazon/css/custom.css">
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/jquery.creditCardValidator.js"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/additional-methods.min.js"></script>
+<link rel="stylesheet" href="../amazonpay/ym-primary/css/custom.css">
+<script type="text/javascript" src="../amazonpay/ym-primary/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
   <div class="thank-you"></div>
   <div id="donation-errors"></div>
@@ -25,7 +24,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
-  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure2.convio.net/amha/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
+  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
     <div class="donation-form-container responsive">
       <input type="hidden" name="instance" value="[[S80:instance]]">
       <input type="hidden" name="recurring" value="false">
@@ -347,21 +346,11 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   </form>
 </div>
 
-<!-- <script type="text/javascript" src="https://heartdev.convio.net/heartwalk/amazon/js/analytics.js"></script> --> 
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/luminateExtend-custom.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/js/luminateExtend.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/js/luminateExtend-custom.js"></script> 
 <script type="text/javascript">
-    jQuery('.toggleTribute').change(function() {
-    if (jQuery(this).is(':checked')) {
-      jQuery('.tribute').slideDown();
-    } else {
-      jQuery('.tribute').slideUp();
-    }
-  });
-  
   //check for any passed parameters
-                                                     
   if (jQuery.getQuerystring("s_src")) {
     jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
   }
@@ -369,34 +358,6 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
   if (jQuery.getQuerystring("level_id")) {
     jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
   }
-
-// ADD QUERY STRING CODE 
-  if (jQuery.getQuerystring("honor") == "true") {
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(1) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("memorial") == "true") { 
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(2) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("msource")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-  }
-// END QUERY STRING CODE 
     
   if (jQuery.getQuerystring("amount")) {
     jQuery('label.active').removeClass("active");
@@ -424,4 +385,4 @@ window.onAmazonLoginReady = function() {
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../amazonpay/ym-primary/amazon/js/amazon-pay.js"></script> 
+<script type="text/javascript" src="../amazonpay/ym-primary/js/amazon-pay.js"></script> 
