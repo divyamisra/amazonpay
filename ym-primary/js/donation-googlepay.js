@@ -102,11 +102,11 @@ function donateGooglePay() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').hide();
-	var params = jQuery('.donation-form').serialize();
-	var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
+	var feeamt = jQuery('input[name=additional_amount]').val();
+	var originalamt = jQuery('input[name=gift_amount]').val();
 	var ref = 'GOOGLEPAY:'+jQuery('input[name=processorAuthorizationCode]').val();
-	//save off amazon id into custom field
+	//save off google id into custom field
 	jQuery('input[name=check_number]').val(ref);
 	jQuery('input[name=payment_confirmation_id]').val(ref);
 	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
@@ -166,21 +166,6 @@ function donateGooglePay() {
 	ga('send', 'pageview', '/donateok.asp');
 }
 
-// function donateOffline() {
-// 	var params = jQuery('.donation-form').serialize();
-
-// 	jQuery.ajax({
-// 		method: "POST",
-// 		async: false,
-// 		cache: false,
-// 		dataType: "json",
-// 		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-// 		success: function(data) {
-// 			//donateCallback.success(data.data);
-// 		}
-// 	});
-
-// }
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
