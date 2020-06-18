@@ -310,7 +310,7 @@ div.donate-select label.error {
   color:red;
 }
 .checkbox.required label, .checkbox label {
-	margin-left: 1em;
+	margin-left: 1em !important;
 }
 
 .btn-primary {

@@ -161,7 +161,7 @@ var braintree_aha = {
 				jQuery("input#donor_street2").val(paymentData.paymentMethodData.info.billingAddress.address2);
 				// jQuery("input#donor_street3").val(paymentData.paymentMethodData.info.billingAddress.address3);
 				jQuery("input#donor_city").val(paymentData.paymentMethodData.info.billingAddress.locality);
-				jQuery("input#donor_state").val(paymentData.paymentMethodData.info.billingAddress.administrativeArea);
+				jQuery('select[name="state"]').val(paymentData.paymentMethodData.info.billingAddress.administrativeArea);
 				jQuery("input#donor_zip").val(paymentData.paymentMethodData.info.billingAddress.postalCode);
 
 				// countryCode
