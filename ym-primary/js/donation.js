@@ -52,5 +52,4 @@ function donateOffline() {
 			//donateCallback.success(data.data);
 		}
 	});
-
 }
