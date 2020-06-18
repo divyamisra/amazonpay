@@ -155,6 +155,19 @@ var braintree_aha = {
 				// Send payload.nonce to your server.
 				jQuery("input#payment_method_nonce").val(result.nonce);
 
+				// Collect Address info
+				// https://developers.google.com/pay/api/web/reference/response-objects#Address
+				jQuery("input#donor_street1").val(paymentData.paymentMethodData.info.billingAddress.address1);
+				jQuery("input#donor_street2").val(paymentData.paymentMethodData.info.billingAddress.address2);
+				// jQuery("input#donor_street3").val(paymentData.paymentMethodData.info.billingAddress.address3);
+				jQuery("input#donor_city").val(paymentData.paymentMethodData.info.billingAddress.locality);
+				jQuery("input#donor_state").val(paymentData.paymentMethodData.info.billingAddress.administrativeArea);
+				jQuery("input#donor_zip").val(paymentData.paymentMethodData.info.billingAddress.postalCode);
+
+				// countryCode
+				// name
+				// phoneNumber
+
 				// Success GooglePay
 				braintree_aha.postDonationFormGooglePay(
 					donateGooglePay,
