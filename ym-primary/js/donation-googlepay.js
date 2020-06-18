@@ -169,21 +169,21 @@ function donateGooglePay() {
 	ga('send', 'pageview', '/donateok.asp');
 }
 
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
+// function donateOffline() {
+// 	var params = jQuery('.donation-form').serialize();
 
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
+// 	jQuery.ajax({
+// 		method: "POST",
+// 		async: false,
+// 		cache: false,
+// 		dataType: "json",
+// 		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
+// 		success: function(data) {
+// 			//donateCallback.success(data.data);
+// 		}
+// 	});
 
-}
+// }
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {

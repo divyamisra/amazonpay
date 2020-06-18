@@ -89,6 +89,9 @@ div.donation-form-container .section-header-container {
 	background:none;
 	border: none;
 }
+.process-button {
+	margin-top: -20px;
+}
 .donate-image {
 	float:right;
 	width:35%;
@@ -306,7 +309,7 @@ div.donate-select label.error {
   content:" *";
   color:red;
 }
-.checkbox.required label {
+.checkbox.required label, .checkbox label {
 	margin-left: 1em;
 }
 
