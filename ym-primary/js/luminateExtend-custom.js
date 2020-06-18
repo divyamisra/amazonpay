@@ -155,6 +155,8 @@
 					donateOffline();
 					
 					//var amt = data.donationResponse.donation.amount.decimal;
+					var feeamt = jQuery('input[name=additional_amount]').val();
+					var originalamt = jQuery('input[name=gift_amount]').val();
 					var email = jQuery('input[name="email"]').val();
 					var first = jQuery('input[name="first_name"]').val();
 					var last = jQuery('input[name="last_name"]').val();
@@ -170,10 +172,12 @@
 				  jQuery('.donation-loading').remove();
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
-				  var ty_url = "https://www2.heart.org/amazonpay/jump-hoops/amazon/thankyou.html";
-				  if (jQuery('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/jump-hoops/amazon/thankyou.html";
-				  }
+				  var ty_url = "/amazonpay/ym-primary/amazon/thankyou.html";
+				//   var ty_url = "https://www2.heart.org/amazonpay/jump-hoops/amazon/thankyou.html";
+				//   if (jQuery('input[name=instance]').val() == "heartdev") {
+				//   	// ty_url = "https://secure3.convio.net/heartdev/amazonpay/jump-hoops/amazon/thankyou.html";
+				//   	ty_url = "/amazonpay/ym-primary/amazon/thankyou.html";
+				//   }
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 					  jQuery('p.first').html(first);
@@ -184,9 +188,11 @@
 					  jQuery('p.state').html(state);
 					  jQuery('p.zip').html(zip);
 					  jQuery('p.email').html(email);
-					  jQuery('tr.card').hide();
-					  jQuery('tr.amazon').show();
+					//   jQuery('tr.card').hide();
+					//   jQuery('tr.amazon').show();
 					  jQuery('p.amount').html("$"+amt);
+					  jQuery('p.fee-amount').html("$" + feeamt);
+					  jQuery('p.original-amount').html("$" + originalamt);
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
 					  jQuery('.share-url').each(function(){
