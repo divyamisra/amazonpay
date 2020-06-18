@@ -200,21 +200,21 @@
 
 	}
 
-	function donateOffline() {
-		var params = jQuery('.donation-form').serialize();
+	// function donateOffline() {
+	// 	var params = jQuery('.donation-form').serialize();
 
-		jQuery.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-			success: function(data){
-				//donateCallback.success(data.data);
-			}
-		});
+	// 	jQuery.ajax({
+	// 		method: "POST",
+	// 		async: false,
+	// 		cache:false,
+	// 		dataType: "json",
+	// 		url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
+	// 		success: function(data){
+	// 			//donateCallback.success(data.data);
+	// 		}
+	// 	});
 
-	}
+	// }
     
     /* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
@@ -274,32 +274,6 @@ function getAmazonAddress() {
 		}
 	});
 })(jQuery);
-
-jQuery("#card-number").validateCreditCard(function(e) {
-	return jQuery("#card-number").removeClass(), null == e.card_type ? void jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}) : (jQuery("#card-number").addClass(e.card_type.name), "maestro" === e.card_type.name ? jQuery(".vertical.maestro").slideDown({
-		duration: 200
-	}).animate({
-		opacity: 1
-	}, {
-		queue: !1
-	}) : jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}), e.length_valid && e.luhn_valid ? jQuery("#card-number").addClass("valid") : jQuery("#card-number").removeClass("valid"))
-}, {
-	accept: ["visa", "mastercard", "amex", "discover"]
-});
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
