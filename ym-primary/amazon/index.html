@@ -365,27 +365,6 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="../amazonpay/ym-primary/js/luminateExtend.js"></script>
 <script type="text/javascript" src="../amazonpay/ym-primary/js/luminateExtend-custom.js"></script>
 <script type="text/javascript" src="../amazonpay/ym-primary/js/donation.js"></script>
-<script type="text/javascript">
-  //check for any passed parameters
-  if (jQuery.getQuerystring("s_src")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
-  }
-    
-  if (jQuery.getQuerystring("level_id")) {
-    jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-  }
-    
-  if (jQuery.getQuerystring("amount")) {
-    jQuery('label.active').removeClass("active");
-    jQuery('label.level_other').addClass("active");
-    jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-    jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-    jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-  }
-    
-</script> 
 <!-- ADD AMAZON CODE --> 
 <script>
 window.onAmazonLoginReady = function() {
