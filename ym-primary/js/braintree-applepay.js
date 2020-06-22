@@ -338,7 +338,7 @@ var braintree_aha = {
 				}
 
 				// Fill address
-				//braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
+				braintree_aha.DonationFillApplePayBillingAddress(event.payment.billingContact, event.payment.shippingContact)
 				//fill in billing address details
 		
 				// Send payload.nonce to your server.
@@ -357,39 +357,41 @@ var braintree_aha = {
 	},
 
 	DonationFillApplePayBillingAddress: function(billingContact, shippingContact) {
-		if (shippingContact.givenName != "" && shippingContact.familyName != "") {
-			jQuery("#FirstName").val(shippingContact.givenName);
-			jQuery("#LastName").val(shippingContact.familyName);
+		if (jQuery("#donor_first_name").val() == "" && jQuery("#donor_last_name").val() == "") {
+			if (shippingContact.givenName != "" && shippingContact.familyName != "") {
+				jQuery("#donor_first_name").val(shippingContact.givenName);
+				jQuery("#donor_last_name").val(shippingContact.familyName);
+			}
+			else {
+				jQuery("#donor_first_name").val(billingContact.givenName);
+				jQuery("#donor_last_name").val(billingContact.familyName);
+			}
 		}
-		else {
-			jQuery("#FirstName").val(billingContact.givenName);
-			jQuery("#LastName").val(billingContact.familyName);
-		}
+		
+		if (jQuery("#donor_email").val() == "") jQuery("#EmailAddress").val(shippingContact.emailAddress);
+		// jQuery("#Phone").val("");
 
-		jQuery("#EmailAddress").val(shippingContact.emailAddress);
-		jQuery("#Phone").val("");
+		// var countryCode = billingContact.countryCode.toUpperCase();
+		// if (countryCode == "") countryCode = billingContact.country.toUpperCase();
+		// if (countryCode == "USA") countryCode = "US";
+		// if (countryCode == "UNITED STATES") countryCode = "US";
+		// jQuery("#CountryId").val(countryCode).trigger("change");
 
-		var countryCode = billingContact.countryCode.toUpperCase();
-		if (countryCode == "") countryCode = billingContact.country.toUpperCase();
-		if (countryCode == "USA") countryCode = "US";
-		if (countryCode == "UNITED STATES") countryCode = "US";
-		jQuery("#CountryId").val(countryCode).trigger("change");;
-
-		jQuery("#Address1").val(billingContact.addressLines[0]);
+		jQuery("#donor_street1").val(billingContact.addressLines[0]);
 
 		if (billingContact.addressLines.length > 1 && billingContact.locality == "")
-			jQuery("#City").val(billingContact.addressLines[1]);
+			jQuery("#donor_city").val(billingContact.addressLines[1]);
 
 		if (billingContact.locality != "")
-			jQuery("#City").val(billingContact.locality);
+			jQuery("#donor_city").val(billingContact.locality);
 
-		jQuery("#StateId").val(billingContact.administrativeArea.toUpperCase());
-		jQuery("#Province").val(billingContact.administrativeArea.toUpperCase());
-		jQuery("#PostalCode").val(billingContact.postalCode);
+		jQuery('select[name="state"]').val(billingContact.administrativeArea.toUpperCase());
+		// jQuery("#Province").val(billingContact.administrativeArea.toUpperCase());
+		jQuery("#donor_zip").val(billingContact.postalCode);
 
 		var zip = billingContact.postalCode;
 		if (zip.length > 5) zip = zip.substr(0, 5);
-		jQuery("#ZipCode").val(zip);
+		jQuery("#donor_zip").val(zip);
 	},
 
 	postDonationFormApplePay: function(callback_success, callback_fail) {
@@ -402,7 +404,6 @@ var braintree_aha = {
 				console.log(data.result);
 				//
 				if (data.error == "") {
-					//jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					jQuery('input[name=processorAuthorizationCode]').val(data.result.processorAuthorizationCode);
 					session.completePayment(ApplePaySession.STATUS_SUCCESS);
 					callback_success();

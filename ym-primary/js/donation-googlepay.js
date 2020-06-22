@@ -119,7 +119,7 @@ function donateGooglePay() {
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
