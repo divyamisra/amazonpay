@@ -113,9 +113,11 @@ function donateVenmo() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').hide();
-	var params = jQuery('.donation-form').serialize();
-	var status = "";
+	// var params = jQuery('.donation-form').serialize();
+	// var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
+	var feeamt = jQuery('input[name=additional_amount]').val();
+	var originalamt = jQuery('input[name=gift_amount]').val();
 	var ref = 'VENMO:'+jQuery('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
 	jQuery('input[name=check_number]').val(ref);
@@ -130,7 +132,7 @@ function donateVenmo() {
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
@@ -139,14 +141,11 @@ function donateVenmo() {
 	var venmouser = jQuery('input[name="venmo_user"]').val();
 	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
-	//var cc = jQuery('input[name=card_number]').val();
-	//var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/ym-primary/venmo/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
@@ -159,9 +158,9 @@ function donateVenmo() {
 		jQuery('p.zip').html(zip);
 		//jQuery('p.country').html(country);
 		jQuery('p.email').html(email);
-		//jQuery('tr.cardGroup').hide();
-		//jQuery('tr.amazon').show();
 		jQuery('p.amount').html("$" + amt);
+		jQuery('p.fee-amount').html("$" + feeamt);
+		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.confcode').html(ref);
 		jQuery('p.venmouser').html(venmouser);
 	});
@@ -182,21 +181,21 @@ function donateVenmo() {
 	ga('send', 'pageview', '/donateok.asp');
 }
 
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
+// function donateOffline() {
+// 	var params = jQuery('.donation-form').serialize();
 
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
+// 	jQuery.ajax({
+// 		method: "POST",
+// 		async: false,
+// 		cache: false,
+// 		dataType: "json",
+// 		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
+// 		success: function(data) {
+// 			//donateCallback.success(data.data);
+// 		}
+// 	});
 
-}
+// }
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
