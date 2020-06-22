@@ -215,7 +215,7 @@ div.donate-select label {
   border-radius:10px;
 }
 .donation-level-amount-container, .level_other {
-padding: 10px; 	
+  padding: 10px; 	
 }
 
 .donate-select label:hover, .donate-select label.active {
@@ -258,13 +258,13 @@ input#other-amount-entered {
 
 input.error,
 select.error {
-    border-color: #ff0000 !important;
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
+  border-color: #ff0000 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 input[type='number'] {
-    -moz-appearance:textfield;
+  -moz-appearance:textfield;
 }
 
 label.error {
@@ -340,6 +340,11 @@ div.donate-select label.error {
 .btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
   text-decoration: none;
+}
+.confirmation-amount {
+  font-size: 1.5em; 
+  font-weight: bold; 
+  margin-bottom: 1em;
 }
 
 footer {
