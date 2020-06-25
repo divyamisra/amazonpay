@@ -187,6 +187,7 @@ var braintree_aha = {
   				}
 				jQuery('.donation-form').show();
 			} else {
+				debugger;
 				console.log(payload);
 				// Send the payment method nonce to your server, e.g. by injecting
 				// it into your form as a hidden input.
