@@ -342,8 +342,8 @@ div.donate-select label.error {
   text-decoration: none;
 }
 .confirmation-amount {
-  font-size: 1.5em; 
-  font-weight: bold; 
+  font-size: 1.5em;
+  font-weight: bold;
   margin-bottom: 1em;
 }
 
@@ -413,14 +413,6 @@ ul.footer-menu li a {
 .vertical input {
   width: 68px;
 }
-
-/* .thank-you {
-	text-align:center;
-}
-
-.donate-thankyou {
-list-style-image: url(/images/heart-bullet.png);
-} */
 
 .thank-you .givingText {
   /* margin: 0 0 0 140px; */
