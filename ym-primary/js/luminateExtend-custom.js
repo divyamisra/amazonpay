@@ -166,7 +166,6 @@
 					var city = jQuery('input[name="city"]').val();
 					var state = jQuery('select[name="state"]').val();
 					var zip = jQuery('input[name="zip"]').val();
-					//var ref = data.donationResponse.donation.confirmation_code;
 					var from_url = jQuery('input[name="from_url"]').val();
 					
 				  jQuery('.donation-loading').remove();
@@ -188,8 +187,6 @@
 					  jQuery('p.state').html(state);
 					  jQuery('p.zip').html(zip);
 					  jQuery('p.email').html(email);
-					//   jQuery('tr.card').hide();
-					//   jQuery('tr.amazon').show();
 					  jQuery('p.amount').html("$"+amt);
 					  jQuery('p.fee-amount').html("$" + feeamt);
 					  jQuery('p.original-amount').html("$" + originalamt);
@@ -203,7 +200,6 @@
 				}
 			}
 		});
-
 	}
     
     /* bind any forms with the "luminateApi" class */
