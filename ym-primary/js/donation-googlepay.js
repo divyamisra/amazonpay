@@ -1,24 +1,24 @@
 jQuery(document).ready(function() {
-        jQuery('#from_url_js').val(document.referrer);
+	jQuery('#from_url_js').val(document.referrer);
 
 	var evid = jQuery.getQuerystring("FR_ID");
 	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
 	if (jQuery('input[name=instance]').val() == "heartdev") {
 		apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
-        }
+	}
 	jQuery.getJSON(apiURL,function(data){
 		if(data.getTeamraisersResponse != null) {
-                   var regtst = /\w{3}-+/;
-	   	   var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
-                   if (match != null) {
-   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
-                   } else {
-   		      jQuery('input[name=affiliate]').val('GEN');
-                   }
-                } else {
+			var regtst = /\w{3}-+/;
+			var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
+			if (match != null) {
+				jQuery('input[name=affiliate]').val(match[0].substr(0,3));
+			} else {
+				jQuery('input[name=affiliate]').val('GEN');
+			}
+		} else {
 		   jQuery('input[name=affiliate]').val('GEN');
-                }
-        });
+		}
+	});
 	    
 	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
@@ -114,7 +114,6 @@ function donateGooglePay() {
 	//make offline donation in luminate to record transaction
 	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
-	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
@@ -126,7 +125,6 @@ function donateGooglePay() {
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
 	//var country = jQuery('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
@@ -172,27 +170,4 @@ jQuery('[id^=donor_]').each(function() {
     jQuery(this).blur(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
-});
- 
-var eid = jQuery('input[name=fr_id]').val();
-var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-}
-jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-	//jQuery('.page-header h1').html(data2.event_title);
-	if (data2.team_name != "" && dtype == "t") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-	}
-	if (data2.event_title != " " && dtype == "e") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-	}
-	if (data2.part_name != " " && dtype == "p") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-	}
-
-	jQuery('input[name=form_id]').val(data2.don_form_id);
 });
