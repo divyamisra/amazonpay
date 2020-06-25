@@ -344,7 +344,7 @@ div.donate-select label.error {
 .confirmation-amount {
   font-size: 1.5em;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 footer {
@@ -490,11 +490,11 @@ td.FormSectionHeader {
 }
 
 .privacyText {
-    font-size: 0.7em;
-    font-weight: bold;
-    padding-top: 5px;
-    text-align: center;
-    margin-left: 20px !important;
+  font-size: 0.7em;
+  font-weight: bold;
+  padding-top: 5px;
+  text-align: center;
+  margin-left: 20px !important;
 }
 #tos-error {
   color:#d40000;
@@ -530,7 +530,7 @@ td.FormSectionHeader {
 }
 
 .amazon-payments {
-font-size: 0.8em;	
+  font-size: 0.8em;	
 }
 
 /* @media (min-width: 992px) {
