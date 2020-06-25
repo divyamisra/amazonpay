@@ -205,22 +205,6 @@
 		});
 
 	}
-
-	// function donateOffline() {
-	// 	var params = jQuery('.donation-form').serialize();
-
-	// 	jQuery.ajax({
-	// 		method: "POST",
-	// 		async: false,
-	// 		cache:false,
-	// 		dataType: "json",
-	// 		url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-	// 		success: function(data){
-	// 			//donateCallback.success(data.data);
-	// 		}
-	// 	});
-
-	// }
     
     /* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
