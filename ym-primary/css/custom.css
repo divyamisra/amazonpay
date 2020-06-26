@@ -511,7 +511,8 @@ td.FormSectionHeader {
 #walletWidgetDiv {
 	display: none;
 	width: 400px; 
-	height: 228px;
+  height: 228px;
+  max-width: 100%;
 }
 #consentWidgetDiv {
 	display: none;
@@ -526,7 +527,7 @@ td.FormSectionHeader {
 }
 #AmazonPayment #walletWidgetDiv, 
 #AmazonPayment #consentWidgetDiv {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .amazon-payments {
