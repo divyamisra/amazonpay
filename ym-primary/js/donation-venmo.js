@@ -78,7 +78,7 @@ jQuery(document).ready(function() {
 					venmoData += "<div style='font-size:40px'>$" + jQuery('input[name=other_amount]').val() + "</div>";
 					jQuery('#venmoModal .modal-body').html(venmoData);
 					jQuery('#venmoModal').modal(); 
-		    return true;
+		    		return true;
                 } else {
                     return false;
                 }
