@@ -367,11 +367,11 @@ ul.footer-menu li a {
 	color:#ed1c24;
 } */
 
-.livechat {
+/* .livechat {
   position: absolute;
   right: 15px;
   top: 15%;
-}
+} */
 
 /* #otherGiving ul {
   list-style-type: none;
@@ -422,6 +422,26 @@ ul.footer-menu li a {
   max-width: 760px;
   margin: 0 auto 2em;
   text-align:left !important;
+}
+
+.thankYouShare .step-button {
+   font-size:18px !important;
+   font-family: LubDubBold, Helvetica, Arial !important;
+}
+.fa-icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fa-facebook-square::before {
+    font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f082";
+}
+
+.fa-twitter-square::before {
+    font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f081";
 }
 
 /* .donate-thankyou {
