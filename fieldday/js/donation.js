@@ -1,4 +1,10 @@
 // Calculate fee amount
+const formatter = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
+	minimumFractionDigits: 2
+});
+
 const feeOption = {
     transactionRate: .029, // 2.9%
     transactionFee: .29, // $.29
@@ -21,7 +27,7 @@ const feeOption = {
     },
 
     setDisplayAmount: function() {
-        jQuery('#confirmationAmt').text(feeOption.otherAmount.val());
+        jQuery('#confirmationAmt').text(formatter.format(feeOption.otherAmount.val()));
     },
 
     calculateFee: function() {
