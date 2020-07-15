@@ -65,12 +65,15 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
   jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
   if (data2.team_name != "" && dtype == "t") {
     jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+    jQuery('.page-header h1').text('Donate to '+data2.team_name);
   }
   if (data2.event_title != " " && dtype == "e") {
     jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+    jQuery('.page-header h1').text('Donate to '+data2.event_title);
   }
   if (data2.part_name != " " && dtype == "p") {
     jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+    jQuery('.page-header h1').text('Donate to '+data2.part_name);
   }
 
   jQuery('input[name=form_id]').val(data2.don_form_id);
