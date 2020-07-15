@@ -175,9 +175,6 @@
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
 				  var ty_url = "/amazonpay/field-day/amazon/thankyou.html";
-				  if (jQuery('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "/amazonpay/field-day/amazon/thankyou.html";
-				  }
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 					  jQuery('p.first, span.first').html(first);
@@ -208,22 +205,6 @@
 
 	}
 
-	function donateOffline() {
-		var params = jQuery('.donation-form').serialize();
-
-		jQuery.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-			success: function(data){
-				//donateCallback.success(data.data);
-			}
-		});
-
-	}
-    
     /* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
   });
@@ -347,50 +328,10 @@ jQuery('[id^=donor_]').each(function(){
 
 // END QUERY STRING CODE 
 
-// Calculate fee amount
-function calculateFee() {
-	// get amount from hidden field 
-	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
-	// formula amt * 2.9% + .29
-	var fee = ((amt * .029) + .29).toFixed(2);
-
-	return fee;
-}
-
-function setGiftAmount() {
-	var amt = jQuery('input[name=gift_amount]').val();
-	var fee = jQuery('input[name=additional_amount]').val();
-
-	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-
-function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
-}
-
-function coverFee() {
-	// run additional calculation
-	if(jQuery('#cover_fee').prop('checked')){
-	  jQuery('input[name=additional_amount]').val(calculateFee());
-	} else {
-	  jQuery('input[name=additional_amount]').val(0);
-	} 
-  
-	setGiftAmount();
-	setDisplayAmount();
-}
-
-jQuery('#other-amount-entered').on('blur', function(){
-	coverFee();
-});
-jQuery('#cover_fee, .radio-level').on('click', function(){
-	coverFee();
-});
-
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/field-day/js/gaDonationSuccess.js';
+	a.src = '/amazonpay/fieldday/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
