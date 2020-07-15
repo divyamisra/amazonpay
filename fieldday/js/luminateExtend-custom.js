@@ -331,7 +331,7 @@ jQuery('[id^=donor_]').each(function(){
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/fieldday/js/gaDonationSuccess.js';
+	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
