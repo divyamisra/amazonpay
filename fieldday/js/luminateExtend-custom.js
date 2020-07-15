@@ -168,6 +168,7 @@
 					var zip = jQuery('input[name="zip"]').val();
 					//var ref = data.donationResponse.donation.confirmation_code;
 					var from_url = jQuery('input[name="from_url"]').val();
+					var participant_name = jQuery('input[name="participant_name"]').val();
 					var form=$('input[name=form_id]').val();
 
 					
@@ -192,6 +193,8 @@
 					  jQuery('p.amount').html("$"+amt);
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
+					  jQuery('a.from_url').attr('href', from_url);
+					  jQuery('p.participant').html(participant_name);
 					  jQuery('.share-url').each(function(){
 						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
 					  });

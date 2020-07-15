@@ -80,6 +80,7 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
   if (data2.part_name != " " && dtype == "p") {
     jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Student:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
     jQuery('.page-header h1').text('Donate to '+data2.part_name);
+    jQuery('input[name=participant_name]').val(data2.part_name);
   }
 
   jQuery('input[name=form_id]').val(data2.don_form_id);
