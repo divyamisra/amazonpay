@@ -128,17 +128,17 @@ function donateApplePay() {
 	//var country = jQuery('select[name="country"]').val();
 	//var ref = data.donationResponse.donation.confirmation_code;
 	var form=$('input[name=form_id]').val();
+	var participant_name = jQuery('input[name="participant_name"]').val();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate, .accent-color').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/heartwalk/applepay/thankyou.html";
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-		ty_url = "/amazonpay/heartwalk/applepay/thankyou.html";
-	}
+	var ty_url = "/amazonpay/fieldday/applepay/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
+		jQuery('a.from_url').attr('href', from_url);
+		jQuery('span.participant').html(participant_name);
 		jQuery('p.first, span.first').html(first);
 		jQuery('p.last').html(last);
 		jQuery('p.street1').html(street1);
@@ -170,22 +170,6 @@ function donateApplePay() {
 	ga('send', 'pageview', '/donateok.asp');
 
 	pushDonationSuccessToDataLayer(form, ref, amt);
-}
-
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
-
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
 }
 
 //copy donor fields to billing
@@ -251,50 +235,10 @@ if (amount.length > 0) {
 	}
 }
 
-// Calculate fee amount
-function calculateFee() {
-	// get amount from hidden field 
-	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
-	// formula amt * 2.9% + .29
-	var fee = ((amt * .029) + .29).toFixed(2);
-  
-	return fee;
-}
-
-function setGiftAmount() {
-	var amt = jQuery('input[name=gift_amount]').val();
-	var fee = jQuery('input[name=additional_amount]').val();
-	
-	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-
-function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
-}
-
-function coverFee() {
-	// run additional calculation
-	if(jQuery('#cover_fee').prop('checked')){
-	  jQuery('input[name=additional_amount]').val(calculateFee());
-	} else {
-	  jQuery('input[name=additional_amount]').val(0);
-	} 
-  
-	setGiftAmount();
-	setDisplayAmount();
-}
-  
-jQuery('#other-amount-entered').on('blur', function(){
-	coverFee();
-});
-jQuery('#cover_fee, .radio-level').on('click', function(){
-	coverFee();
-});
-
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
+	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();

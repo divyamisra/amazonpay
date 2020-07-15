@@ -194,7 +194,7 @@
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
 					  jQuery('a.from_url').attr('href', from_url);
-					  jQuery('p.participant').html(participant_name);
+					  jQuery('span.participant').html(participant_name);
 					  jQuery('.share-url').each(function(){
 						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
 					  });
