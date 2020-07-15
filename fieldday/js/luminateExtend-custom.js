@@ -174,7 +174,7 @@
 				  jQuery('.donation-loading').remove();
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
-				  var ty_url = "/amazonpay/field-day/amazon/thankyou.html";
+				  var ty_url = "/amazonpay/fieldday/amazon/thankyou.html";
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 					  jQuery('p.first, span.first').html(first);
