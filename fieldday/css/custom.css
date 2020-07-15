@@ -3,7 +3,7 @@ body {
   color: #212529;
 }
 main {
-  background-image: url(/images/content/pagebuilder/hw_hero_desktop.jpg);
+  /* background-image: url(/images/content/pagebuilder/hw_hero_desktop.jpg); */
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: #eee;
@@ -195,7 +195,8 @@ div.donate-select label:focus-within {
 }
 
 .donate-select label:hover, .donate-select label.active {
-  background: #000;
+  background-color: #c10e21;
+  border-color: #c10e21;
   color: #fff;
 	cursor:pointer;
 }
