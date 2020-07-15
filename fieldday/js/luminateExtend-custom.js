@@ -174,9 +174,9 @@
 				  jQuery('.donation-loading').remove();
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
-				  var ty_url = "https://www2.heart.org/amazonpay/heartwalk/amazon/thankyou.html";
+				  var ty_url = "/amazonpay/field-day/amazon/thankyou.html";
 				  if (jQuery('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "/amazonpay/heartwalk/amazon/thankyou.html";
+				  	ty_url = "/amazonpay/field-day/amazon/thankyou.html";
 				  }
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
@@ -390,7 +390,7 @@ jQuery('#cover_fee, .radio-level').on('click', function(){
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
+	a.src = '/amazonpay/field-day/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
