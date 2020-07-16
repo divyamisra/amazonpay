@@ -86,3 +86,12 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
   jQuery('input[name=form_id]').val(data2.don_form_id);
   });
 }
+
+// GA Donation Success
+(function(){
+	var a = document.createElement('script');
+	a.type = 'text/javascript';
+	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(a, s);
+})();

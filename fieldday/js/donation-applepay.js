@@ -118,19 +118,17 @@ function donateApplePay() {
 	//make offline donation in luminate to record transaction
 	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
-	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
 	//var country = jQuery('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
 	var form=$('input[name=form_id]').val();
 	var participant_name = jQuery('input[name="participant_name"]').val();
 
@@ -212,12 +210,3 @@ if (amount.length > 0) {
 		coverFee();
 	}
 }
-
-(function(){
-	var a = document.createElement('script');
-	a.type = 'text/javascript';
-	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(a, s);
-})();
-

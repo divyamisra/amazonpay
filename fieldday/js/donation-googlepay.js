@@ -214,11 +214,3 @@ if (amount.length > 0) {
 		coverFee();
 	}
 }
-
-(function(){
-	var a = document.createElement('script');
-	a.type = 'text/javascript';
-	a.src = '../amazonpay/heartwalk/js/gaDonationSuccess.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(a, s);
-})();

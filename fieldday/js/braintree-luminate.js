@@ -66,7 +66,7 @@ var braintree_aha = {
     googlePaymentInstance: "",
 	donation_form		: jQuery('form'),
 	donation_result		: "",
-    payment_method		: (jQuery.getQuerystring("btmethod") == "") ? "applepay" : "venmo",
+	payment_method		: jQuery('input[name=payment_source]').val(),
 	
 	initializeBraintree: function() {
 		

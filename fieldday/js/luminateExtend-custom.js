@@ -330,11 +330,3 @@ jQuery('[id^=donor_]').each(function(){
 	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
 
 // END QUERY STRING CODE 
-
-(function(){
-	var a = document.createElement('script');
-	a.type = 'text/javascript';
-	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(a, s);
-})();
