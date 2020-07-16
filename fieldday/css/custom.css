@@ -429,9 +429,28 @@ ul.footer-menu li a {
   text-align:left !important;
 }
 
+.thankYouShareBlock {
+  width: 235px;
+}
 .thankYouShare .step-button {
-   font-size:18px !important;
-   font-family: LubDubBold, Helvetica, Arial !important;
+  font-size:18px !important;
+  font-family: LubDubBold, Helvetica, Arial !important;
+  min-width: 190px;
+  height: 60px;
+  padding: 0 20px;
+  line-height: 60px;
+  font-size: 24px;
+  font-weight: 400;
+  background: 0 0;
+  background-color: #d01d20!important;
+  color: #fff;
+  text-decoration: none;
+  border: 0;
+  max-width: none;
+  border-radius: 60px;
+}
+.thankYouShare .step-button:hover {
+  background: #900!important
 }
 .fa-icon::before {
     display: inline-block;
