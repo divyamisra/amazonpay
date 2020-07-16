@@ -343,6 +343,11 @@ footer .container, .bg-white .container {
 .info-boxes {
   display: none;
 }
+
+#cover_fee + label, #tos + label {
+  margin-right: 0;
+}
+
 /* footer {
 	background: #242424;
 	color: #b4b4b4;
