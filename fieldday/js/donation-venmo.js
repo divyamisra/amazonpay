@@ -16,19 +16,23 @@
 jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 	    
-    var evid = jQuery.getQuerystring("FR_ID");
-	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
-		if(data.eventdata != null) {
-                   var regtst = /\w{3}-+/;
-	   	   var match = regtst.exec(data.eventdata.greetingurl);
-                   if (match != null) {
-   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
-                   } else {
-   		      jQuery('input[name=affiliate]').val('GEN');
-                   }
-                } else {
-		   jQuery('input[name=affiliate]').val('GEN');
-                }
+	var evid = jQuery.getQuerystring("FR_ID");
+	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
+	if (jQuery('input[name=instance]').val() == "heartdev") {
+		apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
+	}
+	jQuery.getJSON(apiURL,function(data){
+		if(data.getTeamraisersResponse != null) {
+			var regtst = /\w{3}-+/;
+			var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
+			if (match != null) {
+				jQuery('input[name=affiliate]').val(match[0].substr(0,3));
+			} else {
+				jQuery('input[name=affiliate]').val('GEN');
+			}
+		} else {
+				jQuery('input[name=affiliate]').val('GEN');
+		}
 	});
 	    
 	/* UI handlers for the donation form example */
@@ -123,7 +127,6 @@ function donateVenmo() {
 	//make offline donation in luminate to record transaction
 	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
 
-	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
@@ -136,8 +139,8 @@ function donateVenmo() {
 	var zip = jQuery('input[name="zip"]').val();
 	var venmouser = jQuery('input[name="venmo_user"]').val();
 	//var country = jQuery('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
 	var form=$('input[name=form_id]').val();
+	var participant_name = jQuery('input[name="participant_name"]').val();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate, .processing').hide();
@@ -146,6 +149,8 @@ function donateVenmo() {
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
+		jQuery('a.from_url').attr('href', from_url);
+		jQuery('span.participant').html(participant_name);
 		jQuery('p.first, span.first').html(first);
 		jQuery('p.last').html(last);
 		jQuery('p.street1').html(street1);
@@ -180,56 +185,12 @@ function donateVenmo() {
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }
 
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
-
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
-}
-
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
     jQuery(this).blur(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
-
-if (location.href.indexOf("donate_venmo") > 0) {
-	var eid = jQuery('input[name=fr_id]').val();
-	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-		var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-		if (jQuery('input[name=instance]').val() == "heartdev") {
-		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	}
-	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-		//jQuery('.page-header h1').html(data2.event_title);
-		if (data2.team_name != "" && dtype == "t") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-			jQuery('.page-header h1').text('Donate to '+data2.team_name);
-		}
-		if (data2.event_title != " " && dtype == "e") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-			jQuery('.page-header h1').text('Donate to '+data2.event_title);
-		}
-		if (data2.part_name != " " && dtype == "p") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-			jQuery('.page-header h1').text('Donate to '+data2.part_name);
-		}
-
-		jQuery('input[name=form_id]').val(data2.don_form_id);
-	});
-}
 
 // UI for amount selection
 jQuery('.donation-amount-container').click(function(){
@@ -261,50 +222,10 @@ if (amount.length > 0) {
 	}
 }
 
-// Calculate fee amount
-function calculateFee() {
-	// get amount from hidden field 
-	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
-	// formula amt * 2.9% + .29
-	var fee = ((amt * .029) + .29).toFixed(2);
-  
-	return fee;
-}
-
-function setGiftAmount() {
-	var amt = jQuery('input[name=gift_amount]').val();
-	var fee = jQuery('input[name=additional_amount]').val();
-	
-	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-
-function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
-}
-
-function coverFee() {
-	// run additional calculation
-	if(jQuery('#cover_fee').prop('checked')){
-	  jQuery('input[name=additional_amount]').val(calculateFee());
-	} else {
-	  jQuery('input[name=additional_amount]').val(0);
-	} 
-  
-	setGiftAmount();
-	setDisplayAmount();
-}
-  
-jQuery('#other-amount-entered').on('blur', function(){
-	coverFee();
-});
-jQuery('#cover_fee, .radio-level').on('click', function(){
-	coverFee();
-});
-
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
+	a.src = '../amazonpay/heartwalk/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
