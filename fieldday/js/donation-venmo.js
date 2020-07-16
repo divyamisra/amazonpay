@@ -147,7 +147,7 @@ function donateVenmo() {
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate, .processing').hide();
 	jQuery('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/fieldday/venmo/thankyou.html";
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
