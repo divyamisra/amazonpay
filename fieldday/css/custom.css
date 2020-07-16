@@ -448,6 +448,8 @@ ul.footer-menu li a {
   border: 0;
   max-width: none;
   border-radius: 60px;
+  width: 240px;
+  margin-top: 3px;
 }
 .thankYouShare .step-button:hover {
   background: #900!important

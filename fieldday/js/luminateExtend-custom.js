@@ -170,6 +170,8 @@
 					var from_url = jQuery('input[name="from_url"]').val();
 					var participant_name = jQuery('input[name="participant_name"]').val();
 					var form=$('input[name=form_id]').val();
+					var fb_share_url = jQuery('input[name="fb_share_url"]').val();
+					var twitter_share_url = jQuery('input[name="twitter_share_url"]').val();
 
 					
 				  jQuery('.donation-loading').remove();
@@ -194,6 +196,8 @@
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
 					  jQuery('a.from_url').attr('href', from_url);
+					  jQuery('#fb-share').attr('href', fb_share_url);
+					  jQuery('#twitter-share').attr('href', twitter_share_url);
 					  jQuery('span.participant').html(participant_name);
 					  jQuery('.share-url').each(function(){
 						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
