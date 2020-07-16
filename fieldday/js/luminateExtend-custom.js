@@ -199,9 +199,9 @@
 					  jQuery('#fb-share').attr('href', fb_share_url);
 					  jQuery('#twitter-share').attr('href', twitter_share_url);
 					  jQuery('span.participant').html(participant_name);
-					  jQuery('.share-url').each(function(){
-						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
-					  });
+					//   jQuery('.share-url').each(function(){
+					// 	jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+					//   });
 					});
 
 					pushDonationSuccessToDataLayer(form, ref, amt);

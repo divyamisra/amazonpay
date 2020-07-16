@@ -131,6 +131,8 @@ function donateApplePay() {
 	//var country = jQuery('select[name="country"]').val();
 	var form=$('input[name=form_id]').val();
 	var participant_name = jQuery('input[name="participant_name"]').val();
+	var fb_share_url = jQuery('input[name="fb_share_url"]').val();
+	var twitter_share_url = jQuery('input[name="twitter_share_url"]').val();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate, .accent-color').hide();
@@ -154,6 +156,8 @@ function donateApplePay() {
 		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
+		jQuery('#fb-share').attr('href', fb_share_url);
+		jQuery('#twitter-share').attr('href', twitter_share_url);
 	});
 
 	/* ECOMMERCE TRACKING CODE */

@@ -136,6 +136,8 @@ function donateGooglePay() {
 	var zip = jQuery('input[name="zip"]').val();
 	var form=$('input[name=form_id]').val();
 	var participant_name = jQuery('input[name="participant_name"]').val();
+	var fb_share_url = jQuery('input[name="fb_share_url"]').val();
+	var twitter_share_url = jQuery('input[name="twitter_share_url"]').val();
 
 	jQuery('.processing, .donate-now, .header-donate, .page-header').hide();
 	jQuery('.thank-you').show();
@@ -158,6 +160,8 @@ function donateGooglePay() {
 		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
+		jQuery('#fb-share').attr('href', fb_share_url);
+		jQuery('#twitter-share').attr('href', twitter_share_url);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
