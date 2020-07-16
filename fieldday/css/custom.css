@@ -443,7 +443,7 @@ ul.footer-menu li a {
   font-weight: 400;
   background: 0 0;
   background-color: #d01d20!important;
-  color: #fff;
+  color: #fff !important;
   text-decoration: none;
   border: 0;
   max-width: none;
