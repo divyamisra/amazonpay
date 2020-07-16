@@ -135,6 +135,7 @@ function donateGooglePay() {
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
 	var form=$('input[name=form_id]').val();
+	var participant_name = jQuery('input[name="participant_name"]').val();
 
 	jQuery('.processing, .donate-now, .header-donate, .page-header').hide();
 	jQuery('.thank-you').show();
@@ -142,6 +143,8 @@ function donateGooglePay() {
 	jQuery.get(ty_url, function(datat) {
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.from_url').html("<a href='"+from_url+"'>Click here</a>");
+		jQuery('a.from_url').attr('href', from_url);
+		jQuery('span.participant').html(participant_name);
 		jQuery('p.first, span.first').html(first);
 		jQuery('p.last').html(last);
 		jQuery('p.street1').html(street1);
@@ -175,22 +178,6 @@ function donateGooglePay() {
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }
 
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
-
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
-}
-
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
     jQuery(this).blur(function() {
@@ -198,32 +185,6 @@ jQuery('[id^=donor_]').each(function() {
     });
 });
  
-var eid = jQuery('input[name=fr_id]').val();
-var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-}
-jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-	//jQuery('.page-header h1').html(data2.event_title);
-	if (data2.team_name != "" && dtype == "t") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.team_name);
-	}
-	if (data2.event_title != " " && dtype == "e") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.event_title);
-	}
-	if (data2.part_name != " " && dtype == "p") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.part_name);
-	}
-
-	jQuery('input[name=form_id]').val(data2.don_form_id);
-});
-
 // UI for amount selection
 jQuery('.donation-amount-container').click(function(){
 	jQuery('.donate-select .active').removeClass("active");
@@ -254,50 +215,10 @@ if (amount.length > 0) {
 	}
 }
 
-// Calculate fee amount
-function calculateFee() {
-	// get amount from hidden field 
-	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
-	// formula amt * 2.9% + .29
-	var fee = ((amt * .029) + .29).toFixed(2);
-  
-	return fee;
-}
-
-function setGiftAmount() {
-	var amt = jQuery('input[name=gift_amount]').val();
-	var fee = jQuery('input[name=additional_amount]').val();
-	
-	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-
-function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
-}
-
-function coverFee() {
-	// run additional calculation
-	if(jQuery('#cover_fee').prop('checked')){
-	  jQuery('input[name=additional_amount]').val(calculateFee());
-	} else {
-	  jQuery('input[name=additional_amount]').val(0);
-	} 
-  
-	setGiftAmount();
-	setDisplayAmount();
-}
-  
-jQuery('#other-amount-entered').on('blur', function(){
-	coverFee();
-});
-jQuery('#cover_fee, .radio-level').on('click', function(){
-	coverFee();
-});
-
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
+	a.src = '../amazonpay/heartwalk/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
