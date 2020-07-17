@@ -289,7 +289,9 @@ div.donate-select label.error {
 	font-size:14px;
 	text-transform:uppercase;
 }
-.form-group.required .control-label:after, .checkbox.required label:after {
+.form-group.required .control-label:after
+/* , .checkbox.required label:after  */
+{
   content:" *";
   color: #c10e21;
 }
