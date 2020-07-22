@@ -9,7 +9,10 @@
   });
   
   jQuery(function() {
-    
+
+	jQuery('#from_url_js').val(document.referrer);
+	jQuery('#from_browser').val(window.navigator.userAgent);
+	
     /* UI handlers for the donation form example */
     if(jQuery('.donation-form').length > 0) {
       jQuery('.donate-select label').click(function() {
@@ -110,26 +113,35 @@
 			dataType: "json",
 			url:"https://hearttools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
 			success: function(data){
-				if (jQuery('input[name=recurring]').val() == "true") {
-					status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
-					amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
-					ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
-					
-					if (status != "Closed") {
-						amazonErr = true;
+				if (typeof data.data.Error != "object") {
+					if (jQuery('input[name=recurring]').val() == "true") {
+						status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
+						amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
+						ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
+						
+						if (status != "Closed") {
+							amazonErr = true;
+						}
+					} else {
+						status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
+						amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
+						ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
+						
+						if (status != "Closed") {
+							amazonErr = true;
+						}
 					}
 				} else {
-					status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
-					amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
-					ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
-					
-					if (status != "Closed") {
-						amazonErr = true;
-					}
+					amazonErr = true;
 				}
 
 				if (amazonErr) {
-					jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.toString() + '</div>');	
+					if (typeof data.data.Error != "object") {
+						jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State.toString() + ' - ' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.ReasonCode.toString() + '</div>');
+					} else {
+						jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.Error.Code.toString() + ' - ' + data.data.Error.Message.toString() + '</div>');
+					}
+					// jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.toString() + '</div>');	
 			
 					jQuery('.donation-loading').remove();
 					jQuery('.donation-form').show();				
@@ -145,25 +157,27 @@
 					donateOffline();
 					
 					//var amt = data.donationResponse.donation.amount.decimal;
+					var feeamt = jQuery('input[name=additional_amount]').val();
+					var originalamt = jQuery('input[name=gift_amount]').val();
 					var email = jQuery('input[name="email"]').val();
 					var first = jQuery('input[name="first_name"]').val();
 					var last = jQuery('input[name="last_name"]').val();
-					var full = jQuery('input[name="first_name"]').val()+' '+jQuery('input[name="last_name"]').val();
+					// var full = jQuery('input[name="first_name"]').val()+' '+jQuery('input[name="last_name"]').val();
 					var street1 = jQuery('input[name="street1"]').val();
 					var street2 = jQuery('input[name="street2"]').val();
 					var city = jQuery('input[name="city"]').val();
 					var state = jQuery('select[name="state"]').val();
 					var zip = jQuery('input[name="zip"]').val();
-					//var ref = data.donationResponse.donation.confirmation_code;
 					var from_url = jQuery('input[name="from_url"]').val();
 					
 				  jQuery('.donation-loading').remove();
 				  jQuery('.donate-now, .header-donate').hide();
 				  jQuery('.thank-you').show();
-				  var ty_url = "https://www2.heart.org/amazonpay/middle-school/amazon/thankyou.html";
-				  if (jQuery('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/middle-school/amazon/thankyou.html";
-				  }
+				  var ty_url = "/amazonpay/middle-school/amazon/thankyou.html";
+				//   var ty_url = "https://www2.heart.org/amazonpay/middle-school/amazon/thankyou.html";
+				//   if (jQuery('input[name=instance]').val() == "heartdev") {
+				//   	ty_url = "https://secure3.convio.net/heartdev/amazonpay/middle-school/amazon/thankyou.html";
+				//   }
 				  jQuery.get(ty_url,function(datat){ 
 					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 					  jQuery('p.first').html(first);
@@ -174,9 +188,10 @@
 					  jQuery('p.state').html(state);
 					  jQuery('p.zip').html(zip);
 					  jQuery('p.email').html(email);
-					  jQuery('tr.card').hide();
-					  jQuery('tr.amazon').show();
+					//   jQuery('tr.amazon').show();
 					  jQuery('p.amount').html("$"+amt);
+					  jQuery('p.fee-amount').html("$" + feeamt);
+					  jQuery('p.original-amount').html("$" + originalamt);
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
 					  jQuery('.share-url').each(function(){
@@ -187,25 +202,8 @@
 				}
 			}
 		});
-
 	}
 
-	function donateOffline() {
-		var params = jQuery('.donation-form').serialize();
-
-		jQuery.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-			success: function(data){
-				//donateCallback.success(data.data);
-			}
-		});
-
-	}
-    
     /* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
   });
@@ -264,32 +262,6 @@ function getAmazonAddress() {
 		}
 	});
 })(jQuery);
-
-jQuery("#card-number").validateCreditCard(function(e) {
-	return jQuery("#card-number").removeClass(), null == e.card_type ? void jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}) : (jQuery("#card-number").addClass(e.card_type.name), "maestro" === e.card_type.name ? jQuery(".vertical.maestro").slideDown({
-		duration: 200
-	}).animate({
-		opacity: 1
-	}, {
-		queue: !1
-	}) : jQuery(".vertical.maestro").slideUp({
-		duration: 200
-	}).animate({
-		opacity: 0
-	}, {
-		queue: !1,
-		duration: 200
-	}), e.length_valid && e.luhn_valid ? jQuery("#card-number").addClass("valid") : jQuery("#card-number").removeClass("valid"))
-}, {
-	accept: ["visa", "mastercard", "amex", "discover"]
-});
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
