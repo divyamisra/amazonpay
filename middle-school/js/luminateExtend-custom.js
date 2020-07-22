@@ -188,14 +188,14 @@
 					  jQuery('p.state').html(state);
 					  jQuery('p.zip').html(zip);
 					  jQuery('p.email').html(email);
-					//   jQuery('tr.amazon').show();
 					  jQuery('p.amount').html("$"+amt);
 					  jQuery('p.fee-amount').html("$" + feeamt);
 					  jQuery('p.original-amount').html("$" + originalamt);
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
 					  jQuery('.share-url').each(function(){
-						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+						// jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+						jQuery(this).html().replace("%returnurl%",escape(from_url));
 					  });
 					});
 							  

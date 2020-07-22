@@ -319,7 +319,7 @@ div.donate-select label.error {
 	color: #fff;
 	font-size:24px;
 	font-weight:bold;
-	border-radius:0px;
+	border-radius:10px;
 	padding:20px;
 	margin:0 auto;
 	display:block;
