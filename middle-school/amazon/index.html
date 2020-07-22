@@ -9,10 +9,9 @@
 <script>
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
-<link rel="stylesheet" href="../amazonpay/middle-school/amazon/css/custom.css">
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/jquery.creditCardValidator.js"></script> 
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/jquery.validate.min.JS"></script> 
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/additional-methods.min.js"></script>
+<link rel="stylesheet" href="../amazonpay/middle-school/css/custom.css">
+<script type="text/javascript" src="../amazonpay/middle-school/js/jquery.validate.min.JS"></script> 
+<script type="text/javascript" src="../amazonpay/middle-school/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
   <div class="thank-you"></div>
   <div class="donate-now donation-form-content" style="background:none;"> 
@@ -24,7 +23,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
     </div>
     <p class="impactStatement" style="display: block;"></p>
   </div>
-  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure2.convio.net/amha/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
+  <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
     <div class="donation-form-container responsive">
       <input type="hidden" name="instance" value="[[S80:instance]]">
       <input type="hidden" name="recurring" value="false">
@@ -327,85 +326,40 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
+
+      <div class="panel panel-default">
+        <div class="form-group checkbox">
+          <input type="checkbox" name="cover_fee" id="cover_fee" value="yes">
+          <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
+        </div>
+
+        <div class="form-group checkbox required">
+          <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
+          <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
+          <div class="error input-group checkBox col-xs-12 col-sm-12">
+            <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+          </div>
+        </div>
+
+        <div class="confirmation-amount">
+          Amount: $<span id="confirmationAmt">75</span>
+        </div>
+      </div>
+
       <div class="panel panel-default process-button">
         <div class="panel-body">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
           <button type="button" id="donate-submit" class="btn btn-primary text-center">
           <div>All of my information is correct.</div>
           Process my donation please </button>
         </div>
-        <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
       </div>
     </div>
   </form>
 </div>
 
-<!-- <script type="text/javascript" src="https://heartdev.convio.net/heartwalk/amazon/js/analytics.js"></script> --> 
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/luminateExtend.js"></script> 
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/luminateExtend-custom.js"></script> 
-<script type="text/javascript">
-    jQuery('.toggleTribute').change(function() {
-    if (jQuery(this).is(':checked')) {
-      jQuery('.tribute').slideDown();
-    } else {
-      jQuery('.tribute').slideUp();
-    }
-  });
-  
-  //check for any passed parameters
-                                                     
-  if (jQuery.getQuerystring("s_src")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("s_src"));
-  }
-    
-  if (jQuery.getQuerystring("level_id")) {
-    jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
-  }
-
-// ADD QUERY STRING CODE 
-  if (jQuery.getQuerystring("honor") == "true") {
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(1) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("memorial") == "true") { 
-    jQuery(document).ready(function(){
-      jQuery('.tribute-select .icon-selection:eq(2) label').click();
-      if (jQuery.getQuerystring("trib_fname")) {
-        jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-      }
-      if (jQuery.getQuerystring("trib_lname")) {
-        jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-      }
-    });
-  }
-  if (jQuery.getQuerystring("msource")) {
-    jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-  }
-// END QUERY STRING CODE 
-    
-  if (jQuery.getQuerystring("amount")) {
-    jQuery('label.active').removeClass("active");
-    jQuery('label.level_other').addClass("active");
-    jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-    jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-    jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-  }
-    
-</script> 
+<script type="text/javascript" src="../amazonpay/middle-school/js/luminateExtend.js"></script> 
+<script type="text/javascript" src="../amazonpay/middle-school/js/luminateExtend-custom.js"></script> 
 <!-- ADD AMAZON CODE --> 
 <script>
 window.onAmazonLoginReady = function() {
@@ -421,4 +375,4 @@ window.onAmazonLoginReady = function() {
 ]] 
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
-<script type="text/javascript" src="../amazonpay/middle-school/amazon/js/amazon-pay.js"></script> 
+<script type="text/javascript" src="../amazonpay/middle-school/js/amazon-pay.js"></script> 
