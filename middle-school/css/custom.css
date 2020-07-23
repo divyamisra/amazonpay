@@ -306,7 +306,7 @@ div.donate-select label.error {
 	text-transform:uppercase;
 }
 .form-group.required .control-label:after, .checkbox.required label:after {
-  content:" *";
+  /* content:" *"; */
   color:red;
 }
 .checkbox.required label, .checkbox label {
