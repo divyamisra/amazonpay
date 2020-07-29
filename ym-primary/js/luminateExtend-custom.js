@@ -211,19 +211,6 @@ function showLevels(frequency, sel) {
 	jQuery('.radio-label').removeClass("active");
 	jQuery(sel).addClass("active");
     jQuery('.donate-select label.radio-level').removeClass("active");
-	if (frequency == "recurring") {
-		jQuery('.recurring').show();
-		jQuery('.onetime').hide();
-		jQuery('input[name=recurring]').val('true');
-		jQuery("#consentWidgetDiv").show();
-	    jQuery('.recurring label.radio-level:eq(1)').click();
-	} else {
-		jQuery('.recurring').hide();
-		jQuery('.onetime').show();
-		jQuery('input[name=recurring]').val('false');
-		jQuery("#consentWidgetDiv").hide();
-	    jQuery('.onetime label.radio-level:eq(1)').click();
-	}
 }
 
 function getAmazonAddress() {
@@ -278,28 +265,6 @@ jQuery('[id^=donor_]').each(function(){
 		jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
 	}
 
-	if (jQuery.getQuerystring("honor") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(1) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
-	if (jQuery.getQuerystring("memorial") == "true") {
-		jQuery(document).ready(function(){
-			jQuery('.tribute-select .icon-selection:eq(2) label').click();
-			if (jQuery.getQuerystring("trib_fname")) {
-				jQuery('input[name="tribute.honoree.name.first"]').val(jQuery.getQuerystring("trib_fname"));
-			}
-			if (jQuery.getQuerystring("trib_lname")) {
-				jQuery('input[name="tribute.honoree.name.last"]').val(jQuery.getQuerystring("trib_lname"));
-			}
-		});
-	}
 	if (jQuery.getQuerystring("msource")) {
 		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
 	}

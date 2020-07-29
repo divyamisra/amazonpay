@@ -315,12 +315,12 @@ div.donate-select label.error {
 }
 
 .btn-primary {
-	background-color: #ed1c24 !important;
+	/* background-color: #ed1c24 !important; */
 	border: none;
 	color: #fff;
 	font-size:24px;
 	font-weight:bold;
-	border-radius:0px;
+	/* border-radius:0px; */
 	padding:20px;
 	margin:0 auto;
 	display:block;
