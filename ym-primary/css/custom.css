@@ -9,7 +9,7 @@ header .ym-header-post-text {
 .ym-header-logo--shape-america {
 	display:none;
 }
-.ym-page-content h1 {
+.ym-page-content h1, #formTitle {
   color: #BDDD98;
   text-shadow: 3px 3px 2px #000;
 }
@@ -298,7 +298,7 @@ div.donate-select label.error {
 }
 */
 .star {
-  color:#a20b1a;
+  color:#C10E21;
 }
 
 .control-label {
@@ -308,7 +308,7 @@ div.donate-select label.error {
 }
 .form-group.required .control-label:after, .checkbox.required label:after {
   /* content:" *"; */
-  color:#a20b1a;
+  color:#C10E21;
 }
 .checkbox.required label, .checkbox label {
 	margin-left: 1em !important;
