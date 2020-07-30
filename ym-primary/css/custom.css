@@ -31,6 +31,10 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
   width: 100% !important;
 	height:auto;
 }
+div.responsive input[type="text"]:focus, div.responsive input[type="number"]:focus, div.responsive input[type="password"]:focus, div.responsive textarea:focus {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
 #donation-errors {
 	color:#ff0000;
 }
@@ -126,8 +130,10 @@ div.icon:hover, div.icon.active {
 	font-size:14px;
 	text-transform:uppercase;
 }
-.donate-how input, .donate-select input[type=radio], .tribute-select input {
-	display:none;
+.donate-select input[type=radio] {
+  position: absolute;
+  left: 10px;
+  top: 15px;
 }
 div.icon {
 	background: #000000;
@@ -138,7 +144,7 @@ div.icon {
 }
 
 .donation-detail {
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 div.card-select label {

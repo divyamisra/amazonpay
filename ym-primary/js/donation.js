@@ -81,3 +81,14 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
 if (location.href.indexOf("ym_ahc_") > 0) {
   jQuery('h2#formTitle').attr('ID', 'formTitle-ahc');
 }
+
+// UI for amount selection
+jQuery('.donation-amount-container').click(function(){
+	jQuery('.donate-select .active').removeClass("active");
+	jQuery('input[name=radioAmt]').attr({'aria-checked': false});
+	jQuery(this).children('label').addClass("active");
+	jQuery(this).children('label').children('input').attr({'aria-checked': true});
+	if(jQuery(this).attr('id') == 'other-amount-input-group') {
+		jQuery('#level-other').attr({'aria-checked': true}).prop('checked', true);
+	}
+});

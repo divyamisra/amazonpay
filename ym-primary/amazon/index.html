@@ -66,47 +66,47 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       :: 
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
-      <h2 class="section-header-container"> Select an amount: </h2>
+      <h2 class="section-header-container">Select an amount:</h2>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group donate-select">
-            <div class="col-xs-12 col-sm-12 onetime">
-              <div class="text-center">
+            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup"  aria-labelledby="section-header-container">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(40)">
-                <div class="donation-level-amount-container">$40</div>
+                  <input type="radio" name="radioAmt" id="amount1" class="radio-amt" aria-checked="false">
+                  <div class="donation-level-amount-container">$40</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount2" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                <div class="donation-level-amount-container">$75</div>
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="true">
+                  <div class="donation-level-amount-container">$75</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount3" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(100)">
-                <div class="donation-level-amount-container">$100</div>
+                  <input type="radio" name="radioAmt" id="amount3" class="radio-amt" aria-checked="false">
+                  <div class="donation-level-amount-container">$100</div>
                 </label>
               </div>
-              <div class="text-center">
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount4" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                <div class="donation-level-amount-container">$150</div>
+                  <input type="radio" name="radioAmt" id="amount4" class="radio-amt" aria-checked="false">
+                  <div class="donation-level-amount-container">$150</div>
                 </label>
               </div>
             </div>
-            <div class="col-xs-12 col-sm-6 text-left">
-              <label for="level-other" class="level_other">Other </label>
+            <div class="col-xs-12 col-sm-6 text-left" id="other-amount-input-group">
+              <label for="level-other" class="level_other">Other
+                <input type="radio" name="radioAmt" id="level-other" class="radio-amt" aria-checked="false">
+              </label>
               <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)">
+                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-		jQuery('.donate-select label').click(function(){
-			jQuery('.donate-select .active').removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	  </script>
       <div class="panel panel-default payment-type active">
         <style>
   .payment-type label img {cursor:pointer;} 

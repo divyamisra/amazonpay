@@ -29,10 +29,6 @@
         }
       });
       
-	  jQuery('.gift-select label').click(function(){
-			showLevels(jQuery(this).prev('input').data('frequency'),this);
-  	  });
-
       jQuery('.donation-form').submit(function() {
 		//move contact info details to billing info if any fields are blank
 		jQuery('[id^=billing\\_]').each(function(){
@@ -207,12 +203,6 @@
   });
 })(jQuery);
 
-function showLevels(frequency, sel) {
-	jQuery('.radio-label').removeClass("active");
-	jQuery(sel).addClass("active");
-    jQuery('.donate-select label.radio-level').removeClass("active");
-}
-
 function getAmazonAddress() {
 	var params = jQuery('.donation-form').serialize();
 	jQuery.ajax({
@@ -288,12 +278,5 @@ jQuery('[id^=donor_]').each(function(){
 	jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
 	jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
 	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
-
-	jQuery('.group1').show();
-	jQuery('.group2').hide();
-	if(jQuery.getQuerystring("group") == "0") {
-		jQuery('.group1').hide();
-		jQuery('.group2').show();
-	}	      
 
 // END QUERY STRING CODE 
