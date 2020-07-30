@@ -76,3 +76,8 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
   jQuery('input[name=form_id]').val(data2.don_form_id);
   });
 }
+
+// Set attributes specific to AHC
+if (location.href.indexOf("ym_ahc_") > 0) {
+  jQuery('h2#formTitle').attr('ID', 'formTitle-AHC');
+}

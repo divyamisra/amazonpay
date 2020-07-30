@@ -13,6 +13,10 @@ header .ym-header-post-text {
   color: #BDDD98;
   text-shadow: 3px 3px 2px #000;
 }
+#formTitle-ahc {
+  color: #007ab8;
+  font-family: Raleway;
+}
 em {
 	font-size:12px;
 }
@@ -326,7 +330,7 @@ div.donate-select label.error {
 	display:block;
 }
 .btn-primary:hover {
-	background-color: #ed1c24;	
+	background-color: #ed1c24 !important;
 	text-decoration:underline;
 }
 .btn-primary > div {
