@@ -63,7 +63,8 @@ div.donation-form-container .section-header-container {
 	display:none;
 }
 #other-amount-input-group {
-	margin-top: 0.5em;
+  margin-top: 0.5em;
+  clear:both;
 }
 
 #headerWrapper {
@@ -237,6 +238,7 @@ div.donate-select label {
 .level-other-input {
   display: none;
   margin-top: 10px;
+  float: left;
 }
 .level-other-input .input-group-addon {
   display: inline-block;

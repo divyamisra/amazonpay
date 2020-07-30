@@ -66,11 +66,11 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       :: 
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
-      <h2 class="section-header-container">Select an amount:</h2>
+      <h2 class="section-header-container" id="amt-header">Select an amount:</h2>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group donate-select">
-            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup"  aria-labelledby="section-header-container">
+            <div class="col-xs-12 col-sm-12 onetime" role="radiogroup"  aria-labelledby="amt-header">
               <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(40)">
                   <input type="radio" name="radioAmt" id="amount1" class="radio-amt" aria-checked="false">
@@ -79,7 +79,7 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
               </div>
               <div class="donation-amount-container text-center">
                 <label class="radio-level active" for="amount2" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="true">
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="true" checked>
                   <div class="donation-level-amount-container">$75</div>
                 </label>
               </div>
@@ -95,13 +95,13 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                   <div class="donation-level-amount-container">$150</div>
                 </label>
               </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 text-left" id="other-amount-input-group">
-              <label for="level-other" class="level_other">Other
-                <input type="radio" name="radioAmt" id="level-other" class="radio-amt" aria-checked="false">
-              </label>
-              <div class="level-other-input"> <span class="input-group-addon">$</span>
-                <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
+              <div class="donation-amount-container text-center" id="other-amount-input-group">
+                <label for="level-other" class="level_other">Other
+                  <input type="radio" name="radioAmt" id="level-other" class="radio-amt" aria-checked="false">
+                </label>
+                <div class="level-other-input"> <span class="input-group-addon">$</span>
+                  <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
+                </div>
               </div>
             </div>
           </div>
