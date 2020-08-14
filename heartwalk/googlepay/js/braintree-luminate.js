@@ -65,7 +65,7 @@ var braintree_aha = {
 		//if apple pay is available then start BT process
 		var tokenURL = "https://hearttools.heart.org/braintree_new/gettoken.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://hearttools.heart.org/braintree_new/gettoken-test.php";
+			tokenURL = "https://tools.heart.org/braintree_new/gettoken-test.php";
 		}
 		jQuery.getJSON(tokenURL + "?callback=?",function(data){
 		    console.log(data);
