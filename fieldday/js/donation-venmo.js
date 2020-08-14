@@ -94,6 +94,7 @@ jQuery(document).ready(function() {
 					jQuery('#venmoModal .modal-body').html(venmoData);
 					jQuery('#venmoModal').modal(); 
                 } else {
+					$('.error').attr('role','alert');
                     return false;
                 }
             });

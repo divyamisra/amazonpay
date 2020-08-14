@@ -91,6 +91,7 @@ jQuery(document).ready(function() {
                     }
                     braintree_aha.submitApplePayDonation();
                 } else {
+					$('.error').attr('role','alert');
                     return false;
                 }
             });

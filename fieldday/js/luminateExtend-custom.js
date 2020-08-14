@@ -91,6 +91,7 @@
 				return false;
 			}
 		} else { 
+			$('.error').attr('role','alert');
 			return false;
 		}
       });
