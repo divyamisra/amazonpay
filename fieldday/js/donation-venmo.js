@@ -94,7 +94,7 @@ jQuery(document).ready(function() {
 					jQuery('#venmoModal .modal-body').html(venmoData);
 					jQuery('#venmoModal').modal(); 
                 } else {
-					$('.error').attr('role','alert');
+					$('label.error').attr('role','alert').attr('aria-atomic','true');
                     return false;
                 }
             });

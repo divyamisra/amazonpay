@@ -95,7 +95,7 @@ jQuery(document).ready(function() {
                     }
 					braintree_aha.submitGooglePayDonation();
                 } else {
-					$('.error').attr('role','alert');
+					$('label.error').attr('role','alert').attr('aria-atomic','true');
                     return false;
                 }
             });
