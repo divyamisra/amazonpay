@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
 	jQuery.getJSON(apiURL,function(data){
 		if(data.getTeamraisersResponse != null) {
 			var regtst = /\w{3}-+/;
-					var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
+			var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
 			if (match != null) {
 				jQuery('input[name=affiliate]').val(match[0].substr(0,3));
 			} else {
@@ -34,7 +34,26 @@ jQuery(document).ready(function() {
 			jQuery('input[name=affiliate]').val('GEN');
 		}
 	});
-	    
+
+	// Get amount passed from query string
+	var amount = jQuery.getQuerystring("amount");
+	if (amount.length > 0) {
+		var match = jQuery('label[data-amount=' + amount + ']');
+		if(match.length>=1){
+			jQuery(match).click();
+			feeOption.coverFee();
+		} else {
+			jQuery('label.active').removeClass("active");
+			jQuery('label.level_other').addClass("active");
+			jQuery('.level-other-input').slideDown();
+			jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+			jQuery('#other-amount-entered').removeAttr('disabled');
+			jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+			jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+			feeOption.coverFee();
+		}
+	}
+
 	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
             jQuery('.donate-select label').click(function() {
@@ -196,22 +215,3 @@ jQuery('.donation-amount-container').click(function(){
 		jQuery('#other-radio').attr({'aria-checked': true}).prop('checked', true);
 	}
 });
-
-// Get amount passed from query string
-var amount = jQuery.getQuerystring("amount");
-if (amount.length > 0) {
-	var match = jQuery('label[data-amount=' + amount + ']');
-	if(match.length>=1){
-		jQuery(match).click();
-		coverFee();
-	} else {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
-		jQuery('#other-amount-entered').removeAttr('disabled');
-		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
-		coverFee();
-	}
-}
