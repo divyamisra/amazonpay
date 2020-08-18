@@ -207,7 +207,7 @@ if (amount.length > 0) {
 	var match = jQuery('label[data-amount=' + amount + ']');
 	if(match.length>=1){
 		jQuery(match).click();
-		coverFee();
+		feeOption.coverFee();
 	} else {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
