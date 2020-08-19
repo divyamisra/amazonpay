@@ -117,16 +117,42 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
 </nav>
 <div class="container" style="text-align:center">
   <div class="thank-you">
-    <!-- <div class="thank-you-image"> <img src="https://www2.heart.org/amazonpay/heartwalk/amazon/images/AHA-donation-thankyou-image-sml.jpg" /> </div> -->
+    
+  <style>
+    .thankYouShare .step-button {
+       font-size:18px !important;
+       font-family: LubDubBold, Helvetica, Arial !important;
+    }
+    .fa-icon::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+    
+    .fa-facebook-square::before {
+        font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f082";
+    }
+    
+    .fa-twitter-square::before {
+        font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f081";
+    }
+    </style>
     <div class="page-header">
-      <h1>Thank you. You are wonderful.</h1>
+      <h1>Thank you for your donation, <span class="first"></span>!</h1>
     </div>
     <div class="givingText" style="display: block;">
-      <p>People facing heart disease need you. And now you're there. <strong>Today, you are why</strong>.</p>
-      <p>You are why the next baby will live to see her first birthday. You are why a dad will be able to walk his daughter down the aisle. You are why a mom will be there to celebrate her son's graduation. You are why grandparents will celebrate their anniversaries for years to come.</p>
-      <p>Because there are so many stories of heartbreak and hope, there are so many reasons why. Thank you for acting on yours today.</p>
+      <p>Help inspire others by letting your friends and family know about your generous gift to <a class="from_url" href="" ><span class="participant"></span>'s page</a>.</p>
+      <!-- share widgets -->
+      <div class="thankYouShareBlock pad">
+        <div class="thankYouShare tyFB text-center mb-4"><a class="btn step-button" id="fb-share" href="" target="_blank">Share on Facebook&nbsp;&nbsp;&nbsp;<span class="fa-icon fa-facebook-square"></span></a>&nbsp;<a class="btn step-button" id="twitter-share" href="" target="_blank">Share on Twitter&nbsp;&nbsp;&nbsp;<span class="fa-icon fa-twitter-square"></span></a>
+        </div>
+      </div>
+      <p>Your donation is making an extraordinary impact by funding research initiatives, vital education, quality healthcare, and a voice in government. You can read more about our research, programs and advocacy efforts online at <a href="//www.heart.org">www.heart.org</a></p>
+      <p>Life is why the American Heart Association exists. For the littlest baby and the oldest grandparent, you can change and even save their life. On behalf of the American Heart Association and everyone affected by heart disease and stroke, thank you for your support!</p>
     </div>
-    <table width="90%" border="0">
+    <table width="100%" border="0">
       <tbody>
         <tr>
           <td class="FormSectionHeader">Transaction Summary</td>
@@ -151,7 +177,7 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
                   <td valign="top"><p class="FormLabelText">Last Name:</p></td>
                   <td><p class="last"></p></td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <td valign="top"><p class="FormLabelText">Street1:</p></td>
                   <td><p class="street1"></p></td>
                 </tr>
@@ -170,7 +196,7 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
                 <tr>
                   <td valign="top"><p class="FormLabelText">Zip:</p></td>
                   <td><p class="zip"></p></td>
-                </tr> -->
+                </tr>
                 <tr>
                   <td valign="top"><p class="FormLabelText">Email:</p></td>
                   <td><p class="email"></p></td>
@@ -199,36 +225,12 @@ src="//www.googleadservices.com/pagead/conversion/936930558/?label=HZKtCMmH2WIQ_
                   <td valign="top"><p class="FormLabelText">Confirmation Code:</p></td>
                   <td><p class="confcode"></p></td>
                 </tr>
-                <tr valign="top">
-                  <td valign="top"><p class="FormLabelText">Venmo User:</p></td>
-                  <td><p class="venmouser"></p></td>
-                </tr>
 	      </tbody>
             </table></td>
         </tr>
       </tbody>
     </table>
     </p>
-    <!-- <div class="confirmationText"></div> -->
-    <p>&nbsp;</p>
-    <hr style="border:1px solid #ccc !important"/>
-    <p>&nbsp;</p>
-    <div class="shareText">
-      <div class="page-header">
-        <h1>Share this smile with the world</h1>
-        <p>&nbsp;</p>
-        <aside class="widget-area">
-          <section class="widget simple-social-icons" id="simple-social-icons-2">
-            <div class="widget-wrap">
-              <ul class="aligncenter">
-                <li class="social-facebook share-url"><a href="http://www.facebook.com/sharer.php?u=%returnurl%" target="_blank" class="fa fa-facebook"></a></li>
-                <li class="social-twitter share-url"><a href="https://twitter.com/share?url=%returnurl%&text=I%20just%20saved%20a%20life%20with%20my%20gift%20to%20the%20American%20Heart%20Association!%20%20What%20is%20YOUR%20%E2%80%9CWhy%E2%80%9D?" target="_blank" class="fa fa-twitter"></a></li>
-              </ul>
-            </div>
-          </section>
-        </aside>
-      </div>
-    </div>
   </div>
 </div>
 <footer>

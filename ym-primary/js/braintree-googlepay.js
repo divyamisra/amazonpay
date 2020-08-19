@@ -65,7 +65,7 @@ var braintree_aha = {
 		//if apple pay is available then start BT process
 		var tokenURL = "https://hearttools.heart.org/braintree_new/gettoken.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://tools.heart.org/braintree_new/gettoken-test.php";
+			tokenURL = "https://hearttools.heart.org/braintree_new/gettoken-test.php";
 		}
 		jQuery.getJSON(tokenURL + "?callback=?",function(data){
 		    console.log(data);
@@ -110,12 +110,12 @@ var braintree_aha = {
 		  }, function (err, googlePaymentInstance) {
 		  	// Set up Google Pay button
 			if (googlePaymentInstance != undefined) {
-				jQuery('.page-content').removeClass("hidden");
-				jQuery('.no-venmo').addClass("hidden");
+				jQuery('.ym-page-container').removeClass("hidden");
+				jQuery('.no-googlepay').addClass("hidden");
 				braintree_aha.googlePaymentInstance = googlePaymentInstance;
 			} else {
-				jQuery('.page-content').addClass("hidden");
-				jQuery('.no-venmo').removeClass("hidden");
+				jQuery('.ym-page-container').addClass("hidden");
+				jQuery('.no-googlepay').removeClass("hidden");
 				console.log(err, googlePaymentInstance);
 			}
 		  }
@@ -155,6 +155,14 @@ var braintree_aha = {
 				// Send payload.nonce to your server.
 				jQuery("input#payment_method_nonce").val(result.nonce);
 
+				// Collect Address info
+				// https://developers.google.com/pay/api/web/reference/response-objects#Address
+				jQuery("input#donor_street1").val(paymentData.paymentMethodData.info.billingAddress.address1);
+				jQuery("input#donor_street2").val(paymentData.paymentMethodData.info.billingAddress.address2);
+				jQuery("input#donor_city").val(paymentData.paymentMethodData.info.billingAddress.locality);
+				jQuery('select[name="state"]').val(paymentData.paymentMethodData.info.billingAddress.administrativeArea);
+				jQuery("input#donor_zip").val(paymentData.paymentMethodData.info.billingAddress.postalCode);
+
 				// Success GooglePay
 				braintree_aha.postDonationFormGooglePay(
 					donateGooglePay,
@@ -176,7 +184,7 @@ var braintree_aha = {
 				
 		var tokenURL = "https://hearttools.heart.org/braintree_new/checkout-tr.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://tools.heart.org/braintree_new/checkout-tr-test.php";
+			tokenURL = "https://hearttools.heart.org/braintree_new/checkout-tr-test.php";
 		}
 		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
