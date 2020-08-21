@@ -74,8 +74,9 @@ jQuery(document).ready(function() {
                         alert("Please enter an amount $10 or greater");
                         return false;
                     }
-					braintree_aha.submitGooglePayDonation();
+                    braintree_aha.submitGooglePayDonation();
                 } else {
+                    $('label.error').attr('role','alert').attr('aria-atomic','true');
                     return false;
                 }
             });
