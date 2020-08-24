@@ -52,7 +52,7 @@ function donateOffline() {
 		async: false,
 		cache: false,
 		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
+		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
 		success: function(data) {
 			//donateCallback.success(data.data);
 		}
