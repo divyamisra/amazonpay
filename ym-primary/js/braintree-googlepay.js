@@ -63,9 +63,9 @@ var braintree_aha = {
 	initializeBraintree: function() {
 		
 		//if apple pay is available then start BT process
-		var tokenURL = "https://hearttools.heart.org/braintree_new/gettoken.php";
+		var tokenURL = "https://tools.heart.org/braintree_new/gettoken.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://hearttools.heart.org/braintree_new/gettoken-test.php";
+			tokenURL = "https://tools.heart.org/braintree_new/gettoken-test.php";
 		}
 		jQuery.getJSON(tokenURL + "?callback=?",function(data){
 		    console.log(data);
@@ -182,9 +182,9 @@ var braintree_aha = {
 		var postParams = jQuery(braintree_aha.donation_form).serialize();
 		postParams += "&amount="+jQuery('input[name=other_amount]').val();
 				
-		var tokenURL = "https://hearttools.heart.org/braintree_new/checkout-tr.php";
+		var tokenURL = "https://tools.heart.org/braintree_new/checkout-tr.php";
 		if (jQuery('input[name=instance]').val() == "heartdev") {
-			tokenURL = "https://hearttools.heart.org/braintree_new/checkout-tr-test.php";
+			tokenURL = "https://tools.heart.org/braintree_new/checkout-tr-test.php";
 		}
 		jQuery.getJSON(tokenURL + '?callback=?', postParams)
 			.done(function(data) {
