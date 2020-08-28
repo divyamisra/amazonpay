@@ -105,7 +105,7 @@
 			async: false,
 			cache:false,
 			dataType: "json",
-			url:"https://hearttools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
+			url:"https://tools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
 			success: function(data){
 				if (jqcn('input[name=recurring]').val() == "true") {
 					status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
@@ -196,7 +196,7 @@
 			async: false,
 			cache:false,
 			dataType: "json",
-			url:"https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
+			url:"https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
 			success: function(data){
 				//donateCallback.success(data.data);
 			}
@@ -232,7 +232,7 @@ function getAmazonAddress() {
 		async: false,
 		cache:false,
 		dataType: "json",
-		url:"https://hearttools.heart.org/donate/amazon/getAmazonAddress.php?"+params+"&callback=?",
+		url:"https://tools.heart.org/donate/amazon/getAmazonAddress.php?"+params+"&callback=?",
 		success: function(data){
 			var address = data.data.GetBillingAgreementDetailsResult.BillingAgreementDetails.BillingAddress.PhysicalAddress;
 			jqcn('input[name="street1"]').val(address.AddressLine1);
