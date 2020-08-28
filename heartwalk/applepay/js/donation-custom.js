@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 	    
         var evid = jQuery.getQuerystring("FR_ID");
-	jQuery.getJSON('https://hearttools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
+	jQuery.getJSON('https://tools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?',function(data){
 		if(data.eventdata != null) {
                    var regtst = /\w{3}-+/;
 	   	   var match = regtst.exec(data.eventdata.greetingurl);
@@ -180,7 +180,7 @@ function donateOffline() {
 		async: false,
 		cache: false,
 		dataType: "json",
-		url: "https://hearttools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
+		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
 		success: function(data) {
 			//donateCallback.success(data.data);
 		}
