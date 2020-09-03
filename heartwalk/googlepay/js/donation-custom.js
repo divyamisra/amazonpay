@@ -56,8 +56,9 @@ jQuery(document).ready(function() {
                     if (jQuery(this).val() == "") {
                         jQuery(this).val(jQuery("[id='" + jQuery(this).attr("id").replace("billing_", "donor_") + "']").val());
                     }
-                });
+				});
 
+                $("#double_the_donation_company_id").val($('input[name=doublethedonation_company_id]').val());
                 jQuery('input[name=compliance]').val("true");
 
                 window.scrollTo(0, 0);
@@ -121,7 +122,8 @@ function donateGooglePay() {
 	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	// if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	donateOffline(donateOfflineCallback);
 
 	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();

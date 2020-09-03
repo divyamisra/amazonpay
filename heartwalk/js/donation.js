@@ -62,7 +62,7 @@ function donateOffline(donateOfflineCallback) {
  * @param {*} responseData - From the donateOffline success callback
  */
 function donateOfflineCallback(responseData) {
-	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "American Heart Association";
+	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
 	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
 
 	const widgetData = {
@@ -78,7 +78,10 @@ function donateOfflineCallback(responseData) {
 
 	if (jQuery('input[name=doublethedonation_company_id]').length && jQuery('input[name=doublethedonation_company_id]').val() !== "") {
 		doubleDonationConfirmation(widgetData);
-	}
+  }
+
+  // $('p.loConfCode').closest('tr').removeClass("hidden");
+  // jQuery('p.loConfCode').html(widgetData.confirmationCode);
 }
 
 /**
