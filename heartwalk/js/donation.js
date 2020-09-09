@@ -154,7 +154,7 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
 (function(){
 	var a = document.createElement('script');
 	a.type = 'text/javascript';
-	a.src = '../amazonpay/fieldday/js/gaDonationSuccess.js';
+	a.src = '../amazonpay/heartwalk/js/gaDonationSuccess.js';
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(a, s);
 })();
