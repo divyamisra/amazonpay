@@ -61,13 +61,6 @@ div.responsive input.venmo-text {
 	display:none;
 }
 
-/* .tribute {
-	display:none;
-}
-.tribute-print,
-.tribute-ecard {
-	display:none;
-} */
 .billing-information {
 	display:none;
 }
@@ -432,11 +425,6 @@ ul.footer-menu li a {
   text-align:left !important;
 }
 
-/* .donate-thankyou {
-list-style-image: url(/images/heart-bullet.png);
-} */
-
-
 .fa-flag,
 .fa-usd {
   color: #fff;
@@ -514,9 +502,10 @@ td.FormSectionHeader {
   clear:both;
 }
 
-/* .atpay {
-padding-bottom: 15px;	
-} */
+/* Double Donation Widget*/
+#dd-widget {
+  margin-bottom: 2rem;
+}
 
 [type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after, [type="radio"]:not(:checked) + label:after, [type="radio"]:checked + label:after {
   font-size:1.1rem !important;
