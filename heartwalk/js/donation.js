@@ -64,24 +64,23 @@ function donateOffline(donateOfflineCallback) {
 function donateOfflineCallback(responseData) {
 	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
 	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
-
+	
 	const widgetData = {
-		transactionId: responseData.data.donationResponse.donation.transaction_id,
-		confirmationCode: responseData.data.donationResponse.donation.confirmation_code,
-		transactionDate: responseData.data.donationResponse.donation.date_time,
+		// transactionId: responseData.data.donationResponse.donation.transaction_id,
+		confirmationcode: "LUMINATE:" + responseData.addGift.addGiftResponse.gift.checkNumber,
+		transactionDate: responseData.addGift.addGiftResponse.gift.date,
 		email: $('input[name="donor.email"]').val(),
 		firstName: $('input[name="donor.name.first"]').val(),
 		lastName: $('input[name="donor.name.last"]').val(),
 		amt: $('input[name=other_amount]').val(),
-		form: campaign_name
+		form: campaign_name,
+		ddCompanyId: jQuery('input[name=doublethedonation_company_id]').val()
 	};
-
-	if (jQuery('input[name=doublethedonation_company_id]').length && jQuery('input[name=doublethedonation_company_id]').val() !== "") {
+	
+	// Call only if the widget is on the form
+	if (jQuery('input[name=doublethedonation_company_id]').length > 0) {
 		doubleDonationConfirmation(widgetData);
   }
-
-  // $('p.loConfCode').closest('tr').removeClass("hidden");
-  // jQuery('p.loConfCode').html(widgetData.confirmationCode);
 }
 
 /**
@@ -89,7 +88,6 @@ function donateOfflineCallback(responseData) {
  * @param {*} widgetData
  */
 function doubleDonationConfirmation(widgetData) {
-	const ddCompanyId = jQuery('input[name=doublethedonation_company_id]').val();
 
 	var domain = doublethedonation.integrations.core.strip_domain(widgetData.email);
 	doublethedonation.plugin.load_config();
@@ -98,7 +96,7 @@ function doubleDonationConfirmation(widgetData) {
 	doublethedonation.plugin.email_domain(domain);
 
 	if (ddCompanyId !== "") {
-		doublethedonation.plugin.set_company(ddCompanyId);
+		doublethedonation.plugin.set_company(widgetData.ddCompanyId);
 	}
 
 	doublethedonation.integrations.core.register_donation({
@@ -109,7 +107,7 @@ function doubleDonationConfirmation(widgetData) {
 		"donor_first_name": widgetData.firstName,
 		"donor_last_name": widgetData.lastName,
 		"donor_email": widgetData.email,
-		"doublethedonation_company_id": ddCompanyId,
+		"doublethedonation_company_id": widgetData.ddCompanyId,
 		"doublethedonation_status": null
 	});
 
