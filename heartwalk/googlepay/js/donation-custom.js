@@ -128,8 +128,8 @@ function donateGooglePay() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').show();
-	var params = jQuery('.donation-form').serialize();
-	var status = "";
+	// var params = jQuery('.donation-form').serialize();
+	// var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
 	var feeamt = jQuery('input[name=additional_amount]').val();
 	var originalamt = jQuery('input[name=gift_amount]').val();
@@ -150,7 +150,7 @@ function donateGooglePay() {
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
