@@ -116,7 +116,7 @@ function doubleDonationConfirmation(widgetData) {
 		if (window.doublethedonation) {
 			doublethedonation.plugin.load_plugin();
 		}
-	}, 1000);
+	}, 1500);
 }
 
 // Display event info
