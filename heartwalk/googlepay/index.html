@@ -1,53 +1,4 @@
 <script>
-  window.pushDonationSuccessToDataLayer = function(formId, trackingCode, giftAmount) {
-      formId = formId || '';
-      trackingCode = trackingCode || '';
-      giftAmount = giftAmount || '0';
-      giftAmount = (giftAmount + '').replace('$', '').replace(/,/g, '');
-      var donationDateObject = new Date(), 
-      donationDateMonth = donationDateObject.getMonth() + 1, 
-      donationDateDay = donationDateObject.getDate(), 
-      donationDateYear = donationDateObject.getFullYear();
-      if(donationDateMonth < 10) {
-        donationDateMonth = '0' + donationDateMonth;
-      }
-      if(donationDateDay < 10) {
-        donationDateDay = '0' + donationDateDay;
-      }
-      var donationDate = donationDateMonth + '/' + donationDateDay + '/' + donationDateYear;
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'transaction', 
-      'paymentMethod': 'credit card', 
-          'transactionType': 'development donate now', 
-        'donationDate': donationDate, 
-      'ecommerce': {
-        'currencyCode': 'USD', 
-        'purchase': {
-          'actionField': {
-            'affiliation': 'development', 
-              'id': 'donation-' + trackingCode, 
-              'revenue': giftAmount, 
-              'shipping': '0', 
-              'tax': '0', 
-          }, 
-          'products': [
-            {
-                  'name': 'development donate now', 
-                'id': 'form-' + formId, 
-                'price': giftAmount, 
-                  'brand': 'donate now', 
-                  'category': 'straight donation', 
-                  'variant': 'donatenow_heart', 
-              'quantity': 1
-            }
-          ]
-        }
-      }
-    });
-  };
-</script>
-<script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -301,19 +252,6 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
               <label class="col-sm-3 col-md-3 control-label" for="donor_email">Email Address:</label>
               <div class="col-sm-8 col-md-6">
                 <input type="email" class="form-control required" name="email" id="donor_email">
-              </div>
-            </div>
-
-            <div class="form-group" id="dd-widget">
-              <h2>Employer Matching (Optional)</h2>
-              <hr>
-              <div class="inline row">
-                <div class='input-group col-xs-12 col-sm-12 text-field'>
-                <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
-              </div>
-              <div class="col-sm-8 col-md-6">
-                <div id="dd-company-name-input"></div>
-              </div>
               </div>
             </div>
 

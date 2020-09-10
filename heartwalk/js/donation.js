@@ -53,7 +53,7 @@ function donateOffline(donateOfflineCallback) {
 		cache: false,
 		dataType: "json",
 		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: donateOfflineCallback
+		// success: donateOfflineCallback
 	});
 }
 
