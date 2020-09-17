@@ -10,7 +10,7 @@ header .ym-header-post-text {
 	display:none;
 }
 .ym-page-content h1, #formTitle {
-  color: #BDDD98;
+  color: #91C855;
   text-shadow: 3px 3px 2px #000;
 }
 #formTitle-ahc {
@@ -353,6 +353,11 @@ div.donate-select label.error {
 .btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
   text-decoration: none;
+}
+.btn-primary-venmo:focus, .btn-primary-applepay:focus, .btn-primary-googlepay:focus {
+  background-color: transparent !important;
+  text-decoration: none;
+  border: 2px solid #ed1c24;
 }
 .confirmation-amount {
   font-size: 1.5em;
