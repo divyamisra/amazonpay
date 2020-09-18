@@ -67,7 +67,7 @@ function donateOfflineCallback(responseData) {
 	
 	const widgetData = {
 		// transactionId: responseData.data.donationResponse.donation.transaction_id,
-		confirmationcode: "LUMINATE:" + responseData.addGift.addGiftResponse.gift.checkNumber,
+		confirmationcode: responseData.addGift.addGiftResponse.gift.checkNumber,
 		transactionDate: responseData.addGift.addGiftResponse.gift.date,
 		email: $('input[name="donor.email"]').val(),
 		firstName: $('input[name="donor.name.first"]').val(),
