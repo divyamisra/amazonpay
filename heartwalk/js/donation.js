@@ -95,7 +95,7 @@ function doubleDonationConfirmation(widgetData) {
 	doublethedonation.plugin.set_donation_campaign(widgetData.form);
 	doublethedonation.plugin.email_domain(domain);
 
-	if (ddCompanyId !== "") {
+	if (widgetData.ddCompanyId !== "") {
 		doublethedonation.plugin.set_company(widgetData.ddCompanyId);
 	}
 
