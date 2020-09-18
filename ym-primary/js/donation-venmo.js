@@ -80,7 +80,7 @@ jQuery(document).ready(function() {
 					jQuery('#venmoModal').modal(); 
 		    		return true;
                 } else {
-                    $('label.error').attr('role','alert').attr('aria-atomic','true');
+                    jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
                     return false;
                 }
             });
