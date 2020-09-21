@@ -1,53 +1,4 @@
 <script>
-  window.pushDonationSuccessToDataLayer = function(formId, trackingCode, giftAmount) {
-      formId = formId || '';
-      trackingCode = trackingCode || '';
-      giftAmount = giftAmount || '0';
-      giftAmount = (giftAmount + '').replace('$', '').replace(/,/g, '');
-      var donationDateObject = new Date(), 
-      donationDateMonth = donationDateObject.getMonth() + 1, 
-      donationDateDay = donationDateObject.getDate(), 
-      donationDateYear = donationDateObject.getFullYear();
-      if(donationDateMonth < 10) {
-        donationDateMonth = '0' + donationDateMonth;
-      }
-      if(donationDateDay < 10) {
-        donationDateDay = '0' + donationDateDay;
-      }
-      var donationDate = donationDateMonth + '/' + donationDateDay + '/' + donationDateYear;
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'transaction', 
-      'paymentMethod': 'credit card', 
-          'transactionType': 'development donate now', 
-        'donationDate': donationDate, 
-      'ecommerce': {
-        'currencyCode': 'USD', 
-        'purchase': {
-          'actionField': {
-            'affiliation': 'development', 
-              'id': 'donation-' + trackingCode, 
-              'revenue': giftAmount, 
-              'shipping': '0', 
-              'tax': '0', 
-          }, 
-          'products': [
-            {
-                  'name': 'development donate now', 
-                'id': 'form-' + formId, 
-                'price': giftAmount, 
-                  'brand': 'donate now', 
-                  'category': 'straight donation', 
-                  'variant': 'donatenow_heart', 
-              'quantity': 1
-            }
-          ]
-        }
-      }
-    });
-  };
-</script>
-<script>
 var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -120,6 +71,8 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
       <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       <input type="hidden" name="from_url_js" id="from_url_js" value="" />
+      <input type="hidden" name="double_the_donation_company_id" id="double_the_donation_company_id" value=""/>
+      <input type="hidden" name="campaign_name" id="campaign_name" value="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::heartdev ::]][[?xx::x[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]x::[[E42:[[S334:FR_ID]]:title]]::[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]]]"/>
       [[?[[S334:PROXY_TYPE]]::20::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
@@ -337,6 +290,19 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
               </div>
             </div>
 
+            <div class="form-group" id="dd-widget">
+              <h2>Employer Matching (Optional)</h2>
+              <hr>
+              <div class="inline row">
+                <div class='input-group col-xs-12 col-sm-12 text-field'>
+                <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
+              </div>
+              <div class="col-sm-8 col-md-6">
+                <div id="dd-company-name-input"></div>
+              </div>
+              </div>
+            </div>
+
             <div class="form-group checkbox">
               <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
               <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
@@ -351,7 +317,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
             </div>
         
             <div class="confirmation-amount">
-              Amount: $<span id="confirmationAmt">75</span>
+              Amount: <span id="confirmationAmt">75</span>
             </div>
 
           </div>

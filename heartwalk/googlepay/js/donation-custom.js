@@ -16,24 +16,44 @@
 jQuery(document).ready(function() {
 	jQuery('#from_url_js').val(document.referrer);
 
-	var evid = jQuery.getQuerystring("FR_ID");
-	var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-		apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
+    var evid = jQuery.getQuerystring("FR_ID");
+    var apiURL = 'https://www2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
+    if (jQuery('input[name=instance]').val() == "heartdev") {
+        apiURL = 'https://dev2.heart.org/site/CRTeamraiserAPI?luminateExtend=1.7.1&method=getTeamraisersByInfo&name=%25%25%25&list_filter_column=frc.fr_id&list_filter_text='+evid+'&list_page_size=500&list_ascending=false&list_sort_column=event_date&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&v=1.0&ts=1536362358137';
+    }
+    jQuery.getJSON(apiURL,function(data){
+        if(data.getTeamraisersResponse != null) {
+            var regtst = /\w{3}-+/;
+            var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
+            if (match != null) {
+                jQuery('input[name=affiliate]').val(match[0].substr(0,3));
+            } else {
+                jQuery('input[name=affiliate]').val('GEN');
+            }
+        } else {
+            jQuery('input[name=affiliate]').val('GEN');
         }
-	jQuery.getJSON(apiURL,function(data){
-		if(data.getTeamraisersResponse != null) {
-                   var regtst = /\w{3}-+/;
-	   	   var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
-                   if (match != null) {
-   		      jQuery('input[name=affiliate]').val(match[0].substr(0,3));
-                   } else {
-   		      jQuery('input[name=affiliate]').val('GEN');
-                   }
-                } else {
-		   jQuery('input[name=affiliate]').val('GEN');
-                }
-		});
+    });
+
+    // Get amount passed from query string
+    let amount = jQuery.getQuerystring("amount");
+    if (amount.length > 0) {
+        let match = jQuery('label[data-amount=' + amount + ']');
+        if(match.length>=1){
+            jQuery(match).click();
+            feeOption.coverFee();
+        } else {
+            jQuery('label.active').removeClass("active");
+            jQuery('label.level_other').addClass("active");
+            jQuery('.level-other-input').slideDown();
+            jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+            jQuery('#other-amount-entered').removeAttr('disabled');
+            jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+            jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+            feeOption.coverFee();
+        }
+    }
+
 		
 	/* UI handlers for the donation form example */
         if (jQuery('.donation-form').length > 0) {
@@ -56,8 +76,9 @@ jQuery(document).ready(function() {
                     if (jQuery(this).val() == "") {
                         jQuery(this).val(jQuery("[id='" + jQuery(this).attr("id").replace("billing_", "donor_") + "']").val());
                     }
-                });
+				});
 
+                $("#double_the_donation_company_id").val($('input[name=doublethedonation_company_id]').val());
                 jQuery('input[name=compliance]').val("true");
 
                 window.scrollTo(0, 0);
@@ -107,8 +128,8 @@ function donateGooglePay() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').show();
-	var params = jQuery('.donation-form').serialize();
-	var status = "";
+	// var params = jQuery('.donation-form').serialize();
+	// var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
 	var feeamt = jQuery('input[name=additional_amount]').val();
 	var originalamt = jQuery('input[name=gift_amount]').val();
@@ -121,14 +142,15 @@ function donateGooglePay() {
 	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	// if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	donateOffline(donateOfflineCallback);
 
 	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
+	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
@@ -175,129 +197,9 @@ function donateGooglePay() {
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }
 
-function donateOffline() {
-	var params = jQuery('.donation-form').serialize();
-
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
-}
-
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
     jQuery(this).blur(function() {
         jQuery("[id='" + jQuery(this).attr("id").replace("donor_", "billing_") + "']").val(jQuery(this).val());
     });
 });
- 
-var eid = jQuery('input[name=fr_id]').val();
-var dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	if (jQuery('input[name=instance]').val() == "heartdev") {
-	tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-}
-jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-	//jQuery('.page-header h1').html(data2.event_title);
-	if (data2.team_name != "" && dtype == "t") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.team_name);
-	}
-	if (data2.event_title != " " && dtype == "e") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.event_title);
-	}
-	if (data2.part_name != " " && dtype == "p") {
-		jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-		jQuery('.page-header h1').text('Donate to '+data2.part_name);
-	}
-
-	jQuery('input[name=form_id]').val(data2.don_form_id);
-});
-
-// UI for amount selection
-jQuery('.donation-amount-container').click(function(){
-	jQuery('.donate-select .active').removeClass("active");
-	jQuery('input[name=radioAmt]').attr({'aria-checked': false});
-	jQuery(this).children('label').addClass("active");
-	jQuery(this).children('label').children('input').attr({'aria-checked': true});
-	if(jQuery(this).attr('id') == 'other-amount-input-group') {
-		jQuery('#other-radio').attr({'aria-checked': true}).prop('checked', true);
-	}
-});
-
-// Get amount passed from query string
-var amount = jQuery.getQuerystring("amount");
-if (amount.length > 0) {
-	var match = jQuery('label[data-amount=' + amount + ']');
-	if(match.length>=1){
-		jQuery(match).click();
-		coverFee();
-	} else {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
-		jQuery('#other-amount-entered').removeAttr('disabled');
-		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
-		coverFee();
-	}
-}
-
-// Calculate fee amount
-function calculateFee() {
-	// get amount from hidden field 
-	var amt = parseFloat(jQuery('input[name=gift_amount]').val());
-	// formula amt * 2.9% + .29
-	var fee = ((amt * .029) + .29).toFixed(2);
-  
-	return fee;
-}
-
-function setGiftAmount() {
-	var amt = jQuery('input[name=gift_amount]').val();
-	var fee = jQuery('input[name=additional_amount]').val();
-	
-	jQuery('input[name=other_amount]').val(parseFloat(amt) + parseFloat(fee));
-}
-
-function setDisplayAmount() {
-	jQuery('#confirmationAmt').text(jQuery('input[name=other_amount]').val());
-}
-
-function coverFee() {
-	// run additional calculation
-	if(jQuery('#cover_fee').prop('checked')){
-	  jQuery('input[name=additional_amount]').val(calculateFee());
-	} else {
-	  jQuery('input[name=additional_amount]').val(0);
-	} 
-  
-	setGiftAmount();
-	setDisplayAmount();
-}
-  
-jQuery('#other-amount-entered').on('blur', function(){
-	coverFee();
-});
-jQuery('#cover_fee, .radio-level').on('click', function(){
-	coverFee();
-});
-
-(function(){
-	var a = document.createElement('script');
-	a.type = 'text/javascript';
-	a.src = '/amazonpay/heartwalk/js/gaDonationSuccess.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(a, s);
-})();

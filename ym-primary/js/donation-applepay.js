@@ -76,7 +76,7 @@ jQuery(document).ready(function() {
                     }
                     braintree_aha.submitApplePayDonation();
                 } else {
-                    $('label.error').attr('role','alert').attr('aria-atomic','true');
+                    jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
                     return false;
                 }
             });
