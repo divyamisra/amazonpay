@@ -23,9 +23,9 @@ jQuery(document).ready(function() {
 	}
 	// var apiURL = 'https://tools.heart.org/aha_2014/getEventDetail.php?event_id='+evid+'&callback=?';
     jQuery.getJSON(apiURL,function(data){
-        if(data.eventdata != null) {
+        if(data.getTeamraisersResponse != null) {
             var regtst = /\w{3}-+/;
-            var match = regtst.exec(data.eventdata.greetingurl);
+            var match = regtst.exec(data.getTeamraisersResponse.teamraiser.greeting_url);
             if (match != null) {
                 jQuery('input[name=affiliate]').val(match[0].substr(0,3));
             } else {
@@ -34,7 +34,7 @@ jQuery(document).ready(function() {
         } else {
             jQuery('input[name=affiliate]').val('GEN');
         }
-	});
+    });
 	
 	// Get amount passed from query string
 	var amount = jQuery.getQuerystring("amount");
