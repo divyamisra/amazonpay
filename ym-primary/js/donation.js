@@ -56,11 +56,10 @@ function donateOffline(donateOfflineCallback) {
  * @param {*} responseData - From the donateOffline success callback
  */
 function donateOfflineCallback(responseData) {
-	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
-	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
+	const campaign_name = jQuery('input[name=campaign_name]').length ? jQuery('input[name=campaign_name]').val() : "Heart Walk";
+	// const campaign_name = (jQuery('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
 
 	const widgetData = {
-		// transactionId: responseData.data.donationResponse.donation.transaction_id,
 		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber,
 		transactionDate: responseData.addGift.addGiftResponse.gift.date,
 		email: jQuery('input[name="email"]').val(),
