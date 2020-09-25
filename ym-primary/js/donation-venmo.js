@@ -114,33 +114,29 @@ function donateVenmo() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
 	jQuery('.processing').hide();
-	// var params = jQuery('.donation-form').serialize();
-	// var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
 	var feeamt = jQuery('input[name=additional_amount]').val();
 	var originalamt = jQuery('input[name=gift_amount]').val();
 	var ref = 'VENMO:'+jQuery('input[name=processorAuthorizationCode]').val();
-	//save off amazon id into custom field
+	//save off venmo id into custom field
 	jQuery('input[name=check_number]').val(ref);
 	jQuery('input[name=payment_confirmation_id]').val(ref);
 	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
 	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
 	var first = jQuery('input[name="first_name"]').val();
 	var last = jQuery('input[name="last_name"]').val();
-	// var full = jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val();
 	var street1 = jQuery('input[name="street1"]').val();
 	var street2 = jQuery('input[name="street2"]').val();
 	var city = jQuery('input[name="city"]').val();
 	var state = jQuery('select[name="state"]').val();
 	var zip = jQuery('input[name="zip"]').val();
 	var venmouser = jQuery('input[name="venmo_user"]').val();
-	//var country = jQuery('select[name="country"]').val();
 
 	jQuery('.donation-loading').remove();
 	jQuery('.donate-now, .header-donate').hide();
@@ -156,7 +152,6 @@ function donateVenmo() {
 		jQuery('p.city').html(city);
 		jQuery('p.state').html(state);
 		jQuery('p.zip').html(zip);
-		//jQuery('p.country').html(country);
 		jQuery('p.email').html(email);
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.fee-amount').html("$" + feeamt);
@@ -167,7 +162,6 @@ function donateVenmo() {
 
 	/* ECOMMERCE TRACKING CODE */
 	ga('require', 'ecommerce');
-
 	ga('ecommerce:addTransaction', {
 		'id': ref,
 		'affiliation': 'AHA Venmo Donation',
@@ -175,12 +169,9 @@ function donateVenmo() {
 		'city': jQuery('input[name="donor.address.city"]').val(),
 		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
 	});
-
 	ga('ecommerce:send');
-
 	ga('send', 'pageview', '/donateok.asp');
 }
-
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
