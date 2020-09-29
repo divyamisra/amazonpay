@@ -63,7 +63,6 @@ function donateOfflineCallback(responseData) {
 		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber,
 		transactionDate: responseData.addGift.addGiftResponse.gift.date,
 		email: jQuery('input[name="email"]').val(),
-		phone: jQuery('input#donor_phone').val(),
 		firstName: jQuery('input[name="first_name"]').val(),
 		lastName: jQuery('input[name="last_name"]').val(),
 		amt: jQuery('input[name=other_amount]').val(),
@@ -101,7 +100,6 @@ function doubleDonationConfirmation(widgetData) {
 		"donor_first_name": widgetData.firstName,
 		"donor_last_name": widgetData.lastName,
 		"donor_email": widgetData.email,
-		"donor_phone": widgetData.phone,
 		"doublethedonation_company_id": widgetData.ddCompanyId,
 		"doublethedonation_status": null
 	});
