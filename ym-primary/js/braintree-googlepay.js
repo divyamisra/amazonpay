@@ -162,7 +162,6 @@ var braintree_aha = {
 				jQuery("input#donor_city").val(paymentData.paymentMethodData.info.billingAddress.locality);
 				jQuery('select[name="state"]').val(paymentData.paymentMethodData.info.billingAddress.administrativeArea);
 				jQuery("input#donor_zip").val(paymentData.paymentMethodData.info.billingAddress.postalCode);
-				jQuery("input#donor_phone").val(paymentData.paymentMethodData.info.billingAddress.phoneNumber);
 
 				// Success GooglePay
 				braintree_aha.postDonationFormGooglePay(
