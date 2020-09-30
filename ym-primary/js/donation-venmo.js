@@ -158,6 +158,9 @@ function donateVenmo() {
 		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.confcode').html(ref);
 		jQuery('p.venmouser').html(venmouser);
+		jQuery('.share-url a').each(function(){
+			jQuery(this).attr("href", jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */

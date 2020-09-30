@@ -147,6 +147,9 @@ function donateApplePay() {
 		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
+		jQuery('.share-url a').each(function(){
+			jQuery(this).attr("href", jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */
