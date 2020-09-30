@@ -182,8 +182,8 @@
 					  jQuery('p.original-amount').html("$" + originalamt);
 					  jQuery('p.confcode').html(ref);
 					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
-					  jQuery('.share-url').each(function(){
-						jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+					  jQuery('.share-url a').each(function(){
+						jQuery(this).attr("href", jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
 					  });
 					});
 							  
