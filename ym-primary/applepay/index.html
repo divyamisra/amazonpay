@@ -13,6 +13,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/ym-primary/css/custom.css">
+<link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 <script type="text/javascript" src="../amazonpay/ym-primary/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/ym-primary/js/additional-methods.min.js"></script>
 <section class='no-applepay ym-page-content hidden' aria-label="mainContent">
@@ -59,6 +60,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       <input type="hidden" name="from_url_js" id="from_url_js" value="" />
+      <input type="hidden" name="double_the_donation_company_id" id="double_the_donation_company_id" value=""/>
+      <input type="hidden" name="campaign_name" id="campaign_name" value="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::heartdev ::]][[E42:[[S334:FR_ID]]:classification]]: [[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-name]]"/>
       [[?[[S334:PROXY_TYPE]]::20::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
@@ -258,6 +261,20 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <input type="email" class="form-control required" name="email" id="donor_email">
               </div>
             </div>
+
+            <div class="panel panel-default" id="dd-widget">
+              <h2>Employer Matching (Optional)</h2>
+              <hr>
+              <div class="inline row">
+                <div class='col-xs-12 col-sm-12 text-field'>
+                <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
+              </div>
+              <div class="col-sm-8 col-md-6">
+                <div id="dd-company-name-input"></div>
+              </div>
+              </div>
+            </div>
+
             <div class="form-group checkbox">
               <input type="checkbox" name="cover_fee" id="cover_fee" value="yes">
               <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
@@ -305,6 +322,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 <script type="text/javascript" src="../amazonpay/ym-primary/js/donation-applepay.js"></script> 
 <script type="text/javascript" src="../amazonpay/ym-primary/js/braintree-applepay.js"></script> 
 <script type="text/javascript" src="../amazonpay/ym-primary/js/donation.js"></script>
+<script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+
 <script>
 if (typeof window.ApplePaySession == "undefined") {
 	jQuery('.ym-page-container').addClass("hidden");

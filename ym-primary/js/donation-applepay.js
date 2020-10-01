@@ -102,19 +102,17 @@ jQuery(document).ready(function() {
 function donateApplePay() {
 	window.scrollTo(0, 0);
 	jQuery('.donation-form').hide();
-	// var params = jQuery('.donation-form').serialize();
-	// var status = "";
 	var amt = jQuery('input[name=other_amount]').val();
 	var feeamt = jQuery('input[name=additional_amount]').val();
 	var originalamt = jQuery('input[name=gift_amount]').val();
 	var ref = 'APPLEPAY:'+jQuery('input[name=processorAuthorizationCode]').val();
-	//save off amazon id into custom field
+	//save off apple pay id into custom field
 	jQuery('input[name=check_number]').val(ref);
 	jQuery('input[name=payment_confirmation_id]').val(ref);
 	jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jQuery('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
 	var from_url = jQuery('input[name="from_url"]').val();
 	var email = jQuery('input[name="email"]').val();
@@ -149,11 +147,13 @@ function donateApplePay() {
 		jQuery('p.original-amount').html("$" + originalamt);
 		jQuery('p.amount').html("$" + amt);
 		jQuery('p.confcode').html(ref);
+		jQuery('.share-url a').each(function(){
+			jQuery(this).attr("href", jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */
 	ga('require', 'ecommerce');
-
 	ga('ecommerce:addTransaction', {
 		'id': ref,
 		'affiliation': 'AHA ApplePay Donation',
@@ -161,12 +161,9 @@ function donateApplePay() {
 		'city': jQuery('input[name="donor.address.city"]').val(),
 		'state': jQuery('select[name="donor.address.state"]').val() // local currency code.
 	});
-
 	ga('ecommerce:send');
-
 	ga('send', 'pageview', '/donateok.asp');
 }
-
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function() {
