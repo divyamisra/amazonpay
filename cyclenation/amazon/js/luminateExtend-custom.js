@@ -137,17 +137,14 @@
 					//if (jqcn('input[name="df_preview"]').val() != "true") 
 					donateOffline();
 					
-					//var amt = data.donationResponse.donation.amount.decimal;
 					var email = jqcn('input[name="email"]').val();
 					var first = jqcn('input[name="first_name"]').val();
 					var last = jqcn('input[name="last_name"]').val();
-					var full = jqcn('input[name="first_name"]').val()+' '+jqcn('input[name="last_name"]').val();
 					var street1 = jqcn('input[name="street1"]').val();
 					var street2 = jqcn('input[name="street2"]').val();
 					var city = jqcn('input[name="city"]').val();
 					var state = jqcn('select[name="state"]').val();
 					var zip = jqcn('input[name="zip"]').val();
-					//var ref = data.donationResponse.donation.confirmation_code;
 					var from_url = jqcn('input[name="from_url"]').val();
 					
 				  jqcn('.donation-loading').remove();
@@ -172,7 +169,7 @@
 					  jqcn('p.amount').html("$"+amt);
 					  jqcn('p.confcode').html(ref);
 					  jqcn('p.from_url').html("<a href='"+from_url+"'>Return</a>");
-					  jqcn('.share-url').each(function(){
+					  jqcn('.share-url a').each(function(){
 						jqcn(this).attr("href",jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
 					  });
 					});

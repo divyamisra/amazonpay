@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="../aha-luminate/dist/heart-walk/css/main.1528304549228.min.css"> -->
 <!--[if lt IE 9]>
   <script src="../ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <![endif]--><!--[if (gte IE 9) | (!IE)]>
@@ -20,6 +19,7 @@
 jQuery('main > .container').before(jQuery('.ym-page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/cyclenation/amazon/css/custom.css">
+<link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
@@ -50,6 +50,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       <input type="hidden" name="from_url_js" id="from_url_js" value="" />
+      <input type="hidden" name="double_the_donation_company_id" id="double_the_donation_company_id" value=""/>
+      <input type="hidden" name="campaign_name" id="campaign_name" value="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::heartdev ::]][[?xx::x[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]x::[[E42:[[S334:FR_ID]]:title]]::[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]]]"/>
       [[?[[S334:PROXY_TYPE]]::20::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
@@ -337,13 +339,22 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
+
+      <div class="panel panel-default" id="dd-widget">
+        <h2>Employer Matching (Optional)</h2>
+        <hr>
+        <div class="inline row">
+          <div class='col-xs-12 col-sm-12 text-field'>
+          <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
+        </div>
+        <div class="col-sm-8 col-md-6">
+          <div id="dd-company-name-input"></div>
+        </div>
+        </div>
+      </div>
+
       <div class="panel panel-default process-button">
         <div class="panel-body">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
           <button type="button" id="donate-submit" class="btn btn-primary text-center">
           <div>All of my information is correct.</div>
           Process my donation please </button>
@@ -372,3 +383,4 @@ window.onAmazonLoginReady = function() {
 <!-- END AMAZON PAYMENTS ADDITION --> 
 
 <script type="text/javascript" src="../amazonpay/cyclenation/amazon/js/amazon-pay.js"></script> 
+<script src="https://doublethedonation.com/api/js/ddplugin.js"></script>

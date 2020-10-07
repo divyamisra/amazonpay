@@ -82,8 +82,6 @@
 function donateApplePay() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
-	var params = jqcn('.donation-form').serialize();
-	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
 	var ref = 'APPLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
@@ -99,17 +97,11 @@ function donateApplePay() {
 	var email = jqcn('input[name="email"]').val();
 	var first = jqcn('input[name="first_name"]').val();
 	var last = jqcn('input[name="last_name"]').val();
-	var full = jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val();
 	var street1 = jqcn('input[name="street1"]').val();
 	var street2 = jqcn('input[name="street2"]').val();
 	var city = jqcn('input[name="city"]').val();
 	var state = jqcn('select[name="state"]').val();
 	var zip = jqcn('input[name="zip"]').val();
-	//var country = jqcn('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jqcn('select[name="card_exp_date_month"]').val() + "/" + jqcn('select[name="card_exp_date_year"]').val();
-	//var cc = jqcn('input[name=card_number]').val();
-	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
@@ -128,17 +120,13 @@ function donateApplePay() {
 		jqcn('p.city').html(city);
 		jqcn('p.state').html(state);
 		jqcn('p.zip').html(zip);
-		//jqcn('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jqcn('tr.cardGroup').hide();
-		//jqcn('tr.amazon').show();
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
 	});
 
 	/* ECOMMERCE TRACKING CODE */
 	ga('require', 'ecommerce');
-
 	ga('ecommerce:addTransaction', {
 		'id': ref,
 		'affiliation': 'AHA ApplePay Donation',
@@ -146,9 +134,7 @@ function donateApplePay() {
 		'city': jqcn('input[name="donor.address.city"]').val(),
 		'state': jqcn('select[name="donor.address.state"]').val() // local currency code.
 	});
-
 	ga('ecommerce:send');
-
 	ga('send', 'pageview', '/donateok.asp');
 }
 

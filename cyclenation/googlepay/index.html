@@ -23,6 +23,7 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
 jqcn('main > .container').before(jqcn('.ym-page-header'));
 </script>
 <link rel="stylesheet" href="../amazonpay/cyclenation/googlepay/css/custom.css">
+<link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 <script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/jquery.validate.min.JS"></script> 
 <script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/additional-methods.min.js"></script>
 <div class="ym-page-content">
@@ -59,6 +60,8 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
       <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
       <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
       <input type="hidden" name="from_url_js" id="from_url_js" value="" />
+      <input type="hidden" name="double_the_donation_company_id" id="double_the_donation_company_id" value=""/>
+      <input type="hidden" name="campaign_name" id="campaign_name" value="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::heartdev ::]][[?xx::x[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]x::[[E42:[[S334:FR_ID]]:title]]::[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]]]"/>
       [[?[[S334:PROXY_TYPE]]::20::
       <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
       <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
@@ -188,7 +191,7 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
                 <input class="form-control required" name="last_name" id="donor_last_name" type="text">
               </div>
             </div>
-            <div class="contact-address" style="">
+            <div class="contact-address">
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_street1">Street 1:</label>
                 <div class="col-sm-8 col-md-6">
@@ -314,17 +317,27 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
         <input type="hidden" class="form-control" name="billing_state" id="billing_state">
         <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
       </div>
+
+      
+      <div class="panel panel-default" id="dd-widget">
+        <h2>Employer Matching (Optional)</h2>
+        <hr>
+        <div class="inline row">
+          <div class='col-xs-12 col-sm-12 text-field'>
+          <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
+        </div>
+        <div class="col-sm-8 col-md-6">
+          <div id="dd-company-name-input"></div>
+        </div>
+        </div>
+      </div>
+
       <div class="panel panel-default process-button">
         <div class="panel-body text-center">
-          <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
-	  <div>Click Google Pay button to Donate</div>
+	      <div>Click Google Pay button to Donate</div>
           <button type="button" id="donate-submit" class="btn btn-primary text-center">
             <img src="/donation-forms/donatenow/images/googlepay-button.png"/>
-	  </button>
+	        </button>
         </div>
         <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a></div>
       </div>
@@ -336,6 +349,8 @@ jqcn('main > .container').before(jqcn('.ym-page-header'));
 <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
 <script src="https://js.braintreegateway.com/web/3.64.2/js/google-payment.min.js"></script>
 <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/braintree-luminate.js"></script> 
-<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/donation-custom.js"></script> 
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/braintree-luminate.js"></script>
+<script type="text/javascript" src="../amazonpay/cyclenation/googlepay/js/donation-custom.js"></script>
+<script type="text/javascript" src="../amazonpay/cyclenation/js/donation.js"></script>
+<script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
