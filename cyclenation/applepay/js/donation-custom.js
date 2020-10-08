@@ -90,7 +90,7 @@ function donateApplePay() {
 	jqcn('input[name=gift_display_name]').val(jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
 	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jqcn('input[name="from_url"]').val();
@@ -123,6 +123,9 @@ function donateApplePay() {
 		jqcn('p.email').html(email);
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
+		jqcn('.share-url a').each(function(){
+			jqcn(this).attr("href",jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */

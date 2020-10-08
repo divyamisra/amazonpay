@@ -110,7 +110,7 @@ function donateGooglePay() {
 	jqcn('input[name=gift_display_name]').val(jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
 	var from_url = jqcn('input[name="from_url"]').val();
 	var email = jqcn('input[name="email"]').val();

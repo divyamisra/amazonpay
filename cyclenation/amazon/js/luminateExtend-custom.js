@@ -135,7 +135,7 @@
 					
 					//make offline donation in luminate to record transaction
 					//if (jqcn('input[name="df_preview"]').val() != "true") 
-					donateOffline();
+					donateOffline(donateOfflineCallback);
 					
 					var email = jqcn('input[name="email"]').val();
 					var first = jqcn('input[name="first_name"]').val();
