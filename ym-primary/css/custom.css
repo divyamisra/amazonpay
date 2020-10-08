@@ -636,3 +636,16 @@ td.FormSectionHeader {
 /* @media only screen and (max-width: 320px) {
 
 } */
+
+/* AHC specific styling */
+main-ahc {
+  background: #b8dcef
+}
+
+@media (min-width: 992px) {
+  main-ahc {
+      background:#138acb;
+      background: -webkit-gradient(linear,left top,left bottom,color-stop(12%,#138acb),color-stop(24%,#6ab5de),color-stop(63%,#fff));
+      background: linear-gradient(180deg,#138acb 12%,#6ab5de 24%,#fff 63%)
+  }
+}
