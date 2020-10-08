@@ -157,22 +157,6 @@ function donateGooglePay() {
 	ga('send', 'pageview', '/donateok.asp');
 }
 
-function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
-
-	jqcn.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
-}
-
 //copy donor fields to billing
 jqcn('[id^=donor_]').each(function() {
     jqcn(this).blur(function() {
