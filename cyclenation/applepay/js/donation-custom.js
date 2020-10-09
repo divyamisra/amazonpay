@@ -82,8 +82,6 @@
 function donateApplePay() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
-	var params = jqcn('.donation-form').serialize();
-	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
 	var ref = 'APPLEPAY:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
@@ -92,32 +90,27 @@ function donateApplePay() {
 	jqcn('input[name=gift_display_name]').val(jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
 	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jqcn('input[name="from_url"]').val();
 	var email = jqcn('input[name="email"]').val();
 	var first = jqcn('input[name="first_name"]').val();
 	var last = jqcn('input[name="last_name"]').val();
-	var full = jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val();
 	var street1 = jqcn('input[name="street1"]').val();
 	var street2 = jqcn('input[name="street2"]').val();
 	var city = jqcn('input[name="city"]').val();
 	var state = jqcn('select[name="state"]').val();
 	var zip = jqcn('input[name="zip"]').val();
-	//var country = jqcn('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jqcn('select[name="card_exp_date_month"]').val() + "/" + jqcn('select[name="card_exp_date_year"]').val();
-	//var cc = jqcn('input[name=card_number]').val();
-	//var ctype = jqcn('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
-	if (jqcn('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
-	}
+	var ty_url = "/amazonpay/cyclenation/applepay/thankyou.html";
+	// var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
+	// if (jqcn('input[name=instance]').val() == "heartdev") {
+	// 	ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
+	// }
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html(from_url);
@@ -128,17 +121,16 @@ function donateApplePay() {
 		jqcn('p.city').html(city);
 		jqcn('p.state').html(state);
 		jqcn('p.zip').html(zip);
-		//jqcn('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jqcn('tr.cardGroup').hide();
-		//jqcn('tr.amazon').show();
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
+		jqcn('.share-url a').each(function(){
+			jqcn(this).attr("href",jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */
 	ga('require', 'ecommerce');
-
 	ga('ecommerce:addTransaction', {
 		'id': ref,
 		'affiliation': 'AHA ApplePay Donation',
@@ -146,26 +138,8 @@ function donateApplePay() {
 		'city': jqcn('input[name="donor.address.city"]').val(),
 		'state': jqcn('select[name="donor.address.state"]').val() // local currency code.
 	});
-
 	ga('ecommerce:send');
-
 	ga('send', 'pageview', '/donateok.asp');
-}
-
-function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
-
-	jqcn.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
 }
 
 //copy donor fields to billing

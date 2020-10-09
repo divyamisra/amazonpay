@@ -64,13 +64,6 @@ div.responsive input.venmo-text {
 	display:none;
 }
 
-/* .tribute {
-	display:none;
-}
-.tribute-print,
-.tribute-ecard {
-	display:none;
-} */
 .billing-information {
 	display:none;
 }
@@ -146,9 +139,6 @@ div.icon:hover, div.icon.active {
 	font-size:14px;
 	text-transform:uppercase;
 }
-/* .donate-how input, .donate-select input[type=radio], .tribute-select input {
-	display:none;
-} */
 .radio-amt {
   top: 20px;
   left: 10px !important;
@@ -377,11 +367,6 @@ ul.footer-menu li a {
 	color:#ed1c24;
 } */
 
-/* .livechat {
-  position: absolute;
-  right: 15px;
-  top: 15%;
-} */
 
 /* #otherGiving ul {
   list-style-type: none;
@@ -475,11 +460,6 @@ ul.footer-menu li a {
     font-family: "Font Awesome 5 Brands"; font-weight: 900; content: "\f081";
 }
 
-/* .donate-thankyou {
-list-style-image: url(/images/heart-bullet.png);
-} */
-
-
 .fa-flag,
 .fa-usd {
   color: #fff;
@@ -557,10 +537,6 @@ td.FormSectionHeader {
   clear:both;
 }
 
-/* .atpay {
-padding-bottom: 15px;	
-} */
-
 [type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after, [type="radio"]:not(:checked) + label:after, [type="radio"]:checked + label:after {
   font-size:1.1rem !important;
 }
@@ -589,6 +565,46 @@ padding-bottom: 15px;
 .amazon-payments {
   font-size: 0.8em;	
 }
+
+/*** Matching Gift Widget ***/
+#dd-container .mg-forms-button,
+#dd-container .mg-guidelines-button,
+#dd-container button.lets-check {
+	background-color: #c10e21 !important;
+	border-color: #c10e21 !important;
+}
+#dd-container .mg-forms-button:active,
+#dd-container .mg-forms-button:hover,
+#dd-container .mg-forms-button:focus,
+#dd-container .mg-forms-button.disabled,
+#dd-container .mg-forms-button[disabled],
+#dd-container .mg-forms-button.disabled:hover,
+#dd-container .mg-forms-button[disabled]:hover,
+#dd-container .mg-forms-button.disabled:focus,
+#dd-container .mg-forms-button[disabled]:focus,
+#dd-container .mg-guidelines-button:active,
+#dd-container .mg-guidelines-button:hover,
+#dd-container .mg-guidelines-button:focus,
+#dd-container .mg-guidelines-button.disabled,
+#dd-container .mg-guidelines-button[disabled],
+#dd-container .mg-guidelines-button.disabled:hover,
+#dd-container .mg-guidelines-button[disabled]:hover,
+#dd-container .mg-guidelines-button.disabled:focus,
+#dd-container .mg-guidelines-button[disabled]:focus,
+#dd-container button.lets-check:active,
+#dd-container button.lets-check:hover,
+#dd-container button.lets-check:focus
+#dd-container button.lets-check.disabled,
+#dd-container button.lets-check[disabled],
+#dd-container button.lets-check.disabled:hover,
+#dd-container button.lets-check[disabled]:hover,
+#dd-container button.lets-check.disabled:focus,
+#dd-container button.lets-check[disabled]:focus
+{
+	background-color: #900 !important;
+	border-color: #900 !important;
+}
+
 @media only screen and (max-width: 767px) {
   body { 
     background: #ffffff !important; 
@@ -628,13 +644,8 @@ padding-bottom: 15px;
   .level_other.active {
     margin-bottom: 0 !important;
   }
-	
-  /* #otherGiving li {
-    display: block;
-    padding: 0px;
-    text-decoration: underline;
-  }	 */
 }
+
 @media only screen and (max-width: 320px) {
   
 }

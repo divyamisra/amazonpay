@@ -135,28 +135,26 @@
 					
 					//make offline donation in luminate to record transaction
 					//if (jqcn('input[name="df_preview"]').val() != "true") 
-					donateOffline();
+					donateOffline(donateOfflineCallback);
 					
-					//var amt = data.donationResponse.donation.amount.decimal;
 					var email = jqcn('input[name="email"]').val();
 					var first = jqcn('input[name="first_name"]').val();
 					var last = jqcn('input[name="last_name"]').val();
-					var full = jqcn('input[name="first_name"]').val()+' '+jqcn('input[name="last_name"]').val();
 					var street1 = jqcn('input[name="street1"]').val();
 					var street2 = jqcn('input[name="street2"]').val();
 					var city = jqcn('input[name="city"]').val();
 					var state = jqcn('select[name="state"]').val();
 					var zip = jqcn('input[name="zip"]').val();
-					//var ref = data.donationResponse.donation.confirmation_code;
 					var from_url = jqcn('input[name="from_url"]').val();
 					
 				  jqcn('.donation-loading').remove();
 				  jqcn('.donate-now, .header-donate').hide();
 				  jqcn('.thank-you').show();
-				  var ty_url = "https://www2.heart.org/amazonpay/cyclenation/amazon/thankyou.html";
-				  if (jqcn('input[name=instance]').val() == "heartdev") {
-				  	ty_url = "https://secure3.convio.net/heartdev/amazonpay/cyclenation/amazon/thankyou.html";
-				  }
+				  var ty_url = "/amazonpay/cyclenation/amazon/thankyou.html";
+				//   var ty_url = "https://www2.heart.org/amazonpay/cyclenation/amazon/thankyou.html";
+				//   if (jqcn('input[name=instance]').val() == "heartdev") {
+				//   	ty_url = "https://secure3.convio.net/heartdev/amazonpay/cyclenation/amazon/thankyou.html";
+				//   }
 				  jqcn.get(ty_url,function(datat){ 
 					  jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 					  jqcn('p.first').html(first);
@@ -172,28 +170,12 @@
 					  jqcn('p.amount').html("$"+amt);
 					  jqcn('p.confcode').html(ref);
 					  jqcn('p.from_url').html("<a href='"+from_url+"'>Return</a>");
-					  jqcn('.share-url').each(function(){
+					  jqcn('.share-url a').each(function(){
 						jqcn(this).attr("href",jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
 					  });
 					});
 							  
 				}
-			}
-		});
-
-	}
-
-	function donateOffline() {
-		var params = jqcn('.donation-form').serialize();
-
-		jqcn.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-			success: function(data){
-				//donateCallback.success(data.data);
 			}
 		});
 

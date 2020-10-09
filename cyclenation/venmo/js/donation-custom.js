@@ -95,8 +95,6 @@ function donateVenmo() {
 	window.scrollTo(0, 0);
 	jqcn('.donation-form').hide();
 	jqcn('.processing').hide();
-	var params = jqcn('.donation-form').serialize();
-	var status = "";
 	var amt = jqcn('input[name=other_amount]').val();
 	var ref = 'VENMO:'+jqcn('input[name=processorAuthorizationCode]').val();
 	//save off amazon id into custom field
@@ -105,30 +103,23 @@ function donateVenmo() {
 	jqcn('input[name=gift_display_name]').val(jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val());
 
 	//make offline donation in luminate to record transaction
-	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline();
+	if (jqcn('input[name="df_preview"]').val() != "true") donateOffline(donateOfflineCallback);
 
-	//var amt = data.donationResponse.donation.amount.decimal;
 	var from_url = jqcn('input[name="from_url"]').val();
 	var email = jqcn('input[name="email"]').val();
 	var first = jqcn('input[name="first_name"]').val();
 	var last = jqcn('input[name="last_name"]').val();
-	var full = jqcn('input[name="first_name"]').val() + ' ' + jqcn('input[name="last_name"]').val();
 	var street1 = jqcn('input[name="street1"]').val();
 	var street2 = jqcn('input[name="street2"]').val();
 	var city = jqcn('input[name="city"]').val();
 	var state = jqcn('select[name="state"]').val();
 	var zip = jqcn('input[name="zip"]').val();
 	var venmouser = jqcn('input[name="venmo_user"]').val();
-	//var country = jQuery('select[name="country"]').val();
-	//var ref = data.donationResponse.donation.confirmation_code;
-	//var cdate = jQuery('select[name="card_exp_date_month"]').val() + "/" + jQuery('select[name="card_exp_date_year"]').val();
-	//var cc = jQuery('input[name=card_number]').val();
-	//var ctype = jQuery('input[name=card_number]').attr("class").replace(" valid", "").toUpperCase();
 
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/cyclenation/venmo/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html("<a href='"+from_url+"'>click here</a>");
@@ -139,30 +130,13 @@ function donateVenmo() {
 		jqcn('p.city').html(city);
 		jqcn('p.state').html(state);
 		jqcn('p.zip').html(zip);
-		//jQuery('p.country').html(country);
 		jqcn('p.email').html(email);
-		//jQuery('tr.cardGroup').hide();
-		//jQuery('tr.amazon').show();
 		jqcn('p.amount').html("$" + amt);
 		jqcn('p.confcode').html(ref);
 		jqcn('p.venmouser').html(venmouser);
-	});
-
-}
-
-
-function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
-
-	jqcn.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
+		jqcn('.share-url a').each(function(){
+			jqcn(this).attr("href", jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 }
