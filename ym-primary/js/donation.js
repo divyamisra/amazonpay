@@ -140,7 +140,7 @@ eventInfo();
 // Set attributes specific to AHC
 if (location.href.indexOf("ym_ahc_") > 0) {
   jQuery('h2#formTitle').attr('ID', 'formTitle-ahc');
-//   jQuery('main').addClass('main-ahc');
+  jQuery('div.responsive').addClass('ahc');
 }
 
 // UI for amount selection

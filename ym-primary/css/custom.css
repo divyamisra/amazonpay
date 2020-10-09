@@ -31,10 +31,17 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
   width: 100% !important;
 	height:auto;
 }
-div.responsive input[type="text"]:focus, div.responsive input[type="number"]:focus, div.responsive input[type="password"]:focus, div.responsive textarea:focus {
+div.responsive input[type="text"]:focus, div.responsive input[type="email"]:focus, div.responsive input[type="number"]:focus, div.responsive input[type="password"]:focus, div.responsive textarea:focus {
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  outline:2px solid indigo !important;
 }
+div.responsive.ahc input[type="text"]:focus, div.responsive.ahc input[type="email"]:focus, div.responsive.ahc input[type="number"]:focus, div.responsive.ahc input[type="password"]:focus, div.responsive.ahc textarea:focus {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+  outline:2px solid #007ab8 !important;
+}
+
 #donation-errors {
 	color:#ff0000;
 }
