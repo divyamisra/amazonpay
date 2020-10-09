@@ -119,7 +119,7 @@ function donateVenmo() {
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "/amazonpay/heartwalk/venmo/thankyou.html";
+	var ty_url = "/amazonpay/cyclenation/venmo/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html("<a href='"+from_url+"'>click here</a>");
@@ -137,23 +137,6 @@ function donateVenmo() {
 		jqcn('.share-url a').each(function(){
 			jqcn(this).attr("href", jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
 		});
-	});
-
-}
-
-
-function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
-
-	jqcn.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
 	});
 
 }

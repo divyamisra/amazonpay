@@ -125,7 +125,7 @@ function donateGooglePay() {
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "/amazonpay/ym-primary/googlepay/thankyou.html";
+	var ty_url = "/amazonpay/cyclenation/googlepay/thankyou.html";
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html("<a href='"+from_url+"'>Click here</a>");

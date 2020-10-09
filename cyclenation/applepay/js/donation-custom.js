@@ -106,10 +106,11 @@ function donateApplePay() {
 	jqcn('.donation-loading').remove();
 	jqcn('.donate-now, .header-donate').hide();
 	jqcn('.thank-you').show();
-	var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
-	if (jqcn('input[name=instance]').val() == "heartdev") {
-		ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
-	}
+	var ty_url = "/amazonpay/cyclenation/applepay/thankyou.html";
+	// var ty_url = "https://www2.heart.org/amazonpay/ym-primary/applepay/thankyou.html";
+	// if (jqcn('input[name=instance]').val() == "heartdev") {
+	// 	ty_url = "https://secure3.convio.net/heartdev/amazonpay/ym-primary/applepay/thankyou.html";
+	// }
 	jqcn.get(ty_url, function(datat) {
 		jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
 		jqcn('p.from_url').html(from_url);
@@ -139,22 +140,6 @@ function donateApplePay() {
 	});
 	ga('ecommerce:send');
 	ga('send', 'pageview', '/donateok.asp');
-}
-
-function donateOffline() {
-	var params = jqcn('.donation-form').serialize();
-
-	jqcn.ajax({
-		method: "POST",
-		async: false,
-		cache: false,
-		dataType: "json",
-		url: "https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?" + params + "&callback=?",
-		success: function(data) {
-			//donateCallback.success(data.data);
-		}
-	});
-
 }
 
 //copy donor fields to billing
