@@ -153,20 +153,23 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
             <div class="form-group required">
               <label class="col-sm-3 col-md-3 control-label" for="donor_first_name">First Name:</label>
               <div class="col-sm-8 col-md-6">
-                <input class="form-control required" name="first_name" id="donor_first_name" type="text" aria-describedby="donor_first_name">
+                <input class="form-control required" name="first_name" id="donor_first_name" type="text" aria-describedby="donor_first_name_error">
+                <span id="donor_first_name_error" class="error-text">First name is required</span>
               </div>
             </div>
             <div class="form-group required">
               <label class="col-sm-3 col-md-3 control-label" for="donor_last_name">Last Name:</label>
               <div class="col-sm-8 col-md-6">
-                <input class="form-control required" name="last_name" id="donor_last_name" type="text" aria-describedby="donor_last_name">
+                <input class="form-control required" name="last_name" id="donor_last_name" type="text" aria-describedby="donor_last_name_error">
+                <span id="donor_last_name_error" class="error-text">Last name is required</span>
               </div>
             </div>
-            <div class="contact-address" style="">
+            <div class="contact-address">
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_street1">Street 1:</label>
                 <div class="col-sm-8 col-md-6">
-                  <input type="text" class="form-control required name" name="street1" id="donor_street1">
+                  <input type="text" class="form-control required name" name="street1" id="donor_street1" aria-describedby="donor_street1_error">
+                  <span id="donor_street1_error" class="error-text">Street 1 is required</span>
                 </div>
               </div>
               <div class="form-group">
@@ -178,19 +181,22 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_zip">Zip/Postal Code:</label>
                 <div class="col-sm-8 col-md-6">
-                  <input type="text" class="form-control required postal_code" name="zip" id="donor_zip">
+                  <input type="text" class="form-control required postal_code" name="zip" id="donor_zip" aria-describedby="donor_zip_error">
+                  <span id="donor_zip_error" class="error-text">Zip/Postal Code is required</span>
                 </div>
               </div>
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_city">City:</label>
                 <div class="col-sm-8 col-md-6">
-                  <input type="text" class="form-control required locality" name="city" id="donor_city">
+                  <input type="text" class="form-control required locality" name="city" id="donor_city" aria-describedby="donor_city_error">
+                  <span id="donor_city_error" class="error-text">City is required</span>
                 </div>
               </div>
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_state">State/Province:</label>
                 <div class="col-sm-8 col-md-6">
-                  <select class="form-control required administrative_area_level_1" name="state" id="donor_state">
+                  <span id="donor_state_error" class="error-text">Email Address is required</span>
+                  <select class="form-control required administrative_area_level_1" name="state" id="donor_state" aria-describedby="donor_state_error">
                     <option value="">State/Province</option>
                     <option value="AK">AK - Alaska</option>
                     <option value="AL">AL - Alabama</option>
@@ -275,7 +281,8 @@ var AffiliateSecCatId = "[[S80:AffiliateSecCatId]]";
             <div class="form-group required email-address">
               <label class="col-sm-3 col-md-3 control-label" for="donor_email">Email Address:</label>
               <div class="col-sm-8 col-md-6">
-                <input type="email" class="form-control required" name="email" id="donor_email" aria-describedby="donor_email">
+                <input type="email" class="form-control required" name="email" id="donor_email" aria-describedby="donor_email_error">
+                <span id="donor_email_error" class="error-text">Email Address is required</span>
               </div>
             </div>
 
