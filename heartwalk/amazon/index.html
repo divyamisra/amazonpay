@@ -76,37 +76,37 @@
           <div class="form-group donate-select">
             <div class="col-xs-12 col-sm-12 onetime" role="radiogroup" aria-labelledby="amt-header">
               <div class="donation-amount-container text-center">
+                <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
+                  <input type="radio" name="radioAmt" id="amount4" class="radio-amt" aria-checked="false">
+                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
+                </label>
+              </div>
+              <div class="donation-amount-container text-center">
+                <label class="radio-level" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
+                  <input type="radio" name="radioAmt" id="amount3" class="radio-amt" aria-checked="false">
+                  <div id="amount3-txt" class="donation-level-amount-container">$150</div>
+                </label>
+              </div>
+              <div class="donation-amount-container text-center">
+                <label class="radio-level active" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
+                  <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="true">
+                  <div id="amount2-txt" class="donation-level-amount-container">$75</div>
+                </label>
+              </div>
+              <div class="donation-amount-container text-center">
                 <label class="radio-level" for="amount1" data-amount="30" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(30)">
                   <input type="radio" name="radioAmt" id="amount1" class="radio-amt" aria-checked="false">
                   <div id="amount1-txt" class="donation-level-amount-container">$30</div>
                 </label>
               </div>
-              <div class="donation-amount-container text-center">
-                <label class="radio-level active" for="amount2" data-amount="75" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(75)">
-                    <input type="radio" name="radioAmt" id="amount2" class="radio-amt" aria-checked="true">
-                    <div id="amount2-txt" class="donation-level-amount-container">$75</div>
-                  </label>
-                </div>
-                <div class="donation-amount-container text-center">
-                  <label class="radio-level" for="amount3" data-amount="150" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(150)">
-                    <input type="radio" name="radioAmt" id="amount3" class="radio-amt" aria-checked="false">
-                      <div id="amount3-txt" class="donation-level-amount-container">$150</div>
-                    </label>
-                </div>
-                  <div class="donation-amount-container text-center">
-                    <label class="radio-level" for="amount4" data-amount="250" onclick="jQuery('input[name=other_amount], input[name=gift_amount]').val(250)">
-                    <input type="radio" name="radioAmt" id="amount4" class="radio-amt" aria-checked="false">
-                  <div id="amount4-txt" class="donation-level-amount-container">$250</div>
-                </label>
-              </div>
               <div class="donation-amount-container text-center" id="other-amount-input-group">
-                  <label for="other-radio" class="level_other">Other
-                    <input type="radio" name="radioAmt" id="other-radio" class="radio-amt" aria-checked="false">
-                  </label>
-                  <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
-                    <div class="other-amt-note"><em>$25 minimum donation</em></div>
-                  </div>
+                <label for="other-radio" class="level_other">Other
+                  <input type="radio" name="radioAmt" id="other-radio" class="radio-amt" aria-checked="false">
+                </label>
+                <div class="level-other-input" style="float:left;"> <span class="input-group-addon">$</span>
+                  <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
+                  <div class="other-amt-note"><em>$25 minimum donation</em></div>
+                </div>
               </div>
             </div>
           </div>
