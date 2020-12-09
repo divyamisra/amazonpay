@@ -95,27 +95,54 @@
 				alert("Online donations have a $25 minimum.");
 				return false;
 			}
-			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-				if (jQuery('label[for="type-monthly"] .active').length > 0) {				
-					if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-						donateAmazon();
-					} else {
-						alert("Consent is needed before making donation");
-					}
-				} else {
-					donateAmazon();					
-				}
-			} else {
-				alert("Please login to Amazon and select payment before submitting");
-				return false;
-			}
+			// New Amazon Process
+			submitAmazonDonation();
+
+			// if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
+			// 	if (jQuery('label[for="type-monthly"] .active').length > 0) {				
+			// 		if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
+			// 			donateAmazon();
+			// 		} else {
+			// 			alert("Consent is needed before making donation");
+			// 		}
+			// 	} else {
+			// 		donateAmazon();					
+			// 	}
+			// } else {
+			// 	alert("Please login to Amazon and select payment before submitting");
+			// 	return false;
+			// }
 		} else { 
+			const h = document.querySelector("#donateform > div:nth-child(36) > legend > h2");
+			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 			return false;
 		}
       });
     }
 
-	function donateAmazon() {
+	function donateAmazon(amazonCheckoutSessionId) {
+		window.scrollTo(0, 0);
+		$('.donation-form').hide();
+		$('.donation-form').before('<div class="well donation-loading">' +
+				'Thank You!  We are now processing your donation from Amazon ...' +
+				'</div>');
+
+		let lsForm = localStorage.getItem('ahaDonate');
+		if (lsForm != null) {
+			// verify checkout
+			populateForm(lsForm);
+			const amzAmt = localStorage.getItem('amz_aha_amt');
+			amazonPayVerifyCheckout(amazonCheckoutSessionId, amzAmt);
+		} else {
+			// handle missing data
+			console.log('no data found');
+			$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+			$('.donation-loading').remove();
+			$('.donation-form').show();
+		}
+	}
+
+	function donateAmazonOld() {
 		window.scrollTo(0, 0);
 		jQuery('.donation-form').hide();
 		jQuery('.donation-form').before('<div class="well donation-loading">' + 
@@ -232,6 +259,16 @@
   });
 })(jQuery);
 
+// Get Amazon confirmation id
+if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
+	// hide form - show loading
+	window.scrollTo(0, 0);
+	$('.donation-form').hide();
+	$('.donation-form').before('<div class="well donation-loading">' +
+			'Thank You!  We are now processing your donation from Amazon ...' +
+			'</div>');
+}
+
 function showLevels(frequency, sel) {
 	jQuery('.radio-label').removeClass("active");
 	jQuery(sel).addClass("active");
@@ -286,6 +323,10 @@ function getAmazonAddress() {
 	});
 })(jQuery);
 
+const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+if (amzConfirmationId) {
+	donateAmazon(amzConfirmationId);
+}
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
