@@ -138,13 +138,6 @@ function populateForm(lsForm) {
 			$(this).prop('checked', true);
 		}
 	});
-	// populate radios, exclude gift amount and payment type
-	$('.donation-form input:radio').not('input[name=occurrence], input[name=gift], input[name=payment]').each(function(){
-		if (decodeURI(donateData[this.name]) == $(this).val()) {
-			$(this).click();
-		}
-	});
-	$('#payment2').click();
 	// reset gift amount
 	populateAmount(donateData['other_amount']);
 }

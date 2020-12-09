@@ -14,20 +14,7 @@
 	// Get amount passed from query string
 	let amount = jQuery.getQuerystring("amount");
 	if (amount.length > 0) {
-		var match = jQuery('label[data-amount=' + amount + ']');
-		if(match.length>=1){
-			jQuery(match).click();
-			feeOption.coverFee();
-		} else {
-			jQuery('label.active').removeClass("active");
-			jQuery('label.level_other').addClass("active");
-			jQuery('.level-other-input').slideDown();
-			jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
-			jQuery('#other-amount-entered').removeAttr('disabled');
-			jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-			jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
-			feeOption.coverFee();
-		}
+		populateAmount(amount);
 	}
 	
 	/* UI handlers for the donation form example */
@@ -333,6 +320,23 @@ jQuery('[id^=donor_]').each(function(){
     jQuery("[id='"+jQuery(this).attr("id").replace("donor_","billing_")+"']").val(jQuery(this).val());
   });
 });
+
+function populateAmount(amount) {
+	var match = jQuery('label[data-amount=' + amount + ']');
+	if(match.length>=1){
+		jQuery(match).click();
+		feeOption.coverFee();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		feeOption.coverFee();
+	}
+}
 
 // ADD QUERY STRING CODE
  	//check for any passed parameters
