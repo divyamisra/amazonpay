@@ -64,6 +64,7 @@ function donateOffline(donateOfflineCallback) {
 function donateOfflineCallback(responseData) {
 	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
 	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
+	const ddCompanyId = (jQuery("#double_the_donation_company_id").val() !== "") ? jQuery("#double_the_donation_company_id").val() : jQuery('input[name=doublethedonation_company_id]').val();
 
 	const widgetData = {
 		// transactionId: responseData.data.donationResponse.donation.transaction_id,
@@ -74,7 +75,7 @@ function donateOfflineCallback(responseData) {
 		lastName: jQuery('input[name="last_name"]').val(),
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
-		ddCompanyId: jQuery('input[name=doublethedonation_company_id]').val()
+		ddCompanyId: ddCompanyId
 	};
 
 	// Call only if the widget is on the form
