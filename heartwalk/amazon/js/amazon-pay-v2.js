@@ -96,6 +96,9 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 				//save off amazon id into custom field
 				$('input[name=check_number]').val(data.response.chargePermissionId);
 				$('input[name=payment_confirmation_id]').val('AMAZON:'+data.response.chargePermissionId);
+				// reset field to post correct value back to LO
+				jQuery('input[name=gift_amount]').val(jQuery('input[name=other_amount]').val());
+				jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
 				donateOffline(donateOfflineCallback);
 				showConfirmationPage();
 				clearStorage();
@@ -158,13 +161,20 @@ function showConfirmationPage() {
 	const form = $('input[name=form_id]').val();
 	const amt = $('input[name=other_amount]').val();
 	const ref = $('input[name=check_number]').val();
+	const from_url = jQuery('input[name="from_url"]').val();
+	const feeamt = jQuery('input[name=additional_amount]').val();
+	const originalamt = jQuery('input[name=gift_amount]').val();
 
 	$('.donation-loading').remove();
 	$('.donate-now, .header-donate').hide();
 	$('.thank-you').show();
-	$.get(donation_thank_you_page,function(datat){
+	let ty_url = "https://www2.heart.org/amazonpay/heartwalk/amazon/thankyou.html";
+	if (jQuery('input[name=instance]').val() == "heartdev") {
+		ty_url = "/amazonpay/heartwalk/amazon/thankyou.html";
+	}
+	$.get(ty_url,function(datat){
 		$('.thank-you').html($(datat).find('.thank-you').html());
-		$('p.first').html(first);
+		$('p.first, span.first').html(first);
 		$('p.last').html(last);
 		$('p.street1').html(street1);
 		$('p.street2').html(street2);
@@ -175,8 +185,14 @@ function showConfirmationPage() {
 		$('p.email').html(email);
 		$('tr.cardGroup').hide();
 		$('tr.amazon').show();
+		$('p.fee-amount').html("$" + feeamt);
+		$('p.original-amount').html("$" + originalamt);
 		$('p.amount').html("$"+amt);
 		$('p.confcode').html(ref);
+		$('p.from_url').html("<a href='"+from_url+"'>Return</a>");
+		$('.share-url').each(function(){
+			$(this).attr("href",$(this).attr("href").replace("%returnurl%",escape(from_url)));
+		});
 	});
 
 	$('.thank-you').append('<img src="//offeredby.net/silver/track/rvm.cfm?cid=28556&oid='+ref+'&amount='+amt+'&quantity=1" height="1" width="1">');
