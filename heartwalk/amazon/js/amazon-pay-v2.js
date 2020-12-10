@@ -8,23 +8,23 @@ function isSandbox() {
 
 /**
  * Build the URL parameters for the signature request
- * @todo - verify that the FR ID is passed
  */
 function buildSignatureParams() {
-	const returnUrl = location.href;
+	const returnUrl = location.href.replaceAll('&','%26');
 	const proxy_type_value = $('#proxy_type_value').val();
 	let signParams = "other_amount=" + $('input[name=other_amount]').val();
 	signParams += "&fr_id=" + $('input[name=fr_id]').val();
 	signParams += "&proxy_type_value=" + proxy_type_value;
-	if (proxy_type_value === 22) {
+	if (proxy_type_value == 22) {
 		signParams += "&team_id=" + $('#team_id').val();
-	} else if (proxy_type_value === 21) {
+	} else if (proxy_type_value == 21) {
 		signParams += "&ev_id=" + $('#ev_id').val();
 	} else {
 		signParams += "&cons_id=" + $('#cons_id').val();
 	}
+	signParams += "&custom_note=" + $('#campaign_name').val();
+	signParams = URLEncode(signParams);
 	signParams += "&return_url_js=" + returnUrl;
-	signParams += "&custom_note=" + $('campaign_name').val();
 
 	return signParams;
 }
@@ -34,7 +34,7 @@ function buildSignatureParams() {
  * @param {*} amazonPayInitCheckout Callback function to process signature
  */
 function getSignature(amazonPayInitCheckout) {
-	let params = URLEncode(buildSignatureParams());
+	let params = buildSignatureParams();
 	if(isSandbox()) {
 		params = 'sandbox=true&' + params;
 	}
