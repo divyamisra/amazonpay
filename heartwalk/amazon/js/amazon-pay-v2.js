@@ -12,10 +12,12 @@ function isSandbox() {
  */
 function buildSignatureParams() {
 	const returnUrl = location.href;
-	const signParams = "other_amount=" + $('input[name=other_amount]').val();
+	let signParams = "other_amount=" + $('input[name=other_amount]').val();
+	signParams += "&fr_id=" + $('input[name=fr_id]').val();
+	signParams += "&return_url_js=" + returnUrl;
 	// "&custom_note=" + custom string;
 
-	return signParams + "&return_url_js=" + returnUrl;
+	return signParams;
 }
 
 /**
