@@ -12,10 +12,19 @@ function isSandbox() {
  */
 function buildSignatureParams() {
 	const returnUrl = location.href;
+	const proxy_type_value = $('#proxy_type_value').val();
 	let signParams = "other_amount=" + $('input[name=other_amount]').val();
 	signParams += "&fr_id=" + $('input[name=fr_id]').val();
+	signParams += "&proxy_type_value=" + proxy_type_value;
+	if (proxy_type_value === 22) {
+		signParams += "&team_id=" + $('#team_id').val();
+	} else if (proxy_type_value === 21) {
+		signParams += "&ev_id=" + $('#ev_id').val();
+	} else {
+		signParams += "&cons_id=" + $('#cons_id').val();
+	}
 	signParams += "&return_url_js=" + returnUrl;
-	// "&custom_note=" + custom string;
+	signParams += "&custom_note=" + $('campaign_name').val();
 
 	return signParams;
 }

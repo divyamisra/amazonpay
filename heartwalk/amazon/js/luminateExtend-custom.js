@@ -233,12 +233,6 @@ if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
 }
 
 function donateAmazon(amazonCheckoutSessionId) {
-	window.scrollTo(0, 0);
-	$('.donation-form').hide();
-	$('.donation-form').before('<div class="well donation-loading">' +
-			'Thank You!  We are now processing your donation from Amazon ...' +
-			'</div>');
-
 	let lsForm = localStorage.getItem('ahaDonate');
 	if (lsForm != null) {
 		// verify checkout
