@@ -82,21 +82,6 @@
 			}
 			// New Amazon Process
 			submitAmazonDonation();
-
-			// if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-			// 	if (jQuery('label[for="type-monthly"] .active').length > 0) {				
-			// 		if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-			// 			donateAmazon();
-			// 		} else {
-			// 			alert("Consent is needed before making donation");
-			// 		}
-			// 	} else {
-			// 		donateAmazon();					
-			// 	}
-			// } else {
-			// 	alert("Please login to Amazon and select payment before submitting");
-			// 	return false;
-			// }
 		} else { 
 			const h = document.querySelector("#amt-header");
 			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

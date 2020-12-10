@@ -206,23 +206,23 @@ function showConfirmationPage() {
 		});
 	});
 
-	$('.thank-you').append('<img src="//offeredby.net/silver/track/rvm.cfm?cid=28556&oid='+ref+'&amount='+amt+'&quantity=1" height="1" width="1">');
-	$.getScript("//action.dstillery.com/orbserv/nsjs?adv=cl1014039&ns=1985&nc=HBP-Donate-Now-Landing-Page&ncv=52&dstOrderId="+ref+"&dstOrderAmount="+amt);
+	// $('.thank-you').append('<img src="//offeredby.net/silver/track/rvm.cfm?cid=28556&oid='+ref+'&amount='+amt+'&quantity=1" height="1" width="1">');
+	// $.getScript("//action.dstillery.com/orbserv/nsjs?adv=cl1014039&ns=1985&nc=HBP-Donate-Now-Landing-Page&ncv=52&dstOrderId="+ref+"&dstOrderAmount="+amt);
 
 	// Custom Tracking code
-	includeCustomFBPixel(amt);
+	// includeCustomFBPixel(amt);
 
 	/* ECOMMERCE TRACKING CODE */
-	ga('require', 'ecommerce');
-	ga('ecommerce:addTransaction', {
-		'id': ref,
-		'affiliation': 'AHA Amazon Donation',
-		'revenue': amt,
-		'city': $('input[name="donor.address.city"]').val(),
-		'state': $('select[name="donor.address.state"]').val()  // local currency code.
-	});
-	ga('ecommerce:send');
-	ga('send', 'pageview', '/donateok.asp');
+	// ga('require', 'ecommerce');
+	// ga('ecommerce:addTransaction', {
+	// 	'id': ref,
+	// 	'affiliation': 'AHA Amazon Donation',
+	// 	'revenue': amt,
+	// 	'city': $('input[name="donor.address.city"]').val(),
+	// 	'state': $('select[name="donor.address.state"]').val()  // local currency code.
+	// });
+	// ga('ecommerce:send');
+	// ga('send', 'pageview', '/donateok.asp');
 
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }
