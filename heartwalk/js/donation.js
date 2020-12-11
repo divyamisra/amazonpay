@@ -64,6 +64,7 @@ function donateOffline(donateOfflineCallback) {
 function donateOfflineCallback(responseData) {
 	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
 	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
+	const ddCompanyId = (jQuery("#double_the_donation_company_id").val() !== "") ? jQuery("#double_the_donation_company_id").val() : jQuery('input[name=doublethedonation_company_id]').val();
 
 	const widgetData = {
 		// transactionId: responseData.data.donationResponse.donation.transaction_id,
@@ -74,11 +75,11 @@ function donateOfflineCallback(responseData) {
 		lastName: jQuery('input[name="last_name"]').val(),
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
-		ddCompanyId: jQuery('input[name=doublethedonation_company_id]').val()
+		ddCompanyId: ddCompanyId
 	};
 
 	// Call only if the widget is on the form
-	if (jQuery('input[name=doublethedonation_company_id]').length > 0) {
+	if (ddCompanyId.length || jQuery('input[name=doublethedonation_company_id]').length > 0) {
 		doubleDonationConfirmation(widgetData);
 	}
 }
@@ -130,16 +131,16 @@ if (location.href.indexOf("donate_applepay") > 0 || location.href.indexOf("donat
 
   jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
   if (data2.team_name != "" && dtype == "t") {
-    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
+    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.team_name+'</a></div>');
     jQuery('.page-header h1').text('Donate to '+data2.team_name);
     jQuery('input[name=participant_name]').val(data2.team_name);
   }
   if (data2.event_title != " " && dtype == "e") {
-    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
+    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.event_title+'</a></div>');
     jQuery('.page-header h1').text('Donate to '+data2.event_title);
   }
   if (data2.part_name != " " && dtype == "p") {
-    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
+    jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.part_name+'</a></div>');
     jQuery('.page-header h1').text('Donate to '+data2.part_name);
     jQuery('input[name=participant_name]').val(data2.part_name);
   }
