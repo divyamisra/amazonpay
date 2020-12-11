@@ -170,7 +170,7 @@ function showConfirmationPage() {
 	const zip = $('input[name="zip"]').val();
 	const form = $('input[name=form_id]').val();
 	const amt = $('input[name=other_amount]').val();
-	const ref = $('input[name=check_number]').val();
+	const ref = $('input[name=payment_confirmation_id]').val();
 	const from_url = $('input[name="from_url"]').val();
 	const feeamt = $('input[name=additional_amount]').val();
 	const originalamt = $('input[name=gift_amount]').val();
