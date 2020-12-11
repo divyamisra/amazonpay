@@ -275,7 +275,7 @@ function getAmazonAddress() {
 	});
 })(jqcn);
 
-const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+const amzConfirmationId = jqcn.getQuerystring('amazonCheckoutSessionId');
 jqcn(document).ready(function(){
 	if (amzConfirmationId) {
 		donateAmazon(amzConfirmationId);
@@ -288,6 +288,15 @@ jqcn('[id^=donor_]').each(function(){
     jqcn("[id='"+jqcn(this).attr("id").replace("donor_","billing_")+"']").val(jqcn(this).val());
   });
 });
+
+// GA Donation Success
+(function(){
+	var a = document.createElement('script');
+	a.type = 'text/javascript';
+	a.src = '../amazonpay/heartwalk/js/gaDonationSuccess.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(a, s);
+})();
 
 //autofill from querystring data
 jqcn('input[name="first_name"]').val(jqcn.getQuerystring("first"));
@@ -319,3 +328,32 @@ if (jqcn.getQuerystring("amount")) {
 }
 
 // END QUERY STRING CODE 
+
+
+//
+function showEventInfo(){ 
+	var eid = jcqn('input[name=fr_id]').val();
+	var dtype = (jcqn('input[name=proxy_type_value]').val() == 20) ? "p" : ((jcqn('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+	var pid = (dtype == "p") ? jcqn('input[name=cons_id]').val() : "";
+	var tid = (dtype == "t") ? jcqn('input[name=team_id]').val() : "";
+    	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+    	if (jcqn('input[name=instance]').val() == "heartdev") {
+		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	}
+	jcqn.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+		//jcqn('.page-header h1').html(data2.event_title);
+		if (data2.team_name != "" && dtype == "t") {
+			jcqn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+decodeURIComponent(jcqn('input[name=from_url]').val())+'">'+data2.team_name+'</a></div>');
+		}
+		if (data2.event_title != " " && dtype == "e") {
+			jcqn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+decodeURIComponent(jcqn('input[name=from_url]').val())+'">'+data2.event_title+'</a></div>');
+		}
+		if (data2.part_name != " " && dtype == "p") {
+			jcqn('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+decodeURIComponent(jcqn('input[name=from_url]').val())+'">'+data2.part_name+'</a></div>');
+		}
+
+		jcqn('input[name=form_id]').val(data2.don_form_id);
+	});
+
+}
+showEventInfo();

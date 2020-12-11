@@ -56,7 +56,7 @@ function amazonPayInitCheckout(signatureData) {
 	let payload = signatureData.payload;
 	let signature = signatureData.signature;
 
-	localStorage.setItem('amz_aha_signature', signature);
+	// localStorage.setItem('amz_aha_signature', signature);
 	localStorage.setItem('amz_aha_amt', $('input[name=other_amount]').val());
 
 	amazonPayButton.initCheckout({
