@@ -1,5 +1,3 @@
-<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <link rel="stylesheet" href="../aha-luminate/dist/heart-walk/css/main.1528304549228.min.css"> -->
 <!--[if lt IE 9]>
   <script src="../ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <![endif]-->
@@ -34,16 +32,14 @@
       </div>
       <p class="impactStatement" style="display: block;"></p>
     </div>
-    <form class="form-horizontal luminateApi donation-form" method="POST"
-      action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}'
-      id="donateform">
+    <form class="form-horizontal luminateApi donation-form" method="POST" action="https://secure3.convio.net/heart/site/CRDonationAPI" data-luminateApi='{"callback": "donateCallback"}' id="donateform">
       <div class="donation-form-container responsive">
         <input type="hidden" name="instance" value="[[S80:instance]]">
         <input type="hidden" name="recurring" value="false">
         <input type="hidden" name="method" value="donate">
         <input type="hidden" name="form_id" value="1710">
         <input type="hidden" name="validate" value="true">
-        <input type="hidden" name="source" value="">
+        <input type="hidden" name="source" value="AMAZON">
         <input type="hidden" name="payment_source" value="AMAZON">
         <input type="hidden" name="_session" value="">
         <input type="hidden" name="other_amount" value="100">
@@ -56,24 +52,19 @@
         <input type="hidden" name="mfc_pref" id="mfc_pref" value="T" />
         <input type="hidden" name="proxy_type_value" id="proxy_type_value" value="[[S334:PROXY_TYPE]]" />
         <input type="hidden" name="from_url_js" id="from_url_js" value="" />
+        <input type="hidden" name="campaign_name" id="campaign_name" value="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::heartdev ::]][[?xx::x[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]x::[[E42:[[S334:FR_ID]]:title]]::[[E47:[[S334:FR_ID]]:fr_info:1:event_title]]]]"/>
         [[?[[S334:PROXY_TYPE]]::20::
         <input type="hidden" name="cons_id" id="cons_id" value="[[S334:PROXY_ID]]" />
-        <input type="hidden" name="from_url"
-          value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]"
-          id="from_url">
+        <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=personal&px=[[S334:PROXY_ID]]" id="from_url">
         ::]]
         [[?[[S334:PROXY_TYPE]]::21::
         <input type="hidden" name="ev_id" id="ev_id" value="[[S334:PROXY_ID]]" />
-        <input type="hidden" name="from_url"
-          value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=pfind"
-          id="from_url">
+        <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=pfind" id="from_url">
         ::]]
         [[?[[S334:PROXY_TYPE]]::22::
         <input type="hidden" name="team_id" id="team_id" value="[[S334:PROXY_ID]]" />
         <input type="hidden" name="team_gift" value="true">
-        <input type="hidden" name="from_url"
-          value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]"
-          id="from_url">
+        <input type="hidden" name="from_url" value="[[?xheartdevx::x[[S80:instance]]x::https://secure3.convio.net/heartdev::https://www2.heart.org]]/site/TR?fr_id=[[S334:FR_ID]]&pg=team&team_id=[[S334:PROXY_ID]]" id="from_url">
         ::]]
         <input type="hidden" name="confirmed" id="confirmed" value="true">
         <input type="hidden" name="gift_display_name" id="gift_display_name" value="Amazon">
@@ -84,7 +75,7 @@
         ::
         <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  -->
         ]]
-        <input type="hidden" value="" id="tribute_typeg" name="tribute.type">
+        <!-- <input type="hidden" value="" id="tribute_typeg" name="tribute.type"> -->
         <h2 class="section-header-container"> Select an amount: </h2>
         <div class="panel panel-default">
           <div class="panel-body">
@@ -200,40 +191,7 @@
             }
           </style>
 
-          <!-- BEGIN AMAZON PAYMENTS ADDITION -->
-          <input type="hidden" name="AmazonBillingAgreementId" value="" />
-          <!-- Passed on to Amazon REST call: SetBillingAgreementDetails -->
-          <input type="hidden" name="AmazonOrderReferenceId" value="" />
-          <!-- Passed to Amazon after Amazon returns error. -->
-          <input type="hidden" name="AmazonAccessToken" value="" />
-          <!-- Can be saved on our back end for getting updated user information at a later time. -->
-          <input type="hidden" name="AmazonPaymentSelected" value="" />
-          <!-- END AMAZON PAYMENTS ADDITION -->
-
-          <div id="AmazonPayment" style="background-color_: #F2F2F2; padding_: 10px; margin-right:22px;">
-            <div id="AmazonLogin">Please login to Amazon before continuing:</div>
-
-            <!-- BUTTON WIDGET -->
-            <div id="AmazonPayButton"> </div>
-
-            <!-- WALLET WIDGET -->
-            <div id="walletWidgetDiv"> </div>
-
-            <!-- RECURRING PAYMENTS WIDGET -->
-            <div id="consentWidgetDiv"> </div>
-
-            <!-- LOGOUT LINK -->
-            <div id="AmazonLogoutButton"> <a class="" href="#"
-                onClick="javascript:amazon.Login.MODLogoutClickHandler()">Log out of Amazon Payments</a> </div>
-            <br />
-            <p class="amazon-payments">Amazon Payments is the secure payment for the American Heart Association. <a
-                href="https://payments.amazon.com/help/Amazon-Simple-Pay/Creating-Managing-Your-Account/Verifying-Your-Account"
-                target="_blank">Learn more</a> about Amazon Payments.
-              Amazon Payments protects your privacy and security.</p>
-          </div>
-          <!-- AmazonPayment -->
-
-          <div class="panel panel-default contact-information" style="display:none">
+          <div class="panel panel-default contact-information">
             <div class="panel-heading">Tell us about yourself</div>
             <div class="panel-body">
               <div class="form-group required">
@@ -248,7 +206,7 @@
                   <input class="form-control required" name="last_name" id="donor_last_name" type="text">
                 </div>
               </div>
-              <div class="contact-address" style="">
+              <div class="contact-address">
                 <div class="form-group required">
                   <label class="col-sm-3 col-md-3 control-label" for="donor_street1">Street 1:</label>
                   <div class="col-sm-8 col-md-6">
@@ -381,21 +339,15 @@
           <input type="hidden" class="form-control" name="billing_state" id="billing_state">
           <input type="hidden" class="form-control" name="billing_zip" id="billing_zip">
         </div>
+
+        <div class="confirmation-amount">
+          Amount: <span id="btn-amt">75</span>
+        </div>
+
         <div class="panel panel-default process-button">
           <div class="panel-body">
-            <!-- <div style="float:right"> 
-            <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://donatenow.heart.org/images/comodo_secure_100x85_transp.png", "CL1", "none");
-  </script> 
-            <a href="https://ssl.comodo.com" id="comodoTL">SSL Certificate</a> </div> -->
-            <button type="button" id="donate-submit" class="btn btn-primary text-center">
-              <!-- <div>All of my information is correct.</div>
-              Process my donation please -->
-              Donate $<span class="btn-amt">100</span>
-            </button>
+            <div class="amazon-pay" id="donate-submit" type="button" style="width: 200px;"></div>
           </div>
-          <!-- <div class="privacyText">By making my gift, I accept the <a href="http://www.heart.org/privacy"
-              target="_blank">AHA privacy policy</a></div> -->
         </div>
       </div>
     </form>
@@ -403,21 +355,17 @@
 </div>
 
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="https://static-na.payments-amazon.com/checkout.js"></script>
+<script type="text/javascript" src="../amazonpay/nchw/js/amazon-pay-v2.js"></script>
 <script type="text/javascript" src="../amazonpay/nchw/js/luminateExtend-custom.js"></script>
-<!-- ADD AMAZON CODE -->
 <script>
-  window.onAmazonLoginReady = function () {
-    amazon.Login.setClientId('amzn1.application-oa2-client.38bb1196ffea48f2b70647a398ce8a27'); // If you change Client ID, it should also be changed on submit form
-  };
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
 </script>
-[[?x[[S334:df_preview]]x::xtruex::
-<!-- sandbox JS -->
-<script type="text/javascript"
-  src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script>
-::
-<!-- production JS -->
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js"></script>
-]]
-<!-- END AMAZON PAYMENTS ADDITION -->
-
-<script type="text/javascript" src="../amazonpay/nchw/js/amazon-pay.js"></script>
