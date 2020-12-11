@@ -153,9 +153,7 @@ function populateForm(lsForm) {
 		}
 	});
 	// reset gift amount
-	setTimeout(function() {
-		populateAmount(donateData['other_amount']);
-	},1000);
+	populateAmount(donateData['other_amount'] - donateData['additional_amount']);
 }
 
 /**
@@ -212,8 +210,8 @@ function showConfirmationPage() {
 		'id': ref,
 		'affiliation': 'AHA Amazon Donation',
 		'revenue': amt,
-		'city': $('input[name="donor.address.city"]').val(),
-		'state': $('select[name="donor.address.state"]').val()  // local currency code.
+		'city': city,
+		'state': state  // local currency code.
 	});
 	ga('ecommerce:send');
 	ga('send', 'pageview', '/donateok.asp');

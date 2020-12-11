@@ -45,7 +45,7 @@
 		  }
 		});
 
-		jQuery('input[name=compliance]').val("true");
+		// jQuery('input[name=compliance]').val("true");
 		
         window.scrollTo(0, 0);
         jQuery(this).hide();
@@ -289,9 +289,11 @@ function getAmazonAddress() {
 })(jQuery);
 
 const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
-if (amzConfirmationId) {
-	donateAmazon(amzConfirmationId);
-}
+jQuery(document).ready(function(){
+	if (amzConfirmationId) {
+		donateAmazon(amzConfirmationId);
+	}
+})
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
@@ -301,7 +303,7 @@ jQuery('[id^=donor_]').each(function(){
 });
 
 function populateAmount(amount) {
-	var match = jQuery('label[data-amount=' + amount + ']');
+	var match = jQuery('label[data-amount="' + amount + '"]');
 	if(match.length>=1){
 		jQuery(match).click();
 		feeOption.coverFee();
