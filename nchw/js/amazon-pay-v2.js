@@ -91,11 +91,6 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 			if (data.status != 200) {
 				// handle error
 				let errorMessage = 'Your payment was not successful. Please try another payment method.';
-				// if (typeof(data.response)!="undefined") {
-				// 	errorMessage = data.response.reasonCode + '<br>';
-				// 	errorMessage += data.response.message;
-				// }
-
 				$('#donation-errors').remove();
 				$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive">' +
 						'<div class="alert alert-danger">' +
@@ -203,18 +198,6 @@ function showConfirmationPage() {
 			$(this).attr("href",$(this).attr("href").replace("%returnurl%",escape(from_url)));
 		});
 	});
-
-	/* ECOMMERCE TRACKING CODE */
-	ga('require', 'ecommerce');
-	ga('ecommerce:addTransaction', {
-		'id': ref,
-		'affiliation': 'AHA Amazon Donation',
-		'revenue': amt,
-		'city': city,
-		'state': state  // local currency code.
-	});
-	ga('ecommerce:send');
-	ga('send', 'pageview', '/donateok.asp');
 
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }

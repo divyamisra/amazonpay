@@ -31,7 +31,7 @@
 		  }
 		});
 
-		jqcn('input[name=compliance]').val("true");
+		// jqcn('input[name=compliance]').val("true");
 		
         window.scrollTo(0, 0);
         jqcn(this).hide();
@@ -68,27 +68,16 @@
 				alert("Please enter an amount $25 or greater");
 				return false;
 			}
-			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-				if (jqcn('label[for="type-monthly"] .active').length > 0) {				
-					if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-						donateAmazon();
-					} else {
-						alert("Consent is needed before making donation");
-					}
-				} else {
-					donateAmazon();					
-				}
-			} else {
-				alert("Please login to Amazon and select payment before submitting");
-				return false;
-			}
+			submitAmazonDonation();
 		} else { 
+			const h = document.querySelector(".section-header-container");
+			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 			return false;
 		}
       });
     }
 
-	function donateAmazon() {
+	function donateAmazonOld() {
 		window.scrollTo(0, 0);
 		jqcn('.donation-form').hide();
 		jqcn('.donation-form').before('<div class="well donation-loading">' + 
@@ -206,6 +195,32 @@
   });
 })(jqcn);
 
+// Get Amazon confirmation id
+if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
+	// hide form - show loading
+	window.scrollTo(0, 0);
+	jqcn('.donation-form').hide();
+	jqcn('.donation-form').before('<div class="well donation-loading">' +
+			'Thank You!  We are now processing your donation from Amazon ...' +
+			'</div>');
+}
+
+function donateAmazon(amazonCheckoutSessionId) {
+	let lsForm = localStorage.getItem('ahaDonate');
+	if (lsForm != null) {
+		// verify checkout
+		populateForm(lsForm);
+		const amzAmt = localStorage.getItem('amz_aha_amt');
+		amazonPayVerifyCheckout(amazonCheckoutSessionId, amzAmt);
+	} else {
+		// handle missing data
+		console.log('no data found');
+		jqcn('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		jqcn('.donation-loading').remove();
+		jqcn('.donation-form').show();
+	}
+}
+
 function showLevels(frequency, sel) {
 	jqcn('.radio-label').removeClass("active");
 	jqcn(sel).addClass("active");
@@ -259,6 +274,13 @@ function getAmazonAddress() {
 		}
 	});
 })(jqcn);
+
+const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+jqcn(document).ready(function(){
+	if (amzConfirmationId) {
+		donateAmazon(amzConfirmationId);
+	}
+})
 
 //copy donor fields to billing
 jqcn('[id^=donor_]').each(function(){
