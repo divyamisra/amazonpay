@@ -105,7 +105,8 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 				// reset field to post correct value back to LO
 				jQuery('input[name=gift_amount]').val(jQuery('input[name=other_amount]').val());
 				jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
-				donateOffline(donateOfflineCallback);
+				// donateOffline(donateOfflineCallback);
+				donateOffline();
 				showConfirmationPage();
 				clearStorage();
 			}
