@@ -176,22 +176,6 @@
 		});
 
 	}
-
-	function donateOffline() {
-		var params = jqcn('.donation-form').serialize();
-
-		jqcn.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
-			success: function(data){
-				//donateCallback.success(data.data);
-			}
-		});
-
-	}
   });
 })(jqcn);
 
@@ -256,6 +240,21 @@ function getAmazonAddress() {
 			jqcn('input[name="billing_street1"]').val(address.AddressLine1);
 			jqcn('input[name="billing_city"]').val(address.City);
 			jqcn('input[name="billing_state"]').val(address.StateOrRegion);
+		}
+	});
+}
+
+function donateOffline() {
+	var params = jqcn('.donation-form').serialize();
+
+	jqcn.ajax({
+		method: "POST",
+		async: false,
+		cache:false,
+		dataType: "json",
+		url:"https://tools.heart.org/donate/convio-offline/addOfflineDonation-tr.php?"+params+"&callback=?",
+		success: function(data){
+			//donateCallback.success(data.data);
 		}
 	});
 }
@@ -325,6 +324,24 @@ if (jqcn.getQuerystring("amount")) {
 	jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
 	jqcn('input[name=other_amount]').val(jqcn.getQuerystring("amount"));
 	jqcn('input[name=other_amount_entered]').val(jqcn.getQuerystring("amount"));
+}
+
+function populateAmount(amount) {
+	var match = jQuery('label[data-amount="' + amount + '"]');
+	if(match.length>=1){
+		jQuery(match).click();
+		// feeOption.coverFee();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		jQuery('.btn-amt').text(amount)
+		// feeOption.coverFee();
+	}
 }
 
 // END QUERY STRING CODE 

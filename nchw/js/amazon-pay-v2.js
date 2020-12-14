@@ -148,7 +148,7 @@ function populateForm(lsForm) {
 		}
 	});
 	// reset gift amount
-	populateAmount(donateData['other_amount'] - donateData['additional_amount']);
+	populateAmount(donateData['other_amount']);
 }
 
 /**
