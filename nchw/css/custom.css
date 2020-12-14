@@ -9,7 +9,7 @@ img {
 div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
-    width: 84px;
+    /* width: 84px; */
 }
 .container.heart-page-container.heart-page-container--personal {
 	padding-top: 140px;	
@@ -224,9 +224,6 @@ div.donate-select label.error {
 	box-shadow:none;
 }
 */
-.star {
-    color:red;	
-}
 
 .control-label {
 	text-align: left !important;
@@ -292,7 +289,6 @@ ul.footer-menu li a {
 }
 
 .livechat {
- 
   position: absolute;
   right: 15px;
   top: 15%;
@@ -425,6 +421,10 @@ td.FormSectionHeader {
   font-size: 1.3em;
   font-weight: bold;
   clear:both;
+}
+
+.confirmation-amount {
+  font-weight: bold;
 }
 
 
