@@ -14,20 +14,7 @@
 	// Get amount passed from query string
 	var amount = jQuery.getQuerystring("amount");
 	if (amount.length > 0) {
-		var match = jQuery('label[data-amount=' + amount + ']');
-		if(match.length>=1){
-			jQuery(match).click();
-			feeOption.coverFee();
-		} else {
-			jQuery('label.active').removeClass("active");
-			jQuery('label.level_other').addClass("active");
-			jQuery('.level-other-input').slideDown();
-			jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
-			jQuery('#other-amount-entered').removeAttr('disabled');
-			jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-			jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
-			feeOption.coverFee();
-		}
+		populateAmount(amount);
 	}
 
     /* UI handlers for the donation form example */
@@ -58,7 +45,7 @@
 		  }
 		});
 
-		jQuery('input[name=compliance]').val("true");
+		// jQuery('input[name=compliance]').val("true");
 		
         window.scrollTo(0, 0);
         jQuery(this).hide();
@@ -95,28 +82,17 @@
 				alert("Online donations have a $25 minimum.");
 				return false;
 			}
-			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-				if (jQuery('label[for="type-monthly"] .active').length > 0) {				
-					if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-						donateAmazon();
-					} else {
-						alert("Consent is needed before making donation");
-					}
-				} else {
-					donateAmazon();					
-				}
-			} else {
-				alert("Please login to Amazon and select payment before submitting");
-				return false;
-			}
+			submitAmazonDonation();
 		} else { 
 			$('label.error').attr('role','alert').attr('aria-atomic','true');
+			const h = document.querySelector("#amt-header");
+			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 			return false;
 		}
       });
     }
 
-	function donateAmazon() {
+	function donateAmazonOld() {
 		window.scrollTo(0, 0);
 		jQuery('.donation-form').hide();
 		jQuery('.donation-form').before('<div class="well donation-loading">' + 
@@ -234,6 +210,32 @@
   });
 })(jQuery);
 
+// Get Amazon confirmation id
+if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
+	// hide form - show loading
+	window.scrollTo(0, 0);
+	$('.donation-form').hide();
+	$('.donation-form').before('<div class="well donation-loading">' +
+			'Thank You!  We are now processing your donation from Amazon ...' +
+			'</div>');
+}
+
+function donateAmazon(amazonCheckoutSessionId) {
+	let lsForm = localStorage.getItem('ahaDonate');
+	if (lsForm != null) {
+		// verify checkout
+		populateForm(lsForm);
+		const amzAmt = localStorage.getItem('amz_aha_amt');
+		amazonPayVerifyCheckout(amazonCheckoutSessionId, amzAmt);
+	} else {
+		// handle missing data
+		console.log('no data found');
+		$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		$('.donation-loading').remove();
+		$('.donation-form').show();
+	}
+}
+
 function showLevels(frequency, sel) {
 	jQuery('.radio-label').removeClass("active");
 	jQuery(sel).addClass("active");
@@ -288,6 +290,12 @@ function getAmazonAddress() {
 	});
 })(jQuery);
 
+const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+jQuery(document).ready(function(){
+	if (amzConfirmationId) {
+		donateAmazon(amzConfirmationId);
+	}
+});
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
@@ -295,6 +303,23 @@ jQuery('[id^=donor_]').each(function(){
     jQuery("[id='"+jQuery(this).attr("id").replace("donor_","billing_")+"']").val(jQuery(this).val());
   });
 });
+
+function populateAmount(amount) {
+	var match = jQuery('label[data-amount="' + amount + '"]');
+	if(match.length>=1){
+		jQuery(match).click();
+		feeOption.coverFee();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		feeOption.coverFee();
+	}
+}
 
 // ADD QUERY STRING CODE
  	//check for any passed parameters
