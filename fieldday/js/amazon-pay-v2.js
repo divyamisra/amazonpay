@@ -171,6 +171,7 @@ function showConfirmationPage() {
 	const originalamt = $('input[name=gift_amount]').val();
 	const fb_share_url = decodeURIComponent($('input[name="fb_share_url"]').val());
 	const twitter_share_url = decodeURIComponent($('input[name="twitter_share_url"]').val());
+	const participant_name = jQuery('input[name="participant_name"]').val();
 
 	$('.donation-loading').remove();
 	$('.donate-now, .header-donate').hide();
