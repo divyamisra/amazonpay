@@ -63,7 +63,6 @@
       :: 
       <!-- <input type="hidden" name="sandbox" id="sandbox" value="false">  --> 
       ]]
-      <input type="hidden" value="" id="tribute_typeg" name="tribute.type">
       <h2 class="section-header-container" id="amt-header"> Select an amount: </h2>
       <div class="panel panel-default">
         <div class="panel-body">
@@ -138,38 +137,7 @@
         .payment-type label.active {background:#ccc;border-radius:10px;}
         </style>
         
-        <!-- BEGIN AMAZON PAYMENTS ADDITION -->
-        <input type="hidden" name="AmazonBillingAgreementId" value="" />
-        <!-- Passed on to Amazon REST call: SetBillingAgreementDetails -->
-        <input type="hidden" name="AmazonOrderReferenceId" value="" />
-        <!-- Passed to Amazon after Amazon returns error. -->
-        <input type="hidden" name="AmazonAccessToken" value="" />
-        <!-- Can be saved on our back end for getting updated user information at a later time. -->
-        <input type="hidden" name="AmazonPaymentSelected" value="" />
-        <!-- END AMAZON PAYMENTS ADDITION -->
-        
-        <div id="AmazonPayment" style="background-color_: #F2F2F2; padding_: 10px; margin-right:22px;">
-          <div id="AmazonLogin">Please login to Amazon before continuing:</div>
-          
-          <!-- BUTTON WIDGET -->
-          <div id="AmazonPayButton"> </div>
-          
-          <!-- WALLET WIDGET -->
-          <div id="walletWidgetDiv"> </div>
-          
-          <!-- RECURRING PAYMENTS WIDGET -->
-          <div id="consentWidgetDiv"> </div>
-          
-          <!-- LOGOUT LINK -->
-          <div id="AmazonLogoutButton"> <a class="" href="#" onClick="javascript:amazon.Login.MODLogoutClickHandler()">Log out of Amazon Payments</a> </div>
-          <br />
-          <p class="amazon-payments">Amazon Payments is the secure payment for the American Heart Association. <a href="https://payments.amazon.com/help/Amazon-Simple-Pay/Creating-Managing-Your-Account/Verifying-Your-Account" 
-        target="_blank">Learn more</a> about Amazon Payments.
-            Amazon Payments protects your privacy and security.</p>
-        </div>
-        <!-- AmazonPayment -->
-        
-        <div class="panel panel-default contact-information" style="display:none">
+        <div class="panel panel-default contact-information">
           <div class="panel-heading">Tell us about yourself</div>
           <div class="panel-body">
             <div class="form-group required">
@@ -184,7 +152,7 @@
                 <input class="form-control required" name="last_name" id="donor_last_name" type="text" title="Last name is required">
               </div>
             </div>
-            <div class="contact-address" style="">
+            <div class="contact-address">
               <div class="form-group required">
                 <label class="col-sm-3 col-md-3 control-label" for="donor_street1">Street 1:</label>
                 <div class="col-sm-8 col-md-6">
@@ -337,29 +305,19 @@
             <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
           </div>
         </div>
+
+        <div class="confirmation-amount">
+          Amount: <span id="confirmationAmt">75</span>
+        </div>
       </div>
 
       <div class="panel panel-default process-button">
         <div class="panel-body">
-          <button type="button" id="donate-submit" class="step-button action-button finish-step">Donate <span id="confirmationAmt">75</span></button>
+          <div class="amazon-pay" id="donate-submit" type="button" style="width: 200px;"></div>
+          <!-- <button type="button" id="donate-submit" class="step-button action-button finish-step">Donate <span id="confirmationAmt">75</span></button> -->
           <input type="submit" value="submit" style="display: none;" onclick="return false;">
         </div>
       </div>
     </div>
   </form>
 </div>
-
-<!-- ADD AMAZON CODE --> 
-<script>
-window.onAmazonLoginReady = function() {
-  amazon.Login.setClientId('amzn1.application-oa2-client.38bb1196ffea48f2b70647a398ce8a27'); // If you change Client ID, it should also be changed on submit form
-};
-</script> 
-[[?x[[S334:df_preview]]x::xtruex:: 
-<!-- sandbox JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js"></script> 
-:: 
-<!-- production JS --> 
-<script type="text/javascript" src="https://static-na.payments-amazon.com/OffAmazonPayments/us/js/Widgets.js"></script> 
-]] 
-<!-- END AMAZON PAYMENTS ADDITION --> 
