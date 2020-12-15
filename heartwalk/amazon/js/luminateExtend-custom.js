@@ -293,7 +293,7 @@ jQuery(document).ready(function(){
 	if (amzConfirmationId) {
 		donateAmazon(amzConfirmationId);
 	}
-})
+});
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
