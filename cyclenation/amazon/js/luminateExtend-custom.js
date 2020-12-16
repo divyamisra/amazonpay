@@ -31,15 +31,13 @@
 		  }
 		});
 
-		jqcn('input[name=compliance]').val("true");
+		// jqcn('input[name=compliance]').val("true");
 		
         window.scrollTo(0, 0);
         jqcn(this).hide();
         jqcn(this).before('<div class="well donation-loading">' + 
                          'Thank You!  We are now processing your gift ...' + 
                        '</div>');
-
-		
       });
 
 		jqcn('.donation-form').validate();				   
@@ -64,27 +62,16 @@
 				alert("Please enter an amount $25 or greater");
 				return false;
 			}
-			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-				if (jqcn('label[for="type-monthly"] .active').length > 0) {				
-					if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-						donateAmazon();
-					} else {
-						alert("Consent is needed before making donation");
-					}
-				} else {
-					donateAmazon();					
-				}
-			} else {
-				alert("Please login to Amazon and select payment before submitting");
-				return false;
-			}
-		} else { 
+			submitAmazonDonation();
+		} else {
+			const h = document.querySelector("#amt-header");
+			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 			return false;
 		}
       });
     }
 
-	function donateAmazon() {
+	function donateAmazonOld() {
 		window.scrollTo(0, 0);
 		jqcn('.donation-form').hide();
 		jqcn('.donation-form').before('<div class="well donation-loading">' + 
@@ -183,6 +170,32 @@
   });
 })(jqcn);
 
+// Get Amazon confirmation id
+if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
+	// hide form - show loading
+	window.scrollTo(0, 0);
+	$('.donation-form').hide();
+	$('.donation-form').before('<div class="well donation-loading">' +
+			'Thank You!  We are now processing your donation from Amazon ...' +
+			'</div>');
+}
+
+function donateAmazon(amazonCheckoutSessionId) {
+	let lsForm = localStorage.getItem('ahaDonate');
+	if (lsForm != null) {
+		// verify checkout
+		populateForm(lsForm);
+		const amzAmt = localStorage.getItem('amz_aha_amt');
+		amazonPayVerifyCheckout(amazonCheckoutSessionId, amzAmt);
+	} else {
+		// handle missing data
+		console.log('no data found');
+		$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		$('.donation-loading').remove();
+		$('.donation-form').show();
+	}
+}
+
 function showLevels(frequency, sel) {
 	jqcn('.radio-label').removeClass("active");
 	jqcn(sel).addClass("active");
@@ -237,12 +250,36 @@ function getAmazonAddress() {
 	});
 })(jqcn);
 
+const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+jQuery(document).ready(function(){
+	if (amzConfirmationId) {
+		donateAmazon(amzConfirmationId);
+	}
+});
+
 //copy donor fields to billing
 jqcn('[id^=donor_]').each(function(){
   jqcn(this).blur(function(){
     jqcn("[id='"+jqcn(this).attr("id").replace("donor_","billing_")+"']").val(jqcn(this).val());
   });
 });
+
+function populateAmount(amount) {
+	var match = jQuery('label[data-amount="' + amount + '"]');
+	if(match.length>=1){
+		jQuery(match).click();
+		feeOption.coverFee();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		feeOption.coverFee();
+	}
+}
 
 //autofill from querystring data
 jqcn('input[name="first_name"]').val(jqcn.getQuerystring("first"));
@@ -274,3 +311,28 @@ if (jqcn.getQuerystring("amount")) {
 }
 
 // END QUERY STRING CODE 
+function displayEventInfo() {
+	var eid = jQuery('input[name=fr_id]').val();
+	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
+	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
+	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
+		var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+		if (jQuery('input[name=instance]').val() == "heartdev") {
+		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	}
+	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
+		//jQuery('.page-header h1').html(data2.event_title);
+		if (data2.team_name != "" && dtype == "t") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.team_name+'</a></div>');
+		}
+		if (data2.event_title != " " && dtype == "e") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.event_title+'</a></div>');
+		}
+		if (data2.part_name != " " && dtype == "p") {
+			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+decodeURIComponent(jQuery('input[name=from_url]').val())+'">'+data2.part_name+'</a></div>');
+		}
+
+		jQuery('input[name=form_id]').val(data2.don_form_id);
+	});
+}
+displayEventInfo();
