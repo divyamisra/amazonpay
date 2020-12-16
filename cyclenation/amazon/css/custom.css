@@ -340,10 +340,12 @@ td.FormSectionHeader {
 }
 
 .privacyText {
-    font-size: 1em;
-    font-weight: bold;
     padding-top: 5px;
-    /* text-align: center; */
+    margin-left: 20px!important;
+}
+.confirmation-amount {
+  font-weight: bold;
+  margin-top: 1em;
 }
 
 .tos-error {
