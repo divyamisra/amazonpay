@@ -268,7 +268,7 @@ function populateAmount(amount) {
 	var match = jQuery('label[data-amount="' + amount + '"]');
 	if(match.length>=1){
 		jQuery(match).click();
-		feeOption.coverFee();
+		// feeOption.coverFee();
 	} else {
 		jQuery('label.active').removeClass("active");
 		jQuery('label.level_other').addClass("active");
@@ -277,7 +277,7 @@ function populateAmount(amount) {
 		jQuery('#other-amount-entered').removeAttr('disabled');
 		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
 		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
-		feeOption.coverFee();
+		// feeOption.coverFee();
 	}
 }
 
