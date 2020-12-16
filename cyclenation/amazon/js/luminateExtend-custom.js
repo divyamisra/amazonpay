@@ -17,7 +17,12 @@
           jqcn('#other-amount-entered').attr('disabled', 'disabled');
           jqcn('#other-amount-entered').removeAttr('name');
         }
-      });
+	  });
+
+	  jqcn('.donate-select label').click(function() {
+		jqcn('donate-select .active').removeClass('active');
+		jqcn(this).addClass('active');
+	  });
       
 	  jqcn('.gift-select label').click(function(){
 			showLevels(jqcn(this).prev('input').data('frequency'),this);
