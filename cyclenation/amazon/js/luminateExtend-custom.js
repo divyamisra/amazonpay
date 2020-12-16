@@ -64,7 +64,7 @@
 			}
 			submitAmazonDonation();
 		} else {
-			const h = document.querySelector("#amt-header");
+			const h = document.querySelector(".section-header-container");
 			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 			return false;
 		}
