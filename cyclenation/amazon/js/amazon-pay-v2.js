@@ -148,7 +148,8 @@ function populateForm(lsForm) {
 		}
 	});
 	// reset gift amount
-	populateAmount(donateData['other_amount'] - donateData['additional_amount']);
+	// populateAmount(donateData['other_amount'] - donateData['additional_amount']);
+	populateAmount(donateData['other_amount']);
 }
 
 /**
@@ -196,7 +197,6 @@ function showConfirmationPage() {
 		$('a.from_url').attr('href', from_url);
 		$('#fb-share').attr('href', fb_share_url);
 		$('#twitter-share').attr('href', twitter_share_url);
-		$('span.participant').html(participant_name);
 		$('.share-url').each(function(){
 			$(this).attr("href",$(this).attr("href").replace("%returnurl%",escape(from_url)));
 		});

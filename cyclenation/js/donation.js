@@ -83,3 +83,12 @@ jQuery(document).on("doublethedonation_company_id", function () {
 	var dtd_company_id = jQuery('input[name="doublethedonation_company_id"]').val();
 	jQuery("#double_the_donation_company_id").val(dtd_company_id);
 });
+
+// GA Donation Success
+(function(){
+	var a = document.createElement('script');
+	a.type = 'text/javascript';
+	a.src = '../amazonpay/cyclenation/js/gaDonationSuccess.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(a, s);
+})();
