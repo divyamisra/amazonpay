@@ -566,6 +566,10 @@ td.FormSectionHeader {
   font-size: 0.8em;	
 }
 
+#dd-widget {
+  margin-bottom: 2rem;
+}
+
 /*** Matching Gift Widget ***/
 #dd-container .mg-forms-button,
 #dd-container .mg-guidelines-button,
