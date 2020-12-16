@@ -174,8 +174,8 @@
 if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
 	// hide form - show loading
 	window.scrollTo(0, 0);
-	$('.donation-form').hide();
-	$('.donation-form').before('<div class="well donation-loading">' +
+	jqcn('.donation-form').hide();
+	jqcn('.donation-form').before('<div class="well donation-loading">' +
 			'Thank You!  We are now processing your donation from Amazon ...' +
 			'</div>');
 }
@@ -190,9 +190,9 @@ function donateAmazon(amazonCheckoutSessionId) {
 	} else {
 		// handle missing data
 		console.log('no data found');
-		$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
-		$('.donation-loading').remove();
-		$('.donation-form').show();
+		jqcn('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		jqcn('.donation-loading').remove();
+		jqcn('.donation-form').show();
 	}
 }
 
@@ -250,7 +250,7 @@ function getAmazonAddress() {
 	});
 })(jqcn);
 
-const amzConfirmationId = $.getQuerystring('amazonCheckoutSessionId');
+const amzConfirmationId = jqcn.getQuerystring('amazonCheckoutSessionId');
 jQuery(document).ready(function(){
 	if (amzConfirmationId) {
 		donateAmazon(amzConfirmationId);
@@ -316,8 +316,8 @@ function displayEventInfo() {
 	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
 	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
 	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-		var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-		if (jQuery('input[name=instance]').val() == "heartdev") {
+	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+	if (jQuery('input[name=instance]').val() == "heartdev") {
 		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
 	}
 	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
