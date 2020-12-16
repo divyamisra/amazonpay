@@ -12,7 +12,7 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
     /* width: 84px; */
 }
 select {
-  height: auto;
+  height: auto !important;
 }
 .container.heart-page-container.heart-page-container--personal {
 	padding-top: 140px;	
@@ -382,6 +382,7 @@ td.FormSectionHeader {
 
 #cover_fee + label, #tos + label {
   margin-right: 0;
+  padding-left: 0;
 }
 
 @media only screen and (max-width: 767px) {
