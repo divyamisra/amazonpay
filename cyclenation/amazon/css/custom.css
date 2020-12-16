@@ -22,13 +22,6 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
 	margin-top: 0.5em;
 }
 
-.tribute {
-	display:none;
-}
-.tribute-print,
-.tribute-ecard {
-	display:none;
-}
 .billing-information {
 	display:none;
 }
@@ -200,38 +193,6 @@ div.donate-select label.error {
   white-space: normal;
   width: 100%;
 }
-/*
-div.tribute-select label {
-	background: none repeat scroll 0 0 #484848;
-	border-radius: 8px;
-	color: #fff;
-	display: inline-block;
-	font-size: 25px;
-	font-weight: normal;
-	min-height: 60px;
-	padding: 15px 20px;
-	min-width: 100px;
-}
-.tribute-select label:hover, .tribute-select label.active {
-	background: #ED1C24;
-	cursor:pointer;
-}
-*/
-/*
-.contact-information .form-group {
-  background: none repeat scroll 0 0 #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 90%;
-  padding:3px 0;
-}
-
-.contact-information .form-control {
-	border:none;
-	background:none;
-	box-shadow:none;
-}
-*/
 .star {
 color:red;	
 }
@@ -281,7 +242,6 @@ ul.footer-menu li a {
 }
 
 .livechat {
- 
   position: absolute;
   right: 15px;
   top: 15%;
@@ -396,6 +356,13 @@ form .credit-card-group input#card-number.valid.discover {
 }
 .vertical input {
   width: 68px;
+}
+.payment-type label img {
+  cursor:pointer;
+  padding: 5px;
+} 
+.payment-type label.active {
+  background:#ccc;border-radius:10px;
 }
 
 .thank-you {
