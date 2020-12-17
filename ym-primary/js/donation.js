@@ -57,7 +57,7 @@ function donateOffline(donateOfflineCallback) {
  */
 function donateOfflineCallback(responseData) {
 	const campaign_name = jQuery('input[name=campaign_name]').length ? jQuery('input[name=campaign_name]').val() : "Youth Market";
-	// const campaign_name = (jQuery('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
+	const ddCompanyId = (jQuery("#double_the_donation_company_id").val() !== "") ? jQuery("#double_the_donation_company_id").val() : jQuery('input[name=doublethedonation_company_id]').val();
 
 	const widgetData = {
 		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber,
@@ -67,13 +67,13 @@ function donateOfflineCallback(responseData) {
 		lastName: jQuery('input[name="last_name"]').val(),
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
-		ddCompanyId: jQuery('input[name=doublethedonation_company_id]').val()
+		ddCompanyId: ddCompanyId
 	};
 
 	// Call only if the widget is on the form
-	if (jQuery('input[name=doublethedonation_company_id]').length > 0) {
+	// if (jQuery("#double_the_donation_company_id").length || jQuery('input[name=doublethedonation_company_id]').length > 0) {
 		doubleDonationConfirmation(widgetData);
-	}
+	// }
 }
 
 /**
