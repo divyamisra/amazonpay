@@ -30,7 +30,7 @@
 	  });
 
 		// Get amount passed from query string
-		let amount = jqcn.getQuerystring("amount");
+		let amount = jQuery.getQuerystring("amount");
 		if (amount.length > 0) {
 			populateAmount(amount);
 		}
@@ -93,8 +93,8 @@
 if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
 	// hide form - show loading
 	window.scrollTo(0, 0);
-	jqcn('.donation-form').hide();
-	jqcn('.donation-form').before('<div class="well donation-loading">' +
+	jQuery('.donation-form').hide();
+	jQuery('.donation-form').before('<div class="well donation-loading">' +
 			'Thank You!  We are now processing your donation from Amazon ...' +
 			'</div>');
 }
@@ -109,9 +109,9 @@ function donateAmazon(amazonCheckoutSessionId) {
 	} else {
 		// handle missing data
 		console.log('no data found');
-		jqcn('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
-		jqcn('.donation-loading').remove();
-		jqcn('.donation-form').show();
+		jQuery('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		jQuery('.donation-loading').remove();
+		jQuery('.donation-form').show();
 	}
 }
 
