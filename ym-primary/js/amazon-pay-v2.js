@@ -200,23 +200,23 @@ function showConfirmationPage() {
 		jQuery('a.from_url').attr('href', from_url);
 		jQuery('#fb-share').attr('href', fb_share_url);
 		jQuery('#twitter-share').attr('href', twitter_share_url);
-		jQuery('span.participant').html(participant_name);
+		// jQuery('span.participant').html(participant_name);
 		jQuery('.share-url a').each(function(){
 			jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
 		});
 	});
 
 	/* ECOMMERCE TRACKING CODE */
-	ga('require', 'ecommerce');
-	ga('ecommerce:addTransaction', {
-		'id': ref,
-		'affiliation': 'AHA ApplePay Donation',
-		'revenue': amt,
-		'city': city,
-		'state': state // local currency code.
-	});
-	ga('ecommerce:send');
-	ga('send', 'pageview', '/donateok.asp');
+	// ga('require', 'ecommerce');
+	// ga('ecommerce:addTransaction', {
+	// 	'id': ref,
+	// 	'affiliation': 'AHA ApplePay Donation',
+	// 	'revenue': amt,
+	// 	'city': city,
+	// 	'state': state // local currency code.
+	// });
+	// ga('ecommerce:send');
+	// ga('send', 'pageview', '/donateok.asp');
 
 	pushDonationSuccessToDataLayer(form, ref, amt);
 }
