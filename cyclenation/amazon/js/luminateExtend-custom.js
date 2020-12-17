@@ -162,6 +162,7 @@ function populateAmount(amount) {
 	var match = jqcn('label[data-amount="' + amount + '"]');
 	if(match.length>=1){
 		jqcn(match).click();
+		jqcn('#confirmationAmt').text(amount);
 		// feeOption.coverFee();
 	} else {
 		jqcn('label.active').removeClass("active");
