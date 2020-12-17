@@ -1,6 +1,6 @@
 // Amazon V2
 function isSandbox() {
-	if ($("input[name=instance]").val() == 'heartdev' || $("input[name=df_preview]").val()) {
+	if (jQuery("input[name=instance]").val() == 'heartdev' || jQuery("input[name=df_preview]").val()) {
 		return true;
 	}
 	return false;
@@ -15,18 +15,18 @@ function buildSignatureParams() {
 		returnUrl = returnUrl.substring(0, returnUrl.indexOf('amazonCheckoutSessionId')-1);
 	}
 	returnUrl = returnUrl.replaceAll('&','%26');
-	const proxy_type_value = $('#proxy_type_value').val();
-	let signParams = "other_amount=" + $('input[name=other_amount]').val();
-	signParams += "&fr_id=" + $('input[name=fr_id]').val();
+	const proxy_type_value = jQuery('#proxy_type_value').val();
+	let signParams = "other_amount=" + jQuery('input[name=other_amount]').val();
+	signParams += "&fr_id=" + jQuery('input[name=fr_id]').val();
 	signParams += "&proxy_type_value=" + proxy_type_value;
 	if (proxy_type_value == 22) {
-		signParams += "&team_id=" + $('#team_id').val();
+		signParams += "&team_id=" + jQuery('#team_id').val();
 	} else if (proxy_type_value == 21) {
-		signParams += "&ev_id=" + $('#ev_id').val();
+		signParams += "&ev_id=" + jQuery('#ev_id').val();
 	} else {
-		signParams += "&cons_id=" + $('#cons_id').val();
+		signParams += "&cons_id=" + jQuery('#cons_id').val();
 	}
-	signParams += "&custom_note=" + $('#campaign_name').val();
+	signParams += "&custom_note=" + jQuery('#campaign_name').val();
 	signParams = URLEncode(signParams);
 	signParams += "&return_url_js=" + returnUrl;
 
@@ -61,7 +61,7 @@ function amazonPayInitCheckout(signatureData) {
 	let signature = signatureData.signature;
 
 	// localStorage.setItem('amz_aha_signature', signature);
-	localStorage.setItem('amz_aha_amt', $('input[name=other_amount]').val());
+	localStorage.setItem('amz_aha_amt', jQuery('input[name=other_amount]').val());
 
 	amazonPayButton.initCheckout({
 		createCheckoutSessionConfig: {
@@ -95,17 +95,17 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 			if (data.status != 200) {
 				// handle error
 				let errorMessage = 'Your payment was not successful. Please try another payment method.';
-				$('#donation-errors').remove();
-				$('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive">' +
+				jQuery('#donation-errors').remove();
+				jQuery('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive">' +
 						'<div class="alert alert-danger">' +
 						errorMessage +
 						'</div></div>');
-				$('.donation-loading').remove();
-				$('.donation-form').show();
+				jQuery('.donation-loading').remove();
+				jQuery('.donation-form').show();
 			} else {
 				//save off amazon id into custom field
-				$('input[name=check_number]').val(data.response.chargePermissionId);
-				$('input[name=payment_confirmation_id]').val('AMAZON:'+data.response.chargePermissionId);
+				jQuery('input[name=check_number]').val(data.response.chargePermissionId);
+				jQuery('input[name=payment_confirmation_id]').val('AMAZON:'+data.response.chargePermissionId);
 				// reset field to post correct value back to LO
 				jQuery('input[name=gift_amount]').val(jQuery('input[name=other_amount]').val());
 				jQuery('input[name=gift_display_name]').val(jQuery('input[name="first_name"]').val() + ' ' + jQuery('input[name="last_name"]').val());
@@ -118,10 +118,10 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 		error: function(data) {
 			// General API Error
 			console.log(data.response);
-			$('#donation-errors').remove();
-			$('.donation-form').prepend(`<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger">Your payment was not successful. Please try another payment method.</div></div>`);
-			$('.donation-loading').remove();
-			$('.donation-form').show();
+			jQuery('#donation-errors').remove();
+			jQuery('.donation-form').prepend(`<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger">Your payment was not successful. Please try another payment method.</div></div>`);
+			jQuery('.donation-loading').remove();
+			jQuery('.donation-form').show();
 		}
 	});
 }
@@ -138,17 +138,17 @@ function populateForm(lsForm) {
 		donateData[formPairs[key].split("=")[0]] = formPairs[key].split('=')[1];
 	}
 	// populate inputs
-	$('.donation-form input').not('input:checkbox, input:radio').each(function(){
-		$(this).val(decodeURI(donateData[this.name]).replace('%40', '@').replaceAll('+', ' ').replaceAll('%2B', ' '));
+	jQuery('.donation-form input').not('input:checkbox, input:radio').each(function(){
+		jQuery(this).val(decodeURI(donateData[this.name]).replace('%40', '@').replaceAll('+', ' ').replaceAll('%2B', ' '));
 	});
 	// populate selects
-	$('.donation-form select').each(function(){
-		$(this).val(donateData[this.name]);
+	jQuery('.donation-form select').each(function(){
+		jQuery(this).val(donateData[this.name]);
 	});
 	// populate checkboxs
-	$('.donation-form input:checkbox').each(function(){
+	jQuery('.donation-form input:checkbox').each(function(){
 		if(donateData[this.name]){
-			$(this).prop('checked', true);
+			jQuery(this).prop('checked', true);
 		}
 	});
 	// reset gift amount
@@ -159,50 +159,50 @@ function populateForm(lsForm) {
  * Populate and display the confirmation page
  */
 function showConfirmationPage() {
-	const email = $('input[name="email"]').val();
-	const first = $('input[name="first_name"]').val();
-	const last = $('input[name="last_name"]').val();
-	const street1 = $('input[name="street1"]').val();
-	const street2 = $('input[name="street2"]').val();
-	const city = $('input[name="city"]').val();
-	const state = $('[name="state"]').val();
-	const zip = $('input[name="zip"]').val();
-	const form = $('input[name=form_id]').val();
-	const amt = $('input[name=other_amount]').val();
-	const ref = $('input[name=payment_confirmation_id]').val();
-	const from_url = decodeURIComponent($('input[name="from_url"]').val());
-	const feeamt = $('input[name=additional_amount]').val();
-	const originalamt = $('input[name=gift_amount]').val();
-	const fb_share_url = decodeURIComponent($('input[name="fb_share_url"]').val());
-	const twitter_share_url = decodeURIComponent($('input[name="twitter_share_url"]').val());
+	const email = jQuery('input[name="email"]').val();
+	const first = jQuery('input[name="first_name"]').val();
+	const last = jQuery('input[name="last_name"]').val();
+	const street1 = jQuery('input[name="street1"]').val();
+	const street2 = jQuery('input[name="street2"]').val();
+	const city = jQuery('input[name="city"]').val();
+	const state = jQuery('[name="state"]').val();
+	const zip = jQuery('input[name="zip"]').val();
+	const form = jQuery('input[name=form_id]').val();
+	const amt = jQuery('input[name=other_amount]').val();
+	const ref = jQuery('input[name=payment_confirmation_id]').val();
+	const from_url = decodeURIComponent(jQuery('input[name="from_url"]').val());
+	const feeamt = jQuery('input[name=additional_amount]').val();
+	const originalamt = jQuery('input[name=gift_amount]').val();
+	const fb_share_url = decodeURIComponent(jQuery('input[name="fb_share_url"]').val());
+	const twitter_share_url = decodeURIComponent(jQuery('input[name="twitter_share_url"]').val());
 
-	$('.donation-loading').remove();
-	$('.donate-now, .header-donate').hide();
-	$('.thank-you').show();
+	jQuery('.donation-loading').remove();
+	jQuery('.donate-now, .header-donate').hide();
+	jQuery('.thank-you').show();
 	let ty_url = "/amazonpay/ym-primary/amazon/thankyou.html";
 	$.get(ty_url,function(datat){
-		$('.thank-you').html($(datat).find('.thank-you').html());
-		$('p.first, span.first').html(first);
-		$('p.last').html(last);
-		$('p.street1').html(street1);
-		$('p.street2').html(street2);
-		$('p.city').html(city);
-		$('p.state').html(state);
-		$('p.zip').html(zip);
-		$('p.email').html(email);
-		$('tr.cardGroup').hide();
-		$('tr.amazon').show();
-		$('p.fee-amount').html("$" + feeamt);
-		$('p.original-amount').html("$" + originalamt);
-		$('p.amount').html("$"+amt);
-		$('p.confcode').html(ref);
-		$('p.from_url').html("<a href='"+from_url+"'>Return</a>");
-		$('a.from_url').attr('href', from_url);
-		$('#fb-share').attr('href', fb_share_url);
-		$('#twitter-share').attr('href', twitter_share_url);
-		$('span.participant').html(participant_name);
-		$('.share-url a').each(function(){
-			$(this).attr("href",$(this).attr("href").replace("%returnurl%",escape(from_url)));
+		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
+		jQuery('p.first, span.first').html(first);
+		jQuery('p.last').html(last);
+		jQuery('p.street1').html(street1);
+		jQuery('p.street2').html(street2);
+		jQuery('p.city').html(city);
+		jQuery('p.state').html(state);
+		jQuery('p.zip').html(zip);
+		jQuery('p.email').html(email);
+		jQuery('tr.cardGroup').hide();
+		jQuery('tr.amazon').show();
+		jQuery('p.fee-amount').html("$" + feeamt);
+		jQuery('p.original-amount').html("$" + originalamt);
+		jQuery('p.amount').html("$"+amt);
+		jQuery('p.confcode').html(ref);
+		jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
+		jQuery('a.from_url').attr('href', from_url);
+		jQuery('#fb-share').attr('href', fb_share_url);
+		jQuery('#twitter-share').attr('href', twitter_share_url);
+		jQuery('span.participant').html(participant_name);
+		jQuery('.share-url a').each(function(){
+			jQuery(this).attr("href",jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
 		});
 	});
 
@@ -229,8 +229,8 @@ function clearStorage() {
 
 function submitAmazonDonation() {
 	clearStorage();
-	$("#double_the_donation_company_id").val($('input[name=doublethedonation_company_id]').val());
-	const amzFrom = $('.donation-form').serialize();
+	jQuery("#double_the_donation_company_id").val(jQuery('input[name=doublethedonation_company_id]').val());
+	const amzFrom = jQuery('.donation-form').serialize();
 	localStorage.setItem('ahaDonate', amzFrom);
 	getSignature(amazonPayInitCheckout);
 }
