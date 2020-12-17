@@ -316,6 +316,14 @@ div.donate-select label.error {
 	box-shadow:none;
 }
 */
+.payment-type label img {
+  cursor:pointer;
+  padding: 5px;
+}
+.payment-type label.active {
+  background:#ccc;border-radius:10px;
+}
+
 .star {
   color:#C10E21;
 }
