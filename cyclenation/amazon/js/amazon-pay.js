@@ -139,39 +139,120 @@ amazon.Login.MODLogoutClickHandler = function() {
 	jQuery("#AmazonPayButton").show();
 };
 
-//
-if (location.href.indexOf("donate_amazon") > 0) {
- 
-	var eid = jQuery('input[name=fr_id]').val();
-	var dtype = (jQuery('input[name=proxy_type_value]').val() == 20) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
-	var pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
-	var tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
-    	var tr_info = "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-    	if (jQuery('input[name=instance]').val() == "heartdev") {
-		tr_info = "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html";
-	}
-	jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
-		//jQuery('.page-header h1').html(data2.event_title);
-		if (data2.team_name != "" && dtype == "t") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Team Name:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.team_name+'</a></div>');
-		}
-		if (data2.event_title != " " && dtype == "e") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Event:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.event_title+'</a></div>');
-		}
-		if (data2.part_name != " " && dtype == "p") {
-			jQuery('.donation-form-container').before('<div class="donation-detail"><strong>Donating to Participant:</strong><br/><a href="'+jQuery('input[name=from_url]').val()+'">'+data2.part_name+'</a></div>');
-		}
 
-		jQuery('input[name=form_id]').val(data2.don_form_id);
-		//jQuery.getJSON("https://secure3.convio.net/heartdev/site/CRDonationAPI?v=1.0&api_key=wDB09SQODRpVIOvX&response_format=json&suppress_response_codes=true&method=getDonationFormInfo&form_id="+data2.don_form_id+"&fr_id="+eid,function(data3){
-		//	jQuery.each(data3.getDonationFormInfoResponse.donationLevels,function(i, levels){
-		//		jQuery.each(levels,function(){
-		//			if (this.name == "Donor Entered Amount") {
-		//				jQuery('input[name=level_id]').val(this.level_id);
-		//			}
-		//		});
-		//	});
-		//});
+function getAmazonAddress() {
+	var params = jqcn('.donation-form').serialize();
+	jqcn.ajax({
+		method: "POST",
+		async: false,
+		cache:false,
+		dataType: "json",
+		url:"https://tools.heart.org/donate/amazon/getAmazonAddress.php?"+params+"&callback=?",
+		success: function(data){
+			var address = data.data.GetBillingAgreementDetailsResult.BillingAgreementDetails.BillingAddress.PhysicalAddress;
+			jqcn('input[name="street1"]').val(address.AddressLine1);
+			jqcn('input[name="city"]').val(address.City);
+			jqcn('select[name="state"]').val(address.StateOrRegion);
+			jqcn('input[name="billing_street1"]').val(address.AddressLine1);
+			jqcn('input[name="billing_city"]').val(address.City);
+			jqcn('input[name="billing_state"]').val(address.StateOrRegion);
+		}
+	});
+}
+
+function donateAmazonOld() {
+	window.scrollTo(0, 0);
+	jqcn('.donation-form').hide();
+	jqcn('.donation-form').before('<div class="well donation-loading">' + 
+					 'Thank You!  We are now processing your donation using Amazon ...' + 
+				   '</div>');
+	var params = jqcn('.donation-form').serialize();
+	var amazonErr = false;
+	var status = "";
+	var amt = 0;
+	var ref = 0;
+	
+	jqcn.ajax({
+		method: "POST",
+		async: false,
+		cache:false,
+		dataType: "json",
+		url:"https://tools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
+		success: function(data){
+			if (jqcn('input[name=recurring]').val() == "true") {
+				status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
+				amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
+				ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
+				
+				if (status != "Closed") {
+					amazonErr = true;
+				}
+			} else {
+				status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
+				amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
+				ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
+				
+				if (status != "Closed") {
+					amazonErr = true;
+				}
+			}
+
+			if (amazonErr) {
+				jqcn('#donation-errors').append('<div class="alert alert-danger">' + data.data.toString() + '</div>');	
+		
+				jqcn('.donation-loading').remove();
+				jqcn('.donation-form').show();				
+			} else {
+				//save off amazon id into custom field
+				jqcn('input[name=payment_confirmation_id]').val('AMAZON:'+ref);
+				
+				//logout of amazon
+				amazon.Login.logout();
+				
+				//make offline donation in luminate to record transaction
+				//if (jqcn('input[name="df_preview"]').val() != "true") 
+				donateOffline(donateOfflineCallback);
+				
+				var email = jqcn('input[name="email"]').val();
+				var first = jqcn('input[name="first_name"]').val();
+				var last = jqcn('input[name="last_name"]').val();
+				var street1 = jqcn('input[name="street1"]').val();
+				var street2 = jqcn('input[name="street2"]').val();
+				var city = jqcn('input[name="city"]').val();
+				var state = jqcn('select[name="state"]').val();
+				var zip = jqcn('input[name="zip"]').val();
+				var from_url = jqcn('input[name="from_url"]').val();
+				
+			  jqcn('.donation-loading').remove();
+			  jqcn('.donate-now, .header-donate').hide();
+			  jqcn('.thank-you').show();
+			  var ty_url = "/amazonpay/cyclenation/amazon/thankyou.html";
+			//   var ty_url = "https://www2.heart.org/amazonpay/cyclenation/amazon/thankyou.html";
+			//   if (jqcn('input[name=instance]').val() == "heartdev") {
+			//   	ty_url = "https://secure3.convio.net/heartdev/amazonpay/cyclenation/amazon/thankyou.html";
+			//   }
+			  jqcn.get(ty_url,function(datat){ 
+				  jqcn('.thank-you').html(jqcn(datat).find('.thank-you').html());
+				  jqcn('p.first').html(first);
+				  jqcn('p.last').html(last);
+				  jqcn('p.street1').html(street1);
+				  jqcn('p.street2').html(street2);
+				  jqcn('p.city').html(city);
+				  jqcn('p.state').html(state);
+				  jqcn('p.zip').html(zip);
+				  jqcn('p.email').html(email);
+				  jqcn('tr.card').hide();
+				  jqcn('tr.amazon').show();
+				  jqcn('p.amount').html("$"+amt);
+				  jqcn('p.confcode').html(ref);
+				  jqcn('p.from_url').html("<a href='"+from_url+"'>Return</a>");
+				  jqcn('.share-url a').each(function(){
+					jqcn(this).attr("href",jqcn(this).attr("href").replace("%returnurl%",escape(from_url)));
+				  });
+				});
+						  
+			}
+		}
 	});
 
 }
