@@ -20,13 +20,19 @@
 	  });
 
 	  jqcn('.donate-select label').click(function() {
-		jqcn('donate-select .active').removeClass('active');
+		jqcn('.donate-select .active').removeClass('active');
 		jqcn(this).addClass('active');
 	  });
       
 	  jqcn('.gift-select label').click(function(){
 			showLevels(jqcn(this).prev('input').data('frequency'),this);
-  	  });
+	  });
+
+		// Get amount passed from query string
+		let amount = jqcn.getQuerystring("amount");
+		if (amount.length > 0) {
+			populateAmount(amount);
+		}
 
       jqcn('.donation-form').submit(function() {
 		//move contact info details to billing info if any fields are blank
@@ -256,7 +262,7 @@ function getAmazonAddress() {
 })(jqcn);
 
 const amzConfirmationId = jqcn.getQuerystring('amazonCheckoutSessionId');
-jQuery(document).ready(function(){
+jqcn(document).ready(function(){
 	if (amzConfirmationId) {
 		donateAmazon(amzConfirmationId);
 	}
@@ -270,18 +276,18 @@ jqcn('[id^=donor_]').each(function(){
 });
 
 function populateAmount(amount) {
-	var match = jQuery('label[data-amount="' + amount + '"]');
+	var match = jqcn('label[data-amount="' + amount + '"]');
 	if(match.length>=1){
-		jQuery(match).click();
+		jqcn(match).click();
 		// feeOption.coverFee();
 	} else {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-		jQuery('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
-		jQuery('#other-amount-entered').removeAttr('disabled');
-		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		jqcn('label.active').removeClass("active");
+		jqcn('label.level_other').addClass("active");
+		jqcn('.level-other-input').slideDown();
+		jqcn('#other-radio').prop({'checked': true}).attr({'aria-checked': true});
+		jqcn('#other-amount-entered').removeAttr('disabled');
+		jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
+		jqcn('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
 		// feeOption.coverFee();
 	}
 }
@@ -305,15 +311,15 @@ if (jqcn.getQuerystring("msource")) {
 	jqcn('input[name=source]').val(jqcn.getQuerystring("msource"));
 }
 
-if (jqcn.getQuerystring("amount")) {
-	jqcn('label.active').removeClass("active");
-	jqcn('label.level_other').addClass("active");
-	jqcn('.level-other-input').slideDown();
-	jqcn('#other-amount-entered').removeAttr('disabled');
-	jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
-	jqcn('input[name=other_amount]').val(jqcn.getQuerystring("amount"));
-	jqcn('input[name=other_amount_entered]').val(jqcn.getQuerystring("amount"));
-}
+// if (jqcn.getQuerystring("amount")) {
+// 	jqcn('label.active').removeClass("active");
+// 	jqcn('label.level_other').addClass("active");
+// 	jqcn('.level-other-input').slideDown();
+// 	jqcn('#other-amount-entered').removeAttr('disabled');
+// 	jqcn('#other-amount-entered').attr('name', 'other_amount_entered');
+// 	jqcn('input[name=other_amount]').val(jqcn.getQuerystring("amount"));
+// 	jqcn('input[name=other_amount_entered]').val(jqcn.getQuerystring("amount"));
+// }
 
 // END QUERY STRING CODE 
 function displayEventInfo() {
