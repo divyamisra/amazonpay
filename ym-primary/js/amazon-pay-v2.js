@@ -43,7 +43,7 @@ function getSignature(amazonPayInitCheckout) {
 		params = 'sandbox=true&' + params;
 	}
 
-	$.ajax({
+	jQuery.ajax({
 		method: "POST",
 		cache:false,
 		dataType: "json",
@@ -84,7 +84,7 @@ function amazonPayVerifyCheckout(amazonCheckoutSessionId, amazonAmount) {
 	}
 	params = URLEncode(params);
 
-	$.ajax({
+	jQuery.ajax({
 		method: "POST",
 		cache: false,
 		dataType: "json",
@@ -180,7 +180,7 @@ function showConfirmationPage() {
 	jQuery('.donate-now, .header-donate').hide();
 	jQuery('.thank-you').show();
 	let ty_url = "/amazonpay/ym-primary/amazon/thankyou.html";
-	$.get(ty_url,function(datat){
+	jQuery.get(ty_url,function(datat){
 		jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
 		jQuery('p.first, span.first').html(first);
 		jQuery('p.last').html(last);
