@@ -10,7 +10,11 @@ function isSandbox() {
  * Build the URL parameters for the signature request
  */
 function buildSignatureParams() {
-	const returnUrl = location.href.replaceAll('&','%26');
+	let returnUrl = location.href;
+	if (returnUrl.indexOf('amazonCheckoutSessionId')>0){
+		returnUrl = returnUrl.substring(0, returnUrl.indexOf('amazonCheckoutSessionId')-1);
+	}
+	returnUrl = returnUrl.replaceAll('&','%26');
 	const proxy_type_value = $('#proxy_type_value').val();
 	let signParams = "other_amount=" + $('input[name=other_amount]').val();
 	signParams += "&fr_id=" + $('input[name=fr_id]').val();
