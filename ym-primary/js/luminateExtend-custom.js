@@ -7,12 +7,12 @@
       secure: 'https://secure2.convio.net/amha/site/'
     }
   });
-  
+
   jQuery(function() {
     
     jQuery('#from_url_js').val(document.referrer);
     jQuery('#from_browser').val(window.navigator.userAgent);
-	  
+
     /* UI handlers for the donation form example */
     if(jQuery('.donation-form').length > 0) {
       jQuery('.donate-select label').click(function() {
@@ -27,8 +27,14 @@
           jQuery('#other-amount-entered').attr('disabled', 'disabled');
           jQuery('#other-amount-entered').removeAttr('name');
         }
-      });
-      
+	  });
+
+		// Get amount passed from query string
+		let amount = jQuery.getQuerystring("amount");
+		if (amount.length > 0) {
+			populateAmount(amount);
+		}
+
       jQuery('.donation-form').submit(function() {
 		//move contact info details to billing info if any fields are blank
 		jQuery('[id^=billing\\_]').each(function(){
@@ -44,8 +50,6 @@
         jQuery(this).before('<div class="well donation-loading">' + 
                          'Thank You!  We are now processing your gift ...' + 
                        '</div>');
-
-		
       });
 
 		jQuery('.donation-form').validate();				   
@@ -53,168 +57,73 @@
 		jQuery.validator.addMethod(
 			"validDonation", 
 			function(value, element) {
-				if (value == 0 || (value >= 10 && value <= 500)) {
+				if (value == 0 || value >= 10) {
 					return true;
 				} else {
 					return false;
 				}
 			},
-			"Please enter an amount between $10 and $500"
+			"Please enter an amount greater than $10"
 		);
 
-      jQuery('#donate-submit').click(function() {
-		var form =jQuery('form.donation-form');
-		jQuery(form).validate().settings.ignore = ":disabled,:hidden";
-		if (jQuery(form).valid()) {
-			if (jQuery('input[name=other_amount]').val() < 10) {
-				alert("Please enter an amount $10 or greater");
+		amazonPayButton.onClick(function(){
+			var form =jQuery('form.donation-form');
+			jQuery(form).validate().settings.ignore = ":disabled,:hidden";
+			if (jQuery(form).valid()) {
+				if (jQuery('input[name=other_amount]').val() < 10) {
+					alert("Please enter an amount $10 or greater");
+					return false;
+				}
+				submitAmazonDonation();
+			} else { 
+				jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
+				const h = document.querySelector(".section-header-container");
+				h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 				return false;
-			}
-			if (typeof amazon.Login.AmazonBillingAgreementId != "undefined") {
-				if (jQuery('label[for="type-monthly"] .active').length > 0) {				
-					if (amazon.Login.MODBuyerBillingAgreementConsentStatus === "true") {
-						donateAmazon();
-					} else {
-						alert("Consent is needed before making donation");
-					}
-				} else {
-					donateAmazon();					
-				}
-			} else {
-				alert("Please login to Amazon and select payment before submitting");
-				return false;
-			}
-		} else { 
-			jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
-			return false;
-		}
-      });
-    }
-
-	function donateAmazon() {
-		window.scrollTo(0, 0);
-		jQuery('.donation-form').hide();
-		jQuery('.donation-form').before('<div class="well donation-loading">' + 
-						 'Thank You!  We are now processing your donation using Amazon ...' + 
-					   '</div>');
-		var params = jQuery('.donation-form').serialize();
-		var amazonErr = false;
-		var status = "";
-		var amt = 0;
-		var ref = 0;
-		
-		jQuery.ajax({
-			method: "POST",
-			async: false,
-			cache:false,
-			dataType: "json",
-			url:"https://tools.heart.org/donate/amazon/payWithAmazon.php?"+params+"&callback=?",
-			success: function(data){
-				if (typeof data.data.Error != "object") {
-   					if (jQuery('input[name=recurring]').val() == "true") {
-						status = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AuthorizationStatus.State;
-						amt = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.CapturedAmount.Amount;
-						ref = data.data.AuthorizeOnBillingAgreementResult.AuthorizationDetails.AmazonAuthorizationId;
-
-						if (status != "Closed") {
-							amazonErr = true;
-						}
-					} else {
-						status = data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State;
-						amt = data.data.AuthorizeResult.AuthorizationDetails.CapturedAmount.Amount;
-						ref = data.data.AuthorizeResult.AuthorizationDetails.AmazonAuthorizationId;
-
-						if (status != "Closed") {
-							amazonErr = true;
-						}
-					}
-				} else {
-					amazonErr = true;
-				}
-
-				if (amazonErr) {
-					if (typeof data.data.Error != "object") {
-						jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.State.toString() + ' - ' + data.data.AuthorizeResult.AuthorizationDetails.AuthorizationStatus.ReasonCode.toString() + '</div>');
-					} else {
-						jQuery('#donation-errors').append('<div class="alert alert-danger">' + data.data.Error.Code.toString() + ' - ' + data.data.Error.Message.toString() + '</div>');
-					}
-					jQuery('.donation-loading').remove();
-					jQuery('.donation-form').show();				
-				} else {
-					//save off amazon id into custom field
-					jQuery('input[name=payment_confirmation_id]').val('AMAZON:'+ref);
-					
-					//logout of amazon
-					amazon.Login.logout();
-					
-					//make offline donation in luminate to record transaction
-					//if (jQuery('input[name="df_preview"]').val() != "true") 
-					donateOffline(donateOfflineCallback);
-					
-					var feeamt = jQuery('input[name=additional_amount]').val();
-					var originalamt = jQuery('input[name=gift_amount]').val();
-					var email = jQuery('input[name="email"]').val();
-					var first = jQuery('input[name="first_name"]').val();
-					var last = jQuery('input[name="last_name"]').val();
-					var street1 = jQuery('input[name="street1"]').val();
-					var street2 = jQuery('input[name="street2"]').val();
-					var city = jQuery('input[name="city"]').val();
-					var state = jQuery('select[name="state"]').val();
-					var zip = jQuery('input[name="zip"]').val();
-					var from_url = jQuery('input[name="from_url"]').val();
-					
-				  jQuery('.donation-loading').remove();
-				  jQuery('.donate-now, .header-donate').hide();
-				  jQuery('.thank-you').show();
-				  var ty_url = "/amazonpay/ym-primary/amazon/thankyou.html";
-				  jQuery.get(ty_url,function(datat){ 
-					  jQuery('.thank-you').html(jQuery(datat).find('.thank-you').html());
-					  jQuery('p.first').html(first);
-					  jQuery('p.last').html(last);
-					  jQuery('p.street1').html(street1);
-					  jQuery('p.street2').html(street2);
-					  jQuery('p.city').html(city);
-					  jQuery('p.state').html(state);
-					  jQuery('p.zip').html(zip);
-					  jQuery('p.email').html(email);
-					  jQuery('p.amount').html("$"+amt);
-					  jQuery('p.fee-amount').html("$" + feeamt);
-					  jQuery('p.original-amount').html("$" + originalamt);
-					  jQuery('p.confcode').html(ref);
-					  jQuery('p.from_url').html("<a href='"+from_url+"'>Return</a>");
-					  jQuery('.share-url a').each(function(){
-						jQuery(this).attr("href", jQuery(this).attr("href").replace("%returnurl%",escape(from_url)));
-					  });
-					});
-							  
-				}
 			}
 		});
-	}
-    
-    /* bind any forms with the "luminateApi" class */
+    }
+
+	/* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
   });
 })(jQuery);
 
-function getAmazonAddress() {
-	var params = jQuery('.donation-form').serialize();
-	jQuery.ajax({
-		method: "POST",
-		async: false,
-		cache:false,
-		dataType: "json",
-		url:"https://tools.heart.org/donate/amazon/getAmazonAddress.php?"+params+"&callback=?",
-		success: function(data){
-			var address = data.data.GetBillingAgreementDetailsResult.BillingAgreementDetails.BillingAddress.PhysicalAddress;
-			jQuery('input[name="street1"]').val(address.AddressLine1);
-			jQuery('input[name="city"]').val(address.City);
-			jQuery('select[name="state"]').val(address.StateOrRegion);
-			jQuery('input[name="billing_street1"]').val(address.AddressLine1);
-			jQuery('input[name="billing_city"]').val(address.City);
-			jQuery('input[name="billing_state"]').val(address.StateOrRegion);
-		}
-	});
+// Render Amazon Pay Button
+var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+	merchantId: 'A1ZM7MXG16NQQB',
+	ledgerCurrency: 'USD',
+	sandbox: isSandbox(),
+	checkoutLanguage: 'en_US',
+	productType: 'PayOnly',
+	placement: 'Cart',
+	buttonColor: 'Gold'
+ });
+
+// Get Amazon confirmation id
+if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
+	// hide form - show loading
+	window.scrollTo(0, 0);
+	jQuery('.donation-form').hide();
+	jQuery('.donation-form').before('<div class="well donation-loading">' +
+			'Thank You!  We are now processing your donation from Amazon ...' +
+			'</div>');
+}
+
+function donateAmazon(amazonCheckoutSessionId) {
+	let lsForm = localStorage.getItem('ahaDonate');
+	if (lsForm != null) {
+		// verify checkout
+		populateForm(lsForm);
+		const amzAmt = localStorage.getItem('amz_aha_amt');
+		amazonPayVerifyCheckout(amazonCheckoutSessionId, amzAmt);
+	} else {
+		// handle missing data
+		console.log('no data found');
+		jQuery('.donation-form').prepend('<div id="donation-errors" role="alert" aria-atomic="true" aria-live="assertive"><div class="alert alert-danger" role="alert">There was an error. Please check your payment details and try again.</div></div>');
+		jQuery('.donation-loading').remove();
+		jQuery('.donation-form').show();
+	}
 }
 
 (function ($) {
@@ -231,6 +140,13 @@ function getAmazonAddress() {
 		}
 	});
 })(jQuery);
+
+const amzConfirmationId = jQuery.getQuerystring('amazonCheckoutSessionId');
+jQuery(document).ready(function(){
+	if (amzConfirmationId) {
+		donateAmazon(amzConfirmationId);
+	}
+})
 
 //copy donor fields to billing
 jQuery('[id^=donor_]').each(function(){
@@ -252,16 +168,6 @@ jQuery('[id^=donor_]').each(function(){
 	if (jQuery.getQuerystring("msource")) {
 		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
 	}
-		
-	if (jQuery.getQuerystring("amount")) {
-		jQuery('label.active').removeClass("active");
-		jQuery('label.level_other').addClass("active");
-		jQuery('.level-other-input').slideDown();
-        jQuery('#other-amount-entered').removeAttr('disabled');
-        jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-		jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-		jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-	}
 	
 	//autofill from querystring data
 	jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
@@ -272,5 +178,30 @@ jQuery('[id^=donor_]').each(function(){
 	jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
 	jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
 	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
-
 // END QUERY STRING CODE 
+
+function populateAmount(amount) {
+	const match = jQuery('label[data-amount="' + amount + '"]');
+	if(match.length>=1){
+		jQuery(match).click();
+		feeOption.coverFee();
+	} else {
+		jQuery('label.active').removeClass("active");
+		jQuery('label.level_other').addClass("active");
+		jQuery('.level-other-input').slideDown();
+		jQuery('#level-other').prop({'checked': true}).attr({'aria-checked': true});
+		jQuery('#other-amount-entered').removeAttr('disabled');
+		jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+		jQuery('input[name=other_amount], input[name=gift_amount], input[name=other_amount_entered]').val(amount);
+		feeOption.coverFee();
+	}
+}
+
+// GA Donation Success
+(function(){
+	var a = document.createElement('script');
+	a.type = 'text/javascript';
+	a.src = '../amazonpay/ym-primary/js/gaDonationSuccess.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(a, s);
+})();
