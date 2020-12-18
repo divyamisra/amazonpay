@@ -259,3 +259,13 @@ function getAmazonAddress() {
 		}
 	});
 }
+
+if (jQuery.getQuerystring("amount")) {
+	jQuery('label.active').removeClass("active");
+	jQuery('label.level_other').addClass("active");
+	jQuery('.level-other-input').slideDown();
+	jQuery('#other-amount-entered').removeAttr('disabled');
+	jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
+	jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
+	jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
+}

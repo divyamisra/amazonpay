@@ -57,37 +57,48 @@
 		jQuery.validator.addMethod(
 			"validDonation", 
 			function(value, element) {
-				if (value == 0 || (value >= 10 && value <= 500)) {
+				if (value == 0 || value >= 10) {
 					return true;
 				} else {
 					return false;
 				}
 			},
-			"Please enter an amount between $10 and $500"
+			"Please enter an amount greater than $10"
 		);
 
-      jQuery('#donate-submit').click(function() {
-		var form =jQuery('form.donation-form');
-		jQuery(form).validate().settings.ignore = ":disabled,:hidden";
-		if (jQuery(form).valid()) {
-			if (jQuery('input[name=other_amount]').val() < 10) {
-				alert("Please enter an amount $10 or greater");
+		amazonPayButton.onClick(function(){
+			var form =jQuery('form.donation-form');
+			jQuery(form).validate().settings.ignore = ":disabled,:hidden";
+			if (jQuery(form).valid()) {
+				if (jQuery('input[name=other_amount]').val() < 10) {
+					alert("Please enter an amount $10 or greater");
+					return false;
+				}
+				submitAmazonDonation();
+			} else { 
+				jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
+				const h = document.querySelector(".section-header-container");
+				h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 				return false;
 			}
-			submitAmazonDonation();
-		} else { 
-			jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
-			const h = document.querySelector(".section-header-container");
-			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-			return false;
-		}
-      });
+		});
     }
 
 	/* bind any forms with the "luminateApi" class */
     luminateExtend.api.bind();
   });
 })(jQuery);
+
+// Render Amazon Pay Button
+var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+	merchantId: 'A1ZM7MXG16NQQB',
+	ledgerCurrency: 'USD',
+	sandbox: isSandbox(),
+	checkoutLanguage: 'en_US',
+	productType: 'PayOnly',
+	placement: 'Cart',
+	buttonColor: 'Gold'
+ });
 
 // Get Amazon confirmation id
 if (location.href.indexOf("amazonCheckoutSessionId") > 0) {
@@ -157,16 +168,6 @@ jQuery('[id^=donor_]').each(function(){
 	if (jQuery.getQuerystring("msource")) {
 		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
 	}
-		
-	// if (jQuery.getQuerystring("amount")) {
-	// 	jQuery('label.active').removeClass("active");
-	// 	jQuery('label.level_other').addClass("active");
-	// 	jQuery('.level-other-input').slideDown();
-    //     jQuery('#other-amount-entered').removeAttr('disabled');
-    //     jQuery('#other-amount-entered').attr('name', 'other_amount_entered');
-	// 	jQuery('input[name=other_amount]').val(jQuery.getQuerystring("amount"));
-	// 	jQuery('input[name=other_amount_entered]').val(jQuery.getQuerystring("amount"));
-	// }
 	
 	//autofill from querystring data
 	jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
