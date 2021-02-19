@@ -139,7 +139,7 @@ function populateForm(lsForm) {
 	}
 	// populate inputs
 	$('.donation-form input').not('input:checkbox, input:radio').each(function(){
-		jQuery(this).val(decodeURIComponent(donateData[this.name]).replaceAll('+', ' '));
+		$(this).val(decodeURIComponent(donateData[this.name]).replaceAll('+', ' '));
 	});
 	// populate selects
 	$('.donation-form select').each(function(){
