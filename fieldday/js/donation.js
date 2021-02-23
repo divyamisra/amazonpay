@@ -78,7 +78,7 @@ function donateOfflineCallback(responseData) {
 	};
 
 	// Call only if the widget is on the form
-	if (ddCompanyId.length || jQuery('input[name=doublethedonation_company_id]').length > 0) {
+	if (jQuery("#double_the_donation_company_id").length > 0 || jQuery('input[name=doublethedonation_company_id]').length > 0) {
 		doubleDonationConfirmation(widgetData);
 	}
 }
