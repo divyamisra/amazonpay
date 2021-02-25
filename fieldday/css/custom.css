@@ -565,9 +565,6 @@ td.FormSectionHeader {
 .amazon-payments {
   font-size: 0.8em;	
 }
-.amazonpay-button-view1-gold:focus {
-  box-shadow: 0 0 3px 2px rgb(228 121 17 / 80%);
-}
 
 #dd-widget {
   margin-bottom: 2rem;
