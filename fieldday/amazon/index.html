@@ -285,6 +285,7 @@
         <div class="inline row">
           <div class='col-xs-12 col-sm-12 text-field'>
           <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
+          <label for="dtd-input">Search Company Name</label>
         </div>
         <div class="col-sm-8 col-md-6">
           <div id="dd-company-name-input"></div>
@@ -294,15 +295,19 @@
 
       <div class="panel panel-default">
         <div class="form-group checkbox">
+          <div class="col-sm-12 col-md-12">
           <input type="checkbox" name="cover_fee" id="cover_fee" value="yes"> 
           <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
+          </div>
         </div>
 
         <div class="form-group checkbox required">
+          <div class="col-sm-12 col-md-12">
           <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
           <label for="tos">Yes, I agree to the <a href="/site/DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank">Terms and Conditions (PDF)</a> and I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
           <div class="error input-group checkBox col-xs-12 col-sm-12">
             <label id="tos-error" for="tos" class="error" style="display: none;">Please accept the privacy policy</label>
+          </div>
           </div>
         </div>
 
@@ -313,9 +318,11 @@
 
       <div class="panel panel-default process-button">
         <div class="panel-body">
+          <div class="col-sm-12 col-md-12">
           <div class="amazon-pay" id="donate-submit" type="button" style="min-width: 200px;"></div>
           <!-- <button type="button" id="donate-submit" class="step-button action-button finish-step">Donate <span id="confirmationAmt">75</span></button> -->
           <input type="submit" value="submit" style="display: none;" onclick="return false;">
+          </div>
         </div>
       </div>
     </div>
