@@ -114,7 +114,7 @@ function doubleDonationConfirmation(widgetData) {
 
 // Display event info
 function eventInfo() {
-  const eid = jQuery('input[name=fr_id]').val() == '' ? jQuery('body').data('fr-id') : jQuery('input[name=fr_id]').val();
+  const eid = jQuery('input[name=fr_id]').val();
   const dtype = (jQuery('input[name=proxy_type_value]').val() == 20 || jQuery('input[name=proxy_type_value]').val() == 2) ? "p" : ((jQuery('input[name=proxy_type_value]').val() == 21) ? "e" : "t");
   const pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
   const tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
