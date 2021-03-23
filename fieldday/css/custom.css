@@ -570,6 +570,9 @@ td.FormSectionHeader {
 .amazon-payments {
   font-size: 0.8em;	
 }
+.btn-Amazon:hover{
+	color:#FFF;
+}
 
 #dd-widget {
   margin-bottom: 2rem;
