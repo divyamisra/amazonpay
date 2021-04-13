@@ -113,10 +113,10 @@ jQuery(document).ready(function() {
 					jQuery('#venmoModal .modal-body').html(venmoData);
 					jQuery('#venmoModal').modal(); 
                 } else {
-			$('label.error').attr('role','alert').attr('aria-atomic','true');
-			const h = document.querySelector("h2");
-			h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-			h.focus();
+					jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
+					var h = document.querySelectorAll('label.error');
+					h[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+					h[0].parentElement.children[0].focus();
                     return false;
                 }
             });

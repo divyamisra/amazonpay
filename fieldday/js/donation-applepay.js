@@ -111,9 +111,9 @@ jQuery(document).ready(function() {
                     braintree_aha.submitApplePayDonation();
                 } else {
 					$('label.error').attr('role','alert').attr('aria-atomic','true');
-					const h = document.querySelector("h2");
-					h.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-					h.focus();
+					var h = document.querySelectorAll('label.error');
+					h[0].scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+					h[0].parentElement.children[0].focus();
                     return false;
                 }
             });
