@@ -77,7 +77,7 @@ jQuery(document).ready(function() {
                     var venmoData = "Donate to the American Heart Association";
 					venmoData += "<div style='font-size:40px'>$" + jQuery('input[name=other_amount]').val() + "</div>";
 					jQuery('#venmoModal .modal-body').html(venmoData);
-					jQuery('#venmoModal').modal(); 
+					jQuery('#venmoModal').modal('show'); 
 		    		return true;
                 } else {
                     jQuery('label.error').attr('role','alert').attr('aria-atomic','true');
