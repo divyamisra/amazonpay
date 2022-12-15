@@ -160,6 +160,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 <div class="level-other-input"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
                 </div>
+                <div class="error input-group level-other-input col-xs-12 col-sm-12" style="display: none;">
+                  <label id="other-amount-entered-error" class="error" for="other-amount-entered" style="display: none;"></label>
+                </div>
               </div>
             </div>
           </div>
@@ -324,12 +327,12 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       </div>
 
       <div class="panel panel-default">
-        <div class="form-group checkbox">
+        <div class="form-group checkbox cover_fee">
           <input type="checkbox" name="cover_fee" id="cover_fee" value="yes">
           <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
         </div>
 
-        <div class="form-group checkbox required">
+        <div class="form-group checkbox tos required">
           <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" title="Please accept the privacy policy">
           <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
           <div class="error input-group checkBox col-xs-12 col-sm-12">
