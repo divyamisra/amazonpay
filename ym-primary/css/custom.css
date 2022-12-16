@@ -301,7 +301,7 @@ label.error {
 	white-space:nowrap;
 }
 div.donate-select label.error {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  /* background: rgba(0, 0, 0, 0) none repeat scroll 0 0; */
   color: #ff0000;
   display: block;
   font-size: 14px;
