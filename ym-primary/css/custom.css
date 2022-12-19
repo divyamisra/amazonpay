@@ -78,8 +78,8 @@ div.donation-form-container .section-header-container {
   margin-top: 0.5em;
   /* clear:both; */
 }
-#level_other {
-  margin-bottom: 0.5em;
+.level_other {
+  margin-bottom: 0.5em !important;
 }
 
 #headerWrapper {
