@@ -78,6 +78,9 @@ div.donation-form-container .section-header-container {
   margin-top: 0.5em;
   /* clear:both; */
 }
+#level_other {
+  margin-bottom: 0.5em;
+}
 
 #headerWrapper {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -300,8 +303,9 @@ label.error {
 	color:#ff0000;
 	white-space:nowrap;
 }
-div.donate-select label.error {
+div.donate-select label.error, div.donate-select label.error:hover {
   /* background: rgba(0, 0, 0, 0) none repeat scroll 0 0; */
+  background-color: #fff;
   color: #ff0000;
   display: block;
   font-size: 14px;
