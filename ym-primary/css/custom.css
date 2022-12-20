@@ -253,6 +253,10 @@ div.donate-select label {
 	cursor:pointer;
 	color:#fff;
 }
+#level-other {
+  position: absolute;
+  left: 8px;
+}
 .level-other-input {
   display: none;
   margin-top: 10px;
