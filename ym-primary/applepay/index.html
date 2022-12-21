@@ -172,8 +172,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 </label>
               </div>
               <div class="donation-amount-container text-center" id="other-amount-input-group">
-                <label for="level-other" class="level_other">Other
+                <label for="level-other" class="level_other">
                   <input type="radio" name="radioAmt" id="level-other" class="radio-amt" aria-checked="false">
+                  <div class="donation-level-amount-container-other">Other</div>
                 </label>
                 <div class="level-other-input"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
