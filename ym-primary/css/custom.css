@@ -248,7 +248,7 @@ div.donate-select label {
   padding: 10px; 	
 }
 .donation-level-amount-container-other {
-  padding: 0 0 0 8px;
+  padding: 0 0 0 12px;
 }
 
 .donate-select label:hover, .donate-select label.active {
