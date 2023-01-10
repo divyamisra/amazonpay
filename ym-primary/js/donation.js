@@ -119,7 +119,7 @@ function eventInfo() {
   const pid = (dtype == "p") ? jQuery('input[name=cons_id]').val() : "";
   const tid = (dtype == "t") ? jQuery('input[name=team_id]').val() : "";
   const isDev = (jQuery('input[name=instance]').val() == "heartdev");
-  const tr_info = isDev ? "https://secure3.convio.net/heartdev/site/SPageNavigator/reus_donate_amazon_tr_info.html" : "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
+  const tr_info = isDev ? "https://dev2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html" : "https://www2.heart.org/site/SPageNavigator/reus_donate_amazon_tr_info.html";
 
   jQuery.getJSON(tr_info+"?pgwrap=n&fr_id="+eid+"&team_id="+tid+"&cons_id="+pid+"&callback=?",function(data2){
   if (data2.team_name != "" && dtype == "t") {

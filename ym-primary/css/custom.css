@@ -46,6 +46,11 @@ div.responsive.ahc input[type="text"]:focus, div.responsive.ahc input[type="emai
 	color:#ff0000;
 }
 
+div.donation-form-container h2 {
+ padding: 1rem 0;
+}
+
+
 /* Venmo edits */
 div.responsive input.venmo-text {
   width: 100%;
@@ -56,7 +61,7 @@ div.responsive input.venmo-text {
 }
 div.donation-form-container .section-header-container {
   margin: 0;
-  padding: 30px 0 0;
+  padding: 30px 0 20px;
 }
 /* processing div */
 .processing {
@@ -71,7 +76,10 @@ div.donation-form-container .section-header-container {
 }
 #other-amount-input-group {
   margin-top: 0.5em;
-  clear:both;
+  /* clear:both; */
+}
+.level_other {
+  margin-bottom: 0.5em !important;
 }
 
 #headerWrapper {
@@ -94,6 +102,7 @@ div.donation-form-container .section-header-container {
 	border:none;
 	background:none;
 	box-shadow:none;
+  clear: both;
 }
 .panel-heading:before {
 	content:"\25B6";
@@ -178,8 +187,8 @@ div.card-select label {
 }
 div.gift-select label {
   background: #fff none repeat scroll 0 0;
-  border: 1px solid #cd1d67;
-  color: #cd1d67;
+  border: 1px solid #c10e21;
+  color: #c10e21;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -196,14 +205,16 @@ div.gift-select input {
 	display:none;
 }
 .gift-select label:hover, .gift-select label.active {
-	background: #cd1d67;
+	background: #c10e21;
 	cursor:pointer;
 	color:#fff;
 }
 .form-group.donate-select {
   background: #ebe9f3 none repeat scroll 0 0;
   max-width: 650px;
-  padding: 20px 0;
+  padding: 30px 20px;
+  min-height: 200px;
+
 }
 div.donate-select labelx {
   background: none repeat scroll 0 0 #515151;
@@ -220,8 +231,8 @@ div.donate-select labelx {
 }
 div.donate-select label {
   background: #fff none repeat scroll 0 0;
-  border: 1px solid #cd1d67;
-  color: #cd1d67;
+  border: 1px solid #c10e21;
+  color: #c10e21;
   font-weight: 700;
   text-align: center;
   text-decoration: none;
@@ -236,12 +247,19 @@ div.donate-select label {
 .donation-level-amount-container, .level_other {
   padding: 10px; 	
 }
+.donation-level-amount-container-other {
+  padding: 0 0 0 12px;
+}
 
 .donate-select label:hover, .donate-select label.active {
-	background: #cd1d67;
+	background: #c10e21;
 	cursor:pointer;
 	color:#fff;
 }
+/* #level-other {
+  position: absolute;
+  left: 8px;
+} */
 .level-other-input {
   display: none;
   margin-top: 10px;
@@ -292,8 +310,9 @@ label.error {
 	color:#ff0000;
 	white-space:nowrap;
 }
-div.donate-select label.error {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+div.donate-select label.error, div.donate-select label.error:hover {
+  /* background: rgba(0, 0, 0, 0) none repeat scroll 0 0; */
+  background-color: #fff;
   color: #ff0000;
   display: block;
   font-size: 14px;
@@ -377,7 +396,7 @@ div.donate-select label.error {
 .confirmation-amount {
   font-size: 1.5em;
   font-weight: bold;
-  margin-top: 1em;
+  margin: 1em 0;
 }
 
 footer {
@@ -537,6 +556,13 @@ td.FormSectionHeader {
 }
 #tos-error:before, #tos-error:after {
   content:none;
+}
+
+.terms-group {
+  margin-top: 2em;
+}
+.cover_fee, .tos {
+  margin: 1rem 0;
 }
 
 

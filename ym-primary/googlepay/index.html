@@ -174,11 +174,15 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
                 </label>
               </div>
               <div class="donation-amount-container text-center" id="other-amount-input-group">
-                <label for="level-other" class="level_other">Other
+                <label for="level-other" class="level_other">
                   <input type="radio" name="radioAmt" id="level-other" class="radio-amt" aria-checked="false">
+                  <div class="donation-level-amount-container-other">Other</div>
                 </label>
                 <div class="level-other-input"> <span class="input-group-addon">$</span>
                   <input type="text" class="form-control validDonation" id="other-amount-entered" name="other_amount_entered" disabled onblur="jQuery('input[name=other_amount], input[name=gift_amount]').val(this.value)" aria-labelledby="other-amount-entered">
+                </div>
+                <div class="error input-group level-other-input col-xs-12 col-sm-12" style="display: none;">
+                  <label id="other-amount-entered-error" class="error" for="other-amount-entered" style="display: none;"></label>
                 </div>
               </div>
             </div>
@@ -191,7 +195,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
           .payment-type label.active {background:#ccc;border-radius:10px;}
         </style>
         <div class="panel panel-default contact-information">
-          <div class="panel-heading">Tell us about yourself</div>
+          <hr>
+          <h2>Your Donor Information</h2>
           <div class="panel-body">
             <div class="form-group required">
               <label class="col-sm-3 col-md-3 control-label" for="donor_first_name">First Name:</label>
@@ -323,8 +328,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
             </div>
 
             <div class="panel panel-default" id="dd-widget">
-              <h2>Employer Matching</h2>
               <hr>
+              <h2>Matching Gift</h2>
               <div class="inline row">
                 <div class='col-xs-12 col-sm-12 text-field'>
                 <p>Does your employer have a matching gift program? Please use the field below to find out.</p>
@@ -335,12 +340,12 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
               </div>
             </div>
 
-            <div class="form-group checkbox">
+            <div class="form-group checkbox cover_fee">
               <input type="checkbox" name="cover_fee" id="cover_fee" value="yes">
               <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
             </div>
 
-            <div class="form-group checkbox required">
+            <div class="form-group checkbox tos required">
               <input type="checkbox" id="tos" class="tos required" name="tos" value="true" aria-required="true" aria-describedby="tos-error" title="Please accept the privacy policy">
               <label for="tos">I accept the <a href="http://www.heart.org/privacy" target="_blank">AHA privacy policy</a> <span class="star">*</span></label>
               <div class="error input-group checkBox col-xs-12 col-sm-12">
