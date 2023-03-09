@@ -94,6 +94,9 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
     <p class="impactStatement" style="display: block;">
       <!-- Login Status
         [[?xx::x[[S1:user_name]]x::Not Logged In::Logged In]]
+        You are currently logged in as [[S1:first_name]] [[S1:last_name]].
+        <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]">Log out if you are not [[S1:first_name]] [[S1:last_name]]. </a>
+        <a id="logout_link" href="UserLogin?logout=&amp;NEXTURL=[[T1:TR?fr_id=[[S80:trID]]]]">Logout</a>
       -->
     </p>
   </div>
