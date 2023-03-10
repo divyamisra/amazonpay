@@ -165,19 +165,19 @@ jQuery('[id^=donor_]').each(function(){
 		jQuery('input[name=level_id][value='+jQuery.getQuerystring("level_id")+']').attr("checked","checked");
 	}
 
-	if (jQuery.getQuerystring("msource")) {
-		jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
-	}
+	// if (jQuery.getQuerystring("msource")) {
+	// 	jQuery('input[name=source]').val(jQuery.getQuerystring("msource"));
+	// }
 	
 	//autofill from querystring data
-	jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
-	jQuery('input[name="last_name"]').val(jQuery.getQuerystring("last"));
-	jQuery('input[name="street1"]').val(jQuery.getQuerystring("street1"));	
-	jQuery('input[name="dstreet2"]').val(jQuery.getQuerystring("street2"));	
-	jQuery('input[name="city"]').val(jQuery.getQuerystring("city"));	
-	jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));	
-	jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));	
-	jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));	
+	// jQuery('input[name="first_name"]').val(jQuery.getQuerystring("first"));
+	// jQuery('input[name="last_name"]').val(jQuery.getQuerystring("last"));
+	// jQuery('input[name="street1"]').val(jQuery.getQuerystring("street1"));
+	// jQuery('input[name="dstreet2"]').val(jQuery.getQuerystring("street2"));
+	// jQuery('input[name="city"]').val(jQuery.getQuerystring("city"));
+	// jQuery('input[name="state"]').val(jQuery.getQuerystring("state"));
+	// jQuery('input[name="zip"]').val(jQuery.getQuerystring("zip"));
+	// jQuery('input[name="email"]').val(jQuery.getQuerystring("email"));
 // END QUERY STRING CODE 
 
 function populateAmount(amount) {
