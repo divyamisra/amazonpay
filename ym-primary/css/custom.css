@@ -385,6 +385,7 @@ div.donate-select label.error, div.donate-select label.error:hover {
 .btn-primary-venmo, .btn-primary-applepay, .btn-primary-googlepay {
   background-color: transparent !important;
   padding: 0;
+  margin-top: .5em;
 }
 .btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
@@ -645,6 +646,14 @@ td.FormSectionHeader {
       width:896px
   }
 } */
+
+@media (max-width: 1049px) {
+  .col-lg-4{
+    margin: 50px auto 0;
+    padding: 0;
+    max-width: 670px;
+  }
+}
 
 @media only screen and (max-width: 767px) {
 	.navbar-toggle {
