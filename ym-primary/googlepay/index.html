@@ -27,6 +27,8 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
 </section>
 
 <div class="ym-page-container">
+  <div class="row">
+    <div class="col-md-8">
 
     <!-- classification: [[E42:[[S334:FR_ID]]:classification]] -->
   
@@ -346,6 +348,10 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
               </div>
             </div>
 
+            <div class="confirmation-amount">
+              Amount: $<span id="confirmationAmt">75</span>
+            </div>
+
             <div class="form-group checkbox cover_fee">
               <input type="checkbox" name="cover_fee" id="cover_fee" value="yes">
               <label for="cover_fee">I'd like to cover all transaction fees so 100% of my donation goes to American Heart Association</label>
@@ -359,9 +365,6 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
               </div>
             </div>
 
-            <div class="confirmation-amount">
-              Amount: $<span id="confirmationAmt">75</span>
-            </div>
           </div>
         </div>
         <input type="hidden" class="form-control" name="billing_first_name" id="billing_first_name">
@@ -383,6 +386,31 @@ jQuery('main > .container').before(jQuery('.ym-page-header'));
       </div>
     </div>
   </form>
+</div>
+<div class="col-md-4">
+  <div class="ym-donation-sidebar event-accent">
+    <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/donation-sidebar-img.jpg" alt="Children posing for a picture with their teacher">
+    <div class="ym-donation-sidebar__text ym-donation-sidebar__text--top">
+      <div class="ym-donation-sidebar__header">
+        You're Supporting Heart-Healthy Lives
+      </div>
+      <p>
+        You're helping me get one step closer to my goal of <span class="fs-3">[[?x20x::x[[S334:PROXY_TYPE]]x::[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:goal]]:: [[?x22x::x[[S334:PROXY_TYPE]]x::[[E43:[[S334:FR_ID]]:goal-dollars:[[S334:PROXY_ID]]]]::[[E42:[[S334:FR_ID]]:goal]]]]]]</span>.
+      </p>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+    <div class="ym-donation-sidebar__text">
+      <div class="ym-donation-sidebar__header">
+        Life is why the American Heart Association exists
+      </div>
+      <p>
+        For the littlest baby and the oldest grandparent, you can change and even save their life. With your donation today, you are why families will stay together after heart disease threatens to tear them apart.
+      </p>
+    </div>
+  </div>
+</div>
+</div>
 </div>
 
 <script src="https://pay.google.com/gp/p/js/pay.js"></script>
