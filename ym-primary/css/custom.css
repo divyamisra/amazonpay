@@ -47,7 +47,8 @@ div.responsive.ahc input[type="text"]:focus, div.responsive.ahc input[type="emai
 }
 
 div.donation-form-container h2 {
- padding: 1rem 0;
+ padding-top: 1rem;
+ padding-bottom: .5rem;
 }
 
 
@@ -61,7 +62,7 @@ div.responsive input.venmo-text {
 }
 div.donation-form-container .section-header-container {
   margin: 0;
-  padding: 30px 0 20px;
+  padding: 10px 0 20px;
 }
 /* processing div */
 .processing {
@@ -161,7 +162,8 @@ div.icon {
 }
 
 .donation-detail {
-  margin-top: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 div.card-select label {
