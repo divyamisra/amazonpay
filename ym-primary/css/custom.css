@@ -47,7 +47,8 @@ div.responsive.ahc input[type="text"]:focus, div.responsive.ahc input[type="emai
 }
 
 div.donation-form-container h2 {
- padding: 1rem 0;
+ padding-top: 1rem;
+ padding-bottom: .5rem;
 }
 
 
@@ -61,7 +62,7 @@ div.responsive input.venmo-text {
 }
 div.donation-form-container .section-header-container {
   margin: 0;
-  padding: 30px 0 20px;
+  padding: 10px 0 20px;
 }
 /* processing div */
 .processing {
@@ -161,7 +162,8 @@ div.icon {
 }
 
 .donation-detail {
-  margin-top: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 div.card-select label {
@@ -383,6 +385,7 @@ div.donate-select label.error, div.donate-select label.error:hover {
 .btn-primary-venmo, .btn-primary-applepay, .btn-primary-googlepay {
   background-color: transparent !important;
   padding: 0;
+  margin-top: .5em;
 }
 .btn-primary-venmo:hover, .btn-primary-applepay:hover, .btn-primary-googlepay:hover {
   background-color: transparent !important;
@@ -643,6 +646,14 @@ td.FormSectionHeader {
       width:896px
   }
 } */
+
+@media (max-width: 1049px) {
+  .col-lg-4{
+    margin: 50px auto 0;
+    padding: 0;
+    max-width: 670px;
+  }
+}
 
 @media only screen and (max-width: 767px) {
 	.navbar-toggle {
