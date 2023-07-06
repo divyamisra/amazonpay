@@ -103,9 +103,9 @@ function doubleDonationConfirmation(widgetData) {
 		"donor_email": widgetData.email,
 		"doublethedonation_company_id": widgetData.ddCompanyId,
 		"doublethedonation_status": null,
-		"DD_CUSTOM_FIELDS": {
-			"school": widgetData.school
-		}
+		// "DD_CUSTOM_FIELDS": {
+		// 	"school": widgetData.school
+		// }
 	});
 
 	// delay triggering the widget
