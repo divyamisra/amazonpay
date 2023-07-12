@@ -60,7 +60,7 @@ function donateOfflineCallback(responseData) {
 	const ddCompanyId = (jQuery("#double_the_donation_company_id").val() !== "") ? jQuery("#double_the_donation_company_id").val() : jQuery('input[name=doublethedonation_company_id]').val();
 
 	const widgetData = {
-		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber +"-"+ jQuery('input[name="last_name"]').val(),
+		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber +":"+ jQuery('input[name="last_name"]').val(),
 		transactionDate: responseData.addGift.addGiftResponse.gift.date,
 		email: jQuery('input[name="email"]').val(),
 		firstName: jQuery('input[name="first_name"]').val(),
@@ -94,7 +94,7 @@ function doubleDonationConfirmation(widgetData) {
 	}
 
 	doublethedonation.integrations.core.register_donation({
-		"360matchpro_public_key": "w5JH5j9ID4Cf6zMh",
+		"360matchpro_public_key": "tk0VpQB4WItypiud",
 		"campaign": widgetData.form,
 		"donation_identifier": widgetData.confirmationCode,
 		"donation_amount": widgetData.amt,
