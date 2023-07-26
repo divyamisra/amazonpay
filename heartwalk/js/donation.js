@@ -75,7 +75,8 @@ function donateOfflineCallback(responseData) {
 		lastName: jQuery('input[name="last_name"]').val(),
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
-		ddCompanyId: ddCompanyId
+		ddCompanyId: ddCompanyId,
+		trId: jQuery('#fr_id]').val(),
 	};
 
 	// Call only if the widget is on the form
@@ -109,7 +110,10 @@ function doubleDonationConfirmation(widgetData) {
 		"donor_last_name": widgetData.lastName,
 		"donor_email": widgetData.email,
 		"doublethedonation_company_id": widgetData.ddCompanyId,
-		"doublethedonation_status": null
+		"doublethedonation_status": null,
+		"DD_CUSTOM_FIELDS": {
+			"TR_id": widgetData.trId
+		}
 	});
 
 	// delay triggering the widget
