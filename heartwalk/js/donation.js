@@ -76,7 +76,7 @@ function donateOfflineCallback(responseData) {
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
 		ddCompanyId: ddCompanyId,
-		trId: jQuery('#fr_id]').val(),
+		trId: jQuery('#fr_id').val(),
 	};
 
 	// Call only if the widget is on the form
