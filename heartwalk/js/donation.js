@@ -65,14 +65,17 @@ function donateOfflineCallback(responseData) {
 	const nameField = $('input[name=campaign_name]').length ? $('input[name=campaign_name]').val() : "Heart Walk";
 	const campaign_name = ($('input[name=instance]').val() == "heartdev" ? "heartdev " : "") + nameField;
 	const ddCompanyId = (jQuery("#double_the_donation_company_id").val() !== "") ? jQuery("#double_the_donation_company_id").val() : jQuery('input[name=doublethedonation_company_id]').val();
+	const confirmation_identifier = responseData.addGift.addGiftResponse.gift.checkNumber +":"+ jQuery('input[name="last_name"]').val();
+	const last_name_input = jQuery('input[name="last_name"]').val();
 
 	const widgetData = {
 		// transactionId: responseData.data.donationResponse.donation.transaction_id,
-		confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber +":"+ jQuery('input[name="last_name"]').val(),
+		// confirmationCode: responseData.addGift.addGiftResponse.gift.checkNumber +":"+ jQuery('input[name="last_name"]').val(),
+		confirmationCode: confirmation_identifier.trim(),
 		transactionDate: responseData.addGift.addGiftResponse.gift.date,
-		email: jQuery('input[name="email"]').val(),
-		firstName: jQuery('input[name="first_name"]').val(),
-		lastName: jQuery('input[name="last_name"]').val(),
+		email: jQuery('input[name="email"]').val().trim(),
+		firstName: jQuery('input[name="first_name"]').val().trim(),
+		lastName: last_name_input.trim(),
 		amt: jQuery('input[name=other_amount]').val(),
 		form: campaign_name,
 		ddCompanyId: ddCompanyId,
